@@ -129,11 +129,20 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
             </li>
           </ul>
           <div className="mt-4 flex flex-wrap gap-2">
-            <a href={rental.application_url} target="_blank" rel="noopener noreferrer" className="bolt-btn">
-              Open official application
-            </a>
+            {(() => {
+              const link = resolveApartmentApplicationLink(rental as any);
+              return link.url ? (
+                <a href={link.url} target="_blank" rel="noopener noreferrer" className="bolt-btn" title={link.reason}>
+                  Open {link.platform_name ? link.platform_name : 'official application'} →
+                </a>
+              ) : (
+                <span className="rounded-full bg-frosting-200 px-3 py-1 text-xs text-chocolate-700">
+                  No verified leasing-portal link — call the property directly
+                </span>
+              );
+            })()}
             <a href={rental.official_property_url} target="_blank" rel="noopener noreferrer" className="cinnamon-btn">
-              Official property page
+              Operator property page
             </a>
             <button
               type="button"

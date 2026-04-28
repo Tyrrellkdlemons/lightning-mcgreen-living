@@ -17,6 +17,7 @@ import type {
   AppLinkConfidence,
 } from '@/types/links';
 import type { RentalListing, VehicleListing, Dealer, WorkVehicleRental } from '@/types';
+import { pickLeasingPortal } from './leasing-portals';
 
 export interface ResolvedLink<T extends string = string> {
   url: string | null;
@@ -25,6 +26,9 @@ export interface ResolvedLink<T extends string = string> {
   label: string;
   redirect_required: boolean;
   reason: string;
+  /** Optional — present on apartment links so the UI can show "Application goes through: <platform>". */
+  platform_name?: string;
+  platform_owner?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -53,12 +57,40 @@ export function resolveApartmentApplicationLink(
   if (L.exact_floorplan_url) {
     return ok(L.exact_floorplan_url, 'exact-floorplan-application', 'inferred', 'Property site has a floorplan-level apply flow — narrower than property-wide, broader than unit-level.');
   }
-  if (L.property_application_url || rental.application_url) {
-    return ok(L.property_application_url ?? rental.application_url!, 'property-wide-application', 'inferred', 'Operator publishes a property-wide application — your specific unit is selected inside the official flow.');
+
+  // Build a platform-aware link to the actual leasing portal. The previous
+  // version sent users to the operator's marketing site (e.g. greystar.com)
+  // which is not the leasing portal. Now we route to RentCafe public city
+  // search for RentCafe-platform operators, and to the operator's own
+  // leasing portal for in-house operators (Equity / Essex / AvalonBay /
+  // Camden / Irvine Co / UDR / Prime / Decron).
+  const portal = pickLeasingPortal({
+    manager: rental.manager,
+    platform: rental.application_platform,
+    city: rental.city,
+    operatorMarketingUrl: rental.application_url ?? rental.official_property_url ?? '',
+  });
+
+  if (portal.url) {
+    const kind: ApartmentLinkType =
+      portal.type === 'leasing-portal-public-search'
+        ? 'property-wide-application'
+        : portal.type === 'leasing-portal-operator-search'
+        ? 'property-wide-application'
+        : 'leasing-office-contact-only';
+    const r: ResolvedLink<ApartmentLinkType> = {
+      url: portal.url,
+      kind,
+      confidence: portal.type === 'leasing-portal-public-search' ? 'inferred' : 'inferred',
+      label: kind.replace(/-/g, ' '),
+      redirect_required: true,
+      reason: portal.notes,
+      platform_name: portal.platform_name,
+      platform_owner: portal.platform_owner,
+    };
+    return r;
   }
-  if (L.manager_application_url || rental.official_property_url) {
-    return ok(L.manager_application_url ?? rental.official_property_url!, 'leasing-office-contact-only', 'inferred', 'No application URL publicly verified. The official property site is the next step — contact the leasing office from there.');
-  }
+
   return notVerified<ApartmentLinkType>('not-verified', 'Application link not publicly verified yet — use property contact or official website.');
 }
 

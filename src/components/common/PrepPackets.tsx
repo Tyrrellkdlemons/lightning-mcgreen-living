@@ -38,13 +38,19 @@ export function ApartmentPrepPacket({
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <ApartmentLinkBadge kind={link.kind as any} confidence={link.confidence} />
         <VerifiedAtBadge iso={rental.meta.last_verified_at} />
-        <Gumdrop tone="mute" title={link.reason}>{link.reason.split('.')[0]}.</Gumdrop>
+        {link.platform_name && (
+          <Gumdrop tone="info" title={link.platform_owner ? `${link.platform_name} · ${link.platform_owner}` : link.platform_name}>
+            via {link.platform_name}
+          </Gumdrop>
+        )}
       </div>
-      <PacketTable rows={summary} />
-      <p className="mt-3 text-xs text-chocolate-700">
-        <strong>Application goes through:</strong> {rental.manager}
-        {rental.application_platform !== 'Unknown' ? ` · ${rental.application_platform}` : ''}
+      <p className="mt-2 rounded-md bg-frosting-100 p-2 text-xs text-chocolate-700">
+        <strong className="text-chocolate-900">Application goes through:</strong> {link.platform_name ?? rental.manager}
+        {link.platform_owner && link.platform_owner !== link.platform_name ? ` (${link.platform_owner})` : ''}.
+        {' '}
+        <span className="text-chocolate-700">{link.reason}</span>
       </p>
+      <PacketTable rows={summary} />
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <button type="button" onClick={() => setOpen(true)} className="bolt-btn">
           Start official application →
@@ -55,7 +61,7 @@ export function ApartmentPrepPacket({
         open={open}
         onClose={() => setOpen(false)}
         href={link.url}
-        destinationLabel={`${rental.manager} · ${rental.property_name}`}
+        destinationLabel={`${link.platform_name ?? rental.manager} · ${rental.property_name}`}
         packetSummary={summary}
       />
     </CandyCard>
