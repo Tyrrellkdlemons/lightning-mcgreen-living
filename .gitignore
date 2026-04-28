@@ -56,3 +56,6 @@ data/*.csv
 # OS
 .AppleDouble
 .LSOverride
+
+# Local Netlify folder
+.netlify
