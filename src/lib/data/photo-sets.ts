@@ -1,78 +1,170 @@
 /**
- * Free-license seeded image sets via Lorem Picsum (https://picsum.photos).
+ * Topic-matching photo sets — generated, not random.
  *
- * Lorem Picsum is a free, no-API-key proxy over the Unsplash library. Images
- * are CC0-licensed and stable per `seed`. We pick three seeds per topic so the
- * card and detail-page galleries can crossfade.
+ * Returns 3 slides per listing that actually match what the listing IS:
+ *   1. Topic-aware SVG illustration (apartment building / townhome row /
+ *      vehicle / work-vehicle silhouette in brand-aware color)
+ *   2. Static neighborhood map tile from CARTO/OSM showing the real
+ *      location
+ *   3. A second SVG variant (different sky / time-of-day)
  *
- * For Path 2 (per-property photo links), each listing optionally carries an
- * `official_image_credit_url` we can also link out to.
+ * No random Lorem Picsum photos. CC0 because we wrote the SVGs; OSM/CARTO
+ * tiles carry the attribution shown in `MapPanel`.
  */
 
+import { apartmentBuildingVariants, townhomeRowVariants, vehicleVariants, workVehicleVariants } from '@/lib/assets/svg-illustrations';
+import { neighborhoodTile } from '@/lib/assets/static-osm-tile';
+import type { RentalListing, VehicleListing, WorkVehicleRental } from '@/types';
+
 export interface PhotoSet {
-  /** 3 stable seeded URLs that look reasonable as apartment / townhome / car / van photos. */
+  /** 3 stable URLs (data-URL SVG or CARTO/OSM tile). */
   urls: [string, string, string];
   alt: string;
   credit_label: string;
   credit_url: string;
 }
 
-const PICSUM = (seed: string, w = 800, h = 520) =>
-  `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
-
-const CREDIT = {
-  label: 'Free-license demo photo (Lorem Picsum / Unsplash CC0)',
-  url: 'https://picsum.photos/',
+const CREDIT_SVG = {
+  label: 'Original illustration · CC0',
+  url: 'https://github.com/Tyrrellkdlemons/lightning-mcgreen-living',
+};
+const CREDIT_OSM = {
+  label: '© OpenStreetMap contributors © CARTO',
+  url: 'https://www.openstreetmap.org/copyright',
 };
 
-export function apartmentPhotos(seedKey: string): PhotoSet {
+// ---------------------------------------------------------------------------
+// Apartment / townhome
+// ---------------------------------------------------------------------------
+
+export function apartmentPhotos(seed: string, ctx?: { lat?: number; lng?: number; property_name?: string; city?: string }): PhotoSet {
+  const variants = apartmentBuildingVariants(seed);
+  const tile =
+    ctx?.lat != null && ctx?.lng != null
+      ? neighborhoodTile(ctx.lat, ctx.lng, 14).url
+      : variants[1];
   return {
-    urls: [
-      PICSUM(`apt-${seedKey}-1`),
-      PICSUM(`apt-${seedKey}-2`),
-      PICSUM(`apt-${seedKey}-3`),
-    ],
-    alt: 'Apartment community exterior · demo photo',
-    credit_label: CREDIT.label,
-    credit_url: CREDIT.url,
+    urls: [variants[0], tile, variants[2]],
+    alt: ctx?.property_name
+      ? `${ctx.property_name} — apartment building illustration + neighborhood map (${ctx.city ?? 'SoCal'})`
+      : 'Apartment building · illustration + neighborhood map',
+    credit_label: ctx?.lat != null ? `${CREDIT_SVG.label} · ${CREDIT_OSM.label}` : CREDIT_SVG.label,
+    credit_url: CREDIT_OSM.url,
   };
 }
 
-export function townhomePhotos(seedKey: string): PhotoSet {
+export function townhomePhotos(seed: string, ctx?: { lat?: number; lng?: number; property_name?: string; city?: string }): PhotoSet {
+  const variants = townhomeRowVariants(seed);
+  const tile =
+    ctx?.lat != null && ctx?.lng != null
+      ? neighborhoodTile(ctx.lat, ctx.lng, 14).url
+      : variants[1];
   return {
-    urls: [
-      PICSUM(`th-${seedKey}-1`),
-      PICSUM(`th-${seedKey}-2`),
-      PICSUM(`th-${seedKey}-3`),
-    ],
-    alt: 'Townhome community · demo photo',
-    credit_label: CREDIT.label,
-    credit_url: CREDIT.url,
+    urls: [variants[0], tile, variants[2]],
+    alt: ctx?.property_name
+      ? `${ctx.property_name} — townhome row illustration + neighborhood map (${ctx.city ?? 'SoCal'})`
+      : 'Townhome row · illustration + neighborhood map',
+    credit_label: ctx?.lat != null ? `${CREDIT_SVG.label} · ${CREDIT_OSM.label}` : CREDIT_SVG.label,
+    credit_url: CREDIT_OSM.url,
   };
 }
 
-export function vehiclePhotos(seedKey: string): PhotoSet {
+// Convenience builder used by real-rentals.ts
+export function rentalPhotos(rental: Pick<RentalListing, 'id' | 'unit_type' | 'property_name' | 'city' | 'lat' | 'lng'>): PhotoSet {
+  const ctx = { lat: rental.lat, lng: rental.lng, property_name: rental.property_name, city: rental.city };
+  return rental.unit_type === 'apartment'
+    ? apartmentPhotos(rental.id, ctx)
+    : townhomePhotos(rental.id, ctx);
+}
+
+// ---------------------------------------------------------------------------
+// Cars
+// ---------------------------------------------------------------------------
+
+export function vehiclePhotos(args: {
+  seed: string;
+  make?: string;
+  model?: string;
+  body_type?: string;
+  fuel_type?: string;
+  dealer_lat?: number;
+  dealer_lng?: number;
+  dealer_city?: string;
+}): PhotoSet {
+  const variants = vehicleVariants({
+    seed: args.seed,
+    make: args.make,
+    body_type: args.body_type,
+    fuel_type: args.fuel_type,
+  });
+  const tile =
+    args.dealer_lat != null && args.dealer_lng != null
+      ? neighborhoodTile(args.dealer_lat, args.dealer_lng, 14).url
+      : variants[1];
   return {
-    urls: [
-      PICSUM(`car-${seedKey}-1`),
-      PICSUM(`car-${seedKey}-2`),
-      PICSUM(`car-${seedKey}-3`),
-    ],
-    alt: 'Vehicle · demo photo',
-    credit_label: CREDIT.label,
-    credit_url: CREDIT.url,
+    urls: [variants[0], tile, variants[2]],
+    alt: args.make
+      ? `${args.make} ${args.model ?? ''} · stylized ${args.body_type ?? 'vehicle'} illustration + dealer neighborhood map (${args.dealer_city ?? 'SoCal'})`
+      : 'Vehicle · illustration + dealer neighborhood map',
+    credit_label: args.dealer_lat != null ? `${CREDIT_SVG.label} · ${CREDIT_OSM.label}` : CREDIT_SVG.label,
+    credit_url: CREDIT_OSM.url,
   };
 }
 
-export function workVehiclePhotos(seedKey: string): PhotoSet {
+// Convenience builder used by real-vehicles.ts
+export function vehiclePhotosForListing(
+  v: Pick<VehicleListing, 'id' | 'make' | 'model' | 'body_type' | 'fuel_type'>,
+  dealer?: { city?: string; lat?: number; lng?: number },
+): PhotoSet {
+  return vehiclePhotos({
+    seed: v.id,
+    make: v.make,
+    model: v.model,
+    body_type: v.body_type,
+    fuel_type: v.fuel_type,
+    dealer_lat: dealer?.lat,
+    dealer_lng: dealer?.lng,
+    dealer_city: dealer?.city,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Work vehicles
+// ---------------------------------------------------------------------------
+
+export function workVehiclePhotos(args: {
+  seed: string;
+  vehicle_type: WorkVehicleRental['vehicle_type'];
+  branch_lat?: number;
+  branch_lng?: number;
+  branch_city?: string;
+  provider_name?: string;
+}): PhotoSet {
+  const variants = workVehicleVariants({ seed: args.seed, vehicle_type: args.vehicle_type });
+  const tile =
+    args.branch_lat != null && args.branch_lng != null
+      ? neighborhoodTile(args.branch_lat, args.branch_lng, 14).url
+      : variants[1];
   return {
-    urls: [
-      PICSUM(`van-${seedKey}-1`),
-      PICSUM(`van-${seedKey}-2`),
-      PICSUM(`van-${seedKey}-3`),
-    ],
-    alt: 'Work vehicle · demo photo',
-    credit_label: CREDIT.label,
-    credit_url: CREDIT.url,
+    urls: [variants[0], tile, variants[2]],
+    alt: args.provider_name
+      ? `${args.provider_name} · ${args.vehicle_type.replace('-', ' ')} illustration + branch neighborhood map (${args.branch_city ?? 'SoCal'})`
+      : `${args.vehicle_type.replace('-', ' ')} · illustration + branch map`,
+    credit_label: args.branch_lat != null ? `${CREDIT_SVG.label} · ${CREDIT_OSM.label}` : CREDIT_SVG.label,
+    credit_url: CREDIT_OSM.url,
   };
+}
+
+// Convenience builder used by real-work-vehicles.ts
+export function workVehiclePhotosForListing(
+  w: Pick<WorkVehicleRental, 'id' | 'vehicle_type' | 'lat' | 'lng' | 'city' | 'provider_name'>,
+): PhotoSet {
+  return workVehiclePhotos({
+    seed: w.id,
+    vehicle_type: w.vehicle_type,
+    branch_lat: w.lat,
+    branch_lng: w.lng,
+    branch_city: w.city,
+    provider_name: w.provider_name,
+  });
 }

@@ -8,11 +8,16 @@ const nextConfig = {
       // Example placeholder for OpenStreetMap tiles:
       { protocol: 'https', hostname: '*.openstreetmap.org' },
       { protocol: 'https', hostname: '*.basemaps.cartocdn.com' },
-      // Free-license demo photo sources (Lorem Picsum / Unsplash CC0)
+      // Free-license demo photo sources (Lorem Picsum / Unsplash CC0) —
+      // legacy fallback only; new asset system uses inline SVG + CARTO tiles.
       { protocol: 'https', hostname: 'picsum.photos' },
       { protocol: 'https', hostname: 'fastly.picsum.photos' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'source.unsplash.com' },
+      // Tile servers used for the "neighborhood map" slide
+      { protocol: 'https', hostname: 'tile.openstreetmap.org' },
+      { protocol: 'https', hostname: '*.basemaps.cartocdn.com' },
+      { protocol: 'https', hostname: 'basemaps.cartocdn.com' },
     ],
   },
   experimental: {

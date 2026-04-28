@@ -1,5 +1,5 @@
 import type { RentalListing } from '@/types';
-import { apartmentPhotos, townhomePhotos, type PhotoSet } from './photo-sets';
+import { rentalPhotos, type PhotoSet } from './photo-sets';
 
 /**
  * REAL-OPERATOR demo listings — 40 rows across LA / OC / SB / Riverside / Ventura.
@@ -123,5 +123,12 @@ export const REAL_RENTALS: RentalWithPhotos[] = ROWS.map((row) => ({
   state: 'CA' as const,
   official_property_url: row.application_url,
   meta: meta(row.application_url),
-  photos: row.unit_type === 'townhouse' ? townhomePhotos(row.id) : apartmentPhotos(row.id),
+  photos: rentalPhotos({
+    id: row.id,
+    unit_type: row.unit_type,
+    property_name: row.property_name,
+    city: row.city,
+    lat: row.lat,
+    lng: row.lng,
+  }),
 }));

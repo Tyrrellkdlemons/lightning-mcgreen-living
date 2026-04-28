@@ -6,6 +6,7 @@ import { BottomNav } from '@/components/shell/BottomNav';
 import { Footer } from '@/components/shell/Footer';
 import { DemoBanner } from '@/components/shell/DemoBanner';
 import { RainingObjects } from '@/components/theme/RainingObjects';
+import { RotatingBackground } from '@/components/theme/RotatingBackground';
 import { PwaRegister } from '@/components/shell/PwaRegister';
 
 export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="h-full">
       <body className="relative min-h-dvh bg-frosting-50 text-chocolate-800 antialiased">
+        <RotatingBackground />
         <RainingObjects count={20} />
         <DemoBanner />
         <TopNav />

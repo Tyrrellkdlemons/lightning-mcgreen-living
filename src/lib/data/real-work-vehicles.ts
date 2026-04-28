@@ -1,5 +1,5 @@
 import type { WorkVehicleRental } from '@/types';
-import { workVehiclePhotos, type PhotoSet } from './photo-sets';
+import { workVehiclePhotosForListing, type PhotoSet } from './photo-sets';
 
 /**
  * REAL-PROVIDER demo work-vehicle rentals — 12 rows across 7 real public chains:
@@ -73,5 +73,12 @@ export const REAL_WORK_VEHICLES: WorkVehicleWithPhotos[] = ROWS.map((r) => ({
   state: 'CA' as const,
   availability_status: 'available' as const,
   meta: meta(r.website),
-  photos: workVehiclePhotos(r.id),
+  photos: workVehiclePhotosForListing({
+    id: r.id,
+    vehicle_type: r.vehicle_type,
+    lat: r.lat,
+    lng: r.lng,
+    city: r.city,
+    provider_name: r.provider_name,
+  } as any),
 }));
