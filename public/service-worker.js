@@ -8,7 +8,7 @@
  *  - Never caches /api/* responses (always fresh).
  */
 
-const CACHE = 'lmgl-v2-no-demo-banner';
+const CACHE = 'lmgl-v3-bg-visible';
 const PRECACHE = ['/', '/offline', '/manifest.json'];
 
 self.addEventListener('install', (event) => {

@@ -383,8 +383,15 @@
   animation: bolt-pulse 1.6s ease-in-out infinite;
 }
 
-html, body {
+html {
   background: var(--surface-page);
+}
+
+/* Body is transparent so the fixed-position <RotatingBackground> can show
+ * through. The html element underneath provides the cream fallback when
+ * no _insertimages have been dropped yet. */
+body {
+  background: transparent;
   color: var(--text-body);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

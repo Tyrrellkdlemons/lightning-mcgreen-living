@@ -81,7 +81,7 @@ export function RotatingBackground() {
   if (!manifest || manifest.images.length === 0) return null;
 
   return (
-    <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden">
+    <div aria-hidden className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
       {manifest.images.map((img, i) => (
         <div
           key={img.src}
@@ -94,12 +94,13 @@ export function RotatingBackground() {
           className="absolute inset-0 bg-center bg-cover will-change-transform"
         />
       ))}
-      {/* Cream scrim — keeps gingerbread/cars foreground legible over photo */}
+      {/* Cream scrim — keeps gingerbread/cars foreground legible over photo.
+       * Lighter than before so your art comes through while text stays readable. */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(180deg, rgba(255,250,240,0.78) 0%, rgba(255,243,220,0.68) 50%, rgba(255,250,240,0.82) 100%)',
+            'linear-gradient(180deg, rgba(255,250,240,0.55) 0%, rgba(255,243,220,0.40) 50%, rgba(255,250,240,0.62) 100%)',
         }}
       />
     </div>
