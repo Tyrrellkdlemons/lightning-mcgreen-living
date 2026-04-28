@@ -68,10 +68,10 @@ const ROWS: SeedW[] = [
 ];
 
 export const REAL_WORK_VEHICLES: WorkVehicleWithPhotos[] = ROWS.map((r) => ({
-  external_id: r.id,
-  state: 'CA',
-  availability_status: 'available',
   ...r,
+  external_id: r.id,
+  state: 'CA' as const,
+  availability_status: 'available' as const,
   meta: meta(r.website),
   photos: workVehiclePhotos(r.id),
 }));

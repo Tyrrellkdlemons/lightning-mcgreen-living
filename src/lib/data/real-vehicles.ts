@@ -74,7 +74,7 @@ const VEHICLES: SeedV[] = [
 
 export const REAL_VEHICLES: VehicleWithPhotos[] = VEHICLES.map((v) => ({
   ...v,
-  availability_status: 'available',
+  availability_status: 'available' as const,
   meta: meta(v.listing_url),
   photos: vehiclePhotos(v.id),
 }));

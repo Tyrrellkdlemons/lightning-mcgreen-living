@@ -118,11 +118,10 @@ const ROWS: SeedRow[] = [
 ];
 
 export const REAL_RENTALS: RentalWithPhotos[] = ROWS.map((row) => ({
-  external_id: row.id,
-  state: 'CA',
-  application_platform: row.application_platform,
-  official_property_url: row.application_url,
   ...row,
+  external_id: row.id,
+  state: 'CA' as const,
+  official_property_url: row.application_url,
   meta: meta(row.application_url),
   photos: row.unit_type === 'townhouse' ? townhomePhotos(row.id) : apartmentPhotos(row.id),
 }));
