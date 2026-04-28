@@ -12,6 +12,8 @@ export interface RentalFilterState {
   parking_garage?: boolean;
   private_entrance?: boolean;
   verified_special?: boolean;
+  accessibility?: boolean;
+  avoid_strict?: boolean;
 }
 
 const CITIES = [
@@ -97,6 +99,8 @@ export function RentalFilters({
         <Toggle label="Garage / covered parking" value={!!state.parking_garage} onChange={(v) => update({ parking_garage: v })} />
         <Toggle label="Private entrance (townhomes)" value={!!state.private_entrance} onChange={(v) => update({ private_entrance: v })} />
         <Toggle label="Verified specials only" value={!!state.verified_special} onChange={(v) => update({ verified_special: v })} />
+        <Toggle label="Step-free entry / accessibility" value={!!(state as any).accessibility} onChange={(v) => update({ accessibility: v } as any)} />
+        <Toggle label="Skip strict-screening properties" value={!!(state as any).avoid_strict} onChange={(v) => update({ avoid_strict: v } as any)} />
       </div>
 
       <div className="text-[11px] leading-snug text-chocolate-600">

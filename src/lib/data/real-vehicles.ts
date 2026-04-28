@@ -1,5 +1,6 @@
 import type { Dealer, VehicleListing } from '@/types';
 import { vehiclePhotosForListing, type PhotoSet } from './photo-sets';
+import { VEHICLES_EXTRA } from './real-vehicles-extra';
 
 /**
  * REAL-DEALER demo inventory — 16 vehicles across 6 real public SoCal dealer chains:
@@ -72,7 +73,7 @@ const VEHICLES: SeedV[] = [
   { id: 'v-toyota-rav4-cmx', vin: 'JTMN1RFV1LJ567890', dealer_id: 'd-carmax-anaheim', year: 2021, make: 'Toyota', model: 'RAV4', trim: 'XLE', mileage: 31400, price: 27490, down_payment_estimate: 2800, apr_estimate: 8.49, term_months: 60, fuel_type: 'Gasoline', drive: 'AWD', transmission: 'Automatic', body_type: 'SUV', condition: 'used', fuel_economy_mpg_combined: 28, safety_rating_overall: 5, listing_url: 'https://www.carmax.com/cars/toyota/rav4' },
 ];
 
-export const REAL_VEHICLES: VehicleWithPhotos[] = VEHICLES.map((v) => {
+export const REAL_VEHICLES: VehicleWithPhotos[] = [...VEHICLES, ...VEHICLES_EXTRA].map((v) => {
   const dealer = REAL_DEALERS.find((d) => d.id === v.dealer_id);
   return {
     ...v,

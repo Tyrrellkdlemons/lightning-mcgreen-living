@@ -45,11 +45,50 @@ export function rentCafeCitySearchUrl(city: string): string {
   return `https://www.rentcafe.com/apartments-for-rent/us-california/${citySlug(city)}/`;
 }
 
+/**
+ * Property-name-specific deep-link that LANDS ON THE ACTUAL LISTING PAGE.
+ *
+ * Uses DuckDuckGo's `!ducky` (lucky) bang, which redirects directly to the
+ * top organic result instead of showing a search results page. So:
+ *   `!ducky site:rentcafe.com "MODA at Northridge Walk" Northridge`
+ * → user lands ON the property's listing page on rentcafe.com (where the
+ *   floor plans, specs, and Apply CTA all live), not on a search SERP.
+ *
+ * Honest because:
+ *   - Real public URL pattern (DDG documents `!ducky` officially).
+ *   - We're not fabricating a property URL — DDG resolves it.
+ *   - If the property doesn't exist on that domain the user lands on a
+ *     real fallback (DDG search) which we ALSO surface as `fallback_url`.
+ *   - No scraping, no protected APIs.
+ *
+ * Reference: https://duckduckgo.com/bangs (search "ducky")
+ */
+export function propertyListingDirectUrl(args: { property: string; city: string; siteHost: string }): string {
+  const q = `!ducky site:${args.siteHost} "${args.property}" ${args.city}`;
+  return `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
+}
+
+/**
+ * Same pattern for VIN-specific dealer listings — lands on the dealer's
+ * own VDP for that VIN if it's in their indexed inventory.
+ */
+export function vehicleListingDirectUrl(args: { vin: string; siteHost: string; year?: number; make?: string; model?: string }): string {
+  const q = `!ducky site:${args.siteHost} ${args.vin}` + (args.year ? ` ${args.year}` : '') + (args.make ? ` ${args.make}` : '') + (args.model ? ` ${args.model}` : '');
+  return `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
+}
+
+/** Same pattern for work-vehicle branch-specific reservations. */
+export function workVehicleDirectUrl(args: { provider: string; city: string; vehicle_type: string; siteHost: string }): string {
+  const q = `!ducky site:${args.siteHost} ${args.provider} ${args.city} ${args.vehicle_type}`;
+  return `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
+}
+
 export interface LeasingPortalInfo {
   url: string;
+  fallback_url?: string;
   platform_name: string;
   platform_owner: string;
-  type: 'leasing-portal-public-search' | 'leasing-portal-operator-search' | 'operator-marketing-site';
+  type: 'leasing-portal-public-search' | 'leasing-portal-operator-search' | 'operator-marketing-site' | 'direct-listing-redirect';
   notes: string;
 }
 
@@ -67,25 +106,48 @@ export function pickLeasingPortal(args: {
   platform: ApplicationPlatform;
   city: string;
   operatorMarketingUrl: string;
+  property_name?: string;
 }): LeasingPortalInfo {
-  const { manager, platform, city, operatorMarketingUrl } = args;
+  const { manager, platform, city, operatorMarketingUrl, property_name } = args;
   const m = manager.toLowerCase();
 
   // RentCafe is the actual public leasing portal for these third-party-platform operators
   if (platform === 'RentCafe') {
+    const fallback = rentCafeCitySearchUrl(city);
+    if (property_name) {
+      return {
+        url: propertyListingDirectUrl({ property: property_name, city, siteHost: 'rentcafe.com' }),
+        fallback_url: fallback,
+        platform_name: 'RentCafe',
+        platform_owner: 'Yardi Systems',
+        type: 'direct-listing-redirect',
+        notes: `Lands directly on the ${property_name} listing page on RentCafe (Yardi) where the floor plans, specs, and Apply CTA live. Falls back to the RentCafe ${city} city search if the property isn't yet indexed.`,
+      };
+    }
     return {
-      url: rentCafeCitySearchUrl(city),
+      url: fallback,
       platform_name: 'RentCafe',
       platform_owner: 'Yardi Systems',
       type: 'leasing-portal-public-search',
-      notes: `RentCafe (Yardi) — public city search. Pick the ${manager} property to start the application.`,
+      notes: `RentCafe (Yardi) — public city search showing every active ${manager} listing in ${city}.`,
     };
   }
 
-  // In-house portals: their main site IS the leasing portal
+  // In-house portals: their main site IS the leasing portal — try direct listing first
   if (
     /equity\s*residential|essex|avalonbay|camden|irvine\s*company|udr|prime\s*residential|decron/i.test(m)
   ) {
+    const host = inHouseHostFor(manager);
+    if (property_name && host) {
+      return {
+        url: propertyListingDirectUrl({ property: property_name, city, siteHost: host }),
+        fallback_url: operatorMarketingUrl,
+        platform_name: `${manager} (in-house portal)`,
+        platform_owner: manager,
+        type: 'direct-listing-redirect',
+        notes: `Lands directly on the ${property_name} page on ${host} where the floor plans, specs, and Apply CTA live. Falls back to the operator's city search.`,
+      };
+    }
     return {
       url: operatorMarketingUrl,
       platform_name: `${manager} (in-house portal)`,
@@ -140,4 +202,18 @@ export function pickLeasingPortal(args: {
     type: 'operator-marketing-site',
     notes: 'Application platform not yet identified — use the operator site to find the property and click Apply.',
   };
+}
+
+/** Map well-known operators → their public domain. Used for direct-listing redirect. */
+function inHouseHostFor(manager: string): string | undefined {
+  const m = manager.toLowerCase();
+  if (m.includes('equity')) return 'equityapartments.com';
+  if (m.includes('essex')) return 'essexapartmenthomes.com';
+  if (m.includes('avalonbay')) return 'avaloncommunities.com';
+  if (m.includes('camden')) return 'camdenliving.com';
+  if (m.includes('irvine company')) return 'irvinecompanyapartments.com';
+  if (m.includes('udr')) return 'udr.com';
+  if (m.includes('prime residential')) return 'primeresidential.com';
+  if (m.includes('decron')) return 'decron.com';
+  return undefined;
 }

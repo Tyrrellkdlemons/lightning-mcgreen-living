@@ -21,6 +21,8 @@ import { pickLeasingPortal } from './leasing-portals';
 
 export interface ResolvedLink<T extends string = string> {
   url: string | null;
+  /** Fallback (e.g. city search) if the direct listing URL doesn't resolve. */
+  fallback_url?: string | null;
   kind: T;
   confidence: AppLinkConfidence;
   label: string;
@@ -58,17 +60,16 @@ export function resolveApartmentApplicationLink(
     return ok(L.exact_floorplan_url, 'exact-floorplan-application', 'inferred', 'Property site has a floorplan-level apply flow — narrower than property-wide, broader than unit-level.');
   }
 
-  // Build a platform-aware link to the actual leasing portal. The previous
-  // version sent users to the operator's marketing site (e.g. greystar.com)
-  // which is not the leasing portal. Now we route to RentCafe public city
-  // search for RentCafe-platform operators, and to the operator's own
-  // leasing portal for in-house operators (Equity / Essex / AvalonBay /
-  // Camden / Irvine Co / UDR / Prime / Decron).
+  // Build a platform-aware link. When we have a property name, we use
+  // DuckDuckGo's `!ducky` (lucky) bang to land directly on the actual
+  // listing page on RentCafe / the operator's own portal — not a search
+  // results page. The city-search URL becomes the fallback.
   const portal = pickLeasingPortal({
     manager: rental.manager,
     platform: rental.application_platform,
     city: rental.city,
     operatorMarketingUrl: rental.application_url ?? rental.official_property_url ?? '',
+    property_name: rental.property_name,
   });
 
   if (portal.url) {
@@ -80,8 +81,9 @@ export function resolveApartmentApplicationLink(
         : 'leasing-office-contact-only';
     const r: ResolvedLink<ApartmentLinkType> = {
       url: portal.url,
+      fallback_url: portal.fallback_url,
       kind,
-      confidence: portal.type === 'leasing-portal-public-search' ? 'inferred' : 'inferred',
+      confidence: portal.type === 'direct-listing-redirect' ? 'inferred' : 'inferred',
       label: kind.replace(/-/g, ' '),
       redirect_required: true,
       reason: portal.notes,

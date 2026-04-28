@@ -22,6 +22,7 @@ export function Footer() {
 
           <FooterCol title="Discover">
             <FooterLink href="/rentals">Apartments & Townhomes</FooterLink>
+            <FooterLink href="/operators">Operator index</FooterLink>
             <FooterLink href="/cars">Cars</FooterLink>
             <FooterLink href="/work-vehicles">Work Vehicles</FooterLink>
             <FooterLink href="/life-budget">Compare Life Budget</FooterLink>

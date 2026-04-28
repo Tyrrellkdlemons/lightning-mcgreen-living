@@ -16,12 +16,14 @@ export function RedirectScreen({
   open,
   onClose,
   href,
+  fallbackHref,
   destinationLabel,
   packetSummary,
 }: {
   open: boolean;
   onClose: () => void;
   href: string | null;
+  fallbackHref?: string | null;
   destinationLabel: string;
   packetSummary: { label: string; value: string }[];
 }) {
@@ -68,19 +70,34 @@ export function RedirectScreen({
           <button type="button" onClick={onClose} className="cinnamon-btn text-sm">
             Stay here
           </button>
-          {href ? (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={onClose}
-              className="bolt-btn text-sm"
-            >
-              Open the official page →
-            </a>
-          ) : (
-            <span className="text-xs text-peppermint-600">No verified link — call the property/dealer/provider.</span>
-          )}
+          <div className="flex flex-wrap items-center gap-2">
+            {href ? (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                className="bolt-btn text-sm"
+                title="DuckDuckGo !ducky redirects to the top result — the actual property listing page"
+              >
+                Open the actual listing page →
+              </a>
+            ) : (
+              <span className="text-xs text-peppermint-600">No verified link — call the property/dealer/provider.</span>
+            )}
+            {fallbackHref && (
+              <a
+                href={fallbackHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                className="cinnamon-btn text-sm"
+                title="If the direct redirect doesn't land on the property, browse the city search"
+              >
+                Browse all listings instead
+              </a>
+            )}
+          </div>
         </div>
 
         <p className="mt-3 text-[11px] text-chocolate-600">

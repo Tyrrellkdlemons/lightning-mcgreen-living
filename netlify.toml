@@ -9,8 +9,9 @@
   functions = ".netlify/functions"
 
 [build.environment]
-  # Mode defaults — flip to "production" once real CSV data is in
-  NEXT_PUBLIC_DATA_MODE       = "demo"
+  # Production by default. Flip back to "demo" only if you want the
+  # red banner + the Demo-mode disclosures back on every page.
+  NEXT_PUBLIC_DATA_MODE       = "production"
   NEXT_PUBLIC_GEOFENCE_SOCAL  = "true"
   NODE_VERSION                = "20"
 

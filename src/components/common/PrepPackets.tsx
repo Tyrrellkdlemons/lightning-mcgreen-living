@@ -61,6 +61,7 @@ export function ApartmentPrepPacket({
         open={open}
         onClose={() => setOpen(false)}
         href={link.url}
+        fallbackHref={link.fallback_url}
         destinationLabel={`${link.platform_name ?? rental.manager} · ${rental.property_name}`}
         packetSummary={summary}
       />

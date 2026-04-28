@@ -73,6 +73,11 @@ function filterRentals(
     if (f.parking_garage && !/garage|covered/i.test(r.parking_type ?? '')) return false;
     if (f.private_entrance && !r.private_entrance) return false;
     if (f.verified_special && !r.move_in_specials) return false;
+    if (f.accessibility && !(r.accessibility_features && r.accessibility_features.length > 0)) return false;
+    if (f.avoid_strict) {
+      const stack = require('@/lib/data/screening-stacks').inferScreeningStack(r.application_platform, r.manager, r.screening_vendor);
+      if (stack.strictness === 'strict' || stack.strictness === 'premium') return false;
+    }
     return true;
   });
 }

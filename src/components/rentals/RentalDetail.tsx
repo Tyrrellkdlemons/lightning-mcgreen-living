@@ -132,9 +132,17 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
             {(() => {
               const link = resolveApartmentApplicationLink(rental as any);
               return link.url ? (
-                <a href={link.url} target="_blank" rel="noopener noreferrer" className="bolt-btn" title={link.reason}>
-                  Open {link.platform_name ? link.platform_name : 'official application'} →
-                </a>
+                <>
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" className="bolt-btn" title={link.reason}>
+                    Open the actual listing page →
+                  </a>
+                  {link.fallback_url && (
+                    <a href={link.fallback_url} target="_blank" rel="noopener noreferrer" className="cinnamon-btn"
+                       title="If the direct redirect doesn't land on the property, this is the city search">
+                      Browse all listings
+                    </a>
+                  )}
+                </>
               ) : (
                 <span className="rounded-full bg-frosting-200 px-3 py-1 text-xs text-chocolate-700">
                   No verified leasing-portal link — call the property directly

@@ -7,6 +7,7 @@ import { GingerbreadApartment, GingerbreadTownhome } from '@/components/theme/Gi
 import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { ScreeningBadge } from './ScreeningPanel';
 import { SaveHeart } from '@/components/common/SaveHeart';
+import { findOperatorProfile, TIER_LABEL, TIER_TONE } from '@/lib/data/operator-profiles';
 import { ApartmentLinkBadge, VerifiedAtBadge } from '@/components/common/LinkConfidenceBadge';
 import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
 import { usd } from '@/lib/calculators';
@@ -71,6 +72,14 @@ export function RentalCard({
 
       <div className="flex flex-wrap items-center gap-2 text-xs">
         <Gumdrop tone="info" title="Manager">Managed by {rental.manager}</Gumdrop>
+        {(() => {
+          const op = findOperatorProfile(rental.manager);
+          return op ? (
+            <Gumdrop tone={TIER_TONE[op.typical_tier]} title={`Operator portfolio tier: ${op.tier_notes ?? TIER_LABEL[op.typical_tier]}`}>
+              {TIER_LABEL[op.typical_tier]} portfolio
+            </Gumdrop>
+          ) : null;
+        })()}
         {rental.application_platform !== 'Unknown' && (
           <Gumdrop tone="mute" title="Application platform">via {rental.application_platform}</Gumdrop>
         )}

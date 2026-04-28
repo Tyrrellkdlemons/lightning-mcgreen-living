@@ -3,9 +3,9 @@
 import { useMemo, useState } from 'react';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
-import { DEMO_RENTALS } from '@/lib/data/demo-rentals';
-import { DEMO_VEHICLES } from '@/lib/data/demo-vehicles';
-import { DEMO_WORK_VEHICLES } from '@/lib/data/demo-work-vehicles';
+import { REAL_RENTALS as DEMO_RENTALS } from '@/lib/data/real-rentals';
+import { REAL_VEHICLES as DEMO_VEHICLES } from '@/lib/data/real-vehicles';
+import { REAL_WORK_VEHICLES as DEMO_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
 import { calcPaymentEstimate, usd } from '@/lib/calculators';
 
 /**

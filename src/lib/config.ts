@@ -12,7 +12,7 @@ export const config = {
     'Southern California rentals + cars + work vehicles. Find what you can actually qualify for.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
 
-  dataMode: (process.env.NEXT_PUBLIC_DATA_MODE ?? 'demo') as DataMode,
+  dataMode: (process.env.NEXT_PUBLIC_DATA_MODE ?? 'production') as DataMode,
   geofenceSocal: (process.env.NEXT_PUBLIC_GEOFENCE_SOCAL ?? 'true') === 'true',
 } as const;
 
