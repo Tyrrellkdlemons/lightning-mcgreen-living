@@ -1,5 +1,17 @@
 # Build Checkpoint — 2026-04-28
 
+> 🟢 **DEPLOYED 2026-04-28 01:31** — live at
+> <https://lightning-mcgreen-living.netlify.app>
+> Repo: <https://github.com/Tyrrellkdlemons/lightning-mcgreen-living>
+> First production deploy: `main@3091373` (Published in 8.9s).
+> Continuous deploy on every push to `main`.
+> See [`/CHECKPOINT_2026-04-28.md`](../CHECKPOINT_2026-04-28.md) for the
+> deploy-state snapshot.
+
+---
+
+# Build inventory — 2026-04-28
+
 This file is a snapshot of what is built so future work can resume cleanly.
 
 ## Project name & site name

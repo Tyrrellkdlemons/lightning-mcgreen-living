@@ -7,6 +7,8 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 import { CookieCar } from '@/components/theme/CookieCar';
 import { FitBadge, FitExplain } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
+import { PhotoGallery } from '@/components/common/PhotoGallery';
+import type { PhotoSet } from '@/lib/data/photo-sets';
 import { PaymentEstimator } from './PaymentEstimator';
 import { VinDecoderPanel } from './VinDecoderPanel';
 import { BuyerProfilePanel, useBuyerProfile } from './BuyerProfilePanel';
@@ -16,13 +18,18 @@ import { AutoHardshipCard } from '@/components/assistance/AutoHardshipCard';
 import { caSosLookupUrl } from '@/lib/providers/ca-sos';
 import { caDmvOlLookupUrl } from '@/lib/providers/ca-dmv-ol';
 
-export function CarDetailClient({ vehicle, dealer }: { vehicle: VehicleListing; dealer?: Dealer }) {
+export function CarDetailClient({ vehicle, dealer }: { vehicle: VehicleListing & { photos?: PhotoSet }; dealer?: Dealer }) {
   const [profile, setProfile] = useBuyerProfile();
   const fit = useMemo(() => scoreVehicle(vehicle, profile), [vehicle, profile]);
 
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2 space-y-6">
+        {vehicle.photos && (
+          <CandyCard className="!p-0 overflow-hidden">
+            <PhotoGallery photos={vehicle.photos} height={340} rounded={false} />
+          </CandyCard>
+        )}
         <CandyCard>
           <div className="flex items-start justify-between gap-4">
             <div>

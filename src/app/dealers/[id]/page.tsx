@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { DEMO_DEALERS, DEMO_VEHICLES } from '@/lib/data/demo-vehicles';
+import { REAL_DEALERS, REAL_VEHICLES } from '@/lib/data/real-vehicles';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 import { SourcePanel } from '@/components/common/SourcePanel';
@@ -9,14 +9,14 @@ import { DealerInventory } from '@/components/cars/DealerInventory';
 interface Props { params: { id: string } }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const d = DEMO_DEALERS.find((x) => x.id === params.id);
+  const d = REAL_DEALERS.find((x) => x.id === params.id);
   return { title: d?.dealer_name ?? 'Dealer' };
 }
 
 export default function DealerDetail({ params }: Props) {
-  const dealer = DEMO_DEALERS.find((x) => x.id === params.id);
+  const dealer = REAL_DEALERS.find((x) => x.id === params.id);
   if (!dealer) notFound();
-  const inv = DEMO_VEHICLES.filter((v) => v.dealer_id === dealer.id);
+  const inv = REAL_VEHICLES.filter((v) => v.dealer_id === dealer.id);
 
   return (
     <div className="mt-6 space-y-6">

@@ -8,6 +8,11 @@ const nextConfig = {
       // Example placeholder for OpenStreetMap tiles:
       { protocol: 'https', hostname: '*.openstreetmap.org' },
       { protocol: 'https', hostname: '*.basemaps.cartocdn.com' },
+      // Free-license demo photo sources (Lorem Picsum / Unsplash CC0)
+      { protocol: 'https', hostname: 'picsum.photos' },
+      { protocol: 'https', hostname: 'fastly.picsum.photos' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'source.unsplash.com' },
     ],
   },
   experimental: {

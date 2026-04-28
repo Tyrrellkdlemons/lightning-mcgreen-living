@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { DEMO_VEHICLES, DEMO_DEALERS } from '@/lib/data/demo-vehicles';
+import { REAL_VEHICLES as DEMO_VEHICLES, REAL_DEALERS as DEMO_DEALERS } from '@/lib/data/real-vehicles';
 import { CarCard } from './CarCard';
 import { BuyerProfilePanel, useBuyerProfile } from './BuyerProfilePanel';
 import { Gumdrop } from '@/components/ui/Gumdrop';

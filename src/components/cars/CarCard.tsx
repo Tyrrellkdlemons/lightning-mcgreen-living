@@ -4,16 +4,18 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 import { CookieCar } from '@/components/theme/CookieCar';
 import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
+import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { calcPaymentEstimate, usd } from '@/lib/calculators';
 import { scoreVehicle } from '@/lib/scoring';
 import type { BuyerProfile, Dealer, VehicleListing } from '@/types';
+import type { PhotoSet } from '@/lib/data/photo-sets';
 
 export function CarCard({
   vehicle,
   dealer,
   profile,
 }: {
-  vehicle: VehicleListing;
+  vehicle: VehicleListing & { photos?: PhotoSet };
   dealer?: Dealer;
   profile: BuyerProfile;
 }) {
@@ -27,6 +29,7 @@ export function CarCard({
 
   return (
     <CandyCard interactive className="flex flex-col gap-3">
+      {vehicle.photos && <PhotoGallery photos={vehicle.photos} height={180} />}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <Gumdrop tone="mute">{vehicle.condition.toUpperCase()}</Gumdrop>

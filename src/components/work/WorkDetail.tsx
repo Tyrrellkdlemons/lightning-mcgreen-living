@@ -7,11 +7,13 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 import { WorkVan } from '@/components/theme/CookieCar';
 import { FitBadge, FitExplain } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
+import { PhotoGallery } from '@/components/common/PhotoGallery';
+import type { PhotoSet } from '@/lib/data/photo-sets';
 import { calcWorkRentalCost, usd } from '@/lib/calculators';
 import { scoreWorkRental } from '@/lib/scoring';
 import { useWorkProfile, WorkProfilePanel } from './WorkProfilePanel';
 
-export function WorkDetailClient({ rental }: { rental: WorkVehicleRental }) {
+export function WorkDetailClient({ rental }: { rental: WorkVehicleRental & { photos?: PhotoSet } }) {
   const [profile, setProfile] = useWorkProfile();
   const [term, setTerm] = useState<'daily' | 'weekly' | 'monthly'>('daily');
   const [units, setUnits] = useState(1);
@@ -39,6 +41,11 @@ export function WorkDetailClient({ rental }: { rental: WorkVehicleRental }) {
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2 space-y-6">
+        {rental.photos && (
+          <CandyCard className="!p-0 overflow-hidden">
+            <PhotoGallery photos={rental.photos} height={340} rounded={false} />
+          </CandyCard>
+        )}
         <CandyCard>
           <div className="flex items-start justify-between gap-4">
             <div>

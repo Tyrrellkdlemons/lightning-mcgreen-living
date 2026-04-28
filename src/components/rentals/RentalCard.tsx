@@ -4,8 +4,10 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { GingerbreadApartment, GingerbreadTownhome } from '@/components/theme/GingerbreadHouse';
+import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { usd } from '@/lib/calculators';
 import type { RentalListing, RenterProfile } from '@/types';
+import type { PhotoSet } from '@/lib/data/photo-sets';
 import { scoreRental } from '@/lib/scoring';
 
 const UNIT_LABEL: Record<RentalListing['unit_type'], string> = {
@@ -18,7 +20,7 @@ export function RentalCard({
   rental,
   profile,
 }: {
-  rental: RentalListing;
+  rental: RentalListing & { photos?: PhotoSet };
   profile: RenterProfile;
 }) {
   const fit = scoreRental(rental, profile);
@@ -26,6 +28,7 @@ export function RentalCard({
 
   return (
     <CandyCard interactive className="flex flex-col gap-3">
+      {rental.photos && <PhotoGallery photos={rental.photos} height={180} />}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">

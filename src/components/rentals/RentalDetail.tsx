@@ -10,6 +10,8 @@ import { CandyCard } from '@/components/ui/CandyCard';
 import { FitBadge, FitExplain } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { GingerbreadApartment, GingerbreadTownhome } from '@/components/theme/GingerbreadHouse';
+import { PhotoGallery } from '@/components/common/PhotoGallery';
+import type { PhotoSet } from '@/lib/data/photo-sets';
 import { SourceOfIncomeNotice } from '@/components/assistance/SourceOfIncomeNotice';
 import { AdverseActionPanel } from '@/components/assistance/AdverseActionPanel';
 import { resourcesForCountyAndState } from '@/lib/data/assistance';
@@ -26,7 +28,7 @@ const APP_PLATFORM_NOTES: Record<string, string> = {
   Unknown: "Application platform not yet identified — call the property to confirm.",
 };
 
-export function RentalDetailClient({ rental }: { rental: RentalListing }) {
+export function RentalDetailClient({ rental }: { rental: RentalListing & { photos?: PhotoSet } }) {
   const [profile, setProfile] = useRenterProfile();
   const [overrideRent, setOverrideRent] = useState(rental.min_rent);
 
@@ -51,6 +53,11 @@ export function RentalDetailClient({ rental }: { rental: RentalListing }) {
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2 space-y-6">
+        {rental.photos && (
+          <CandyCard className="!p-0 overflow-hidden">
+            <PhotoGallery photos={rental.photos} height={340} rounded={false} />
+          </CandyCard>
+        )}
         <CandyCard>
           <div className="flex items-start justify-between gap-4">
             <div>

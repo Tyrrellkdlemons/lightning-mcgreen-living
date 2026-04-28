@@ -1,11 +1,10 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { DEMO_RENTALS } from '@/lib/data/demo-rentals';
+import { REAL_RENTALS, type RentalWithPhotos } from '@/lib/data/real-rentals';
 import { RentalCard } from './RentalCard';
 import { RentalFilters, type RentalFilterState } from './RentalFilters';
 import { ProfilePanel, useRenterProfile } from './ProfilePanel';
-import type { RentalListing } from '@/types';
 
 export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 'townhouse' }) {
   const [profile, setProfile] = useRenterProfile();
@@ -13,7 +12,7 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
     unit_type: unitTypeLock ?? 'all',
   });
 
-  const results = useMemo(() => filterRentals(DEMO_RENTALS, filters, unitTypeLock), [filters, unitTypeLock]);
+  const results = useMemo(() => filterRentals(REAL_RENTALS, filters, unitTypeLock), [filters, unitTypeLock]);
 
   return (
     <div className="mt-4 flex flex-col gap-4 lg:flex-row">
@@ -42,10 +41,10 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
 }
 
 function filterRentals(
-  rentals: RentalListing[],
+  rentals: RentalWithPhotos[],
   f: RentalFilterState,
   lock?: 'apartment' | 'townhouse',
-): RentalListing[] {
+): RentalWithPhotos[] {
   return rentals.filter((r) => {
     if (lock === 'apartment' && r.unit_type !== 'apartment') return false;
     if (lock === 'townhouse' && r.unit_type === 'apartment') return false;

@@ -4,9 +4,11 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 import { WorkVan } from '@/components/theme/CookieCar';
 import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
+import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { usd } from '@/lib/calculators';
 import { scoreWorkRental } from '@/lib/scoring';
 import type { WorkRentalProfile, WorkVehicleRental } from '@/types';
+import type { PhotoSet } from '@/lib/data/photo-sets';
 
 const TYPE_LABEL: Record<WorkVehicleRental['vehicle_type'], string> = {
   'cargo-van': 'Cargo van',
@@ -18,11 +20,12 @@ const TYPE_LABEL: Record<WorkVehicleRental['vehicle_type'], string> = {
   refrigerated: 'Refrigerated truck',
 };
 
-export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental; profile: WorkRentalProfile }) {
+export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental & { photos?: PhotoSet }; profile: WorkRentalProfile }) {
   const fit = scoreWorkRental(rental, profile);
 
   return (
     <CandyCard interactive className="flex flex-col gap-3">
+      {rental.photos && <PhotoGallery photos={rental.photos} height={180} />}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <Gumdrop tone="mute">{TYPE_LABEL[rental.vehicle_type]}</Gumdrop>

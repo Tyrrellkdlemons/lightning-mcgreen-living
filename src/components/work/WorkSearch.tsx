@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { DEMO_WORK_VEHICLES } from '@/lib/data/demo-work-vehicles';
+import { REAL_WORK_VEHICLES as DEMO_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
 import { WorkVehicleCard } from './WorkVehicleCard';
 import { useWorkProfile, WorkProfilePanel } from './WorkProfilePanel';
 import { Gumdrop } from '@/components/ui/Gumdrop';
