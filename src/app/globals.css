@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------------------- */
+/* Lightning McGreen Living — global theme                                    */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Surfaces */
+  --surface-page: #fffaf0;             /* frosting-50 */
+  --surface-card: #ffffff;
+  --surface-cookie: #f4e0c0;            /* gingerbread-100 */
+  --surface-asphalt: #1a0d05;           /* chocolate-900 */
+
+  /* Strokes */
+  --stroke-cookie: #a86926;             /* gingerbread-500 */
+  --stroke-frosting: #ffe7b3;           /* frosting-200 */
+
+  /* Text */
+  --text-strong: #1a0d05;
+  --text-body: #2a1809;
+  --text-soft: #5e3914;
+  --text-on-dark: #fffaf0;
+
+  /* Brand bolt */
+  --bolt-glow: 0 0 16px rgba(52, 219, 0, 0.55);
+
+  /* Additive aliases from the deeper research pass (additive only — no
+     existing tokens removed). */
+  --bg-candy-cream: #FFF8EE;
+  --roof-cookie: #8A522C;
+  --gumdrop-mint: #57E389;
+  --lightning-lime: #C7FF33;
+  --peppermint-red: #FF5E7E;
+  --race-flag-charcoal: #1D1F24;
+  --snow-icing: #F5F7FB;
+  --glass-sugar: rgba(255,255,255,0.72);
+  --shadow-cocoa: 0 10px 30px rgba(58, 30, 10, 0.18);
+}
+
+/* Candy-icing divider — soft scalloped strip recommended in the research */
+.candy-icing-divider {
+  height: 14px;
+  background:
+    radial-gradient(circle at 8px 14px, var(--snow-icing) 6px, transparent 7px) repeat-x;
+  background-size: 16px 14px;
+}
+
+/* Checkered ribbon — small accent for nav / saved / compare */
+.checkered-ribbon {
+  height: 6px;
+  background: repeating-conic-gradient(#1a0d05 0% 25%, #fffaf0 0% 50%) 50% / 12px 12px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Print stylesheet for /templates */
+@media print {
+  header, footer, nav, .gumdrop, .bolt-btn, .cinnamon-btn { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  textarea { border: 1px solid #000 !important; box-shadow: none !important; }
+}
+
+html, body {
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+/* tabular numerals globally for prices/rates */
+.num, .price, .rate, .fit-score {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Reduce motion override (CSS-only kill switch for the raining objects) */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Visible focus rings everywhere */
+:focus-visible {
+  outline: 3px solid #34db00;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Asphalt strip with painted lane stripes (no image) */
+.asphalt-strip {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 38%,
+      #f4cf2b 38%,
+      #f4cf2b 42%,
+      transparent 42%,
+      transparent 58%,
+      #f4cf2b 58%,
+      #f4cf2b 62%,
+      transparent 62%
+    ),
+    linear-gradient(180deg, #1a0d05, #2a1809, #1a0d05);
+  background-size: 80px 100%, 100% 100%;
+  background-repeat: repeat-x, no-repeat;
+}
+
+/* Soft frosting border ring used on cookie cards */
+.cookie-card {
+  background: var(--surface-card);
+  border: 2px solid var(--stroke-cookie);
+  border-radius: 1.25rem;
+  box-shadow:
+    inset 0 0 0 4px var(--stroke-frosting),
+    0 2px 0 0 rgba(94, 57, 20, 0.45),
+    0 12px 32px -16px rgba(94, 57, 20, 0.45);
+}
+
+/* Cinnamon button base */
+.cinnamon-btn {
+  background: linear-gradient(180deg, #c98538, #7d4c1b);
+  color: var(--text-on-dark);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: 2px solid #5e3914;
+  border-radius: 999px;
+  padding: 0.65rem 1.1rem;
+  box-shadow: 0 2px 0 #3f260d, 0 8px 24px -10px rgba(94, 57, 20, 0.6);
+  transition: transform 120ms ease, box-shadow 200ms ease, filter 200ms ease;
+}
+.cinnamon-btn:hover {
+  filter: brightness(1.08) drop-shadow(0 0 8px rgba(52, 219, 0, 0.55));
+  transform: translateY(-1px);
+}
+.cinnamon-btn:active { transform: translateY(0); }
+
+/* Bolt button (the "go" CTA) */
+.bolt-btn {
+  background: linear-gradient(135deg, #34db00, #75ff45);
+  color: #1a0d05;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  border: 2px solid #1a7d04;
+  border-radius: 999px;
+  padding: 0.7rem 1.25rem;
+  box-shadow: 0 2px 0 #13510e, 0 10px 28px -8px rgba(52, 219, 0, 0.55);
+  transition: transform 120ms ease, filter 200ms ease;
+}
+.bolt-btn:hover {
+  filter: brightness(1.06) drop-shadow(var(--bolt-glow));
+  transform: translateY(-1px);
+}
+
+/* Gumdrop badge */
+.gumdrop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+}
+.gumdrop--ok    { background: #d3ffc4; color: #13510e; }
+.gumdrop--info  { background: #fff3dc; color: #5e3914; }
+.gumdrop--warn  { background: #ffd7d9; color: #8b1c1c; }
+.gumdrop--mute  { background: #f4e0c0; color: #5e3914; }
+
+/* Speed-line accent (used sparingly) */
+.speed-line {
+  position: relative;
+  overflow: hidden;
+}
+.speed-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+.speed-line:hover::after { animation: speed-line 0.9s ease; }
+
+/* Skeleton shimmer */
+.skel {
+  background: linear-gradient(90deg, #f4e0c0 0%, #fff3dc 50%, #f4e0c0 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Thin scrollbar for compare drawer */
+.thin-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #c98538;
+  border-radius: 999px;
+}
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }

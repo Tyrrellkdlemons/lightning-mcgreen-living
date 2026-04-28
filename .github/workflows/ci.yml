@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint-typecheck-build:
+    name: Lint · Typecheck · Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_DATA_MODE: demo
+          NEXT_PUBLIC_GEOFENCE_SOCAL: 'true'
+          ADMIN_SHARED_SECRET: 'ci-only-not-a-real-secret'
+        run: npm run build
+
+  brand-and-fair-housing-check:
+    name: Brand + Fair Housing scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No Cars/NASCAR/Zillow trademark strings
+        run: |
+          set -e
+          # Trademarked strings that must NEVER appear in source.
+          # (Substrings — adjust if you add legal "we are not affiliated" copy that uses one.)
+          # The footer carries an explicit "not affiliated" line, so allow it inside docs/ and README.
+          ! grep -RIn --exclude-dir=node_modules --exclude-dir=.git \
+              --exclude-dir=docs --exclude=README.md \
+              -e "Lightning McQueen" -e "Pixar Cars" \
+              -e "NASCAR-themed" \
+              src/ public/
+
+      - name: No Fair-Housing-protected filter copy
+        run: |
+          set -e
+          ! grep -RIn --exclude-dir=node_modules --exclude-dir=.git \
+              --exclude-dir=docs --exclude=README.md \
+              -e "great for kids" -e "perfect for families" \
+              -e "young professionals only" -e "no children" -e "singles only" \
+              src/
+
+      - name: No "guaranteed approval" claims
+        run: |
+          set -e
+          ! grep -RIn --exclude-dir=node_modules --exclude-dir=.git \
+              --exclude-dir=docs --exclude=README.md \
+              -e "guaranteed approval" -e "guaranteed financing" \
+              -e "guaranteed zero down" \
+              src/

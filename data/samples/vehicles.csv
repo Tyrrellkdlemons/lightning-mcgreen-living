@@ -1,0 +1,2 @@
+vin,dealer_external_id,year,make,model,trim,mileage,price,down_payment_estimate,apr_estimate,term_months,fuel_type,drive,transmission,body_type,condition,availability_status,listing_url,source,source_url,confidence_score,last_seen_at,last_verified_at,data_freshness_status,trust_label
+1HGCM82633A004352,sample-dealer-001,2022,Honda,Civic,EX,28400,22980,2500,8.99,60,Gasoline,FWD,CVT,Sedan,used,available,https://example.com/vehicle/v-1,manual-verified,https://example.com/vehicle/v-1,80,2026-04-26T09:00:00Z,2026-04-26T09:00:00Z,recent,manual-verified
