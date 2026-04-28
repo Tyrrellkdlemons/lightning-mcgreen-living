@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Gumdrop } from '@/components/ui/Gumdrop';
+import { REAL_RENTALS } from '@/lib/data/real-rentals';
 
 export interface RentalFilterState {
   unit_type: 'all' | 'apartment' | 'townhouse';
@@ -16,10 +17,28 @@ export interface RentalFilterState {
   avoid_strict?: boolean;
 }
 
-const CITIES = [
-  'All cities', 'Northridge', 'Santa Ana', 'Los Angeles', 'Long Beach',
-  'Anaheim', 'Irvine', 'Burbank', 'Pomona', 'Pasadena', 'Glendale',
-];
+/**
+ * Cities are derived from the actual REAL_RENTALS data, grouped by county
+ * with the count per city, alphabetized inside each county. So if you add
+ * a listing in a new city, it shows up in the dropdown automatically — no
+ * hardcoded list to maintain.
+ */
+function buildCityOptions() {
+  const byCounty = new Map<string, Map<string, number>>();
+  for (const r of REAL_RENTALS) {
+    if (!byCounty.has(r.county)) byCounty.set(r.county, new Map());
+    const m = byCounty.get(r.county)!;
+    m.set(r.city, (m.get(r.city) ?? 0) + 1);
+  }
+  // Sort counties alphabetically, cities alphabetically inside each
+  const counties = Array.from(byCounty.keys()).sort();
+  return counties.map((county) => ({
+    county,
+    cities: Array.from(byCounty.get(county)!.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([city, count]) => ({ city, count })),
+  }));
+}
 
 export function RentalFilters({
   initial,
@@ -29,6 +48,11 @@ export function RentalFilters({
   onChange: (next: RentalFilterState) => void;
 }) {
   const [state, setState] = useState<RentalFilterState>(initial);
+  const cityGroups = useMemo(buildCityOptions, []);
+  const totalCities = useMemo(
+    () => cityGroups.reduce((n, g) => n + g.cities.length, 0),
+    [cityGroups],
+  );
 
   function update(patch: Partial<RentalFilterState>) {
     const next = { ...state, ...patch };
@@ -59,13 +83,22 @@ export function RentalFilters({
         </div>
       </div>
 
-      <Field label="City">
+      <Field label={`City (${totalCities} with listings)`}>
         <select
-          value={state.city ?? 'All cities'}
-          onChange={(e) => update({ city: e.target.value === 'All cities' ? undefined : e.target.value })}
+          value={state.city ?? '__ALL__'}
+          onChange={(e) => update({ city: e.target.value === '__ALL__' ? undefined : e.target.value })}
           className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
         >
-          {CITIES.map((c) => <option key={c}>{c}</option>)}
+          <option value="__ALL__">All cities</option>
+          {cityGroups.map((g) => (
+            <optgroup key={g.county} label={`${g.county} County`}>
+              {g.cities.map(({ city, count }) => (
+                <option key={city} value={city}>
+                  {city} ({count})
+                </option>
+              ))}
+            </optgroup>
+          ))}
         </select>
       </Field>
 
