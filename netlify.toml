@@ -1,19 +1,43 @@
+# =============================================================================
 # Lightning McGreen Living — Netlify configuration
-# Deploy: `netlify deploy --prod` (after `netlify init`)
+# Mirrors the conventions in CLAUDE/Crypto Site (vaultkit) and CLAUDE/The Last Mile.
+# =============================================================================
 
 [build]
-  command   = "npm run build"
+  command   = "npm install --no-audit --no-fund && npm run build"
   publish   = ".next"
   functions = ".netlify/functions"
 
 [build.environment]
-  NEXT_PUBLIC_DATA_MODE     = "demo"          # flip to "production" once real data is in
-  NEXT_PUBLIC_GEOFENCE_SOCAL = "true"
-  NODE_VERSION              = "20"
+  # Mode defaults — flip to "production" once real CSV data is in
+  NEXT_PUBLIC_DATA_MODE       = "demo"
+  NEXT_PUBLIC_GEOFENCE_SOCAL  = "true"
+  NODE_VERSION                = "20"
 
-# Use the Next.js plugin for App Router + image optimization
+  # Match Crypto Site / vaultkit conventions
+  NEXT_TELEMETRY_DISABLED     = "1"
+  NETLIFY_NEXT_SKEW_PROTECTION = "true"
+
+# Force esbuild for functions so dependencies bundle cleanly under Node 20
+[functions]
+  node_bundler = "esbuild"
+
+# Next.js plugin handles App Router, ISR, middleware, image optimization
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# -----------------------------------------------------------------------------
+# Headers — security defaults + cache rules
+# -----------------------------------------------------------------------------
+
+# Belt-and-braces security headers (also set in next.config.mjs)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options       = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy       = "strict-origin-when-cross-origin"
+    Permissions-Policy    = "camera=(), microphone=(), geolocation=(self)"
 
 # Long-cache static assets
 [[headers]]
@@ -30,12 +54,22 @@
 [[headers]]
   for = "/service-worker.js"
   [headers.values]
-    Cache-Control       = "public, max-age=0, must-revalidate"
+    Cache-Control          = "public, max-age=0, must-revalidate"
     Service-Worker-Allowed = "/"
 
-# Redirect /admin to a static gate notice on Netlify previews
-[[redirects]]
-  from   = "/admin"
-  to     = "/admin"
-  status = 200
-  force  = false
+# Admin endpoints must never be cached (mirrors Crypto Site pattern)
+[[headers]]
+  for = "/api/admin/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
+
+[[headers]]
+  for = "/api/vin/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Search results page should be fresh
+[[headers]]
+  for = "/search"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"

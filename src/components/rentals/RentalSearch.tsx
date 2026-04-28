@@ -1,40 +1,54 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { REAL_RENTALS, type RentalWithPhotos } from '@/lib/data/real-rentals';
 import { RentalCard } from './RentalCard';
 import { RentalFilters, type RentalFilterState } from './RentalFilters';
 import { ProfilePanel, useRenterProfile } from './ProfilePanel';
+import { Pagination, paginate } from '@/components/common/Pagination';
+import { SortDropdown, type SortKey } from '@/components/common/SortDropdown';
+import { scoreRental } from '@/lib/scoring';
+
+const PER_PAGE = 9;
 
 export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 'townhouse' }) {
   const [profile, setProfile] = useRenterProfile();
-  const [filters, setFilters] = useState<RentalFilterState>({
-    unit_type: unitTypeLock ?? 'all',
-  });
+  const [filters, setFilters] = useState<RentalFilterState>({ unit_type: unitTypeLock ?? 'all' });
+  const [sort, setSort] = useState<SortKey>('best-fit');
+  const [page, setPage] = useState(1);
 
-  const results = useMemo(() => filterRentals(REAL_RENTALS, filters, unitTypeLock), [filters, unitTypeLock]);
+  const filtered = useMemo(() => filterRentals(REAL_RENTALS, filters, unitTypeLock), [filters, unitTypeLock]);
+  const sorted = useMemo(() => sortRentals(filtered, sort, profile), [filtered, sort, profile]);
+  const { items: paged, pageCount } = paginate(sorted, page, PER_PAGE);
+
+  // reset to page 1 whenever the filters / sort / lock change
+  const filterKey = JSON.stringify(filters) + sort + (unitTypeLock ?? '');
+  useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
     <div className="mt-4 flex flex-col gap-4 lg:flex-row">
       <RentalFilters initial={filters} onChange={setFilters} />
       <div className="flex-1 space-y-4">
         <ProfilePanel profile={profile} onChange={setProfile} />
-        <div className="flex items-center justify-between text-sm text-chocolate-700">
-          <span><strong>{results.length}</strong> result{results.length === 1 ? '' : 's'}</span>
-          <span className="text-xs">SoCal-only · sorted by best fit</span>
+        <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-chocolate-700">
+          <span>
+            <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'} · SoCal-only
+          </span>
+          <SortDropdown value={sort} onChange={setSort} />
         </div>
         <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {results.map((r) => (
+          {paged.map((r) => (
             <li key={r.id}>
               <RentalCard rental={r} profile={profile} />
             </li>
           ))}
         </ul>
-        {results.length === 0 && (
+        {filtered.length === 0 && (
           <div className="cookie-card p-6 text-center text-sm text-chocolate-700">
-            No matches with these filters. Try widening your max rent or city.
+            No matches. Try widening your max rent or city.
           </div>
         )}
+        <Pagination page={page} pageCount={pageCount} onChange={setPage} />
       </div>
     </div>
   );
@@ -62,3 +76,14 @@ function filterRentals(
     return true;
   });
 }
+
+function sortRentals(rentals: RentalWithPhotos[], sort: SortKey, profile: any): RentalWithPhotos[] {
+  const arr = [...rentals];
+  if (sort === 'price-asc') return arr.sort((a, b) => a.min_rent - b.min_rent);
+  if (sort === 'price-desc') return arr.sort((a, b) => b.min_rent - a.min_rent);
+  if (sort === 'newest')
+    return arr.sort((a, b) => +new Date(b.meta.last_verified_at) - +new Date(a.meta.last_verified_at));
+  // best-fit (default): rank by fit score
+  return arr.sort((a, b) => scoreRental(b, profile).score - scoreRental(a, profile).score);
+}
+

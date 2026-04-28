@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { TopToggle } from '@/components/home/TopToggle';
 import { RentalSearch } from '@/components/rentals/RentalSearch';
+import { GingerbreadHero } from '@/components/theme/GingerbreadHero';
 
 export const metadata: Metadata = { title: 'Townhomes' };
 
@@ -8,13 +9,10 @@ export default function TownhomesPage() {
   return (
     <>
       <TopToggle />
-      <header className="mt-6">
-        <h1 className="font-display text-3xl font-extrabold text-chocolate-900">Townhomes for rent</h1>
-        <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-          Townhouse rentals and townhome-style apartment units. Garage, private
-          entrance, and yard/patio filters available.
-        </p>
-      </header>
+      <GingerbreadHero
+        title="Townhomes for rent"
+        subtitle="Townhouse rentals + townhome-style apartments. Filter to garage, private entrance, or yard/patio. Two stories, more space, the same screening transparency."
+      />
       <RentalSearch unitTypeLock="townhouse" />
     </>
   );

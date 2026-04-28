@@ -5,6 +5,8 @@ import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { GingerbreadApartment, GingerbreadTownhome } from '@/components/theme/GingerbreadHouse';
 import { PhotoGallery } from '@/components/common/PhotoGallery';
+import { ScreeningBadge } from './ScreeningPanel';
+import { SaveHeart } from '@/components/common/SaveHeart';
 import { usd } from '@/lib/calculators';
 import type { RentalListing, RenterProfile } from '@/types';
 import type { PhotoSet } from '@/lib/data/photo-sets';
@@ -27,7 +29,10 @@ export function RentalCard({
   const isTownhome = rental.unit_type !== 'apartment';
 
   return (
-    <CandyCard interactive className="flex flex-col gap-3">
+    <CandyCard interactive className="relative flex flex-col gap-3">
+      <div className="absolute right-3 top-3 z-10">
+        <SaveHeart kind="rental" id={rental.id} />
+      </div>
       {rental.photos && <PhotoGallery photos={rental.photos} height={180} />}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
@@ -69,6 +74,7 @@ export function RentalCard({
         {rental.move_in_specials && (
           <Gumdrop tone="ok" title="Special">Special: {rental.move_in_specials}</Gumdrop>
         )}
+        <ScreeningBadge platform={rental.application_platform} manager={rental.manager} publiclyDisclosed={rental.screening_vendor} />
         {rental.attached_garage && <Gumdrop tone="mute">Attached garage</Gumdrop>}
         {rental.private_entrance && <Gumdrop tone="mute">Private entrance</Gumdrop>}
         {rental.yard_or_patio && <Gumdrop tone="mute">Yard / patio</Gumdrop>}

@@ -65,6 +65,116 @@
   textarea { border: 1px solid #000 !important; box-shadow: none !important; }
 }
 
+/* --------------------------------------------------------------------- */
+/* Themed shells — gingerbread (rentals) + race-day (cars/work-vehicles) */
+/* Original visual identity. No Disney/Pixar Cars / NASCAR / Cars.com    */
+/* assets. Inspired by friendly animated racing films + motorsport       */
+/* dashboards (per UI_THEME_GUIDE.md §1).                                */
+/* --------------------------------------------------------------------- */
+
+/* GINGERBREAD shell — warm cream + cookie border + frosting glow */
+.gingerbread-shell {
+  position: relative;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(ellipse at top left, rgba(220, 162, 87, 0.18), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(255, 79, 94, 0.10), transparent 55%),
+    linear-gradient(180deg, #FFF8EE 0%, #FFE7B3 100%);
+  border: 2px solid var(--stroke-cookie);
+  box-shadow: var(--shadow-cocoa);
+  overflow: hidden;
+}
+.gingerbread-shell::before {
+  content: '';
+  position: absolute; inset: 6px;
+  border-radius: 1.25rem;
+  border: 2px dashed rgba(168, 105, 38, 0.35);
+  pointer-events: none;
+}
+
+/* Candy-stripe ribbon used as hero header */
+.candy-ribbon {
+  height: 14px;
+  background: repeating-linear-gradient(45deg, #ff4f5e 0 12px, #fff 12px 24px);
+  border-top: 1px solid #d8323f;
+  border-bottom: 1px solid #d8323f;
+}
+
+/* RACE-DAY shell — asphalt with neon-green lightning accents */
+.race-shell {
+  position: relative;
+  border-radius: 1.5rem;
+  color: var(--text-on-dark);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(52, 219, 0, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 100%, rgba(117, 255, 69, 0.10), transparent 45%),
+    linear-gradient(180deg, #1a0d05 0%, #2a1809 50%, #1a0d05 100%);
+  border: 2px solid #34db00;
+  box-shadow: 0 12px 32px -10px rgba(52, 219, 0, 0.35);
+  overflow: hidden;
+}
+.race-shell .race-corner {
+  position: absolute;
+  top: 0; right: 0;
+  width: 96px; height: 96px;
+  background: repeating-conic-gradient(#1a0d05 0% 25%, #fffaf0 0% 50%) 50% / 18px 18px;
+  border-bottom-left-radius: 1.5rem;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.race-shell .race-stripe {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 6px;
+  background: linear-gradient(90deg, transparent, #34db00 30%, #75ff45 50%, #34db00 70%, transparent);
+  filter: drop-shadow(0 0 6px rgba(52, 219, 0, 0.85));
+}
+
+/* Racing speed-line accent (CSS-only, no images) */
+.speed-stripe {
+  position: relative;
+  height: 18px;
+  background:
+    linear-gradient(90deg, transparent 0, transparent 38%, #f4cf2b 38%, #f4cf2b 42%, transparent 42%, transparent 58%, #f4cf2b 58%, #f4cf2b 62%, transparent 62%),
+    linear-gradient(180deg, #1a0d05, #2a1809, #1a0d05);
+  background-size: 80px 100%, 100% 100%;
+  background-repeat: repeat-x, no-repeat;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Neon-on-dark mini stat (used for price / monthly / down on cars page) */
+.neon-stat {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(52, 219, 0, 0.35);
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: var(--text-on-dark);
+  text-shadow: 0 0 8px rgba(52, 219, 0, 0.45);
+}
+.neon-stat strong { color: #75ff45; }
+
+/* Tachometer-styled badge (used as accent on car detail) */
+.tach {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0a0a0a;
+  color: #75ff45;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(117, 255, 69, 0.6);
+  box-shadow: inset 0 0 8px rgba(117, 255, 69, 0.25);
+}
+.tach::before {
+  content: '';
+  width: 8px; height: 8px; border-radius: 999px;
+  background: #75ff45; box-shadow: 0 0 8px rgba(117, 255, 69, 0.9);
+  animation: bolt-pulse 1.6s ease-in-out infinite;
+}
+
 html, body {
   background: var(--surface-page);
   color: var(--text-body);

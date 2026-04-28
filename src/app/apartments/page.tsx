@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { TopToggle } from '@/components/home/TopToggle';
 import { RentalSearch } from '@/components/rentals/RentalSearch';
+import { GingerbreadHero } from '@/components/theme/GingerbreadHero';
 
 export const metadata: Metadata = { title: 'Apartments' };
 
@@ -8,13 +10,14 @@ export default function ApartmentsPage() {
   return (
     <>
       <TopToggle />
-      <header className="mt-6">
-        <h1 className="font-display text-3xl font-extrabold text-chocolate-900">Apartments</h1>
-        <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-          Apartment-only view. Want townhomes too?{' '}
-          <a href="/rentals" className="underline decoration-lightning-500 underline-offset-2">See both</a>.
-        </p>
-      </header>
+      <GingerbreadHero
+        title="Apartments only"
+        subtitle="Apartment-only view across Greystar, Equity Residential, Essex, AvalonBay, Camden, FPI, UDR, Decron, Prime Residential, and more."
+      />
+      <p className="mt-3 text-xs text-chocolate-700">
+        Want townhomes too?{' '}
+        <Link href="/rentals" className="underline decoration-lightning-500 underline-offset-2">See both</Link>.
+      </p>
       <RentalSearch unitTypeLock="apartment" />
     </>
   );

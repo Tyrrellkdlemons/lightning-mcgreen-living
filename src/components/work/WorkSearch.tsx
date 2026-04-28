@@ -1,23 +1,41 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { REAL_WORK_VEHICLES as DEMO_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
+import { useEffect, useMemo, useState } from 'react';
+import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
 import { WorkVehicleCard } from './WorkVehicleCard';
 import { useWorkProfile, WorkProfilePanel } from './WorkProfilePanel';
-import { Gumdrop } from '@/components/ui/Gumdrop';
+import { Pagination, paginate } from '@/components/common/Pagination';
+import { SortDropdown, type SortKey } from '@/components/common/SortDropdown';
+import { scoreWorkRental } from '@/lib/scoring';
+
+const PER_PAGE = 9;
 
 export function WorkSearch() {
   const [profile, setProfile] = useWorkProfile();
   const [type, setType] = useState<'all' | string>('all');
   const [maxDaily, setMaxDaily] = useState<number | ''>('');
   const [businessOnly, setBusinessOnly] = useState(false);
+  const [sort, setSort] = useState<SortKey>('best-fit');
+  const [page, setPage] = useState(1);
 
-  const results = useMemo(() => DEMO_WORK_VEHICLES.filter((r) => {
+  const filtered = useMemo(() => REAL_WORK_VEHICLES.filter((r) => {
     if (type !== 'all' && r.vehicle_type !== type) return false;
     if (maxDaily !== '' && r.daily_rate && r.daily_rate > Number(maxDaily)) return false;
     if (businessOnly && !r.business_account_available) return false;
     return true;
   }), [type, maxDaily, businessOnly]);
+
+  const sorted = useMemo(() => {
+    const arr = [...filtered];
+    if (sort === 'price-asc') return arr.sort((a, b) => (a.daily_rate ?? 0) - (b.daily_rate ?? 0));
+    if (sort === 'price-desc') return arr.sort((a, b) => (b.daily_rate ?? 0) - (a.daily_rate ?? 0));
+    if (sort === 'newest') return arr.sort((a, b) => +new Date(b.meta.last_verified_at) - +new Date(a.meta.last_verified_at));
+    return arr.sort((a, b) => scoreWorkRental(b, profile).score - scoreWorkRental(a, profile).score);
+  }, [filtered, sort, profile]);
+  const { items: paged, pageCount } = paginate(sorted, page, PER_PAGE);
+
+  const filterKey = `${type}|${maxDaily}|${businessOnly}|${sort}`;
+  useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
     <div className="mt-4 space-y-4">
@@ -46,13 +64,19 @@ export function WorkSearch() {
           <input type="checkbox" checked={businessOnly} onChange={(e) => setBusinessOnly(e.target.checked)} />
           Business account only
         </label>
-        <Gumdrop tone="mute">SoCal-only · sample data</Gumdrop>
+        <div className="ml-auto"><SortDropdown value={sort} onChange={setSort} /></div>
       </div>
 
+      <p className="text-xs text-chocolate-700">
+        <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'}
+      </p>
+
       <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {results.map((r) => <li key={r.id}><WorkVehicleCard rental={r} profile={profile} /></li>)}
+        {paged.map((r) => <li key={r.id}><WorkVehicleCard rental={r} profile={profile} /></li>)}
       </ul>
-      {results.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700">No matches with these filters.</div>}
+      {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700">No matches with these filters.</div>}
+
+      <Pagination page={page} pageCount={pageCount} onChange={setPage} />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { WorkVan } from '@/components/theme/CookieCar';
 import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { PhotoGallery } from '@/components/common/PhotoGallery';
+import { SaveHeart } from '@/components/common/SaveHeart';
 import { usd } from '@/lib/calculators';
 import { scoreWorkRental } from '@/lib/scoring';
 import type { WorkRentalProfile, WorkVehicleRental } from '@/types';
@@ -24,7 +25,10 @@ export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental
   const fit = scoreWorkRental(rental, profile);
 
   return (
-    <CandyCard interactive className="flex flex-col gap-3">
+    <CandyCard interactive className="relative flex flex-col gap-3">
+      <div className="absolute right-3 top-3 z-10">
+        <SaveHeart kind="work-vehicle" id={rental.id} />
+      </div>
       {rental.photos && <PhotoGallery photos={rental.photos} height={180} />}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">

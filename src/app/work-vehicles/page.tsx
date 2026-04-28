@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { TopToggle } from '@/components/home/TopToggle';
 import { WorkSearch } from '@/components/work/WorkSearch';
-import { Gumdrop } from '@/components/ui/Gumdrop';
+import { RaceHero } from '@/components/theme/RaceHero';
 
 export const metadata: Metadata = {
   title: 'Work Vehicles',
@@ -12,15 +12,11 @@ export default function WorkVehiclesPage() {
   return (
     <>
       <TopToggle />
-      <header className="mt-6">
-        <Gumdrop tone="ok">Vehicle side · Rent for work</Gumdrop>
-        <h1 className="mt-2 font-display text-3xl font-extrabold text-chocolate-900">Work vehicle rentals</h1>
-        <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-          Cargo vans, box trucks, pickups, stake-bed and flatbed trucks for delivery, moving,
-          construction, landscaping, cleaning, events, mobile detailing, hauling, furniture delivery,
-          and any short-term business work.
-        </p>
-      </header>
+      <RaceHero
+        variant="work"
+        title="Work Vehicles · Service Lane"
+        subtitle="Cargo vans, box trucks, pickups, stake-bed and flatbed trucks for delivery, moving, construction, landscaping, cleaning, events, mobile detail, hauling, furniture, and side-hustle work. Real chains: U-Haul, Penske, Enterprise Truck Rental, Home Depot, Ryder, Budget Truck, Fluid Truck."
+      />
       <WorkSearch />
     </>
   );

@@ -1,10 +1,14 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { REAL_VEHICLES as DEMO_VEHICLES, REAL_DEALERS as DEMO_DEALERS } from '@/lib/data/real-vehicles';
+import { useEffect, useMemo, useState } from 'react';
+import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { CarCard } from './CarCard';
 import { BuyerProfilePanel, useBuyerProfile } from './BuyerProfilePanel';
-import { Gumdrop } from '@/components/ui/Gumdrop';
+import { Pagination, paginate } from '@/components/common/Pagination';
+import { SortDropdown, type SortKey } from '@/components/common/SortDropdown';
+import { scoreVehicle } from '@/lib/scoring';
+
+const PER_PAGE = 9;
 
 interface FilterState {
   body?: string;
@@ -17,17 +21,28 @@ interface FilterState {
 export function CarSearch() {
   const [profile, setProfile] = useBuyerProfile();
   const [filters, setFilters] = useState<FilterState>({ condition: 'all' });
+  const [sort, setSort] = useState<SortKey>('best-fit');
+  const [page, setPage] = useState(1);
 
-  const dealers = useMemo(() => Object.fromEntries(DEMO_DEALERS.map((d) => [d.id, d])), []);
-  const results = useMemo(() => {
-    return DEMO_VEHICLES.filter((v) => {
-      if (filters.body && v.body_type !== filters.body) return false;
-      if (filters.max_price && v.price > filters.max_price) return false;
-      if (filters.fuel && v.fuel_type !== filters.fuel) return false;
-      if (filters.condition && filters.condition !== 'all' && v.condition !== filters.condition) return false;
-      return true;
-    });
-  }, [filters]);
+  const dealers = useMemo(() => Object.fromEntries(REAL_DEALERS.map((d) => [d.id, d])), []);
+  const filtered = useMemo(() => REAL_VEHICLES.filter((v) => {
+    if (filters.body && v.body_type !== filters.body) return false;
+    if (filters.max_price && v.price > filters.max_price) return false;
+    if (filters.fuel && v.fuel_type !== filters.fuel) return false;
+    if (filters.condition && filters.condition !== 'all' && v.condition !== filters.condition) return false;
+    return true;
+  }), [filters]);
+  const sorted = useMemo(() => {
+    const arr = [...filtered];
+    if (sort === 'price-asc') return arr.sort((a, b) => a.price - b.price);
+    if (sort === 'price-desc') return arr.sort((a, b) => b.price - a.price);
+    if (sort === 'newest') return arr.sort((a, b) => +new Date(b.meta.last_verified_at) - +new Date(a.meta.last_verified_at));
+    return arr.sort((a, b) => scoreVehicle(b, profile).score - scoreVehicle(a, profile).score);
+  }, [filtered, sort, profile]);
+  const { items: paged, pageCount } = paginate(sorted, page, PER_PAGE);
+
+  const filterKey = JSON.stringify(filters) + sort;
+  useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
     <div className="mt-4 space-y-4">
@@ -58,15 +73,21 @@ export function CarSearch() {
             <option value="all">All</option><option value="new">New</option><option value="used">Used</option><option value="cpo">CPO</option>
           </select>
         </Field>
-        <Gumdrop tone="mute">SoCal-only · sample data</Gumdrop>
+        <div className="ml-auto"><SortDropdown value={sort} onChange={setSort} /></div>
       </div>
 
+      <p className="text-xs text-chocolate-700">
+        <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'}
+      </p>
+
       <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {results.map((v) => (
+        {paged.map((v) => (
           <li key={v.id}><CarCard vehicle={v} dealer={dealers[v.dealer_id]} profile={profile} /></li>
         ))}
       </ul>
-      {results.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700">No vehicles match these filters.</div>}
+      {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700">No vehicles match these filters.</div>}
+
+      <Pagination page={page} pageCount={pageCount} onChange={setPage} />
     </div>
   );
 }

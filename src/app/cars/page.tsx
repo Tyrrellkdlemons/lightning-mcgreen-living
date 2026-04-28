@@ -1,30 +1,27 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { TopToggle } from '@/components/home/TopToggle';
 import { CarSearch } from '@/components/cars/CarSearch';
-import { Gumdrop } from '@/components/ui/Gumdrop';
-import Link from 'next/link';
+import { RaceHero } from '@/components/theme/RaceHero';
 
 export const metadata: Metadata = {
   title: 'Cars',
-  description: 'Find Southern California cars and dealers that fit your real budget.',
+  description: 'Find Southern California cars and dealers that fit your real budget — race-day theme, honest payment math.',
 };
 
 export default function CarsPage() {
   return (
     <>
       <TopToggle />
-      <header className="mt-6 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <Gumdrop tone="ok">Vehicle side · Buy / Finance</Gumdrop>
-          <h1 className="mt-2 font-display text-3xl font-extrabold text-chocolate-900">Cars</h1>
-          <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-            Used, certified pre-owned, new — every listing shows the dealer, public promos,
-            and an honest payment estimate. Hidden promos are reframed as
-            "publicly verified" or "needs verification."
-          </p>
-        </div>
-        <Link href="/work-vehicles" className="cinnamon-btn">Looking to rent a work vehicle? →</Link>
-      </header>
+      <RaceHero
+        variant="cars"
+        title="Cars · Pit Lane"
+        subtitle="Real dealer chains — CarMax, Carvana, AutoNation USA, Driveway, EchoPark — with publicly verified promos, a real payment estimator, and original racing energy. Inspired by friendly animated racing films and motorsport dashboards."
+      />
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-chocolate-700">
+        <span>Public promos only · we never invent &ldquo;zero-down&rdquo;.</span>
+        <Link href="/work-vehicles" className="cinnamon-btn text-xs">Need a work vehicle? →</Link>
+      </div>
       <CarSearch />
     </>
   );

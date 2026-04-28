@@ -13,6 +13,7 @@ import { GingerbreadApartment, GingerbreadTownhome } from '@/components/theme/Gi
 import { PhotoGallery } from '@/components/common/PhotoGallery';
 import type { PhotoSet } from '@/lib/data/photo-sets';
 import { SourceOfIncomeNotice } from '@/components/assistance/SourceOfIncomeNotice';
+import { ScreeningPanel } from './ScreeningPanel';
 import { AdverseActionPanel } from '@/components/assistance/AdverseActionPanel';
 import { resourcesForCountyAndState } from '@/lib/data/assistance';
 import { AssistanceCard } from '@/components/assistance/AssistanceCard';
@@ -156,6 +157,12 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
           <p className="mt-1 text-xs text-chocolate-700">Open vector map · CARTO Voyager basemap · no Google Maps key required.</p>
           <div className="mt-3"><MapPanel lat={rental.lat} lng={rental.lng} zoom={14} height={300} markers={[{ lat: rental.lat, lng: rental.lng, label: rental.property_name, tone: 'rental' }]} /></div>
         </CandyCard>
+
+        <ScreeningPanel
+          platform={rental.application_platform}
+          manager={rental.manager}
+          publiclyDisclosed={rental.screening_vendor}
+        />
 
         <SourceOfIncomeNotice />
 

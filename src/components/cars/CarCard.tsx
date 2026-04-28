@@ -5,6 +5,7 @@ import { CookieCar } from '@/components/theme/CookieCar';
 import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { PhotoGallery } from '@/components/common/PhotoGallery';
+import { SaveHeart } from '@/components/common/SaveHeart';
 import { calcPaymentEstimate, usd } from '@/lib/calculators';
 import { scoreVehicle } from '@/lib/scoring';
 import type { BuyerProfile, Dealer, VehicleListing } from '@/types';
@@ -28,7 +29,10 @@ export function CarCard({
   });
 
   return (
-    <CandyCard interactive className="flex flex-col gap-3">
+    <CandyCard interactive className="relative flex flex-col gap-3">
+      <div className="absolute right-3 top-3 z-10">
+        <SaveHeart kind="car" id={vehicle.id} />
+      </div>
       {vehicle.photos && <PhotoGallery photos={vehicle.photos} height={180} />}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
