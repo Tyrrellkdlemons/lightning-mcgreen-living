@@ -12,6 +12,8 @@ import type { PhotoSet } from '@/lib/data/photo-sets';
 import { calcWorkRentalCost, usd } from '@/lib/calculators';
 import { scoreWorkRental } from '@/lib/scoring';
 import { useWorkProfile, WorkProfilePanel } from './WorkProfilePanel';
+import { WorkRentalPrepPacket } from '@/components/common/PrepPackets';
+import { resolveWorkRentalReservationLink } from '@/lib/links/resolver';
 
 export function WorkDetailClient({ rental }: { rental: WorkVehicleRental & { photos?: PhotoSet } }) {
   const [profile, setProfile] = useWorkProfile();
@@ -95,6 +97,13 @@ export function WorkDetailClient({ rental }: { rental: WorkVehicleRental & { pho
           <h2 className="font-display text-xl font-extrabold text-chocolate-900">Why this may fit</h2>
           <div className="mt-2"><FitExplain fit={fit} /></div>
         </CandyCard>
+
+        <WorkRentalPrepPacket
+          rental={rental}
+          profile={profile}
+          link={resolveWorkRentalReservationLink(rental as any)}
+          estimatedTotal={cost.total_pay_now}
+        />
 
         <WorkProfilePanel profile={profile} onChange={setProfile} />
       </div>

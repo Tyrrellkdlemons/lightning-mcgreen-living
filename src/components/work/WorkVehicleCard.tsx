@@ -6,6 +6,8 @@ import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { SaveHeart } from '@/components/common/SaveHeart';
+import { ReservationLinkBadge, VerifiedAtBadge } from '@/components/common/LinkConfidenceBadge';
+import { resolveWorkRentalReservationLink } from '@/lib/links/resolver';
 import { usd } from '@/lib/calculators';
 import { scoreWorkRental } from '@/lib/scoring';
 import type { WorkRentalProfile, WorkVehicleRental } from '@/types';
@@ -23,9 +25,10 @@ const TYPE_LABEL: Record<WorkVehicleRental['vehicle_type'], string> = {
 
 export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental & { photos?: PhotoSet }; profile: WorkRentalProfile }) {
   const fit = scoreWorkRental(rental, profile);
+  const link = resolveWorkRentalReservationLink(rental as any);
 
   return (
-    <CandyCard interactive className="relative flex flex-col gap-3">
+    <CandyCard interactive className="race-card-hover relative flex flex-col gap-3">
       <div className="absolute right-3 top-3 z-10">
         <SaveHeart kind="work-vehicle" id={rental.id} />
       </div>
@@ -56,6 +59,11 @@ export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental
         <Stat label="Deposit" value={usd(rental.deposit)} />
         <Stat label="Mileage fee" value={rental.mileage_fee_per_mile != null ? `$${rental.mileage_fee_per_mile.toFixed(2)}/mi` : '—'} />
         <Stat label="Incl miles/day" value={rental.included_miles_per_day != null ? String(rental.included_miles_per_day) : '—'} />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <ReservationLinkBadge kind={link.kind} confidence={link.confidence} />
+        <VerifiedAtBadge iso={rental.meta.last_verified_at} />
       </div>
 
       <SourcePanel meta={rental.meta} dense />

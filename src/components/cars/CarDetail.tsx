@@ -17,6 +17,8 @@ import { usd } from '@/lib/calculators';
 import { AutoHardshipCard } from '@/components/assistance/AutoHardshipCard';
 import { caSosLookupUrl } from '@/lib/providers/ca-sos';
 import { caDmvOlLookupUrl } from '@/lib/providers/ca-dmv-ol';
+import { FinancePrepPacket } from '@/components/common/PrepPackets';
+import { resolveVehicleFinanceLink } from '@/lib/links/resolver';
 
 export function CarDetailClient({ vehicle, dealer }: { vehicle: VehicleListing & { photos?: PhotoSet }; dealer?: Dealer }) {
   const [profile, setProfile] = useBuyerProfile();
@@ -63,6 +65,13 @@ export function CarDetailClient({ vehicle, dealer }: { vehicle: VehicleListing &
           <h2 className="font-display text-xl font-extrabold text-chocolate-900">Why this may fit</h2>
           <div className="mt-2"><FitExplain fit={fit} /></div>
         </CandyCard>
+
+        <FinancePrepPacket
+          vehicle={vehicle}
+          dealer={dealer}
+          profile={profile}
+          link={resolveVehicleFinanceLink(vehicle as any, dealer)}
+        />
 
         <AutoHardshipCard />
 

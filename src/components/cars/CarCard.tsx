@@ -6,6 +6,8 @@ import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { SaveHeart } from '@/components/common/SaveHeart';
+import { FinanceLinkBadge, VerifiedAtBadge } from '@/components/common/LinkConfidenceBadge';
+import { resolveVehicleFinanceLink } from '@/lib/links/resolver';
 import { calcPaymentEstimate, usd } from '@/lib/calculators';
 import { scoreVehicle } from '@/lib/scoring';
 import type { BuyerProfile, Dealer, VehicleListing } from '@/types';
@@ -21,6 +23,7 @@ export function CarCard({
   profile: BuyerProfile;
 }) {
   const fit = scoreVehicle(vehicle, profile);
+  const link = resolveVehicleFinanceLink(vehicle as any, dealer);
   const pay = calcPaymentEstimate({
     price: vehicle.price,
     down_payment: vehicle.down_payment_estimate,
@@ -29,7 +32,7 @@ export function CarCard({
   });
 
   return (
-    <CandyCard interactive className="relative flex flex-col gap-3">
+    <CandyCard interactive className="race-card-hover relative flex flex-col gap-3">
       <div className="absolute right-3 top-3 z-10">
         <SaveHeart kind="car" id={vehicle.id} />
       </div>
@@ -55,6 +58,11 @@ export function CarCard({
         <Stat label="Price" value={usd(vehicle.price)} />
         <Stat label="Est. monthly" value={usd(pay.monthly_payment)} />
         <Stat label="Est. down" value={usd(vehicle.down_payment_estimate)} />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <FinanceLinkBadge kind={link.kind} confidence={link.confidence} />
+        <VerifiedAtBadge iso={vehicle.meta.last_verified_at} />
       </div>
 
       <SourcePanel meta={vehicle.meta} dense />

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 
@@ -15,6 +16,12 @@ export default function AdminPage() {
           Gated by <code>ADMIN_SHARED_SECRET</code> in production.
         </p>
       </header>
+
+      <div className="mt-3">
+        <Link href="/admin/verify" className="bolt-btn text-sm">
+          🔗 Open exact-link verifier →
+        </Link>
+      </div>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <UploadCard

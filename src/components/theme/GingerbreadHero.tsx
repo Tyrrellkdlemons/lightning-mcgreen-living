@@ -1,10 +1,18 @@
 import { GingerbreadApartment, GingerbreadTownhome } from './GingerbreadHouse';
 import { LightningBolt } from './LightningBolt';
+import { ChimneySmokeWrap, CookieEmbossWrap } from './GingerbreadAccents';
 
 /**
- * Gingerbread-deep hero for the rentals section. Warm cream + frosting +
- * candy-stripe ribbon. Original — no Zillow blue-house glyph or other
- * branded assets.
+ * Gingerbread-deep hero — x10 polish.
+ *
+ * Layers:
+ *   - cream + frosting radial gradients
+ *   - dashed cookie border ring
+ *   - candy-stripe ribbon header
+ *   - embossed cookie texture
+ *   - animated chimney smoke on the apartment + townhome icons
+ *   - subtle gumdrop-rain overlay (red + green dots, 2 falling streams)
+ *   - candy-icing scalloped divider footer
  */
 export function GingerbreadHero({
   title,
@@ -14,7 +22,7 @@ export function GingerbreadHero({
   subtitle: string;
 }) {
   return (
-    <section className="gingerbread-shell mt-6">
+    <CookieEmbossWrap className="gingerbread-shell mt-6 gumdrop-rain">
       <div className="candy-ribbon" aria-hidden />
       <div className="relative px-5 py-7 sm:px-8 sm:py-9">
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -30,15 +38,20 @@ export function GingerbreadHero({
               <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">SoCal-only</span>
               <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Verified operators</span>
               <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Screening insight</span>
+              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Direct application links</span>
             </div>
           </div>
           <div className="flex shrink-0 items-end gap-3">
-            <GingerbreadApartment className="h-20 w-auto" />
-            <GingerbreadTownhome className="h-20 w-auto" />
+            <ChimneySmokeWrap>
+              <GingerbreadApartment className="h-20 w-auto" />
+            </ChimneySmokeWrap>
+            <ChimneySmokeWrap>
+              <GingerbreadTownhome className="h-20 w-auto" />
+            </ChimneySmokeWrap>
           </div>
         </div>
       </div>
       <div className="candy-icing-divider" aria-hidden />
-    </section>
+    </CookieEmbossWrap>
   );
 }

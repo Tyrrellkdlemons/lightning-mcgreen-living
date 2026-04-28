@@ -7,6 +7,8 @@ import { GingerbreadApartment, GingerbreadTownhome } from '@/components/theme/Gi
 import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { ScreeningBadge } from './ScreeningPanel';
 import { SaveHeart } from '@/components/common/SaveHeart';
+import { ApartmentLinkBadge, VerifiedAtBadge } from '@/components/common/LinkConfidenceBadge';
+import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
 import { usd } from '@/lib/calculators';
 import type { RentalListing, RenterProfile } from '@/types';
 import type { PhotoSet } from '@/lib/data/photo-sets';
@@ -27,6 +29,7 @@ export function RentalCard({
 }) {
   const fit = scoreRental(rental, profile);
   const isTownhome = rental.unit_type !== 'apartment';
+  const link = resolveApartmentApplicationLink(rental as any);
 
   return (
     <CandyCard interactive className="relative flex flex-col gap-3">
@@ -75,6 +78,8 @@ export function RentalCard({
           <Gumdrop tone="ok" title="Special">Special: {rental.move_in_specials}</Gumdrop>
         )}
         <ScreeningBadge platform={rental.application_platform} manager={rental.manager} publiclyDisclosed={rental.screening_vendor} />
+        <ApartmentLinkBadge kind={link.kind} confidence={link.confidence} />
+        <VerifiedAtBadge iso={rental.meta.last_verified_at} />
         {rental.attached_garage && <Gumdrop tone="mute">Attached garage</Gumdrop>}
         {rental.private_entrance && <Gumdrop tone="mute">Private entrance</Gumdrop>}
         {rental.yard_or_patio && <Gumdrop tone="mute">Yard / patio</Gumdrop>}

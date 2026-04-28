@@ -153,6 +153,214 @@
 }
 .neon-stat strong { color: #75ff45; }
 
+/* ------------------------------------------------------------------ */
+/* THEME x10 — race-day deep + gingerbread deep (original visuals)    */
+/* ------------------------------------------------------------------ */
+
+/* Tire-tread animated divider — pure CSS, gpu-friendly */
+.tire-tread {
+  position: relative;
+  height: 14px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #1a0d05 0 6px,
+      #2a1809 6px 10px,
+      #1a0d05 10px 14px,
+      #1a1a1a 14px 18px
+    );
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.tire-tread::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(52, 219, 0, 0.4), transparent);
+  transform: translateX(-100%);
+  animation: tread-pulse 4.5s ease-in-out infinite;
+}
+@keyframes tread-pulse {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Pit-lane LED row — pulsing dots */
+.pit-lane-leds {
+  display: flex;
+  gap: 6px;
+  padding: 4px 0;
+}
+.pit-lane-leds span {
+  display: inline-block;
+  width: 7px; height: 7px; border-radius: 999px;
+  background: #34db00;
+  box-shadow: 0 0 4px rgba(52, 219, 0, 0.85);
+  animation: led-blink 1.6s ease-in-out infinite;
+}
+.pit-lane-leds span:nth-child(2) { animation-delay: 0.2s; }
+.pit-lane-leds span:nth-child(3) { animation-delay: 0.4s; }
+.pit-lane-leds span:nth-child(4) { animation-delay: 0.6s; }
+.pit-lane-leds span:nth-child(5) { animation-delay: 0.8s; }
+@keyframes led-blink {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.2); }
+}
+
+/* Original race-pad numbered badge (NOT "95" — uses MG-1 or any caller-provided number) */
+.race-pad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fffaf0, #f4cf2b 60%, #c98538);
+  border: 3px solid #1a0d05;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 900;
+  font-size: 20px;
+  color: #1a0d05;
+  letter-spacing: -0.02em;
+  box-shadow: 0 4px 0 #1a0d05, 0 0 14px rgba(52, 219, 0, 0.45);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Sliding marquee ticker for race-day hero */
+.speed-ticker {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(117, 255, 69, 0.25);
+  border-bottom: 1px solid rgba(117, 255, 69, 0.25);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #75ff45;
+  white-space: nowrap;
+}
+.speed-ticker > div {
+  animation: ticker-slide 28s linear infinite;
+}
+.speed-ticker > div span { padding: 0 1.25rem; }
+.speed-ticker > div span::before {
+  content: '⚡';
+  margin-right: 0.5rem;
+  color: #75ff45;
+}
+@keyframes ticker-slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Hover speed-burst: green radial flare on car card hover */
+.race-card-hover {
+  transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+.race-card-hover:hover {
+  transform: translateY(-2px);
+  border-color: #34db00;
+  box-shadow: 0 0 0 2px rgba(52, 219, 0, 0.45), 0 16px 40px -16px rgba(52, 219, 0, 0.55);
+}
+
+/* Frosting-drip card edge for gingerbread side */
+.frosting-drip {
+  position: relative;
+}
+.frosting-drip::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 14px;
+  background:
+    radial-gradient(circle at 12px 14px, #fffaf0 8px, transparent 9px) repeat-x;
+  background-size: 24px 14px;
+  pointer-events: none;
+}
+
+/* Candy-cane diagonal corner stripe */
+.candy-cane-corner {
+  position: absolute;
+  top: 0; right: 0;
+  width: 64px; height: 64px;
+  background: repeating-linear-gradient(45deg, #ff4f5e 0 8px, #fffaf0 8px 16px);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  border-bottom-left-radius: 100%;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Animated chimney smoke for gingerbread house silhouettes */
+.chimney-smoke {
+  position: relative;
+}
+.chimney-smoke::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: 60%;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  filter: blur(3px);
+  animation: smoke-puff 4s ease-in infinite;
+}
+@keyframes smoke-puff {
+  0%   { transform: translate(0, 0) scale(0.8); opacity: 0; }
+  20%  { opacity: 0.8; }
+  100% { transform: translate(-12px, -28px) scale(1.6); opacity: 0; }
+}
+
+/* Embossed cookie texture (subtle, used as background fill) */
+.cookie-emboss {
+  position: relative;
+}
+.cookie-emboss::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.25) 1px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(94, 57, 20, 0.18) 1px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.20) 1px, transparent 2px);
+  background-size: 28px 28px, 36px 36px, 22px 22px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Gumdrop-rain hero overlay (small, subtle) */
+.gumdrop-rain {
+  position: relative;
+  overflow: hidden;
+}
+.gumdrop-rain::before,
+.gumdrop-rain::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.gumdrop-rain::before {
+  left: 18%; background: #ff4f5e;
+  animation: gumdrop-fall 5.5s linear infinite 0.4s;
+}
+.gumdrop-rain::after {
+  left: 72%; background: #75ff45;
+  animation: gumdrop-fall 6.8s linear infinite 1.6s;
+}
+@keyframes gumdrop-fall {
+  0%   { transform: translateY(-10px); opacity: 0; }
+  20%  { opacity: 0.85; }
+  100% { transform: translateY(180px); opacity: 0; }
+}
+
 /* Tachometer-styled badge (used as accent on car detail) */
 .tach {
   display: inline-flex;
