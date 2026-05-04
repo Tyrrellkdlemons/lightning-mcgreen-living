@@ -98,3 +98,19 @@
  ✓ Compiled in 273ms (355 modules)
  ✓ Compiled in 252ms (355 modules)
  ✓ Compiled in 303ms (355 modules)
+ ✓ Compiled in 494ms (355 modules)
+ ✓ Compiled in 900ms (688 modules)
+ ○ Compiling /apartments/workbook ...
+ ✓ Compiled /apartments/workbook in 1048ms (718 modules)
+ GET /apartments/workbook 200 in 1383ms
+ ✓ Compiled /_not-found in 359ms (719 modules)
+ GET /icons/icon-192.png 404 in 531ms
+ ✓ Compiled in 791ms (732 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 590ms (733 modules)
+ GET /rentals 404 in 216ms
+ GET /_next/static/css/app/layout.css?v=1777937917858 404 in 64ms
+ GET /_next/static/css/app/layout.css?v=1777937917858 404 in 84ms
+ GET /_next/static/chunks/main-app.js?v=1777937917858 404 in 113ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 112ms
+ GET /_next/static/chunks/app/not-found.js 404 in 76ms
