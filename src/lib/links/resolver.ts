@@ -51,13 +51,22 @@ export function resolveApartmentApplicationLink(
 ): ResolvedLink<ApartmentLinkType> {
   const L = rental.links ?? {};
   if (L.exact_application_url && L.application_link_type === 'exact-unit-application') {
-    return ok(L.exact_application_url, 'exact-unit-application', L.application_link_confidence ?? 'partner-feed', 'Partner feed gave a unit-level application link.');
+    return withApartmentPlatform(
+      ok(L.exact_application_url, 'exact-unit-application', L.application_link_confidence ?? 'partner-feed', 'Official source gave a unit-level application link.'),
+      rental,
+    );
   }
   if (L.exact_unit_url) {
-    return ok(L.exact_unit_url, 'exact-unit-application', 'inferred', 'Property site has a unit detail page; the apply CTA on that page is the closest known unit-level link.');
+    return withApartmentPlatform(
+      ok(L.exact_unit_url, 'exact-unit-application', 'inferred', 'Property site has a unit detail page; the apply CTA on that page is the closest known unit-level link.'),
+      rental,
+    );
   }
   if (L.exact_floorplan_url) {
-    return ok(L.exact_floorplan_url, 'exact-floorplan-application', 'inferred', 'Property site has a floorplan-level apply flow — narrower than property-wide, broader than unit-level.');
+    return withApartmentPlatform(
+      ok(L.exact_floorplan_url, 'exact-floorplan-application', 'inferred', 'Property site has a floorplan-level apply flow — narrower than property-wide, broader than unit-level.'),
+      rental,
+    );
   }
 
   // Build a platform-aware link. When we have a property name, we use
@@ -180,6 +189,40 @@ function ok<T extends string>(url: string, kind: T, confidence: AppLinkConfidenc
     redirect_required: true,
     reason,
   };
+}
+
+function withApartmentPlatform<T extends ApartmentLinkType>(
+  link: ResolvedLink<T>,
+  rental: Pick<RentalListing, 'application_platform' | 'manager'>,
+): ResolvedLink<T> {
+  const details = apartmentPlatformDetails(rental.application_platform, rental.manager);
+  return { ...link, ...details };
+}
+
+function apartmentPlatformDetails(
+  platform: RentalListing['application_platform'],
+  manager: string,
+): Pick<ResolvedLink, 'platform_name' | 'platform_owner'> {
+  switch (platform) {
+    case 'RentCafe':
+      return { platform_name: 'RentCafe', platform_owner: 'Yardi Systems' };
+    case 'Entrata':
+      return { platform_name: 'Entrata', platform_owner: 'Entrata, Inc.' };
+    case 'AppFolio':
+      return { platform_name: 'AppFolio Online Portal', platform_owner: 'AppFolio' };
+    case 'RealPage':
+      return { platform_name: 'RealPage / OneSite', platform_owner: 'RealPage' };
+    case 'Knock':
+      return { platform_name: 'Knock CRM', platform_owner: 'Knock (RealPage)' };
+    case 'On-Site':
+      return { platform_name: 'On-Site', platform_owner: 'On-Site.com' };
+    case 'G5/Knock':
+      return { platform_name: 'G5 / Knock', platform_owner: 'G5 Marketing Cloud + Knock' };
+    case 'Other':
+      return { platform_name: 'Operator portal', platform_owner: manager };
+    default:
+      return { platform_name: 'Unknown portal', platform_owner: manager };
+  }
 }
 
 function notVerified<T extends string>(kind: T, reason: string): ResolvedLink<T> {

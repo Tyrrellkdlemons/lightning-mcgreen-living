@@ -4,12 +4,12 @@
  * Returns 3 slides per listing that actually match what the listing IS:
  *   1. Topic-aware SVG illustration (apartment building / townhome row /
  *      vehicle / work-vehicle silhouette in brand-aware color)
- *   2. Static neighborhood map tile from CARTO/OSM showing the real
- *      location
+ *   2. Live street-view card (Google Street View via server route) with
+ *      automatic satellite fallback when imagery/key is unavailable
  *   3. A second SVG variant (different sky / time-of-day)
  *
- * No random Lorem Picsum photos. CC0 because we wrote the SVGs; OSM/CARTO
- * tiles carry the attribution shown in `MapPanel`.
+ * No random Lorem Picsum photos. CC0 because we wrote the SVGs; map/street
+ * imagery attribution is shown in `MapPanel` and listing details.
  */
 
 import { apartmentBuildingVariants, townhomeRowVariants, vehicleVariants, workVehicleVariants } from '@/lib/assets/svg-illustrations';
@@ -25,13 +25,26 @@ export interface PhotoSet {
 }
 
 const CREDIT_SVG = {
-  label: 'Original illustration · CC0',
+  label: 'Original editable illustration · CC0',
   url: 'https://github.com/Tyrrellkdlemons/lightning-mcgreen-living',
 };
 const CREDIT_OSM = {
   label: '© OpenStreetMap contributors © CARTO',
   url: 'https://www.openstreetmap.org/copyright',
 };
+const CREDIT_STREET_CONTEXT = {
+  label: 'Street View (Google) with satellite fallback',
+  url: 'https://developers.google.com/maps/documentation/streetview',
+};
+
+function streetViewCardUrl(lat: number, lng: number): string {
+  const params = new URLSearchParams({
+    lat: lat.toFixed(6),
+    lng: lng.toFixed(6),
+    fov: '50',
+  });
+  return `/api/maps/streetview?${params.toString()}`;
+}
 
 // ---------------------------------------------------------------------------
 // Apartment / townhome
@@ -39,33 +52,33 @@ const CREDIT_OSM = {
 
 export function apartmentPhotos(seed: string, ctx?: { lat?: number; lng?: number; property_name?: string; city?: string }): PhotoSet {
   const variants = apartmentBuildingVariants(seed);
-  const tile =
+  const streetCard =
     ctx?.lat != null && ctx?.lng != null
-      ? neighborhoodTile(ctx.lat, ctx.lng, 14).url
+      ? streetViewCardUrl(ctx.lat, ctx.lng)
       : variants[1];
   return {
-    urls: [variants[0], tile, variants[2]],
+    urls: [variants[0], streetCard, variants[2]],
     alt: ctx?.property_name
-      ? `${ctx.property_name} — apartment building illustration + neighborhood map (${ctx.city ?? 'SoCal'})`
-      : 'Apartment building · illustration + neighborhood map',
-    credit_label: ctx?.lat != null ? `${CREDIT_SVG.label} · ${CREDIT_OSM.label}` : CREDIT_SVG.label,
-    credit_url: CREDIT_OSM.url,
+      ? `${ctx.property_name} — apartment building illustration + street view (${ctx.city ?? 'SoCal'})`
+      : 'Apartment building · illustration + street view',
+    credit_label: ctx?.lat != null ? `${CREDIT_SVG.label} · ${CREDIT_STREET_CONTEXT.label}` : CREDIT_SVG.label,
+    credit_url: ctx?.lat != null ? CREDIT_STREET_CONTEXT.url : CREDIT_SVG.url,
   };
 }
 
 export function townhomePhotos(seed: string, ctx?: { lat?: number; lng?: number; property_name?: string; city?: string }): PhotoSet {
   const variants = townhomeRowVariants(seed);
-  const tile =
+  const streetCard =
     ctx?.lat != null && ctx?.lng != null
-      ? neighborhoodTile(ctx.lat, ctx.lng, 14).url
+      ? streetViewCardUrl(ctx.lat, ctx.lng)
       : variants[1];
   return {
-    urls: [variants[0], tile, variants[2]],
+    urls: [variants[0], streetCard, variants[2]],
     alt: ctx?.property_name
-      ? `${ctx.property_name} — townhome row illustration + neighborhood map (${ctx.city ?? 'SoCal'})`
-      : 'Townhome row · illustration + neighborhood map',
-    credit_label: ctx?.lat != null ? `${CREDIT_SVG.label} · ${CREDIT_OSM.label}` : CREDIT_SVG.label,
-    credit_url: CREDIT_OSM.url,
+      ? `${ctx.property_name} — townhome row illustration + street view (${ctx.city ?? 'SoCal'})`
+      : 'Townhome row · illustration + street view',
+    credit_label: ctx?.lat != null ? `${CREDIT_SVG.label} · ${CREDIT_STREET_CONTEXT.label}` : CREDIT_SVG.label,
+    credit_url: ctx?.lat != null ? CREDIT_STREET_CONTEXT.url : CREDIT_SVG.url,
   };
 }
 

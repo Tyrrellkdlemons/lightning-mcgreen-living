@@ -8,6 +8,8 @@
  *   - Entrata           → Entrata Verification of Income + PreciseID
  *   - AppFolio          → AppFolio Tenant Screening (powered by CoreLogic)
  *   - RealPage / OneSite/ Knock → RealPage LeasingDesk Screening
+ *   - On-Site           → On-Site rental application / screening workflow
+ *   - G5/Knock          → G5 inventory + property apply URL; Knock may handle tours/chat
  *   - Other / Unknown   → Operator may use TransUnion SmartMove or proprietary
  *
  * Some operators publicly disclose extra vendors in their tech stack (e.g.
@@ -55,6 +57,21 @@ const REALPAGE_LD = {
   name: 'RealPage LeasingDesk Screening',
   url: 'https://www.realpage.com/products/leasingdesk-screening/',
   role: 'credit, criminal, eviction, lease compliance',
+};
+const ONSITE = {
+  name: 'On-Site.com',
+  url: 'https://www.on-site.com/',
+  role: 'rental application portal and property-selected screening workflow',
+};
+const G5_INVENTORY = {
+  name: 'G5 Marketing Cloud inventory',
+  url: 'https://www.g5.com/',
+  role: 'floorplan inventory, unit availability, and apply CTA routing',
+};
+const KNOCK_DOORWAY = {
+  name: 'Knock Doorway',
+  url: 'https://knockcrm.com/',
+  role: 'tour scheduling, chat, and leasing CRM handoff',
 };
 const TU_SMARTMOVE = {
   name: 'TransUnion SmartMove',
@@ -145,6 +162,36 @@ const PLATFORM_BASELINE: Record<ApplicationPlatform, ScreeningStack> = {
       'Photo ID', 'Pay stubs', 'Rental history',
     ],
     notes: 'Knock CRM is the front door; the screening usually happens on a different portal.',
+  },
+  'On-Site': {
+    vendors: [ONSITE],
+    strictness: 'standard',
+    steps_likely: [
+      'Pick the exact unit or floorplan',
+      'Create applicant profile on On-Site',
+      'Upload photo ID and income proof',
+      'Consent to credit, criminal, and eviction screening',
+      'Pay the application fee before property review',
+    ],
+    documents_likely_checked: [
+      'Photo ID', 'Recent pay stubs or offer letter', 'Rental history', 'Vehicle details if parking is assigned',
+    ],
+    notes: 'On-Site hosts the application; the property controls final criteria and any downstream screening vendors.',
+  },
+  'G5/Knock': {
+    vendors: [G5_INVENTORY, KNOCK_DOORWAY],
+    strictness: 'standard',
+    steps_likely: [
+      'Select the unit from the G5-hosted floorplan inventory',
+      'Confirm move-in date and contact information',
+      'Continue into the property apply page with siteId and unitId already selected',
+      'Review fee disclosures on the official property site',
+      'Upload ID, income proof, and rental history in the final manager-controlled flow',
+    ],
+    documents_likely_checked: [
+      'Photo ID', 'Income proof', 'Rental history', 'Contact details', 'Pet and vehicle details if applicable',
+    ],
+    notes: 'G5/Knock identifies and routes the unit. Final screening is controlled by the property or its management stack.',
   },
   Other: {
     vendors: [TU_SMARTMOVE],

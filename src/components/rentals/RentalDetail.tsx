@@ -27,8 +27,16 @@ const APP_PLATFORM_NOTES: Record<string, string> = {
   AppFolio: "AppFolio is common with mid-market managers — single online form + screening fee.",
   RealPage: "RealPage / OneSite / Knock — multi-step online application; some properties use guest cards first.",
   Knock: "Knock often handles tour scheduling and chat; the application itself is usually on the manager's portal.",
+  'On-Site': "On-Site applications are property-specific and usually step through unit selection, applicant profile, ID/income docs, screening consent, and fee payment.",
+  'G5/Knock': "G5 supplies the official floorplan/unit inventory and apply CTA; Knock may handle tours or chat before the property-controlled application flow.",
   Other: "Process varies by property — open the official page to confirm steps.",
   Unknown: "Application platform not yet identified — call the property to confirm.",
+};
+
+const UNIT_LABEL: Record<RentalListing['unit_type'], string> = {
+  apartment: 'Apartment unit',
+  townhouse: 'Townhouse rental',
+  'townhome-style-apartment': 'Townhome-style apartment',
 };
 
 export function RentalDetailClient({ rental }: { rental: RentalListing & { photos?: PhotoSet } }) {
@@ -43,6 +51,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
       first_month: true,
       admin_fee: rental.admin_fee,
       application_fee: rental.application_fee,
+      holding_deposit: rental.holding_deposit,
       pet_fee: rental.pet_fee,
       parking_fee: rental.parking_fee,
     }),
@@ -51,7 +60,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
   const aff = profile.gross_monthly_income ? calcAffordability(profile.gross_monthly_income) : null;
   const requiredIncome = rental.income_multiplier ? calcRequiredIncome(overrideRent, rental.income_multiplier) : null;
 
-  const isTownhome = rental.unit_type !== 'apartment';
+  const isTownhome = rental.unit_type === 'townhouse';
 
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -64,7 +73,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
         <CandyCard>
           <div className="flex items-start justify-between gap-4">
             <div>
-              <Gumdrop tone="mute">{isTownhome ? 'Townhouse rental' : 'Apartment unit'}</Gumdrop>
+              <Gumdrop tone="mute">{UNIT_LABEL[rental.unit_type]}</Gumdrop>
               <h1 className="mt-1 font-display text-3xl font-extrabold text-chocolate-900">
                 {rental.property_name}
               </h1>
@@ -73,7 +82,10 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
               </p>
               <div className="mt-2 flex flex-wrap items-center gap-2">
                 <FitBadge fit={fit} />
+                {rental.unit_number && <Gumdrop tone="ok">Unit #{rental.unit_number}</Gumdrop>}
+                {rental.available_date && <Gumdrop tone="ok">Available {formatDate(rental.available_date)}</Gumdrop>}
                 <Gumdrop tone="info">Managed by {rental.manager}</Gumdrop>
+                {rental.owner_operator && <Gumdrop tone="info">Owner/operator: {rental.owner_operator}</Gumdrop>}
                 {rental.application_platform !== 'Unknown' && <Gumdrop tone="mute">via {rental.application_platform}</Gumdrop>}
               </div>
             </div>
@@ -117,6 +129,14 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
         <CandyCard>
           <h2 className="font-display text-xl font-extrabold text-chocolate-900">Application process</h2>
           <p className="mt-1 text-sm text-chocolate-700">{APP_PLATFORM_NOTES[rental.application_platform]}</p>
+          {(rental.application_route || rental.owner_operator || rental.floor_plan_name) && (
+            <div className="mt-3 grid gap-2 rounded-md bg-frosting-100 p-3 text-xs text-chocolate-800 sm:grid-cols-2">
+              {rental.owner_operator && <RouteStat label="Owner/operator" value={rental.owner_operator} />}
+              {rental.application_route && <RouteStat label="Application route" value={rental.application_route} />}
+              {rental.floor_plan_name && <RouteStat label="Floor plan" value={rental.floor_plan_name} />}
+              {rental.listing_visual_note && <RouteStat label="Visual rights" value={rental.listing_visual_note} />}
+            </div>
+          )}
           <ul className="mt-3 grid gap-2 sm:grid-cols-2 text-sm text-chocolate-800">
             <li>· ID (driver's license / state ID)</li>
             <li>· Income proof (recent pay stubs / offer letter)</li>
@@ -173,8 +193,36 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
 
         <CandyCard>
           <h2 className="font-display text-xl font-extrabold text-chocolate-900">Where it is</h2>
-          <p className="mt-1 text-xs text-chocolate-700">Open vector map · CARTO Voyager basemap · no Google Maps key required.</p>
-          <div className="mt-3"><MapPanel lat={rental.lat} lng={rental.lng} zoom={14} height={300} markers={[{ lat: rental.lat, lng: rental.lng, label: rental.property_name, tone: 'rental' }]} /></div>
+          <p className="mt-1 text-xs text-chocolate-700">
+            Open MapLibre map with street, dark, and satellite modes. Google links open at property-level zoom.
+          </p>
+          <div className="mt-3"><MapPanel lat={rental.lat} lng={rental.lng} zoom={17} height={300} markers={[{ lat: rental.lat, lng: rental.lng, label: rental.property_name, tone: 'rental' }]} /></div>
+          <div className="mt-2 flex flex-wrap gap-2 text-xs">
+            <a
+              href={`https://www.openstreetmap.org/?mlat=${rental.lat}&mlon=${rental.lng}#map=16/${rental.lat}/${rental.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cinnamon-btn"
+            >
+              OpenStreetMap
+            </a>
+            <a
+              href={`https://www.google.com/maps/@${rental.lat},${rental.lng},19z?entry=ttu`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cinnamon-btn"
+            >
+              Google Maps zoom
+            </a>
+            <a
+              href={`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${rental.lat},${rental.lng}&fov=50&pitch=2`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cinnamon-btn"
+            >
+              Street View
+            </a>
+          </div>
         </CandyCard>
 
         <ApartmentPrepPacket
@@ -206,6 +254,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
             <li className="flex justify-between"><span>Deposit</span><span className="num">{usd(rental.deposit)}</span></li>
             <li className="flex justify-between"><span>Application fee</span><span className="num">{usd(rental.application_fee)}</span></li>
             <li className="flex justify-between"><span>Admin fee</span><span className="num">{usd(rental.admin_fee)}</span></li>
+            <li className="flex justify-between"><span>Holding deposit</span><span className="num">{usd(rental.holding_deposit)}</span></li>
             <li className="flex justify-between"><span>Pet fee</span><span className="num">{usd(rental.pet_fee)}</span></li>
             <li className="flex justify-between"><span>Parking fee</span><span className="num">{usd(rental.parking_fee)}</span></li>
           </ul>
@@ -253,6 +302,19 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
+function RouteStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="font-bold uppercase tracking-wider text-chocolate-600">{label}</p>
+      <p className="mt-0.5 leading-snug text-chocolate-900">{value}</p>
+    </div>
+  );
+}
+
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(`${date}T12:00:00`));
+}
+
 function CountyHelp({ county }: { county: string }) {
   const SUPPORTED = ['Los Angeles', 'Orange', 'Riverside', 'San Bernardino', 'Ventura'] as const;
   if (!SUPPORTED.includes(county as any)) return null;
@@ -276,7 +338,13 @@ function copyApplicationSheet(rental: RentalListing, profile: any) {
     `LIGHTNING MCGREEN LIVING — APPLICATION COPY SHEET`,
     `Property: ${rental.property_name}`,
     `Address: ${rental.address_line}, ${rental.city}, CA ${rental.zip}`,
+    `Unit: ${rental.unit_number ?? ''}`,
+    `Floor plan: ${rental.floor_plan_name ?? ''}`,
+    `Available date: ${rental.available_date ?? ''}`,
+    `Owner/operator: ${rental.owner_operator ?? ''}`,
     `Manager: ${rental.manager}  |  Application platform: ${rental.application_platform}`,
+    `Application route: ${rental.application_route ?? ''}`,
+    `Official source: ${rental.official_property_url}`,
     ``,
     `Applicant`,
     `Name: ${profile.contact?.name ?? ''}`,

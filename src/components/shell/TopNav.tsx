@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Heart } from 'lucide-react';
 import { LightningBolt } from '@/components/theme/LightningBolt';
 import { ReduceMotionToggle } from './ReduceMotionToggle';
 import { SearchBox } from './SearchBox';
@@ -48,9 +49,10 @@ export function TopNav() {
           <ReduceMotionToggle />
           <Link
             href="/saved"
-            className="rounded-full border border-gingerbread-300 bg-frosting-100 px-3 py-1.5 text-xs font-semibold text-gingerbread-700 hover:bg-frosting-200"
+            className="inline-flex items-center gap-1 rounded-full border border-gingerbread-300 bg-frosting-100 px-3 py-1.5 text-xs font-semibold text-gingerbread-700 hover:bg-frosting-200"
           >
-            ♥ Saved
+            <Heart className="h-3.5 w-3.5" aria-hidden />
+            Saved
           </Link>
         </div>
       </div>

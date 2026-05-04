@@ -45,9 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="h-full">
       <body className="relative min-h-dvh text-chocolate-800 antialiased">
         <RotatingBackground />
-        <RainingObjects count={20} />
+        <RainingObjects count={14} className="hidden md:block" />
         <TopNav />
-        <main className="relative z-20 mx-auto max-w-7xl px-4 pb-12">
+        <main className="relative z-20 mx-auto max-w-7xl px-4 pb-24 md:pb-12">
           {children}
         </main>
         <Footer />

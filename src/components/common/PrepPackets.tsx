@@ -26,7 +26,7 @@ export function ApartmentPrepPacket({
   link: ResolvedLink;
 }) {
   const [open, setOpen] = useState(false);
-  const summary = apartmentSummary(rental, profile);
+  const summary = apartmentSummary(rental, profile, link);
 
   return (
     <CandyCard>
@@ -69,11 +69,21 @@ export function ApartmentPrepPacket({
   );
 }
 
-function apartmentSummary(rental: RentalListing, p: RenterProfile) {
+function apartmentSummary(rental: RentalListing, p: RenterProfile, link: ResolvedLink) {
   return [
     { label: 'Property', value: rental.property_name },
+    { label: 'Unit', value: rental.unit_number ? `#${rental.unit_number}` : '' },
+    { label: 'Floor plan', value: rental.floor_plan_name ?? '' },
+    { label: 'Available date', value: rental.available_date ?? '' },
     { label: 'City', value: `${rental.city}, CA ${rental.zip}` },
+    { label: 'Owner/operator', value: rental.owner_operator ?? '' },
     { label: 'Manager', value: rental.manager },
+    { label: 'Application platform', value: link.platform_name ?? rental.application_platform },
+    { label: 'Application route', value: rental.application_route ?? link.reason },
+    { label: 'Official source', value: rental.official_property_url },
+    { label: 'Application fee', value: rental.application_fee ? `$${rental.application_fee.toLocaleString()}` : '' },
+    { label: 'Holding deposit', value: rental.holding_deposit ? `$${rental.holding_deposit.toLocaleString()}` : '' },
+    { label: 'Security deposit', value: rental.deposit ? `$${rental.deposit.toLocaleString()}` : '' },
     { label: 'Applicant name', value: p.contact?.name ?? '' },
     { label: 'Email', value: p.contact?.email ?? '' },
     { label: 'Phone', value: p.contact?.phone ?? '' },

@@ -99,7 +99,7 @@ export interface LeasingPortalInfo {
  *   1. RentCafe-hosted properties → real RentCafe public city search
  *   2. In-house portals (Equity / Essex / AvalonBay / Camden / Irvine Co / UDR /
  *      Prime / Decron) → operator's own city search IS the leasing portal
- *   3. Entrata / AppFolio / RealPage / Knock → operator search (no public CSP)
+ *   3. Entrata / AppFolio / RealPage / Knock / On-Site / G5 → operator search
  */
 export function pickLeasingPortal(args: {
   manager: string;
@@ -192,6 +192,24 @@ export function pickLeasingPortal(args: {
       platform_owner: 'Knock (RealPage)',
       type: 'operator-marketing-site',
       notes: 'Knock handles tour scheduling and chat; the application happens on the operator site after Knock hands off.',
+    };
+  }
+  if (platform === 'On-Site') {
+    return {
+      url: operatorMarketingUrl,
+      platform_name: 'On-Site',
+      platform_owner: 'On-Site.com',
+      type: 'operator-marketing-site',
+      notes: 'On-Site applications are property-specific. Use the official property page or exact unit link when present.',
+    };
+  }
+  if (platform === 'G5/Knock') {
+    return {
+      url: operatorMarketingUrl,
+      platform_name: 'G5 / Knock',
+      platform_owner: 'G5 Marketing Cloud + Knock',
+      type: 'operator-marketing-site',
+      notes: 'G5 provides floorplan inventory and unit apply CTAs; Knock may handle tour/chat handoff on the property site.',
     };
   }
 

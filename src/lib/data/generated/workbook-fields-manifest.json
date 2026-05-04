@@ -1,0 +1,202 @@
+[
+  {
+    "key": "rank",
+    "label": "Rank"
+  },
+  {
+    "key": "match",
+    "label": "Match %"
+  },
+  {
+    "key": "fit_tier",
+    "label": "Fit Tier"
+  },
+  {
+    "key": "property_name",
+    "label": "Property Name"
+  },
+  {
+    "key": "city",
+    "label": "City"
+  },
+  {
+    "key": "county",
+    "label": "County"
+  },
+  {
+    "key": "priority_city_match",
+    "label": "Priority City Match"
+  },
+  {
+    "key": "neighborhood",
+    "label": "Neighborhood"
+  },
+  {
+    "key": "address",
+    "label": "Address"
+  },
+  {
+    "key": "beds",
+    "label": "Beds"
+  },
+  {
+    "key": "baths",
+    "label": "Baths"
+  },
+  {
+    "key": "sq_ft_range",
+    "label": "Sq Ft / Range"
+  },
+  {
+    "key": "rent_low",
+    "label": "Rent Low"
+  },
+  {
+    "key": "rent_high",
+    "label": "Rent High"
+  },
+  {
+    "key": "budget_fit_score",
+    "label": "Budget Fit Score"
+  },
+  {
+    "key": "unit_floor",
+    "label": "Unit # / Floor #"
+  },
+  {
+    "key": "floor_plan",
+    "label": "Floor Plan"
+  },
+  {
+    "key": "availability",
+    "label": "Availability"
+  },
+  {
+    "key": "washer_dryer",
+    "label": "Washer/Dryer"
+  },
+  {
+    "key": "central_ac",
+    "label": "Central AC"
+  },
+  {
+    "key": "pool",
+    "label": "Pool"
+  },
+  {
+    "key": "jacuzzi_spa",
+    "label": "Jacuzzi/Spa"
+  },
+  {
+    "key": "carpet_bedrooms",
+    "label": "Carpet Bedrooms"
+  },
+  {
+    "key": "flooring_notes",
+    "label": "Flooring Notes"
+  },
+  {
+    "key": "luxury_level",
+    "label": "Luxury Level"
+  },
+  {
+    "key": "safety_score",
+    "label": "Safety Score"
+  },
+  {
+    "key": "traffic_freeway_score",
+    "label": "Traffic/Freeway Score"
+  },
+  {
+    "key": "nearby_freeways",
+    "label": "Nearby Freeways"
+  },
+  {
+    "key": "screening_vendor",
+    "label": "Screening Vendor"
+  },
+  {
+    "key": "screening_difficulty",
+    "label": "Screening Difficulty"
+  },
+  {
+    "key": "screening_ease_pts",
+    "label": "Screening Ease Pts"
+  },
+  {
+    "key": "app_move_in_pts",
+    "label": "App/Move-in Pts"
+  },
+  {
+    "key": "approval_time",
+    "label": "Approval Time"
+  },
+  {
+    "key": "move_in_timeline",
+    "label": "Move-In Timeline"
+  },
+  {
+    "key": "fees_deposit",
+    "label": "Fees/Deposit"
+  },
+  {
+    "key": "mgmt_leasing_company",
+    "label": "Mgmt/Leasing Company"
+  },
+  {
+    "key": "leasing_contact",
+    "label": "Leasing Contact"
+  },
+  {
+    "key": "pet_policy",
+    "label": "Pet Policy"
+  },
+  {
+    "key": "parking_ev",
+    "label": "Parking/EV"
+  },
+  {
+    "key": "extra_amenities",
+    "label": "Extra Amenities"
+  },
+  {
+    "key": "legal_lease_notes",
+    "label": "Legal/Lease Notes"
+  },
+  {
+    "key": "red_flags_verify",
+    "label": "Red Flags / Verify"
+  },
+  {
+    "key": "best_feature",
+    "label": "Best Feature"
+  },
+  {
+    "key": "missing_preferences",
+    "label": "Missing Preferences"
+  },
+  {
+    "key": "direct_unit_link",
+    "label": "Direct Unit Link"
+  },
+  {
+    "key": "floor_plan_link",
+    "label": "Floor Plan Link"
+  },
+  {
+    "key": "leasing_site",
+    "label": "Leasing Site"
+  },
+  {
+    "key": "source_url",
+    "label": "Source URL"
+  },
+  {
+    "key": "source_date",
+    "label": "Source Date"
+  },
+  {
+    "key": "score_notes",
+    "label": "Score Notes"
+  }
+]

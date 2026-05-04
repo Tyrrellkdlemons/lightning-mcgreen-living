@@ -1,0 +1,1463 @@
+diff --git a/package.json b/package.json
+index 9f3692c..60048d8 100644
+--- a/package.json
++++ b/package.json
+@@ -12,6 +12,7 @@
+     "typecheck": "tsc --noEmit",
+     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\" \"docs/**/*.md\"",
+     "sync-images": "node scripts/sync-insert-images.mjs",
++    "import:workbook": "python scripts/import-ranked-workbook.py",
+     "import:csv": "ts-node scripts/import-csv.ts",
+     "verify:links": "ts-node scripts/verify-links.ts"
+   },
+diff --git a/public/backgrounds/manifest.json b/public/backgrounds/manifest.json
+index eff1334..c84e0d1 100644
+--- a/public/backgrounds/manifest.json
++++ b/public/backgrounds/manifest.json
+@@ -1,6 +1,43 @@
+ {
+-  "generated_at": "2026-04-28T01:30:00.000Z",
+-  "count": 0,
+-  "images": [],
++  "generated_at": "2026-05-03T00:02:27.299Z",
++  "count": 9,
++  "images": [
++    {
++      "src": "/backgrounds/bg_1.png",
++      "name": "bg_1"
++    },
++    {
++      "src": "/backgrounds/bg_2.png",
++      "name": "bg_2"
++    },
++    {
++      "src": "/backgrounds/bg_3.png",
++      "name": "bg_3"
++    },
++    {
++      "src": "/backgrounds/bg_4.png",
++      "name": "bg_4"
++    },
++    {
++      "src": "/backgrounds/ggb_bg_1.png",
++      "name": "ggb_bg_1"
++    },
++    {
++      "src": "/backgrounds/ggb_bg_2.png",
++      "name": "ggb_bg_2"
++    },
++    {
++      "src": "/backgrounds/ggb_bg_3.png",
++      "name": "ggb_bg_3"
++    },
++    {
++      "src": "/backgrounds/ggb_bg_4.png",
++      "name": "ggb_bg_4"
++    },
++    {
++      "src": "/backgrounds/ggb_bg_5.png",
++      "name": "ggb_bg_5"
++    }
++  ],
+   "rotate_seconds": 30
+-}
++}
+\ No newline at end of file
+diff --git a/src/app/apartments/[id]/page.tsx b/src/app/apartments/[id]/page.tsx
+index 7da4ebc..e71c59f 100644
+--- a/src/app/apartments/[id]/page.tsx
++++ b/src/app/apartments/[id]/page.tsx
+@@ -12,6 +12,6 @@ export function generateMetadata({ params }: Props): Metadata {
+ 
+ export default function ApartmentDetail({ params }: Props) {
+   const rental = REAL_RENTALS.find((x) => x.id === params.id);
+-  if (!rental || rental.unit_type !== 'apartment') notFound();
++  if (!rental || rental.unit_type === 'townhouse') notFound();
+   return <RentalDetailClient rental={rental} />;
+ }
+diff --git a/src/app/apartments/page.tsx b/src/app/apartments/page.tsx
+index b9440d7..d10cbed 100644
+--- a/src/app/apartments/page.tsx
++++ b/src/app/apartments/page.tsx
+@@ -15,6 +15,11 @@ export default function ApartmentsPage() {
+         subtitle="Apartment-only view across Greystar, Equity Residential, Essex, AvalonBay, Camden, FPI, UDR, Decron, Prime Residential, and more."
+       />
+       <p className="mt-3 text-xs text-chocolate-700">
++        Need the fastest official route?{' '}
++        <Link href="/apartments/apply-engine" className="font-semibold underline decoration-lightning-500 underline-offset-2">
++          Open the Auto Apartment Apply Engine
++        </Link>
++        .{' '}
+         Want townhomes too?{' '}
+         <Link href="/rentals" className="underline decoration-lightning-500 underline-offset-2">See both</Link>.
+       </p>
+diff --git a/src/app/sitemap.ts b/src/app/sitemap.ts
+index 2173e93..ca2554f 100644
+--- a/src/app/sitemap.ts
++++ b/src/app/sitemap.ts
+@@ -8,7 +8,7 @@ const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lightning-mcgreen-livi
+ export default function sitemap(): MetadataRoute.Sitemap {
+   const now = new Date();
+   const staticRoutes = [
+-    '/', '/rentals', '/apartments', '/townhomes',
++    '/', '/rentals', '/apartments', '/apartments/apply-engine', '/townhomes',
+     '/cars', '/work-vehicles', '/life-budget',
+     '/compare', '/saved', '/search',
+     '/data-sources', '/assistance', '/templates',
+@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
+   ];
+ 
+   const rentalRoutes = REAL_RENTALS.map((r) =>
+-    r.unit_type === 'apartment' ? `/apartments/${r.id}` : `/townhomes/${r.id}`,
++    r.unit_type === 'townhouse' ? `/townhomes/${r.id}` : `/apartments/${r.id}`,
+   );
+   const vehicleRoutes = REAL_VEHICLES.map((v) => `/cars/${v.id}`);
+   const dealerRoutes = REAL_DEALERS.map((d) => `/dealers/${d.id}`);
+diff --git a/src/app/townhomes/[id]/page.tsx b/src/app/townhomes/[id]/page.tsx
+index 5f62580..8ba2b96 100644
+--- a/src/app/townhomes/[id]/page.tsx
++++ b/src/app/townhomes/[id]/page.tsx
+@@ -12,6 +12,6 @@ export function generateMetadata({ params }: Props): Metadata {
+ 
+ export default function TownhomeDetail({ params }: Props) {
+   const rental = REAL_RENTALS.find((x) => x.id === params.id);
+-  if (!rental || rental.unit_type === 'apartment') notFound();
++  if (!rental || rental.unit_type !== 'townhouse') notFound();
+   return <RentalDetailClient rental={rental} />;
+ }
+diff --git a/src/components/common/PhotoGallery.tsx b/src/components/common/PhotoGallery.tsx
+index 0a95d2e..49e9af5 100644
+--- a/src/components/common/PhotoGallery.tsx
++++ b/src/components/common/PhotoGallery.tsx
+@@ -77,7 +77,7 @@ export function PhotoGallery({ photos, rounded = true, height = 200, interval =
+         style={{ background: 'linear-gradient(to top, rgba(26,13,5,0.35), transparent)' }}
+       />
+       <span className="pointer-events-none absolute bottom-1.5 right-2 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-semibold text-white">
+-        photo · {photos.credit_label}
++        visual · {photos.credit_label}
+       </span>
+     </div>
+   );
+diff --git a/src/components/common/PrepPackets.tsx b/src/components/common/PrepPackets.tsx
+index 29801b8..d1be371 100644
+--- a/src/components/common/PrepPackets.tsx
++++ b/src/components/common/PrepPackets.tsx
+@@ -26,7 +26,7 @@ export function ApartmentPrepPacket({
+   link: ResolvedLink;
+ }) {
+   const [open, setOpen] = useState(false);
+-  const summary = apartmentSummary(rental, profile);
++  const summary = apartmentSummary(rental, profile, link);
+ 
+   return (
+     <CandyCard>
+@@ -69,11 +69,21 @@ export function ApartmentPrepPacket({
+   );
+ }
+ 
+-function apartmentSummary(rental: RentalListing, p: RenterProfile) {
++function apartmentSummary(rental: RentalListing, p: RenterProfile, link: ResolvedLink) {
+   return [
+     { label: 'Property', value: rental.property_name },
++    { label: 'Unit', value: rental.unit_number ? `#${rental.unit_number}` : '' },
++    { label: 'Floor plan', value: rental.floor_plan_name ?? '' },
++    { label: 'Available date', value: rental.available_date ?? '' },
+     { label: 'City', value: `${rental.city}, CA ${rental.zip}` },
++    { label: 'Owner/operator', value: rental.owner_operator ?? '' },
+     { label: 'Manager', value: rental.manager },
++    { label: 'Application platform', value: link.platform_name ?? rental.application_platform },
++    { label: 'Application route', value: rental.application_route ?? link.reason },
++    { label: 'Official source', value: rental.official_property_url },
++    { label: 'Application fee', value: rental.application_fee ? `$${rental.application_fee.toLocaleString()}` : '' },
++    { label: 'Holding deposit', value: rental.holding_deposit ? `$${rental.holding_deposit.toLocaleString()}` : '' },
++    { label: 'Security deposit', value: rental.deposit ? `$${rental.deposit.toLocaleString()}` : '' },
+     { label: 'Applicant name', value: p.contact?.name ?? '' },
+     { label: 'Email', value: p.contact?.email ?? '' },
+     { label: 'Phone', value: p.contact?.phone ?? '' },
+diff --git a/src/components/operators/OperatorIndex.tsx b/src/components/operators/OperatorIndex.tsx
+index 9931881..240dd3c 100644
+--- a/src/components/operators/OperatorIndex.tsx
++++ b/src/components/operators/OperatorIndex.tsx
+@@ -73,6 +73,8 @@ export function OperatorIndex() {
+             <option value="AppFolio">AppFolio</option>
+             <option value="RealPage">RealPage</option>
+             <option value="Knock">Knock</option>
++            <option value="On-Site">On-Site</option>
++            <option value="G5/Knock">G5 / Knock</option>
+             <option value="In-house portal">In-house portal</option>
+           </select>
+         </Field>
+@@ -142,7 +144,7 @@ export function OperatorIndex() {
+                       const stack = inferScreeningStack(r.application_platform, r.manager, r.screening_vendor);
+                       return (
+                         <li key={r.id} className="flex items-center gap-2">
+-                          <Link href={r.unit_type === 'apartment' ? `/apartments/${r.id}` : `/townhomes/${r.id}`}
++                          <Link href={r.unit_type === 'townhouse' ? `/townhomes/${r.id}` : `/apartments/${r.id}`}
+                                 className="flex-1 truncate font-semibold text-chocolate-900 underline decoration-lightning-500 underline-offset-2">
+                             {r.property_name}
+                           </Link>
+diff --git a/src/components/rentals/RentalCard.tsx b/src/components/rentals/RentalCard.tsx
+index d569df8..43b4813 100644
+--- a/src/components/rentals/RentalCard.tsx
++++ b/src/components/rentals/RentalCard.tsx
+@@ -1,4 +1,7 @@
++'use client';
++
+ import Link from 'next/link';
++import { useState } from 'react';
+ import { CandyCard } from '@/components/ui/CandyCard';
+ import { Gumdrop } from '@/components/ui/Gumdrop';
+ import { FitBadge } from '@/components/common/FitBadge';
+@@ -14,6 +17,7 @@ import { usd } from '@/lib/calculators';
+ import type { RentalListing, RenterProfile } from '@/types';
+ import type { PhotoSet } from '@/lib/data/photo-sets';
+ import { scoreRental } from '@/lib/scoring';
++import { inferScreeningStack, STRICTNESS_LABEL } from '@/lib/data/screening-stacks';
+ 
+ const UNIT_LABEL: Record<RentalListing['unit_type'], string> = {
+   apartment: 'Apartment unit',
+@@ -28,9 +32,14 @@ export function RentalCard({
+   rental: RentalListing & { photos?: PhotoSet };
+   profile: RenterProfile;
+ }) {
++  const [warnOpen, setWarnOpen] = useState(false);
+   const fit = scoreRental(rental, profile);
+-  const isTownhome = rental.unit_type !== 'apartment';
++  const isTownhome = rental.unit_type === 'townhouse';
+   const link = resolveApartmentApplicationLink(rental as any);
++  const stack = inferScreeningStack(rental.application_platform, rental.manager, rental.screening_vendor);
++  const strictEntry = stack.strictness === 'strict' || stack.strictness === 'premium';
++  const detailHref = isTownhome ? `/townhomes/${rental.id}` : `/apartments/${rental.id}`;
++  const preferredPlatform = rental.application_platform === 'AppFolio' || rental.application_platform === 'On-Site';
+ 
+   return (
+     <CandyCard interactive className="relative flex flex-col gap-3">
+@@ -83,26 +92,29 @@ export function RentalCard({
+         {rental.application_platform !== 'Unknown' && (
+           <Gumdrop tone="mute" title="Application platform">via {rental.application_platform}</Gumdrop>
+         )}
++        {preferredPlatform && <Gumdrop tone="ok">Preferred portal</Gumdrop>}
++        {rental.unit_number && <Gumdrop tone="ok" title="Verified unit number">Unit #{rental.unit_number}</Gumdrop>}
++        {rental.available_date && <Gumdrop tone="ok" title="Available date">Available {formatDate(rental.available_date)}</Gumdrop>}
+         {rental.move_in_specials && (
+           <Gumdrop tone="ok" title="Special">Special: {rental.move_in_specials}</Gumdrop>
+         )}
+         <ScreeningBadge platform={rental.application_platform} manager={rental.manager} publiclyDisclosed={rental.screening_vendor} />
+         <ApartmentLinkBadge kind={link.kind} confidence={link.confidence} />
+         <VerifiedAtBadge iso={rental.meta.last_verified_at} />
+-        {rental.attached_garage && <Gumdrop tone="mute">Attached garage</Gumdrop>}
+-        {rental.private_entrance && <Gumdrop tone="mute">Private entrance</Gumdrop>}
+-        {rental.yard_or_patio && <Gumdrop tone="mute">Yard / patio</Gumdrop>}
+       </div>
+ 
+       <SourcePanel meta={rental.meta} dense />
+ 
+       <div className="mt-1 flex items-center justify-between gap-2">
+-        <Link
+-          href={isTownhome ? `/townhomes/${rental.id}` : `/apartments/${rental.id}`}
+-          className="bolt-btn text-sm"
+-        >
+-          See details
+-        </Link>
++        {strictEntry ? (
++          <button type="button" onClick={() => setWarnOpen(true)} className="bolt-btn text-sm">
++            See details
++          </button>
++        ) : (
++          <Link href={detailHref} className="bolt-btn text-sm">
++            See details
++          </Link>
++        )}
+         <a
+           href={rental.official_property_url}
+           target="_blank"
+@@ -112,10 +124,23 @@ export function RentalCard({
+           Official property page →
+         </a>
+       </div>
++      <ListingNoticeModal
++        open={warnOpen}
++        onClose={() => setWarnOpen(false)}
++        href={detailHref}
++        platform={rental.application_platform}
++        strictnessLabel={STRICTNESS_LABEL[stack.strictness]}
++        vendorSummary={stack.vendors.map((v) => v.name).join(' + ') || 'Not publicly verified yet'}
++        manager={rental.manager}
++      />
+     </CandyCard>
+   );
+ }
+ 
++function formatDate(date: string) {
++  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(`${date}T12:00:00`));
++}
++
+ function Stat({ label, value }: { label: string; value: string }) {
+   return (
+     <div className="rounded-md bg-frosting-100 px-2 py-1.5">
+@@ -124,3 +149,58 @@ function Stat({ label, value }: { label: string; value: string }) {
+     </div>
+   );
+ }
++
++function ListingNoticeModal({
++  open,
++  onClose,
++  href,
++  platform,
++  strictnessLabel,
++  vendorSummary,
++  manager,
++}: {
++  open: boolean;
++  onClose: () => void;
++  href: string;
++  platform: RentalListing['application_platform'];
++  strictnessLabel: string;
++  vendorSummary: string;
++  manager: string;
++}) {
++  if (!open) return null;
++  return (
++    <div
++      role="dialog"
++      aria-label="Screening notice"
++      className="fixed inset-0 z-50 flex items-end justify-center bg-black/55 p-4 sm:items-center"
++      onClick={(e) => e.target === e.currentTarget && onClose()}
++    >
++      <CandyCard className="w-full max-w-lg">
++        <Gumdrop tone="warn">Screening notice before opening</Gumdrop>
++        <h3 className="mt-2 font-display text-lg font-extrabold text-chocolate-900">
++          This listing may use stricter application checks
++        </h3>
++        <p className="mt-2 text-sm text-chocolate-800">
++          Manager: {manager}
++          <br />
++          Portal: {platform}
++          <br />
++          Strictness: {strictnessLabel}
++          <br />
++          Likely vendors: {vendorSummary}
++        </p>
++        <p className="mt-2 text-xs text-chocolate-700">
++          AppFolio and On-Site are preferred in your ranking, but strict operators are still included.
++        </p>
++        <div className="mt-4 flex items-center justify-between gap-2">
++          <button type="button" onClick={onClose} className="cinnamon-btn text-sm">
++            Stay on results
++          </button>
++          <Link href={href} onClick={onClose} className="bolt-btn text-sm">
++            Continue to listing
++          </Link>
++        </div>
++      </CandyCard>
++    </div>
++  );
++}
+diff --git a/src/components/rentals/RentalDetail.tsx b/src/components/rentals/RentalDetail.tsx
+index 136d826..dd4fdeb 100644
+--- a/src/components/rentals/RentalDetail.tsx
++++ b/src/components/rentals/RentalDetail.tsx
+@@ -27,10 +27,18 @@ const APP_PLATFORM_NOTES: Record<string, string> = {
+   AppFolio: "AppFolio is common with mid-market managers — single online form + screening fee.",
+   RealPage: "RealPage / OneSite / Knock — multi-step online application; some properties use guest cards first.",
+   Knock: "Knock often handles tour scheduling and chat; the application itself is usually on the manager's portal.",
++  'On-Site': "On-Site applications are property-specific and usually step through unit selection, applicant profile, ID/income docs, screening consent, and fee payment.",
++  'G5/Knock': "G5 supplies the official floorplan/unit inventory and apply CTA; Knock may handle tours or chat before the property-controlled application flow.",
+   Other: "Process varies by property — open the official page to confirm steps.",
+   Unknown: "Application platform not yet identified — call the property to confirm.",
+ };
+ 
++const UNIT_LABEL: Record<RentalListing['unit_type'], string> = {
++  apartment: 'Apartment unit',
++  townhouse: 'Townhouse rental',
++  'townhome-style-apartment': 'Townhome-style apartment',
++};
++
+ export function RentalDetailClient({ rental }: { rental: RentalListing & { photos?: PhotoSet } }) {
+   const [profile, setProfile] = useRenterProfile();
+   const [overrideRent, setOverrideRent] = useState(rental.min_rent);
+@@ -43,6 +51,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
+       first_month: true,
+       admin_fee: rental.admin_fee,
+       application_fee: rental.application_fee,
++      holding_deposit: rental.holding_deposit,
+       pet_fee: rental.pet_fee,
+       parking_fee: rental.parking_fee,
+     }),
+@@ -51,7 +60,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
+   const aff = profile.gross_monthly_income ? calcAffordability(profile.gross_monthly_income) : null;
+   const requiredIncome = rental.income_multiplier ? calcRequiredIncome(overrideRent, rental.income_multiplier) : null;
+ 
+-  const isTownhome = rental.unit_type !== 'apartment';
++  const isTownhome = rental.unit_type === 'townhouse';
+ 
+   return (
+     <div className="mt-6 grid gap-6 lg:grid-cols-3">
+@@ -64,7 +73,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
+         <CandyCard>
+           <div className="flex items-start justify-between gap-4">
+             <div>
+-              <Gumdrop tone="mute">{isTownhome ? 'Townhouse rental' : 'Apartment unit'}</Gumdrop>
++              <Gumdrop tone="mute">{UNIT_LABEL[rental.unit_type]}</Gumdrop>
+               <h1 className="mt-1 font-display text-3xl font-extrabold text-chocolate-900">
+                 {rental.property_name}
+               </h1>
+@@ -73,7 +82,10 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
+               </p>
+               <div className="mt-2 flex flex-wrap items-center gap-2">
+                 <FitBadge fit={fit} />
++                {rental.unit_number && <Gumdrop tone="ok">Unit #{rental.unit_number}</Gumdrop>}
++                {rental.available_date && <Gumdrop tone="ok">Available {formatDate(rental.available_date)}</Gumdrop>}
+                 <Gumdrop tone="info">Managed by {rental.manager}</Gumdrop>
++                {rental.owner_operator && <Gumdrop tone="info">Owner/operator: {rental.owner_operator}</Gumdrop>}
+                 {rental.application_platform !== 'Unknown' && <Gumdrop tone="mute">via {rental.application_platform}</Gumdrop>}
+               </div>
+             </div>
+@@ -117,6 +129,14 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
+         <CandyCard>
+           <h2 className="font-display text-xl font-extrabold text-chocolate-900">Application process</h2>
+           <p className="mt-1 text-sm text-chocolate-700">{APP_PLATFORM_NOTES[rental.application_platform]}</p>
++          {(rental.application_route || rental.owner_operator || rental.floor_plan_name) && (
++            <div className="mt-3 grid gap-2 rounded-md bg-frosting-100 p-3 text-xs text-chocolate-800 sm:grid-cols-2">
++              {rental.owner_operator && <RouteStat label="Owner/operator" value={rental.owner_operator} />}
++              {rental.application_route && <RouteStat label="Application route" value={rental.application_route} />}
++              {rental.floor_plan_name && <RouteStat label="Floor plan" value={rental.floor_plan_name} />}
++              {rental.listing_visual_note && <RouteStat label="Visual rights" value={rental.listing_visual_note} />}
++            </div>
++          )}
+           <ul className="mt-3 grid gap-2 sm:grid-cols-2 text-sm text-chocolate-800">
+             <li>· ID (driver's license / state ID)</li>
+             <li>· Income proof (recent pay stubs / offer letter)</li>
+@@ -206,6 +226,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
+             <li className="flex justify-between"><span>Deposit</span><span className="num">{usd(rental.deposit)}</span></li>
+             <li className="flex justify-between"><span>Application fee</span><span className="num">{usd(rental.application_fee)}</span></li>
+             <li className="flex justify-between"><span>Admin fee</span><span className="num">{usd(rental.admin_fee)}</span></li>
++            <li className="flex justify-between"><span>Holding deposit</span><span className="num">{usd(rental.holding_deposit)}</span></li>
+             <li className="flex justify-between"><span>Pet fee</span><span className="num">{usd(rental.pet_fee)}</span></li>
+             <li className="flex justify-between"><span>Parking fee</span><span className="num">{usd(rental.parking_fee)}</span></li>
+           </ul>
+@@ -253,6 +274,19 @@ function Stat({ label, value }: { label: string; value: string }) {
+   );
+ }
+ 
++function RouteStat({ label, value }: { label: string; value: string }) {
++  return (
++    <div>
++      <p className="font-bold uppercase tracking-wider text-chocolate-600">{label}</p>
++      <p className="mt-0.5 leading-snug text-chocolate-900">{value}</p>
++    </div>
++  );
++}
++
++function formatDate(date: string) {
++  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(`${date}T12:00:00`));
++}
++
+ function CountyHelp({ county }: { county: string }) {
+   const SUPPORTED = ['Los Angeles', 'Orange', 'Riverside', 'San Bernardino', 'Ventura'] as const;
+   if (!SUPPORTED.includes(county as any)) return null;
+@@ -276,7 +310,13 @@ function copyApplicationSheet(rental: RentalListing, profile: any) {
+     `LIGHTNING MCGREEN LIVING — APPLICATION COPY SHEET`,
+     `Property: ${rental.property_name}`,
+     `Address: ${rental.address_line}, ${rental.city}, CA ${rental.zip}`,
++    `Unit: ${rental.unit_number ?? ''}`,
++    `Floor plan: ${rental.floor_plan_name ?? ''}`,
++    `Available date: ${rental.available_date ?? ''}`,
++    `Owner/operator: ${rental.owner_operator ?? ''}`,
+     `Manager: ${rental.manager}  |  Application platform: ${rental.application_platform}`,
++    `Application route: ${rental.application_route ?? ''}`,
++    `Official source: ${rental.official_property_url}`,
+     ``,
+     `Applicant`,
+     `Name: ${profile.contact?.name ?? ''}`,
+diff --git a/src/components/rentals/RentalSearch.tsx b/src/components/rentals/RentalSearch.tsx
+index d9829bf..56c2d80 100644
+--- a/src/components/rentals/RentalSearch.tsx
++++ b/src/components/rentals/RentalSearch.tsx
+@@ -8,6 +8,13 @@ import { ProfilePanel, useRenterProfile } from './ProfilePanel';
+ import { Pagination, paginate } from '@/components/common/Pagination';
+ import { SortDropdown, type SortKey } from '@/components/common/SortDropdown';
+ import { scoreRental } from '@/lib/scoring';
++import { usd } from '@/lib/calculators';
++import {
++  WORKBOOK_CITY_OPTIONS,
++  WORKBOOK_RANKED_LISTINGS,
++  workbookPrimaryUrl,
++  type WorkbookRankedListing,
++} from '@/lib/data/workbook-ranked-listings';
+ 
+ const PER_PAGE = 9;
+ 
+@@ -16,10 +23,26 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
+   const [filters, setFilters] = useState<RentalFilterState>({ unit_type: unitTypeLock ?? 'all' });
+   const [sort, setSort] = useState<SortKey>('best-fit');
+   const [page, setPage] = useState(1);
++  const [workbookQuery, setWorkbookQuery] = useState('');
++  const [workbookCity, setWorkbookCity] = useState('all');
++  const [workbookLimit, setWorkbookLimit] = useState(12);
+ 
+   const filtered = useMemo(() => filterRentals(REAL_RENTALS, filters, unitTypeLock), [filters, unitTypeLock]);
+   const sorted = useMemo(() => sortRentals(filtered, sort, profile), [filtered, sort, profile]);
+   const { items: paged, pageCount } = paginate(sorted, page, PER_PAGE);
++  const workbookFiltered = useMemo(() => {
++    const q = workbookQuery.trim().toLowerCase();
++    return WORKBOOK_RANKED_LISTINGS.filter((x) => {
++      if (workbookCity !== 'all' && x.city !== workbookCity) return false;
++      if (!q) return true;
++      const blob = [x.property_name, x.city, x.county, x.address, x.screening_vendor, x.application_platform_inferred]
++        .filter(Boolean)
++        .join(' ')
++        .toLowerCase();
++      return blob.includes(q);
++    });
++  }, [workbookCity, workbookQuery]);
++  const workbookVisible = useMemo(() => workbookFiltered.slice(0, workbookLimit), [workbookFiltered, workbookLimit]);
+ 
+   // reset to page 1 whenever the filters / sort / lock change
+   const filterKey = JSON.stringify(filters) + sort + (unitTypeLock ?? '');
+@@ -36,6 +59,9 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
+           </span>
+           <SortDropdown value={sort} onChange={setSort} />
+         </div>
++        <p className="text-xs text-chocolate-700">
++          Best-fit ranking prefers AppFolio and On-Site application portals, without excluding stricter operators.
++        </p>
+         <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+           {paged.map((r) => (
+             <li key={r.id}>
+@@ -49,6 +75,67 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
+           </div>
+         )}
+         <Pagination page={page} pageCount={pageCount} onChange={setPage} />
++
++        <details className="cookie-card p-4">
++          <summary className="cursor-pointer font-display text-base font-extrabold text-chocolate-900">
++            Workbook Source Links ({WORKBOOK_RANKED_LISTINGS.length})
++          </summary>
++          <p className="mt-1 text-xs text-chocolate-700">
++            Structured rows imported from your ranked workbook. This panel is collapsed by default to keep rentals clean.
++          </p>
++          <div className="mt-3 grid gap-2 md:grid-cols-[minmax(0,1fr)_220px]">
++            <input
++              value={workbookQuery}
++              onChange={(e) => { setWorkbookQuery(e.target.value); setWorkbookLimit(12); }}
++              placeholder="Search workbook listings"
++              className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
++            />
++            <select
++              value={workbookCity}
++              onChange={(e) => { setWorkbookCity(e.target.value); setWorkbookLimit(12); }}
++              className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
++            >
++              <option value="all">All workbook cities</option>
++              {WORKBOOK_CITY_OPTIONS.map((city) => (
++                <option key={city} value={city}>{city}</option>
++              ))}
++            </select>
++          </div>
++          <p className="mt-2 text-xs text-chocolate-700">
++            Showing {workbookVisible.length} of {workbookFiltered.length}
++          </p>
++          <ul className="mt-2 space-y-2">
++            {workbookVisible.map((item) => (
++              <li key={item.id} className="rounded-md bg-frosting-100 px-3 py-2 text-sm">
++                <div className="flex flex-wrap items-center gap-2">
++                  <span className="num text-xs font-extrabold text-chocolate-700">#{item.rank ?? 'n/a'}</span>
++                  <span className="font-bold text-chocolate-900">{item.property_name}</span>
++                  <span className="text-xs text-chocolate-700">{item.city ?? 'SoCal'}</span>
++                  <span className="text-xs text-chocolate-700">{item.screening_difficulty_label ?? 'Verify'}</span>
++                </div>
++                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
++                  <span className="text-chocolate-700">{workbookRent(item)}</span>
++                  {item.application_platform_inferred && <span className="text-chocolate-700">via {item.application_platform_inferred}</span>}
++                  {workbookPrimaryUrl(item) && (
++                    <a
++                      href={workbookPrimaryUrl(item)!}
++                      target="_blank"
++                      rel="noopener noreferrer"
++                      className="font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2"
++                    >
++                      Source link
++                    </a>
++                  )}
++                </div>
++              </li>
++            ))}
++          </ul>
++          {workbookFiltered.length > workbookVisible.length && (
++            <button type="button" onClick={() => setWorkbookLimit((n) => n + 12)} className="cinnamon-btn mt-3 text-sm">
++              Show more
++            </button>
++          )}
++        </details>
+       </div>
+     </div>
+   );
+@@ -60,11 +147,12 @@ function filterRentals(
+   lock?: 'apartment' | 'townhouse',
+ ): RentalWithPhotos[] {
+   return rentals.filter((r) => {
+-    if (lock === 'apartment' && r.unit_type !== 'apartment') return false;
+-    if (lock === 'townhouse' && r.unit_type === 'apartment') return false;
++    const apartmentSide = r.unit_type === 'apartment' || r.unit_type === 'townhome-style-apartment';
++    if (lock === 'apartment' && !apartmentSide) return false;
++    if (lock === 'townhouse' && r.unit_type !== 'townhouse') return false;
+     if (!lock) {
+-      if (f.unit_type === 'apartment' && r.unit_type !== 'apartment') return false;
+-      if (f.unit_type === 'townhouse' && r.unit_type === 'apartment') return false;
++      if (f.unit_type === 'apartment' && !apartmentSide) return false;
++      if (f.unit_type === 'townhouse' && r.unit_type !== 'townhouse') return false;
+     }
+     if (f.city && r.city !== f.city) return false;
+     if (f.max_rent && r.min_rent > f.max_rent) return false;
+@@ -88,7 +176,21 @@ function sortRentals(rentals: RentalWithPhotos[], sort: SortKey, profile: any):
+   if (sort === 'price-desc') return arr.sort((a, b) => b.min_rent - a.min_rent);
+   if (sort === 'newest')
+     return arr.sort((a, b) => +new Date(b.meta.last_verified_at) - +new Date(a.meta.last_verified_at));
+-  // best-fit (default): rank by fit score
+-  return arr.sort((a, b) => scoreRental(b, profile).score - scoreRental(a, profile).score);
++  // best-fit (default): rank by fit score, then boost preferred portals.
++  return arr.sort((a, b) => rankForBestFit(b, profile) - rankForBestFit(a, profile));
+ }
+ 
++function rankForBestFit(r: RentalWithPhotos, profile: any) {
++  const base = scoreRental(r, profile).score;
++  const preferredPortalBoost = r.application_platform === 'On-Site' || r.application_platform === 'AppFolio' ? 10 : 0;
++  const verifiedUnitBoost = r.links?.exact_application_url ? 2 : 0;
++  return base + preferredPortalBoost + verifiedUnitBoost;
++}
++
++function workbookRent(item: WorkbookRankedListing) {
++  if (item.rent_low == null && item.rent_high == null) return 'Rent verify';
++  if (item.rent_low != null && item.rent_high != null && item.rent_low !== item.rent_high) {
++    return `${usd(item.rent_low)}-${usd(item.rent_high)}`;
++  }
++  return usd(item.rent_low ?? item.rent_high ?? undefined);
++}
+diff --git a/src/components/search/SearchResults.tsx b/src/components/search/SearchResults.tsx
+index f1ea855..49f6f36 100644
+--- a/src/components/search/SearchResults.tsx
++++ b/src/components/search/SearchResults.tsx
+@@ -7,7 +7,7 @@ import { CandyCard } from '@/components/ui/CandyCard';
+ import { Gumdrop } from '@/components/ui/Gumdrop';
+ import { Pagination, paginate } from '@/components/common/Pagination';
+ 
+-const ALL_KINDS: SearchKind[] = ['rental-apartment', 'rental-townhouse', 'vehicle', 'dealer', 'work-vehicle', 'assistance'];
++const ALL_KINDS: SearchKind[] = ['rental-apartment', 'rental-townhouse', 'rental-workbook', 'vehicle', 'dealer', 'work-vehicle', 'assistance'];
+ 
+ export function SearchResults({ initialQuery, initialKind }: { initialQuery: string; initialKind?: string }) {
+   const [q, setQ] = useState(initialQuery);
+diff --git a/src/lib/calculators/index.ts b/src/lib/calculators/index.ts
+index 0bfc605..9f661b1 100644
+--- a/src/lib/calculators/index.ts
++++ b/src/lib/calculators/index.ts
+@@ -10,6 +10,7 @@ export interface MoveInCostInput {
+   last_month?: boolean;
+   admin_fee?: number;
+   application_fee?: number;
++  holding_deposit?: number;
+   pet_fee?: number;
+   parking_fee?: number;
+   other_fees?: number;
+@@ -27,6 +28,7 @@ export function calcMoveInCost(input: MoveInCostInput): MoveInCostBreakdown {
+   if (input.deposit) lines.push({ label: 'Security deposit', amount: input.deposit });
+   if (input.admin_fee) lines.push({ label: 'Admin fee', amount: input.admin_fee });
+   if (input.application_fee) lines.push({ label: 'Application fee', amount: input.application_fee });
++  if (input.holding_deposit) lines.push({ label: 'Holding deposit', amount: input.holding_deposit });
+   if (input.pet_fee) lines.push({ label: 'Pet fee', amount: input.pet_fee });
+   if (input.parking_fee) lines.push({ label: 'Parking fee (1st mo)', amount: input.parking_fee });
+   if (input.other_fees) lines.push({ label: 'Other fees', amount: input.other_fees });
+diff --git a/src/lib/data/operator-profiles.ts b/src/lib/data/operator-profiles.ts
+index 0afd756..73291cb 100644
+--- a/src/lib/data/operator-profiles.ts
++++ b/src/lib/data/operator-profiles.ts
+@@ -30,7 +30,7 @@ export interface OperatorProfile {
+   typical_tier: Tier;
+   tier_notes?: string;
+   /** What leasing platform this operator typically uses on their public sites. */
+-  typical_platform: 'RentCafe' | 'Entrata' | 'AppFolio' | 'RealPage' | 'Knock' | 'In-house portal';
++  typical_platform: 'RentCafe' | 'Entrata' | 'AppFolio' | 'RealPage' | 'Knock' | 'On-Site' | 'G5/Knock' | 'In-house portal';
+   /** What screening vendors are publicly associated with the operator. */
+   typical_screening: string[];
+   /** Publicly reported portfolio size (units), if known. */
+@@ -136,6 +136,18 @@ export const OPERATOR_PROFILES: OperatorProfile[] = [
+     what_to_expect: 'Apply on udr.com. Tech-forward leasing flow with self-tour scheduling and digital key handover at many properties.',
+     match: /^udr$/i,
+   },
++  {
++    name: 'TruAmerica / FPI Management',
++    kind: 'Third-party manager',
++    typical_tier: 'mid-market',
++    tier_notes: 'TruAmerica-owned or branded communities often use property-level marketing sites, with FPI-linked management or resident service workflows depending on the asset.',
++    typical_platform: 'G5/Knock',
++    typical_screening: ['G5 Marketing Cloud inventory', 'Knock Doorway', 'Property-controlled screening'],
++    headquarters: 'Los Angeles, CA / Folsom, CA',
++    website: 'https://www.fpimgt.com',
++    what_to_expect: 'Start on the property site. G5 shows floorplan/unit inventory and routes Apply links with siteId/unitId. Knock may handle tours or chat. Final screening details are confirmed inside the official apply flow.',
++    match: /truamerica|fpi\s*management\s*\/\s*truamerica/i,
++  },
+   {
+     name: 'FPI Management',
+     kind: 'Third-party manager',
+@@ -166,12 +178,12 @@ export const OPERATOR_PROFILES: OperatorProfile[] = [
+     kind: 'Third-party manager',
+     typical_tier: 'mid-market',
+     tier_notes: 'San Diego-based third-party + investor. Garden-style and mid-rise across SoCal. Some affordable / LIHTC product.',
+-    typical_platform: 'AppFolio',
+-    typical_screening: ['AppFolio Tenant Screening'],
++    typical_platform: 'On-Site',
++    typical_screening: ['On-Site.com', 'Property-selected screening vendors'],
+     units_reported: '~50,000 units',
+     headquarters: 'San Diego, CA',
+     website: 'https://www.conam.com',
+-    what_to_expect: 'AppFolio application. Standard documents. Some properties accept vouchers — check the specific community.',
++    what_to_expect: 'ConAm properties use property-selected application platforms. For Presidio Anaheim, the official site routes exact units into On-Site. Standard documents still apply: ID, income proof, rental history, fees, and pet/vehicle details if relevant.',
+     match: /conam/i,
+   },
+   {
+diff --git a/src/lib/data/photo-sets.ts b/src/lib/data/photo-sets.ts
+index cb7e81a..17a2569 100644
+--- a/src/lib/data/photo-sets.ts
++++ b/src/lib/data/photo-sets.ts
+@@ -25,7 +25,7 @@ export interface PhotoSet {
+ }
+ 
+ const CREDIT_SVG = {
+-  label: 'Original illustration · CC0',
++  label: 'Original editable illustration · CC0',
+   url: 'https://github.com/Tyrrellkdlemons/lightning-mcgreen-living',
+ };
+ const CREDIT_OSM = {
+diff --git a/src/lib/data/real-rentals.ts b/src/lib/data/real-rentals.ts
+index b9de4e1..7646a79 100644
+--- a/src/lib/data/real-rentals.ts
++++ b/src/lib/data/real-rentals.ts
+@@ -1,8 +1,13 @@
+-import type { RentalListing } from '@/types';
++import type { ApplicationPlatform, RentalListing, RentalUnitType, SourceMeta } from '@/types';
++import type { ApartmentLinkSet } from '@/types/links';
+ import { rentalPhotos, type PhotoSet } from './photo-sets';
+ 
+ /**
+- * REAL-OPERATOR demo listings — 40 rows across LA / OC / SB / Riverside / Ventura.
++ * REAL-OPERATOR listings across LA / OC / SB / Riverside / Ventura.
++ *
++ * The first rows are official unit-level apartment-side records gathered from
++ * the property sources the user supplied. The remaining rows are broad SoCal
++ * operator examples; their metadata stays labelled as unverified.
+  *
+  * Operators tagged are real publicly-known SoCal rental managers — Greystar,
+  * Irvine Company Apartments, Equity Residential, Essex Property Trust,
+@@ -16,24 +21,42 @@ export interface RentalWithPhotos extends RentalListing {
+   photos: PhotoSet;
+ }
+ 
+-const VERIFIED = '2026-04-28T01:30:00-07:00';
++const DEMO_VERIFIED = '2026-04-28T01:30:00-07:00';
++const OFFICIAL_VERIFIED = '2026-05-02T12:00:00-07:00';
+ 
+-function meta(source_url: string) {
++function meta(source_url: string): SourceMeta {
+   return {
+     source: 'unverified' as const,
+     source_url,
+     confidence_score: 65,
+-    last_seen_at: VERIFIED,
+-    last_verified_at: VERIFIED,
++    last_seen_at: DEMO_VERIFIED,
++    last_verified_at: DEMO_VERIFIED,
+     data_freshness_status: 'recent' as const,
+     trust_label: 'unverified' as const,
+   };
+ }
+ 
++function officialMeta(source_url: string, confidence_score = 97): SourceMeta {
++  return {
++    source: 'official',
++    source_url,
++    confidence_score,
++    last_seen_at: OFFICIAL_VERIFIED,
++    last_verified_at: OFFICIAL_VERIFIED,
++    data_freshness_status: 'live',
++    trust_label: 'official',
++  };
++}
++
++const solimarApply = (unitId: number, moveInDate: string) => {
++  const searchUrl = encodeURIComponent('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans#/bedrooms');
++  return `https://www.livesolimar.com/apartments/ca/wilmington/apply?siteId=4523245&unitId=${unitId}&SearchUrl=${searchUrl}&MoveInDate=${moveInDate}`;
++};
++
+ interface SeedRow {
+   id: string;
+   property_name: string;
+-  unit_type: 'apartment' | 'townhouse';
++  unit_type: RentalUnitType;
+   address_line: string;
+   city: string;
+   county: string;
+@@ -41,8 +64,12 @@ interface SeedRow {
+   lat: number;
+   lng: number;
+   manager: string;
+-  application_platform: 'RentCafe' | 'Entrata' | 'AppFolio' | 'RealPage' | 'Knock' | 'Other' | 'Unknown';
++  owner_operator?: string;
++  application_platform: ApplicationPlatform;
+   application_url: string;
++  official_property_url?: string;
++  application_route?: string;
++  links?: Partial<ApartmentLinkSet>;
+   min_rent: number;
+   max_rent: number;
+   beds_min: number;
+@@ -54,11 +81,20 @@ interface SeedRow {
+   deposit?: number;
+   application_fee?: number;
+   admin_fee?: number;
++  holding_deposit?: number;
+   pet_policy?: string;
+   pet_fee?: number;
+   parking_type?: string;
++  parking_fee?: number;
+   income_multiplier?: number;
++  screening_vendor?: string | null;
+   move_in_specials?: string;
++  unit_number?: string;
++  floor_plan_name?: string;
++  available_date?: string;
++  listing_visual_note?: string;
++  amenities?: string[];
++  meta?: SourceMeta;
+   levels?: number;
+   private_entrance?: boolean;
+   attached_garage?: boolean;
+@@ -68,6 +104,301 @@ interface SeedRow {
+ }
+ 
+ const ROWS: SeedRow[] = [
++  // ---------------- OFFICIAL UNIT-LEVEL SOURCES FROM USER LINKS ----------------
++  {
++    id: 'r-presidio-anaheim-129',
++    property_name: 'Presidio Townhomes #129',
++    unit_type: 'townhome-style-apartment',
++    address_line: '2726 West Lincoln Avenue Unit #129',
++    city: 'Anaheim',
++    county: 'Orange',
++    zip: '92801',
++    lat: 33.83156,
++    lng: -117.981375,
++    manager: 'CONAM',
++    owner_operator: 'CONAM / Presidio Townhomes',
++    application_platform: 'On-Site',
++    application_url: 'https://www.on-site.com/apply/property/349965/unit_number/129',
++    official_property_url: 'https://www.presidioanaheim.com/floorplans/',
++    application_route: 'Presidio official Apartments247 feed -> On-Site property 349965 -> unit 129 application',
++    links: {
++      exact_listing_url: 'https://www.presidioanaheim.com/floorplans/',
++      exact_floorplan_url: 'https://www.presidioanaheim.com/floorplans/',
++      exact_application_url: 'https://www.on-site.com/apply/property/349965/unit_number/129',
++      property_application_url: 'https://www.on-site.com/web/online_app3/349965/step/floorplan',
++      application_link_type: 'exact-unit-application',
++      application_link_confidence: 'verified',
++      application_redirect_required: true,
++      prefill_supported: false,
++      unit_number_public: '129',
++      floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
++      available_date: '2026-05-04',
++      listing_status: 'available',
++      verification_status: 'official-source',
++    },
++    min_rent: 3195,
++    max_rent: 3195,
++    beds_min: 2,
++    beds_max: 2,
++    baths_min: 2.5,
++    baths_max: 2.5,
++    sqft_min: 1063,
++    sqft_max: 1063,
++    deposit: 1000,
++    application_fee: 52,
++    holding_deposit: 300,
++    pet_policy: 'Max 2 pets, 35 lb limit, breed restrictions; $50/mo pet rent per pet; service animals handled by the property process.',
++    parking_type: 'Direct access garage; uncovered parking optional',
++    parking_fee: 100,
++    screening_vendor: 'On-Site.com',
++    unit_number: '129',
++    floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
++    available_date: '2026-05-04',
++    listing_visual_note: 'Uses original editable illustrations plus an OpenStreetMap/CARTO neighborhood tile; Presidio site photos and floorplan images remain third-party copyrighted assets.',
++    amenities: [
++      'Direct Access Garage',
++      '3-Story Townhome Floorplan',
++      'Quartz Countertops',
++      'Stainless Steel Appliance Package',
++      'Vibrant Quartz Backsplash in Kitchen',
++      'Vinyl Flooring',
++      'Large Pantry',
++      'Dual Primary Bedrooms',
++      'In-Home Washer/Dryer',
++    ],
++    meta: officialMeta('https://www.presidioanaheim.com/floorplans/', 98),
++    levels: 3,
++    private_entrance: true,
++    attached_garage: true,
++    lower_density_community: true,
++  },
++  {
++    id: 'r-presidio-anaheim-118',
++    property_name: 'Presidio Townhomes #118',
++    unit_type: 'townhome-style-apartment',
++    address_line: '2726 West Lincoln Avenue Unit #118',
++    city: 'Anaheim',
++    county: 'Orange',
++    zip: '92801',
++    lat: 33.83156,
++    lng: -117.981375,
++    manager: 'CONAM',
++    owner_operator: 'CONAM / Presidio Townhomes',
++    application_platform: 'On-Site',
++    application_url: 'https://www.on-site.com/apply/property/349965/unit_number/118',
++    official_property_url: 'https://www.presidioanaheim.com/floorplans/',
++    application_route: 'Presidio official Apartments247 feed -> On-Site property 349965 -> unit 118 application',
++    links: {
++      exact_listing_url: 'https://www.presidioanaheim.com/floorplans/',
++      exact_floorplan_url: 'https://www.presidioanaheim.com/floorplans/',
++      exact_application_url: 'https://www.on-site.com/apply/property/349965/unit_number/118',
++      property_application_url: 'https://www.on-site.com/web/online_app3/349965/step/floorplan',
++      application_link_type: 'exact-unit-application',
++      application_link_confidence: 'verified',
++      application_redirect_required: true,
++      prefill_supported: false,
++      unit_number_public: '118',
++      floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
++      available_date: '2026-05-25',
++      listing_status: 'available',
++      verification_status: 'official-source',
++    },
++    min_rent: 3195,
++    max_rent: 3195,
++    beds_min: 2,
++    beds_max: 2,
++    baths_min: 2.5,
++    baths_max: 2.5,
++    sqft_min: 1063,
++    sqft_max: 1063,
++    deposit: 1000,
++    application_fee: 52,
++    holding_deposit: 300,
++    pet_policy: 'Max 2 pets, 35 lb limit, breed restrictions; $50/mo pet rent per pet; service animals handled by the property process.',
++    parking_type: 'Direct access garage; uncovered parking optional',
++    parking_fee: 100,
++    screening_vendor: 'On-Site.com',
++    unit_number: '118',
++    floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
++    available_date: '2026-05-25',
++    listing_visual_note: 'Uses original editable illustrations plus an OpenStreetMap/CARTO neighborhood tile; Presidio site photos and floorplan images remain third-party copyrighted assets.',
++    amenities: [
++      'Direct Access Garage',
++      '3-Story Townhome Floorplan',
++      'Quartz Countertops',
++      'Stainless Steel Appliance Package',
++      'Vibrant Quartz Backsplash in Kitchen',
++      'Vinyl Flooring',
++      'Large Pantry',
++      'Dual Primary Bedrooms',
++      'In-Home Washer/Dryer',
++    ],
++    meta: officialMeta('https://www.presidioanaheim.com/floorplans/', 98),
++    levels: 3,
++    private_entrance: true,
++    attached_garage: true,
++    lower_density_community: true,
++  },
++  {
++    id: 'r-solimar-wilmington-0217',
++    property_name: 'Solimar Luxury Homes #0217',
++    unit_type: 'apartment',
++    address_line: '1500 West Pacific Coast Highway Unit 0217',
++    city: 'Wilmington',
++    county: 'Los Angeles',
++    zip: '90744',
++    lat: 33.790626,
++    lng: -118.284981,
++    manager: 'FPI Management / TruAmerica',
++    owner_operator: 'TruAmerica Multifamily; FPI-linked property management',
++    application_platform: 'G5/Knock',
++    application_url: solimarApply(5, '2026-06-07'),
++    official_property_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++    application_route: 'Solimar official G5 inventory -> siteId 4523245 -> unitId 5 apply page; Knock handles tours/chat on the property site',
++    links: {
++      exact_listing_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      exact_floorplan_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      exact_application_url: solimarApply(5, '2026-06-07'),
++      property_application_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      application_link_type: 'exact-unit-application',
++      application_link_confidence: 'verified',
++      application_redirect_required: true,
++      prefill_supported: false,
++      unit_number_public: '0217',
++      floor_plan_name: 'One bedroom floor plan A',
++      available_date: '2026-06-07',
++      listing_status: 'available',
++      verification_status: 'official-source',
++    },
++    min_rent: 2525,
++    max_rent: 2534,
++    beds_min: 1,
++    beds_max: 1,
++    baths_min: 1,
++    baths_max: 1,
++    sqft_min: 721,
++    sqft_max: 721,
++    unit_number: '0217',
++    floor_plan_name: 'One bedroom floor plan A',
++    available_date: '2026-06-07',
++    listing_visual_note: 'Uses original editable illustrations plus an OpenStreetMap/CARTO neighborhood tile; official Solimar marketing photos stay linked, not copied.',
++    amenities: [
++      'Central air and heat',
++      'Newly Renovated Apartments',
++      'Quartz Countertops',
++      'Stainless steel appliances',
++      'Vinyl wood floorings',
++      'Washer and Dryer in Unit',
++    ],
++    meta: officialMeta('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans', 96),
++  },
++  {
++    id: 'r-solimar-wilmington-0281',
++    property_name: 'Solimar Luxury Homes #0281',
++    unit_type: 'apartment',
++    address_line: '1500 West Pacific Coast Highway Unit 0281',
++    city: 'Wilmington',
++    county: 'Los Angeles',
++    zip: '90744',
++    lat: 33.790626,
++    lng: -118.284981,
++    manager: 'FPI Management / TruAmerica',
++    owner_operator: 'TruAmerica Multifamily; FPI-linked property management',
++    application_platform: 'G5/Knock',
++    application_url: solimarApply(122, '2026-04-22'),
++    official_property_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++    application_route: 'Solimar official G5 inventory -> siteId 4523245 -> unitId 122 apply page; Knock handles tours/chat on the property site',
++    links: {
++      exact_listing_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      exact_floorplan_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      exact_application_url: solimarApply(122, '2026-04-22'),
++      property_application_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      application_link_type: 'exact-unit-application',
++      application_link_confidence: 'verified',
++      application_redirect_required: true,
++      prefill_supported: false,
++      unit_number_public: '0281',
++      floor_plan_name: 'Two bedroom floor plan C',
++      available_date: '2026-04-22',
++      listing_status: 'available',
++      verification_status: 'official-source',
++    },
++    min_rent: 2947,
++    max_rent: 2956,
++    beds_min: 2,
++    beds_max: 2,
++    baths_min: 2,
++    baths_max: 2,
++    sqft_min: 988,
++    sqft_max: 988,
++    unit_number: '0281',
++    floor_plan_name: 'Two bedroom floor plan C',
++    available_date: '2026-04-22',
++    listing_visual_note: 'Uses original editable illustrations plus an OpenStreetMap/CARTO neighborhood tile; official Solimar marketing photos stay linked, not copied.',
++    amenities: [
++      'Central air and heat',
++      'Newly Renovated Apartments',
++      'Quartz Countertops',
++      'Stainless steel appliances',
++      'Vinyl wood floorings',
++      'Washer and Dryer in Unit',
++    ],
++    meta: officialMeta('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans', 96),
++  },
++  {
++    id: 'r-solimar-wilmington-0115',
++    property_name: 'Solimar Luxury Homes #0115',
++    unit_type: 'apartment',
++    address_line: '1500 West Pacific Coast Highway Unit 0115',
++    city: 'Wilmington',
++    county: 'Los Angeles',
++    zip: '90744',
++    lat: 33.790626,
++    lng: -118.284981,
++    manager: 'FPI Management / TruAmerica',
++    owner_operator: 'TruAmerica Multifamily; FPI-linked property management',
++    application_platform: 'G5/Knock',
++    application_url: solimarApply(190, '2026-06-08'),
++    official_property_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++    application_route: 'Solimar official G5 inventory -> siteId 4523245 -> unitId 190 apply page; Knock handles tours/chat on the property site',
++    links: {
++      exact_listing_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      exact_floorplan_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      exact_application_url: solimarApply(190, '2026-06-08'),
++      property_application_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
++      application_link_type: 'exact-unit-application',
++      application_link_confidence: 'verified',
++      application_redirect_required: true,
++      prefill_supported: false,
++      unit_number_public: '0115',
++      floor_plan_name: 'Three bedroom floor plan A',
++      available_date: '2026-06-08',
++      listing_status: 'available',
++      verification_status: 'official-source',
++    },
++    min_rent: 3762,
++    max_rent: 3771,
++    beds_min: 3,
++    beds_max: 3,
++    baths_min: 2,
++    baths_max: 2,
++    sqft_min: 1280,
++    sqft_max: 1280,
++    unit_number: '0115',
++    floor_plan_name: 'Three bedroom floor plan A',
++    available_date: '2026-06-08',
++    listing_visual_note: 'Uses original editable illustrations plus an OpenStreetMap/CARTO neighborhood tile; official Solimar marketing photos stay linked, not copied.',
++    amenities: [
++      'Central air and heat',
++      'Newly Renovated Apartments',
++      'Quartz Countertops',
++      'Stainless steel appliances',
++      'Vinyl wood floorings',
++      'Washer and Dryer in Unit',
++    ],
++    meta: officialMeta('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans', 96),
++  },
++
+   // ---------------- LOS ANGELES COUNTY ----------------
+   { id: 'r-greystar-northridge', property_name: 'MODA at Northridge Walk', unit_type: 'apartment', address_line: 'Reseda Blvd corridor', city: 'Northridge', county: 'Los Angeles', zip: '91325', lat: 34.241, lng: -118.535, manager: 'Greystar', application_platform: 'RentCafe', application_url: 'https://www.greystar.com/find-apartments?location=Northridge%2C+CA', min_rent: 2350, max_rent: 3100, beds_min: 1, beds_max: 3, baths_min: 1, baths_max: 2, sqft_min: 720, sqft_max: 1280, deposit: 1000, application_fee: 50, admin_fee: 250, pet_policy: 'Pet friendly with deposit', pet_fee: 500, parking_type: 'Covered, 1 included', income_multiplier: 2.5, move_in_specials: 'See current Greystar specials' },
+   { id: 'r-equity-koreatown', property_name: 'Wilshire La Brea-style Highrise', unit_type: 'apartment', address_line: 'Wilshire Blvd corridor', city: 'Los Angeles', county: 'Los Angeles', zip: '90036', lat: 34.062, lng: -118.344, manager: 'Equity Residential', application_platform: 'Other', application_url: 'https://www.equityapartments.com/los-angeles/', min_rent: 2890, max_rent: 4200, beds_min: 0, beds_max: 2, baths_min: 1, baths_max: 2, sqft_min: 540, sqft_max: 1180, deposit: 0, application_fee: 50, admin_fee: 350, pet_policy: 'Pet friendly', pet_fee: 500, parking_type: 'Covered, $200/mo', income_multiplier: 2.5 },
+@@ -121,8 +452,8 @@ export const REAL_RENTALS: RentalWithPhotos[] = ROWS.map((row) => ({
+   ...row,
+   external_id: row.id,
+   state: 'CA' as const,
+-  official_property_url: row.application_url,
+-  meta: meta(row.application_url),
++  official_property_url: row.official_property_url ?? row.application_url,
++  meta: row.meta ?? meta(row.application_url),
+   photos: rentalPhotos({
+     id: row.id,
+     unit_type: row.unit_type,
+diff --git a/src/lib/data/screening-stacks.ts b/src/lib/data/screening-stacks.ts
+index b2d421f..2aa49e7 100644
+--- a/src/lib/data/screening-stacks.ts
++++ b/src/lib/data/screening-stacks.ts
+@@ -8,6 +8,8 @@
+  *   - Entrata           → Entrata Verification of Income + PreciseID
+  *   - AppFolio          → AppFolio Tenant Screening (powered by CoreLogic)
+  *   - RealPage / OneSite/ Knock → RealPage LeasingDesk Screening
++ *   - On-Site           → On-Site rental application / screening workflow
++ *   - G5/Knock          → G5 inventory + property apply URL; Knock may handle tours/chat
+  *   - Other / Unknown   → Operator may use TransUnion SmartMove or proprietary
+  *
+  * Some operators publicly disclose extra vendors in their tech stack (e.g.
+@@ -56,6 +58,21 @@ const REALPAGE_LD = {
+   url: 'https://www.realpage.com/products/leasingdesk-screening/',
+   role: 'credit, criminal, eviction, lease compliance',
+ };
++const ONSITE = {
++  name: 'On-Site.com',
++  url: 'https://www.on-site.com/',
++  role: 'rental application portal and property-selected screening workflow',
++};
++const G5_INVENTORY = {
++  name: 'G5 Marketing Cloud inventory',
++  url: 'https://www.g5.com/',
++  role: 'floorplan inventory, unit availability, and apply CTA routing',
++};
++const KNOCK_DOORWAY = {
++  name: 'Knock Doorway',
++  url: 'https://knockcrm.com/',
++  role: 'tour scheduling, chat, and leasing CRM handoff',
++};
+ const TU_SMARTMOVE = {
+   name: 'TransUnion SmartMove',
+   url: 'https://www.mysmartmove.com/',
+@@ -146,6 +163,36 @@ const PLATFORM_BASELINE: Record<ApplicationPlatform, ScreeningStack> = {
+     ],
+     notes: 'Knock CRM is the front door; the screening usually happens on a different portal.',
+   },
++  'On-Site': {
++    vendors: [ONSITE],
++    strictness: 'standard',
++    steps_likely: [
++      'Pick the exact unit or floorplan',
++      'Create applicant profile on On-Site',
++      'Upload photo ID and income proof',
++      'Consent to credit, criminal, and eviction screening',
++      'Pay the application fee before property review',
++    ],
++    documents_likely_checked: [
++      'Photo ID', 'Recent pay stubs or offer letter', 'Rental history', 'Vehicle details if parking is assigned',
++    ],
++    notes: 'On-Site hosts the application; the property controls final criteria and any downstream screening vendors.',
++  },
++  'G5/Knock': {
++    vendors: [G5_INVENTORY, KNOCK_DOORWAY],
++    strictness: 'standard',
++    steps_likely: [
++      'Select the unit from the G5-hosted floorplan inventory',
++      'Confirm move-in date and contact information',
++      'Continue into the property apply page with siteId and unitId already selected',
++      'Review fee disclosures on the official property site',
++      'Upload ID, income proof, and rental history in the final manager-controlled flow',
++    ],
++    documents_likely_checked: [
++      'Photo ID', 'Income proof', 'Rental history', 'Contact details', 'Pet and vehicle details if applicable',
++    ],
++    notes: 'G5/Knock identifies and routes the unit. Final screening is controlled by the property or its management stack.',
++  },
+   Other: {
+     vendors: [TU_SMARTMOVE],
+     strictness: 'standard',
+diff --git a/src/lib/links/leasing-portals.ts b/src/lib/links/leasing-portals.ts
+index b5c9191..2c831fb 100644
+--- a/src/lib/links/leasing-portals.ts
++++ b/src/lib/links/leasing-portals.ts
+@@ -99,7 +99,7 @@ export interface LeasingPortalInfo {
+  *   1. RentCafe-hosted properties → real RentCafe public city search
+  *   2. In-house portals (Equity / Essex / AvalonBay / Camden / Irvine Co / UDR /
+  *      Prime / Decron) → operator's own city search IS the leasing portal
+- *   3. Entrata / AppFolio / RealPage / Knock → operator search (no public CSP)
++ *   3. Entrata / AppFolio / RealPage / Knock / On-Site / G5 → operator search
+  */
+ export function pickLeasingPortal(args: {
+   manager: string;
+@@ -194,6 +194,24 @@ export function pickLeasingPortal(args: {
+       notes: 'Knock handles tour scheduling and chat; the application happens on the operator site after Knock hands off.',
+     };
+   }
++  if (platform === 'On-Site') {
++    return {
++      url: operatorMarketingUrl,
++      platform_name: 'On-Site',
++      platform_owner: 'On-Site.com',
++      type: 'operator-marketing-site',
++      notes: 'On-Site applications are property-specific. Use the official property page or exact unit link when present.',
++    };
++  }
++  if (platform === 'G5/Knock') {
++    return {
++      url: operatorMarketingUrl,
++      platform_name: 'G5 / Knock',
++      platform_owner: 'G5 Marketing Cloud + Knock',
++      type: 'operator-marketing-site',
++      notes: 'G5 provides floorplan inventory and unit apply CTAs; Knock may handle tour/chat handoff on the property site.',
++    };
++  }
+ 
+   return {
+     url: operatorMarketingUrl,
+diff --git a/src/lib/links/resolver.ts b/src/lib/links/resolver.ts
+index 8cc139d..c2b9c4f 100644
+--- a/src/lib/links/resolver.ts
++++ b/src/lib/links/resolver.ts
+@@ -51,13 +51,22 @@ export function resolveApartmentApplicationLink(
+ ): ResolvedLink<ApartmentLinkType> {
+   const L = rental.links ?? {};
+   if (L.exact_application_url && L.application_link_type === 'exact-unit-application') {
+-    return ok(L.exact_application_url, 'exact-unit-application', L.application_link_confidence ?? 'partner-feed', 'Partner feed gave a unit-level application link.');
++    return withApartmentPlatform(
++      ok(L.exact_application_url, 'exact-unit-application', L.application_link_confidence ?? 'partner-feed', 'Official source gave a unit-level application link.'),
++      rental,
++    );
+   }
+   if (L.exact_unit_url) {
+-    return ok(L.exact_unit_url, 'exact-unit-application', 'inferred', 'Property site has a unit detail page; the apply CTA on that page is the closest known unit-level link.');
++    return withApartmentPlatform(
++      ok(L.exact_unit_url, 'exact-unit-application', 'inferred', 'Property site has a unit detail page; the apply CTA on that page is the closest known unit-level link.'),
++      rental,
++    );
+   }
+   if (L.exact_floorplan_url) {
+-    return ok(L.exact_floorplan_url, 'exact-floorplan-application', 'inferred', 'Property site has a floorplan-level apply flow — narrower than property-wide, broader than unit-level.');
++    return withApartmentPlatform(
++      ok(L.exact_floorplan_url, 'exact-floorplan-application', 'inferred', 'Property site has a floorplan-level apply flow — narrower than property-wide, broader than unit-level.'),
++      rental,
++    );
+   }
+ 
+   // Build a platform-aware link. When we have a property name, we use
+@@ -182,6 +191,40 @@ function ok<T extends string>(url: string, kind: T, confidence: AppLinkConfidenc
+   };
+ }
+ 
++function withApartmentPlatform<T extends ApartmentLinkType>(
++  link: ResolvedLink<T>,
++  rental: Pick<RentalListing, 'application_platform' | 'manager'>,
++): ResolvedLink<T> {
++  const details = apartmentPlatformDetails(rental.application_platform, rental.manager);
++  return { ...link, ...details };
++}
++
++function apartmentPlatformDetails(
++  platform: RentalListing['application_platform'],
++  manager: string,
++): Pick<ResolvedLink, 'platform_name' | 'platform_owner'> {
++  switch (platform) {
++    case 'RentCafe':
++      return { platform_name: 'RentCafe', platform_owner: 'Yardi Systems' };
++    case 'Entrata':
++      return { platform_name: 'Entrata', platform_owner: 'Entrata, Inc.' };
++    case 'AppFolio':
++      return { platform_name: 'AppFolio Online Portal', platform_owner: 'AppFolio' };
++    case 'RealPage':
++      return { platform_name: 'RealPage / OneSite', platform_owner: 'RealPage' };
++    case 'Knock':
++      return { platform_name: 'Knock CRM', platform_owner: 'Knock (RealPage)' };
++    case 'On-Site':
++      return { platform_name: 'On-Site', platform_owner: 'On-Site.com' };
++    case 'G5/Knock':
++      return { platform_name: 'G5 / Knock', platform_owner: 'G5 Marketing Cloud + Knock' };
++    case 'Other':
++      return { platform_name: 'Operator portal', platform_owner: manager };
++    default:
++      return { platform_name: 'Unknown portal', platform_owner: manager };
++  }
++}
++
+ function notVerified<T extends string>(kind: T, reason: string): ResolvedLink<T> {
+   return {
+     url: null,
+diff --git a/src/lib/search/index.ts b/src/lib/search/index.ts
+index c5f3eb8..7e809c2 100644
+--- a/src/lib/search/index.ts
++++ b/src/lib/search/index.ts
+@@ -15,10 +15,12 @@ import { REAL_RENTALS } from '@/lib/data/real-rentals';
+ import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
+ import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
+ import { ASSISTANCE_RESOURCES } from '@/lib/data/assistance';
++import { WORKBOOK_RANKED_LISTINGS, workbookPrimaryUrl } from '@/lib/data/workbook-ranked-listings';
+ 
+ export type SearchKind =
+   | 'rental-apartment'
+   | 'rental-townhouse'
++  | 'rental-workbook'
+   | 'vehicle'
+   | 'dealer'
+   | 'work-vehicle'
+@@ -148,11 +150,11 @@ export function buildSearchIndex(): SearchEntry[] {
+       ].join(' '),
+     );
+     entries.push({
+-      kind: r.unit_type === 'apartment' ? 'rental-apartment' : 'rental-townhouse',
++      kind: r.unit_type === 'townhouse' ? 'rental-townhouse' : 'rental-apartment',
+       id: r.id,
+       title: r.property_name,
+       subtitle: `${r.manager} · ${r.city}, CA · $${r.min_rent.toLocaleString()}+`,
+-      href: r.unit_type === 'apartment' ? `/apartments/${r.id}` : `/townhomes/${r.id}`,
++      href: r.unit_type === 'townhouse' ? `/townhomes/${r.id}` : `/apartments/${r.id}`,
+       manager_or_provider: r.manager,
+       city: r.city,
+       county: r.county,
+@@ -241,6 +243,33 @@ export function buildSearchIndex(): SearchEntry[] {
+     });
+   }
+ 
++  for (const w of WORKBOOK_RANKED_LISTINGS) {
++    const href = workbookPrimaryUrl(w) ? '/apartments/apply-engine' : '/apartments/apply-engine';
++    const text = expandText(
++      [
++        w.property_name,
++        w.city ?? '',
++        w.county ?? '',
++        w.address ?? '',
++        w.fit_tier ?? '',
++        w.screening_vendor ?? '',
++        w.application_platform_inferred ?? '',
++        w.greystar_snappt_flag ?? '',
++      ].join(' '),
++    );
++    entries.push({
++      kind: 'rental-workbook',
++      id: w.id,
++      title: w.property_name,
++      subtitle: `Workbook rank ${w.rank ?? 'n/a'} · ${w.city ?? 'SoCal'} · ${w.rent_low != null ? `$${Math.round(w.rent_low).toLocaleString()}+` : 'Rent verify'}`,
++      href,
++      city: w.city ?? undefined,
++      county: w.county ?? undefined,
++      text,
++      tokens: tokenize(text),
++    });
++  }
++
+   return entries;
+ }
+ 
+@@ -320,6 +349,7 @@ export function searchIndex(
+ export const KIND_LABEL: Record<SearchKind, string> = {
+   'rental-apartment': 'Apartment',
+   'rental-townhouse': 'Townhome',
++  'rental-workbook': 'Workbook',
+   vehicle: 'Car',
+   dealer: 'Dealer',
+   'work-vehicle': 'Work vehicle',
+@@ -329,6 +359,7 @@ export const KIND_LABEL: Record<SearchKind, string> = {
+ export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
+   'rental-apartment': 'info',
+   'rental-townhouse': 'info',
++  'rental-workbook': 'mute',
+   vehicle: 'ok',
+   dealer: 'mute',
+   'work-vehicle': 'ok',
+diff --git a/src/types/index.ts b/src/types/index.ts
+index d16a781..6bbd27f 100644
+--- a/src/types/index.ts
++++ b/src/types/index.ts
+@@ -5,6 +5,8 @@
+  * missing that metadata (see src/lib/compliance/guards.ts).
+  */
+ 
++import type { ApartmentLinkSet } from './links';
++
+ export type TrustLabel =
+   | 'official'
+   | 'partner'
+@@ -38,6 +40,8 @@ export type ApplicationPlatform =
+   | 'AppFolio'
+   | 'RealPage'
+   | 'Knock'
++  | 'On-Site'
++  | 'G5/Knock'
+   | 'Other'
+   | 'Unknown';
+ 
+@@ -60,9 +64,12 @@ export interface RentalListing {
+   lng: number;
+ 
+   manager: string;
++  owner_operator?: string;
+   application_platform: ApplicationPlatform;
+   application_url: string;
+   official_property_url: string;
++  application_route?: string;
++  links?: Partial<ApartmentLinkSet>;
+ 
+   min_rent: number;
+   max_rent: number;
+@@ -76,6 +83,7 @@ export interface RentalListing {
+   deposit?: number;
+   application_fee?: number;
+   admin_fee?: number;
++  holding_deposit?: number;
+   pet_policy?: string;
+   pet_fee?: number;
+   parking_type?: string;
+@@ -85,6 +93,10 @@ export interface RentalListing {
+   income_multiplier?: number;
+   screening_vendor?: string | null;
+   move_in_specials?: string;
++  unit_number?: string;
++  floor_plan_name?: string;
++  available_date?: string;
++  listing_visual_note?: string;
+ 
+   // Townhome-specific
+   levels?: number;

@@ -10,6 +10,7 @@ export interface MoveInCostInput {
   last_month?: boolean;
   admin_fee?: number;
   application_fee?: number;
+  holding_deposit?: number;
   pet_fee?: number;
   parking_fee?: number;
   other_fees?: number;
@@ -27,6 +28,7 @@ export function calcMoveInCost(input: MoveInCostInput): MoveInCostBreakdown {
   if (input.deposit) lines.push({ label: 'Security deposit', amount: input.deposit });
   if (input.admin_fee) lines.push({ label: 'Admin fee', amount: input.admin_fee });
   if (input.application_fee) lines.push({ label: 'Application fee', amount: input.application_fee });
+  if (input.holding_deposit) lines.push({ label: 'Holding deposit', amount: input.holding_deposit });
   if (input.pet_fee) lines.push({ label: 'Pet fee', amount: input.pet_fee });
   if (input.parking_fee) lines.push({ label: 'Parking fee (1st mo)', amount: input.parking_fee });
   if (input.other_fees) lines.push({ label: 'Other fees', amount: input.other_fees });

@@ -73,6 +73,8 @@ export function OperatorIndex() {
             <option value="AppFolio">AppFolio</option>
             <option value="RealPage">RealPage</option>
             <option value="Knock">Knock</option>
+            <option value="On-Site">On-Site</option>
+            <option value="G5/Knock">G5 / Knock</option>
             <option value="In-house portal">In-house portal</option>
           </select>
         </Field>
@@ -142,7 +144,7 @@ export function OperatorIndex() {
                       const stack = inferScreeningStack(r.application_platform, r.manager, r.screening_vendor);
                       return (
                         <li key={r.id} className="flex items-center gap-2">
-                          <Link href={r.unit_type === 'apartment' ? `/apartments/${r.id}` : `/townhomes/${r.id}`}
+                          <Link href={r.unit_type === 'townhouse' ? `/townhomes/${r.id}` : `/apartments/${r.id}`}
                                 className="flex-1 truncate font-semibold text-chocolate-900 underline decoration-lightning-500 underline-offset-2">
                             {r.property_name}
                           </Link>

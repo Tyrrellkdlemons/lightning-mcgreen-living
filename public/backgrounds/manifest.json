@@ -1,6 +1,43 @@
 {
-  "generated_at": "2026-04-28T01:30:00.000Z",
-  "count": 0,
-  "images": [],
+  "generated_at": "2026-05-04T23:40:29.263Z",
+  "count": 9,
+  "images": [
+    {
+      "src": "/backgrounds/bg_1.png",
+      "name": "bg_1"
+    },
+    {
+      "src": "/backgrounds/bg_2.png",
+      "name": "bg_2"
+    },
+    {
+      "src": "/backgrounds/bg_3.png",
+      "name": "bg_3"
+    },
+    {
+      "src": "/backgrounds/bg_4.png",
+      "name": "bg_4"
+    },
+    {
+      "src": "/backgrounds/ggb_bg_1.png",
+      "name": "ggb_bg_1"
+    },
+    {
+      "src": "/backgrounds/ggb_bg_2.png",
+      "name": "ggb_bg_2"
+    },
+    {
+      "src": "/backgrounds/ggb_bg_3.png",
+      "name": "ggb_bg_3"
+    },
+    {
+      "src": "/backgrounds/ggb_bg_4.png",
+      "name": "ggb_bg_4"
+    },
+    {
+      "src": "/backgrounds/ggb_bg_5.png",
+      "name": "ggb_bg_5"
+    }
+  ],
   "rotate_seconds": 30
 }

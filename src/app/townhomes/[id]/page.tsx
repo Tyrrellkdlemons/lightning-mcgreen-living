@@ -12,6 +12,6 @@ export function generateMetadata({ params }: Props): Metadata {
 
 export default function TownhomeDetail({ params }: Props) {
   const rental = REAL_RENTALS.find((x) => x.id === params.id);
-  if (!rental || rental.unit_type === 'apartment') notFound();
+  if (!rental || rental.unit_type !== 'townhouse') notFound();
   return <RentalDetailClient rental={rental} />;
 }

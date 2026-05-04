@@ -96,8 +96,16 @@ free alternative or workaround. This doc maps each one.
 Covers nearby amenities, geocoding, dealer + work-rental discovery.
 
 ### Google Maps
-**Free alternative:** MapLibre GL JS + CARTO Voyager basemap. Already wired
-in `<MapPanel>`. No key required.
+**Free alternative:** MapLibre GL JS + open/default basemaps already wired in
+`<MapPanel>`:
+- CARTO Voyager (street)
+- CARTO Dark Matter (dark)
+- Esri World Imagery (satellite)
+- USGS Imagery Only (satellite)
+
+Optional keyed satellite providers are also supported:
+- MapTiler satellite via `NEXT_PUBLIC_MAPTILER_API_KEY`
+- Mapbox satellite via `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN`
 
 ### Yelp Fusion
 **Free alternative:** Reviews are not strictly necessary for the use case

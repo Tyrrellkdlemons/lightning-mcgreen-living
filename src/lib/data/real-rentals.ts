@@ -1,8 +1,13 @@
-import type { RentalListing } from '@/types';
+import type { ApplicationPlatform, RentalListing, RentalUnitType, SourceMeta } from '@/types';
+import type { ApartmentLinkSet } from '@/types/links';
 import { rentalPhotos, type PhotoSet } from './photo-sets';
 
 /**
- * REAL-OPERATOR demo listings — 40 rows across LA / OC / SB / Riverside / Ventura.
+ * REAL-OPERATOR listings across LA / OC / SB / Riverside / Ventura.
+ *
+ * The first rows are official unit-level apartment-side records gathered from
+ * the property sources the user supplied. The remaining rows are broad SoCal
+ * operator examples; their metadata stays labelled as unverified.
  *
  * Operators tagged are real publicly-known SoCal rental managers — Greystar,
  * Irvine Company Apartments, Equity Residential, Essex Property Trust,
@@ -16,24 +21,42 @@ export interface RentalWithPhotos extends RentalListing {
   photos: PhotoSet;
 }
 
-const VERIFIED = '2026-04-28T01:30:00-07:00';
+const DEMO_VERIFIED = '2026-04-28T01:30:00-07:00';
+const OFFICIAL_VERIFIED = '2026-05-02T12:00:00-07:00';
 
-function meta(source_url: string) {
+function meta(source_url: string): SourceMeta {
   return {
     source: 'unverified' as const,
     source_url,
     confidence_score: 65,
-    last_seen_at: VERIFIED,
-    last_verified_at: VERIFIED,
+    last_seen_at: DEMO_VERIFIED,
+    last_verified_at: DEMO_VERIFIED,
     data_freshness_status: 'recent' as const,
     trust_label: 'unverified' as const,
   };
 }
 
+function officialMeta(source_url: string, confidence_score = 97): SourceMeta {
+  return {
+    source: 'official',
+    source_url,
+    confidence_score,
+    last_seen_at: OFFICIAL_VERIFIED,
+    last_verified_at: OFFICIAL_VERIFIED,
+    data_freshness_status: 'live',
+    trust_label: 'official',
+  };
+}
+
+const solimarApply = (unitId: number, moveInDate: string) => {
+  const searchUrl = encodeURIComponent('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans#/bedrooms');
+  return `https://www.livesolimar.com/apartments/ca/wilmington/apply?siteId=4523245&unitId=${unitId}&SearchUrl=${searchUrl}&MoveInDate=${moveInDate}`;
+};
+
 interface SeedRow {
   id: string;
   property_name: string;
-  unit_type: 'apartment' | 'townhouse';
+  unit_type: RentalUnitType;
   address_line: string;
   city: string;
   county: string;
@@ -41,8 +64,12 @@ interface SeedRow {
   lat: number;
   lng: number;
   manager: string;
-  application_platform: 'RentCafe' | 'Entrata' | 'AppFolio' | 'RealPage' | 'Knock' | 'Other' | 'Unknown';
+  owner_operator?: string;
+  application_platform: ApplicationPlatform;
   application_url: string;
+  official_property_url?: string;
+  application_route?: string;
+  links?: Partial<ApartmentLinkSet>;
   min_rent: number;
   max_rent: number;
   beds_min: number;
@@ -54,11 +81,20 @@ interface SeedRow {
   deposit?: number;
   application_fee?: number;
   admin_fee?: number;
+  holding_deposit?: number;
   pet_policy?: string;
   pet_fee?: number;
   parking_type?: string;
+  parking_fee?: number;
   income_multiplier?: number;
+  screening_vendor?: string | null;
   move_in_specials?: string;
+  unit_number?: string;
+  floor_plan_name?: string;
+  available_date?: string;
+  listing_visual_note?: string;
+  amenities?: string[];
+  meta?: SourceMeta;
   levels?: number;
   private_entrance?: boolean;
   attached_garage?: boolean;
@@ -68,6 +104,301 @@ interface SeedRow {
 }
 
 const ROWS: SeedRow[] = [
+  // ---------------- OFFICIAL UNIT-LEVEL SOURCES FROM USER LINKS ----------------
+  {
+    id: 'r-presidio-anaheim-129',
+    property_name: 'Presidio Townhomes #129',
+    unit_type: 'townhome-style-apartment',
+    address_line: '2726 West Lincoln Avenue Unit #129',
+    city: 'Anaheim',
+    county: 'Orange',
+    zip: '92801',
+    lat: 33.83156,
+    lng: -117.981375,
+    manager: 'CONAM',
+    owner_operator: 'CONAM / Presidio Townhomes',
+    application_platform: 'On-Site',
+    application_url: 'https://www.on-site.com/apply/property/349965/unit_number/129',
+    official_property_url: 'https://www.presidioanaheim.com/floorplans/',
+    application_route: 'Presidio official Apartments247 feed -> On-Site property 349965 -> unit 129 application',
+    links: {
+      exact_listing_url: 'https://www.presidioanaheim.com/floorplans/',
+      exact_floorplan_url: 'https://www.presidioanaheim.com/floorplans/',
+      exact_application_url: 'https://www.on-site.com/apply/property/349965/unit_number/129',
+      property_application_url: 'https://www.on-site.com/web/online_app3/349965/step/floorplan',
+      application_link_type: 'exact-unit-application',
+      application_link_confidence: 'verified',
+      application_redirect_required: true,
+      prefill_supported: false,
+      unit_number_public: '129',
+      floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
+      available_date: '2026-05-04',
+      listing_status: 'available',
+      verification_status: 'official-source',
+    },
+    min_rent: 3195,
+    max_rent: 3195,
+    beds_min: 2,
+    beds_max: 2,
+    baths_min: 2.5,
+    baths_max: 2.5,
+    sqft_min: 1063,
+    sqft_max: 1063,
+    deposit: 1000,
+    application_fee: 52,
+    holding_deposit: 300,
+    pet_policy: 'Max 2 pets, 35 lb limit, breed restrictions; $50/mo pet rent per pet; service animals handled by the property process.',
+    parking_type: 'Direct access garage; uncovered parking optional',
+    parking_fee: 100,
+    screening_vendor: 'On-Site.com',
+    unit_number: '129',
+    floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
+    available_date: '2026-05-04',
+    listing_visual_note: 'Uses original editable illustrations plus a Street View card (with satellite fallback); Presidio site photos and floorplan images remain third-party copyrighted assets.',
+    amenities: [
+      'Direct Access Garage',
+      '3-Story Townhome Floorplan',
+      'Quartz Countertops',
+      'Stainless Steel Appliance Package',
+      'Vibrant Quartz Backsplash in Kitchen',
+      'Vinyl Flooring',
+      'Large Pantry',
+      'Dual Primary Bedrooms',
+      'In-Home Washer/Dryer',
+    ],
+    meta: officialMeta('https://www.presidioanaheim.com/floorplans/', 98),
+    levels: 3,
+    private_entrance: true,
+    attached_garage: true,
+    lower_density_community: true,
+  },
+  {
+    id: 'r-presidio-anaheim-118',
+    property_name: 'Presidio Townhomes #118',
+    unit_type: 'townhome-style-apartment',
+    address_line: '2726 West Lincoln Avenue Unit #118',
+    city: 'Anaheim',
+    county: 'Orange',
+    zip: '92801',
+    lat: 33.83156,
+    lng: -117.981375,
+    manager: 'CONAM',
+    owner_operator: 'CONAM / Presidio Townhomes',
+    application_platform: 'On-Site',
+    application_url: 'https://www.on-site.com/apply/property/349965/unit_number/118',
+    official_property_url: 'https://www.presidioanaheim.com/floorplans/',
+    application_route: 'Presidio official Apartments247 feed -> On-Site property 349965 -> unit 118 application',
+    links: {
+      exact_listing_url: 'https://www.presidioanaheim.com/floorplans/',
+      exact_floorplan_url: 'https://www.presidioanaheim.com/floorplans/',
+      exact_application_url: 'https://www.on-site.com/apply/property/349965/unit_number/118',
+      property_application_url: 'https://www.on-site.com/web/online_app3/349965/step/floorplan',
+      application_link_type: 'exact-unit-application',
+      application_link_confidence: 'verified',
+      application_redirect_required: true,
+      prefill_supported: false,
+      unit_number_public: '118',
+      floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
+      available_date: '2026-05-25',
+      listing_status: 'available',
+      verification_status: 'official-source',
+    },
+    min_rent: 3195,
+    max_rent: 3195,
+    beds_min: 2,
+    beds_max: 2,
+    baths_min: 2.5,
+    baths_max: 2.5,
+    sqft_min: 1063,
+    sqft_max: 1063,
+    deposit: 1000,
+    application_fee: 52,
+    holding_deposit: 300,
+    pet_policy: 'Max 2 pets, 35 lb limit, breed restrictions; $50/mo pet rent per pet; service animals handled by the property process.',
+    parking_type: 'Direct access garage; uncovered parking optional',
+    parking_fee: 100,
+    screening_vendor: 'On-Site.com',
+    unit_number: '118',
+    floor_plan_name: '2 Bedroom 2.5 Bathroom Townhome',
+    available_date: '2026-05-25',
+    listing_visual_note: 'Uses original editable illustrations plus a Street View card (with satellite fallback); Presidio site photos and floorplan images remain third-party copyrighted assets.',
+    amenities: [
+      'Direct Access Garage',
+      '3-Story Townhome Floorplan',
+      'Quartz Countertops',
+      'Stainless Steel Appliance Package',
+      'Vibrant Quartz Backsplash in Kitchen',
+      'Vinyl Flooring',
+      'Large Pantry',
+      'Dual Primary Bedrooms',
+      'In-Home Washer/Dryer',
+    ],
+    meta: officialMeta('https://www.presidioanaheim.com/floorplans/', 98),
+    levels: 3,
+    private_entrance: true,
+    attached_garage: true,
+    lower_density_community: true,
+  },
+  {
+    id: 'r-solimar-wilmington-0217',
+    property_name: 'Solimar Luxury Homes #0217',
+    unit_type: 'apartment',
+    address_line: '1500 West Pacific Coast Highway Unit 0217',
+    city: 'Wilmington',
+    county: 'Los Angeles',
+    zip: '90744',
+    lat: 33.790626,
+    lng: -118.284981,
+    manager: 'FPI Management / TruAmerica',
+    owner_operator: 'TruAmerica Multifamily; FPI-linked property management',
+    application_platform: 'G5/Knock',
+    application_url: solimarApply(5, '2026-06-07'),
+    official_property_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+    application_route: 'Solimar official G5 inventory -> siteId 4523245 -> unitId 5 apply page; Knock handles tours/chat on the property site',
+    links: {
+      exact_listing_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      exact_floorplan_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      exact_application_url: solimarApply(5, '2026-06-07'),
+      property_application_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      application_link_type: 'exact-unit-application',
+      application_link_confidence: 'verified',
+      application_redirect_required: true,
+      prefill_supported: false,
+      unit_number_public: '0217',
+      floor_plan_name: 'One bedroom floor plan A',
+      available_date: '2026-06-07',
+      listing_status: 'available',
+      verification_status: 'official-source',
+    },
+    min_rent: 2525,
+    max_rent: 2534,
+    beds_min: 1,
+    beds_max: 1,
+    baths_min: 1,
+    baths_max: 1,
+    sqft_min: 721,
+    sqft_max: 721,
+    unit_number: '0217',
+    floor_plan_name: 'One bedroom floor plan A',
+    available_date: '2026-06-07',
+    listing_visual_note: 'Uses original editable illustrations plus a Street View card (with satellite fallback); official Solimar marketing photos stay linked, not copied.',
+    amenities: [
+      'Central air and heat',
+      'Newly Renovated Apartments',
+      'Quartz Countertops',
+      'Stainless steel appliances',
+      'Vinyl wood floorings',
+      'Washer and Dryer in Unit',
+    ],
+    meta: officialMeta('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans', 96),
+  },
+  {
+    id: 'r-solimar-wilmington-0281',
+    property_name: 'Solimar Luxury Homes #0281',
+    unit_type: 'apartment',
+    address_line: '1500 West Pacific Coast Highway Unit 0281',
+    city: 'Wilmington',
+    county: 'Los Angeles',
+    zip: '90744',
+    lat: 33.790626,
+    lng: -118.284981,
+    manager: 'FPI Management / TruAmerica',
+    owner_operator: 'TruAmerica Multifamily; FPI-linked property management',
+    application_platform: 'G5/Knock',
+    application_url: solimarApply(122, '2026-04-22'),
+    official_property_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+    application_route: 'Solimar official G5 inventory -> siteId 4523245 -> unitId 122 apply page; Knock handles tours/chat on the property site',
+    links: {
+      exact_listing_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      exact_floorplan_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      exact_application_url: solimarApply(122, '2026-04-22'),
+      property_application_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      application_link_type: 'exact-unit-application',
+      application_link_confidence: 'verified',
+      application_redirect_required: true,
+      prefill_supported: false,
+      unit_number_public: '0281',
+      floor_plan_name: 'Two bedroom floor plan C',
+      available_date: '2026-04-22',
+      listing_status: 'available',
+      verification_status: 'official-source',
+    },
+    min_rent: 2947,
+    max_rent: 2956,
+    beds_min: 2,
+    beds_max: 2,
+    baths_min: 2,
+    baths_max: 2,
+    sqft_min: 988,
+    sqft_max: 988,
+    unit_number: '0281',
+    floor_plan_name: 'Two bedroom floor plan C',
+    available_date: '2026-04-22',
+    listing_visual_note: 'Uses original editable illustrations plus a Street View card (with satellite fallback); official Solimar marketing photos stay linked, not copied.',
+    amenities: [
+      'Central air and heat',
+      'Newly Renovated Apartments',
+      'Quartz Countertops',
+      'Stainless steel appliances',
+      'Vinyl wood floorings',
+      'Washer and Dryer in Unit',
+    ],
+    meta: officialMeta('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans', 96),
+  },
+  {
+    id: 'r-solimar-wilmington-0115',
+    property_name: 'Solimar Luxury Homes #0115',
+    unit_type: 'apartment',
+    address_line: '1500 West Pacific Coast Highway Unit 0115',
+    city: 'Wilmington',
+    county: 'Los Angeles',
+    zip: '90744',
+    lat: 33.790626,
+    lng: -118.284981,
+    manager: 'FPI Management / TruAmerica',
+    owner_operator: 'TruAmerica Multifamily; FPI-linked property management',
+    application_platform: 'G5/Knock',
+    application_url: solimarApply(190, '2026-06-08'),
+    official_property_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+    application_route: 'Solimar official G5 inventory -> siteId 4523245 -> unitId 190 apply page; Knock handles tours/chat on the property site',
+    links: {
+      exact_listing_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      exact_floorplan_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      exact_application_url: solimarApply(190, '2026-06-08'),
+      property_application_url: 'https://www.livesolimar.com/apartments/ca/wilmington/floor-plans',
+      application_link_type: 'exact-unit-application',
+      application_link_confidence: 'verified',
+      application_redirect_required: true,
+      prefill_supported: false,
+      unit_number_public: '0115',
+      floor_plan_name: 'Three bedroom floor plan A',
+      available_date: '2026-06-08',
+      listing_status: 'available',
+      verification_status: 'official-source',
+    },
+    min_rent: 3762,
+    max_rent: 3771,
+    beds_min: 3,
+    beds_max: 3,
+    baths_min: 2,
+    baths_max: 2,
+    sqft_min: 1280,
+    sqft_max: 1280,
+    unit_number: '0115',
+    floor_plan_name: 'Three bedroom floor plan A',
+    available_date: '2026-06-08',
+    listing_visual_note: 'Uses original editable illustrations plus a Street View card (with satellite fallback); official Solimar marketing photos stay linked, not copied.',
+    amenities: [
+      'Central air and heat',
+      'Newly Renovated Apartments',
+      'Quartz Countertops',
+      'Stainless steel appliances',
+      'Vinyl wood floorings',
+      'Washer and Dryer in Unit',
+    ],
+    meta: officialMeta('https://www.livesolimar.com/apartments/ca/wilmington/floor-plans', 96),
+  },
+
   // ---------------- LOS ANGELES COUNTY ----------------
   { id: 'r-greystar-northridge', property_name: 'MODA at Northridge Walk', unit_type: 'apartment', address_line: 'Reseda Blvd corridor', city: 'Northridge', county: 'Los Angeles', zip: '91325', lat: 34.241, lng: -118.535, manager: 'Greystar', application_platform: 'RentCafe', application_url: 'https://www.greystar.com/find-apartments?location=Northridge%2C+CA', min_rent: 2350, max_rent: 3100, beds_min: 1, beds_max: 3, baths_min: 1, baths_max: 2, sqft_min: 720, sqft_max: 1280, deposit: 1000, application_fee: 50, admin_fee: 250, pet_policy: 'Pet friendly with deposit', pet_fee: 500, parking_type: 'Covered, 1 included', income_multiplier: 2.5, move_in_specials: 'See current Greystar specials' },
   { id: 'r-equity-koreatown', property_name: 'Wilshire La Brea-style Highrise', unit_type: 'apartment', address_line: 'Wilshire Blvd corridor', city: 'Los Angeles', county: 'Los Angeles', zip: '90036', lat: 34.062, lng: -118.344, manager: 'Equity Residential', application_platform: 'Other', application_url: 'https://www.equityapartments.com/los-angeles/', min_rent: 2890, max_rent: 4200, beds_min: 0, beds_max: 2, baths_min: 1, baths_max: 2, sqft_min: 540, sqft_max: 1180, deposit: 0, application_fee: 50, admin_fee: 350, pet_policy: 'Pet friendly', pet_fee: 500, parking_type: 'Covered, $200/mo', income_multiplier: 2.5 },
@@ -121,8 +452,8 @@ export const REAL_RENTALS: RentalWithPhotos[] = ROWS.map((row) => ({
   ...row,
   external_id: row.id,
   state: 'CA' as const,
-  official_property_url: row.application_url,
-  meta: meta(row.application_url),
+  official_property_url: row.official_property_url ?? row.application_url,
+  meta: row.meta ?? meta(row.application_url),
   photos: rentalPhotos({
     id: row.id,
     unit_type: row.unit_type,

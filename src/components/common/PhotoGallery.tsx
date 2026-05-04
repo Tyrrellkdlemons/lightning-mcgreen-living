@@ -77,7 +77,7 @@ export function PhotoGallery({ photos, rounded = true, height = 200, interval = 
         style={{ background: 'linear-gradient(to top, rgba(26,13,5,0.35), transparent)' }}
       />
       <span className="pointer-events-none absolute bottom-1.5 right-2 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-semibold text-white">
-        photo · {photos.credit_label}
+        visual · {photos.credit_label}
       </span>
     </div>
   );

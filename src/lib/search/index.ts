@@ -15,10 +15,12 @@ import { REAL_RENTALS } from '@/lib/data/real-rentals';
 import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
 import { ASSISTANCE_RESOURCES } from '@/lib/data/assistance';
+import { WORKBOOK_RANKED_LISTINGS, workbookPrimaryUrl } from '@/lib/data/workbook-ranked-listings';
 
 export type SearchKind =
   | 'rental-apartment'
   | 'rental-townhouse'
+  | 'rental-workbook'
   | 'vehicle'
   | 'dealer'
   | 'work-vehicle'
@@ -148,11 +150,11 @@ export function buildSearchIndex(): SearchEntry[] {
       ].join(' '),
     );
     entries.push({
-      kind: r.unit_type === 'apartment' ? 'rental-apartment' : 'rental-townhouse',
+      kind: r.unit_type === 'townhouse' ? 'rental-townhouse' : 'rental-apartment',
       id: r.id,
       title: r.property_name,
       subtitle: `${r.manager} · ${r.city}, CA · $${r.min_rent.toLocaleString()}+`,
-      href: r.unit_type === 'apartment' ? `/apartments/${r.id}` : `/townhomes/${r.id}`,
+      href: r.unit_type === 'townhouse' ? `/townhomes/${r.id}` : `/apartments/${r.id}`,
       manager_or_provider: r.manager,
       city: r.city,
       county: r.county,
@@ -241,6 +243,35 @@ export function buildSearchIndex(): SearchEntry[] {
     });
   }
 
+  for (const w of WORKBOOK_RANKED_LISTINGS) {
+    const href = workbookPrimaryUrl(w) ? '/apartments/apply-engine' : '/apartments/apply-engine';
+    const text = expandText(
+      [
+        w.property_name,
+        w.city ?? '',
+        w.county ?? '',
+        w.address ?? '',
+        w.fit_tier ?? '',
+        w.management_company ?? '',
+        w.leasing_contact ?? '',
+        w.screening_vendor ?? '',
+        w.application_platform_inferred ?? '',
+        w.greystar_snappt_flag ?? '',
+      ].join(' '),
+    );
+    entries.push({
+      kind: 'rental-workbook',
+      id: w.id,
+      title: w.property_name,
+      subtitle: `Workbook rank ${w.rank ?? 'n/a'} · ${w.city ?? 'SoCal'} · ${w.rent_low != null ? `$${Math.round(w.rent_low).toLocaleString()}+` : 'Rent verify'}`,
+      href,
+      city: w.city ?? undefined,
+      county: w.county ?? undefined,
+      text,
+      tokens: tokenize(text),
+    });
+  }
+
   return entries;
 }
 
@@ -320,6 +351,7 @@ export function searchIndex(
 export const KIND_LABEL: Record<SearchKind, string> = {
   'rental-apartment': 'Apartment',
   'rental-townhouse': 'Townhome',
+  'rental-workbook': 'Workbook',
   vehicle: 'Car',
   dealer: 'Dealer',
   'work-vehicle': 'Work vehicle',
@@ -329,6 +361,7 @@ export const KIND_LABEL: Record<SearchKind, string> = {
 export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
   'rental-apartment': 'info',
   'rental-townhouse': 'info',
+  'rental-workbook': 'mute',
   vehicle: 'ok',
   dealer: 'mute',
   'work-vehicle': 'ok',

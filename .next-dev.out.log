@@ -1,0 +1,100 @@
+
+> lightning-mcgreen-living@0.1.0 dev
+> node scripts/sync-insert-images.mjs && next dev --port 3000
+
+→ sync-insert-images
+  src: C:\Users\TKDL\Documents\Codex\Apartments and Cars\Apartments\lightning-mcgreen-living\_insertimages
+  dst: C:\Users\TKDL\Documents\Codex\Apartments and Cars\Apartments\lightning-mcgreen-living\public\backgrounds
+  ✓ copied 9 images:
+    · /backgrounds/bg_1.png
+    · /backgrounds/bg_2.png
+    · /backgrounds/bg_3.png
+    · /backgrounds/bg_4.png
+    · /backgrounds/ggb_bg_1.png
+    · /backgrounds/ggb_bg_2.png
+    · /backgrounds/ggb_bg_3.png
+    · /backgrounds/ggb_bg_4.png
+    · /backgrounds/ggb_bg_5.png
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1944ms
+ ○ Compiling /work-vehicles ...
+ ✓ Compiled /work-vehicles in 11.7s (702 modules)
+ GET /apartments/apply-engine 200 in 12292ms
+ GET /work-vehicles 200 in 12294ms
+ GET /rentals 200 in 12299ms
+ GET /apartments/apply-engine 200 in 245ms
+ GET /rentals 200 in 240ms
+ GET /work-vehicles 200 in 164ms
+ ✓ Compiled in 2.4s (341 modules)
+ ✓ Compiled in 830ms (341 modules)
+ ✓ Compiled in 787ms (341 modules)
+ ✓ Compiled in 865ms (341 modules)
+ ✓ Compiled in 772ms (341 modules)
+ ✓ Compiled in 558ms (341 modules)
+ ○ Compiling /apartments/[id] ...
+ ✓ Compiled /apartments/[id] in 3.3s (675 modules)
+ GET /apartments/r-presidio-anaheim-129 200 in 4580ms
+ GET /apartments/r-presidio-anaheim-129 200 in 4584ms
+ GET /apartments/r-presidio-anaheim-129 200 in 4591ms
+ GET /apartments/r-presidio-anaheim-129 200 in 202ms
+ GET /apartments/r-presidio-anaheim-129 200 in 160ms
+ ○ Compiling /rentals ...
+ ✓ Compiled /rentals in 849ms (333 modules)
+ GET /rentals 200 in 1723ms
+ ✓ Compiled in 1297ms (688 modules)
+ ✓ Compiled in 1013ms (674 modules)
+ ✓ Compiled in 1550ms (688 modules)
+ ○ Compiling /api/maps/streetview ...
+ ✓ Compiled /api/maps/streetview in 592ms (364 modules)
+ GET /api/maps/streetview?lat=33.766000&lng=-118.190000 302 in 878ms
+ GET /api/maps/streetview?lat=33.776000&lng=-117.945000 302 in 875ms
+ GET /api/maps/streetview?lat=34.041000&lng=-117.642000 302 in 874ms
+ GET /api/maps/streetview?lat=34.106000&lng=-117.589000 302 in 874ms
+ GET /api/maps/streetview?lat=34.061000&lng=-117.760000 302 in 872ms
+ GET /api/maps/streetview?lat=33.831560&lng=-117.981375 302 in 885ms
+ GET /api/maps/streetview?lat=33.953000&lng=-117.396000 302 in 14ms
+ ✓ Compiled in 591ms (719 modules)
+ GET /api/maps/streetview?lat=33.790626&lng=-118.284981 302 in 31ms
+ GET /rentals 200 in 379ms
+ ✓ Compiled in 987ms (719 modules)
+ ✓ Compiled in 639ms (719 modules)
+ GET /api/maps/streetview?lat=33.83156&lng=-117.981375 302 in 36ms
+ GET /api/maps/streetview?lat=33.937000&lng=-117.231000 302 in 16ms
+ GET /rentals 200 in 378ms
+ GET /api/maps/streetview?lat=33.831560&lng=-117.981375 302 in 54ms
+ GET /api/maps/streetview?lat=33.766000&lng=-118.190000 302 in 49ms
+ GET /api/maps/streetview?lat=33.776000&lng=-117.945000 302 in 49ms
+ GET /api/maps/streetview?lat=34.041000&lng=-117.642000 302 in 45ms
+ GET /api/maps/streetview?lat=34.106000&lng=-117.589000 302 in 29ms
+ GET /api/maps/streetview?lat=34.061000&lng=-117.760000 302 in 19ms
+ GET /api/maps/streetview?lat=33.953000&lng=-117.396000 302 in 19ms
+ ✓ Compiled in 1204ms (688 modules)
+ ✓ Compiled in 914ms (688 modules)
+ ✓ Compiled /api/maps/streetview in 156ms (364 modules)
+ GET /api/maps/streetview?lat=33.831560&lng=-117.981375&fov=50 302 in 260ms
+ GET /api/maps/streetview?lat=33.776000&lng=-117.945000&fov=50 302 in 253ms
+ GET /api/maps/streetview?lat=33.766000&lng=-118.190000&fov=50 302 in 262ms
+ GET /api/maps/streetview?lat=34.041000&lng=-117.642000&fov=50 302 in 14ms
+ GET /api/maps/streetview?lat=34.106000&lng=-117.589000&fov=50 302 in 26ms
+ GET /api/maps/streetview?lat=34.061000&lng=-117.760000&fov=50 302 in 17ms
+ GET /api/maps/streetview?lat=33.953000&lng=-117.396000&fov=50 302 in 5ms
+ GET /api/maps/streetview?lat=33.937000&lng=-117.231000&fov=50 302 in 8ms
+ ✓ Compiled in 521ms (355 modules)
+ GET /api/maps/streetview?lat=33.83156&lng=-117.981375&fov=50 302 in 23ms
+ ✓ Compiled in 895ms (355 modules)
+ ✓ Compiled in 284ms (355 modules)
+ ✓ Compiled in 292ms (355 modules)
+ ✓ Compiled in 332ms (355 modules)
+ ✓ Compiled in 800ms (674 modules)
+ ✓ Compiled in 644ms (355 modules)
+ ✓ Compiled in 340ms (355 modules)
+ ✓ Compiled in 435ms (355 modules)
+ ✓ Compiled in 289ms (355 modules)
+ ✓ Compiled in 487ms (355 modules)
+ ✓ Compiled in 311ms (355 modules)
+ ✓ Compiled in 273ms (355 modules)
+ ✓ Compiled in 252ms (355 modules)
+ ✓ Compiled in 303ms (355 modules)

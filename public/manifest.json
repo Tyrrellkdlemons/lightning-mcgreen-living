@@ -18,6 +18,7 @@
   ],
   "shortcuts": [
     { "name": "Apartments & Townhomes", "url": "/rentals", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Apply Engine", "url": "/apartments/apply-engine", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Cars", "url": "/cars", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Work Vehicles", "url": "/work-vehicles", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Life Budget", "url": "/life-budget", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }

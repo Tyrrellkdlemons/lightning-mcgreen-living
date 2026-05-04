@@ -30,7 +30,7 @@ export interface OperatorProfile {
   typical_tier: Tier;
   tier_notes?: string;
   /** What leasing platform this operator typically uses on their public sites. */
-  typical_platform: 'RentCafe' | 'Entrata' | 'AppFolio' | 'RealPage' | 'Knock' | 'In-house portal';
+  typical_platform: 'RentCafe' | 'Entrata' | 'AppFolio' | 'RealPage' | 'Knock' | 'On-Site' | 'G5/Knock' | 'In-house portal';
   /** What screening vendors are publicly associated with the operator. */
   typical_screening: string[];
   /** Publicly reported portfolio size (units), if known. */
@@ -137,6 +137,18 @@ export const OPERATOR_PROFILES: OperatorProfile[] = [
     match: /^udr$/i,
   },
   {
+    name: 'TruAmerica / FPI Management',
+    kind: 'Third-party manager',
+    typical_tier: 'mid-market',
+    tier_notes: 'TruAmerica-owned or branded communities often use property-level marketing sites, with FPI-linked management or resident service workflows depending on the asset.',
+    typical_platform: 'G5/Knock',
+    typical_screening: ['G5 Marketing Cloud inventory', 'Knock Doorway', 'Property-controlled screening'],
+    headquarters: 'Los Angeles, CA / Folsom, CA',
+    website: 'https://www.fpimgt.com',
+    what_to_expect: 'Start on the property site. G5 shows floorplan/unit inventory and routes Apply links with siteId/unitId. Knock may handle tours or chat. Final screening details are confirmed inside the official apply flow.',
+    match: /truamerica|fpi\s*management\s*\/\s*truamerica/i,
+  },
+  {
     name: 'FPI Management',
     kind: 'Third-party manager',
     typical_tier: 'mid-market',
@@ -166,12 +178,12 @@ export const OPERATOR_PROFILES: OperatorProfile[] = [
     kind: 'Third-party manager',
     typical_tier: 'mid-market',
     tier_notes: 'San Diego-based third-party + investor. Garden-style and mid-rise across SoCal. Some affordable / LIHTC product.',
-    typical_platform: 'AppFolio',
-    typical_screening: ['AppFolio Tenant Screening'],
+    typical_platform: 'On-Site',
+    typical_screening: ['On-Site.com', 'Property-selected screening vendors'],
     units_reported: '~50,000 units',
     headquarters: 'San Diego, CA',
     website: 'https://www.conam.com',
-    what_to_expect: 'AppFolio application. Standard documents. Some properties accept vouchers — check the specific community.',
+    what_to_expect: 'ConAm properties use property-selected application platforms. For Presidio Anaheim, the official site routes exact units into On-Site. Standard documents still apply: ID, income proof, rental history, fees, and pet/vehicle details if relevant.',
     match: /conam/i,
   },
   {

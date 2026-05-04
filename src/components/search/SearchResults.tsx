@@ -7,7 +7,7 @@ import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 import { Pagination, paginate } from '@/components/common/Pagination';
 
-const ALL_KINDS: SearchKind[] = ['rental-apartment', 'rental-townhouse', 'vehicle', 'dealer', 'work-vehicle', 'assistance'];
+const ALL_KINDS: SearchKind[] = ['rental-apartment', 'rental-townhouse', 'rental-workbook', 'vehicle', 'dealer', 'work-vehicle', 'assistance'];
 
 export function SearchResults({ initialQuery, initialKind }: { initialQuery: string; initialKind?: string }) {
   const [q, setQ] = useState(initialQuery);

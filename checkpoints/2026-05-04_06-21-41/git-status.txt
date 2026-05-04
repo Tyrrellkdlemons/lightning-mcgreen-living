@@ -1,0 +1,49 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   package.json
+	modified:   public/backgrounds/manifest.json
+	modified:   src/app/apartments/[id]/page.tsx
+	modified:   src/app/apartments/page.tsx
+	modified:   src/app/sitemap.ts
+	modified:   src/app/townhomes/[id]/page.tsx
+	modified:   src/components/common/PhotoGallery.tsx
+	modified:   src/components/common/PrepPackets.tsx
+	modified:   src/components/operators/OperatorIndex.tsx
+	modified:   src/components/rentals/RentalCard.tsx
+	modified:   src/components/rentals/RentalDetail.tsx
+	modified:   src/components/rentals/RentalSearch.tsx
+	modified:   src/components/search/SearchResults.tsx
+	modified:   src/lib/calculators/index.ts
+	modified:   src/lib/data/operator-profiles.ts
+	modified:   src/lib/data/photo-sets.ts
+	modified:   src/lib/data/real-rentals.ts
+	modified:   src/lib/data/screening-stacks.ts
+	modified:   src/lib/links/leasing-portals.ts
+	modified:   src/lib/links/resolver.ts
+	modified:   src/lib/search/index.ts
+	modified:   src/types/index.ts
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	checkpoints/
+	package-lock.json
+	public/backgrounds/bg_1.png
+	public/backgrounds/bg_2.png
+	public/backgrounds/bg_3.png
+	public/backgrounds/bg_4.png
+	public/backgrounds/ggb_bg_1.png
+	public/backgrounds/ggb_bg_2.png
+	public/backgrounds/ggb_bg_3.png
+	public/backgrounds/ggb_bg_4.png
+	public/backgrounds/ggb_bg_5.png
+	scripts/import-ranked-workbook.py
+	src/app/apartments/apply-engine/
+	src/components/rentals/ApartmentApplyEngine.tsx
+	src/lib/data/generated/
+	src/lib/data/workbook-ranked-listings.ts
+
+no changes added to commit (use "git add" and/or "git commit -a")

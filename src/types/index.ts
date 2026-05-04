@@ -5,6 +5,8 @@
  * missing that metadata (see src/lib/compliance/guards.ts).
  */
 
+import type { ApartmentLinkSet } from './links';
+
 export type TrustLabel =
   | 'official'
   | 'partner'
@@ -38,6 +40,8 @@ export type ApplicationPlatform =
   | 'AppFolio'
   | 'RealPage'
   | 'Knock'
+  | 'On-Site'
+  | 'G5/Knock'
   | 'Other'
   | 'Unknown';
 
@@ -60,9 +64,12 @@ export interface RentalListing {
   lng: number;
 
   manager: string;
+  owner_operator?: string;
   application_platform: ApplicationPlatform;
   application_url: string;
   official_property_url: string;
+  application_route?: string;
+  links?: Partial<ApartmentLinkSet>;
 
   min_rent: number;
   max_rent: number;
@@ -76,6 +83,7 @@ export interface RentalListing {
   deposit?: number;
   application_fee?: number;
   admin_fee?: number;
+  holding_deposit?: number;
   pet_policy?: string;
   pet_fee?: number;
   parking_type?: string;
@@ -85,6 +93,10 @@ export interface RentalListing {
   income_multiplier?: number;
   screening_vendor?: string | null;
   move_in_specials?: string;
+  unit_number?: string;
+  floor_plan_name?: string;
+  available_date?: string;
+  listing_visual_note?: string;
 
   // Townhome-specific
   levels?: number;

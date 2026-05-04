@@ -12,8 +12,10 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\" \"docs/**/*.md\"",
     "sync-images": "node scripts/sync-insert-images.mjs",
-    "import:csv": "ts-node scripts/import-csv.ts",
-    "verify:links": "ts-node scripts/verify-links.ts"
+    "import:workbook": "python scripts/import-ranked-workbook.py",
+    "import:workbook-full": "python scripts/import-workbook-full.py",
+    "import:csv": "node scripts/import-csv.mjs",
+    "verify:links": "node scripts/verify-links.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
