@@ -7,6 +7,10 @@
  *
  * Theme-matched (gingerbread + lightning + caramel). Mobile-first: collapses
  * sections under a single tap, larger touch targets, no horizontal scroll.
+ *
+ * Direct listing override aware: when `data/direct-listings.json` has an
+ * entry for this rank, the Apply button uses that canonical URL and a
+ * status pill shows live / redirected / gone / stale / untested.
  */
 import { useMemo, useState } from 'react';
 import {
@@ -26,6 +30,11 @@ import {
   pickPrimaryLink,
   type WorkbookFullListing,
 } from '@/lib/data/workbook-listings-full';
+import {
+  getDirectListingOverride,
+  isUsableOverride,
+  statusTone,
+} from '@/lib/data/direct-listings';
 import { CandyCard } from '@/components/ui/CandyCard';
 
 const LABELS: Record<string, string> = {
@@ -82,7 +91,7 @@ const LABELS: Record<string, string> = {
 };
 
 function formatValue(key: string, value: unknown): string {
-  if (value == null || value === '') return '—';
+  if (value == null || value === '') return '-';
   if (key === 'rent_low' || key === 'rent_high') {
     const n = typeof value === 'number' ? value : parseFloat(String(value));
     return Number.isFinite(n) ? `$${n.toLocaleString()}` : String(value);
@@ -148,7 +157,10 @@ export function ListingResearchPanel({ rank, className }: ListingResearchPanelPr
     );
   }
 
-  const primary = pickPrimaryLink(listing);
+  const override = getDirectListingOverride(listing.rank);
+  const useOverride = isUsableOverride(override);
+  const primary = useOverride && override ? override.direct_url : pickPrimaryLink(listing);
+  const tone = override ? statusTone(override.status) : null;
   const heads = listing.red_flags_verify || listing.legal_lease_notes;
 
   return (
@@ -156,9 +168,17 @@ export function ListingResearchPanel({ rank, className }: ListingResearchPanelPr
       <header className="flex flex-wrap items-start justify-between gap-3 border-b border-gingerbread-200 pb-3">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-wide text-gingerbread-600">
-            Rank #{listing.rank} · {listing.fit_tier || 'Fit'}{' '}
+            Rank #{listing.rank} - {listing.fit_tier || 'Fit'}{' '}
             {typeof listing.match === 'number' && (
               <span className="ml-1 text-lightning-700">{Math.round(listing.match)}% match</span>
+            )}
+            {tone && (
+              <span
+                title={override?.status_text || override?.status || ''}
+                className={`ml-2 inline-flex items-center rounded-full px-1.5 py-px text-[9px] font-bold uppercase ring-1 ${tone.bg} ${tone.text} ${tone.ring}`}
+              >
+                {tone.label}
+              </span>
             )}
           </p>
           <h3 className="text-lg font-bold text-chocolate-900">{listing.property_name}</h3>
@@ -171,9 +191,13 @@ export function ListingResearchPanel({ rank, className }: ListingResearchPanelPr
             href={primary}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 rounded-full bg-lightning-500 px-3 py-1.5 text-sm font-semibold text-chocolate-900 shadow-sm hover:bg-lightning-400"
+            className={`inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold shadow-sm ${
+              useOverride
+                ? 'bg-lightning-500 text-chocolate-900 hover:bg-lightning-400'
+                : 'bg-frosting-200 text-chocolate-800 ring-1 ring-gingerbread-300 hover:bg-frosting-100'
+            }`}
           >
-            Apply / view <ExternalLink className="h-3.5 w-3.5" />
+            {useOverride ? 'Apply (direct)' : 'Apply / view'} <ExternalLink className="h-3.5 w-3.5" />
           </a>
         )}
       </header>

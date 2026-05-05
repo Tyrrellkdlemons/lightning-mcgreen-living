@@ -5,6 +5,11 @@
  * table dump). Sortable columns, search, city + fit-tier filters, sticky
  * header, mobile-friendly two-line cells, themed in green-lightning +
  * gingerbread, with one-tap apply / map links per row.
+ *
+ * Direct listing override aware: when `data/direct-listings.json` has an
+ * entry for a rank, the Apply button uses that canonical URL and a small
+ * status pill ("live", "redirected", "gone", "stale", "untested") shows
+ * what the last `npm run check:direct-listings` probe found.
  */
 import { useMemo, useState } from 'react';
 import {
@@ -25,6 +30,11 @@ import {
   isUnknown,
   type WorkbookFullListing,
 } from '@/lib/data/workbook-listings-full';
+import {
+  getDirectListingOverride,
+  isUsableOverride,
+  statusTone,
+} from '@/lib/data/direct-listings';
 
 type SortKey =
   | 'rank'
@@ -144,7 +154,7 @@ export function WorkbookTable({ compact, onSelect, initialLimit = 25 }: Workbook
             <Search className="absolute left-3 h-4 w-4 text-gingerbread-500" aria-hidden />
             <input
               type="search"
-              placeholder="Search property, address, neighborhood, vendor…"
+              placeholder="Search property, address, neighborhood, vendor..."
               value={q}
               onChange={(e) => setQ(e.target.value)}
               className="w-full rounded-full border border-gingerbread-200 bg-white py-2 pl-9 pr-3 text-sm text-chocolate-900 outline-none ring-lightning-300 focus:ring-2"
@@ -224,7 +234,10 @@ export function WorkbookTable({ compact, onSelect, initialLimit = 25 }: Workbook
           </thead>
           <tbody className="bg-white text-chocolate-900">
             {visible.map((x: WorkbookFullListing, idx) => {
-              const url = pickPrimaryLink(x);
+              const override = getDirectListingOverride(x.rank);
+              const useOverride = isUsableOverride(override);
+              const url = useOverride && override ? override.direct_url : pickPrimaryLink(x);
+              const tone = override ? statusTone(override.status) : null;
               const stripeBg = idx % 2 === 0 ? 'bg-white' : 'bg-frosting-50';
               return (
                 <tr key={x.id} className={`${stripeBg} align-top`}>
@@ -247,7 +260,17 @@ export function WorkbookTable({ compact, onSelect, initialLimit = 25 }: Workbook
                     </span>
                   </td>
                   <td className="border-b border-gingerbread-100 px-3 py-2">
-                    <div className="font-semibold text-chocolate-900">{x.property_name}</div>
+                    <div className="flex flex-wrap items-center gap-1">
+                      <span className="font-semibold text-chocolate-900">{x.property_name}</span>
+                      {tone && (
+                        <span
+                          title={override?.status_text || override?.status || ''}
+                          className={`inline-flex items-center rounded-full px-1.5 py-px text-[9px] font-bold uppercase ring-1 ${tone.bg} ${tone.text} ${tone.ring}`}
+                        >
+                          {tone.label}
+                        </span>
+                      )}
+                    </div>
                     <div className="text-[11px] text-chocolate-700">
                       {[x.city, x.county].filter(Boolean).join(' · ') || x.address}
                     </div>
@@ -286,9 +309,14 @@ export function WorkbookTable({ compact, onSelect, initialLimit = 25 }: Workbook
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 rounded-full bg-lightning-500 px-2.5 py-1 text-[11px] font-semibold text-chocolate-900 hover:bg-lightning-400"
+                          className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                            useOverride
+                              ? 'bg-lightning-500 text-chocolate-900 hover:bg-lightning-400'
+                              : 'bg-frosting-200 text-chocolate-800 ring-1 ring-gingerbread-300 hover:bg-frosting-100'
+                          }`}
+                          title={useOverride ? 'Direct property page' : 'Category / source page'}
                         >
-                          Apply <ExternalLink className="h-3 w-3" />
+                          {useOverride ? 'Apply (direct)' : 'Apply'} <ExternalLink className="h-3 w-3" />
                         </a>
                       )}
                       <a

@@ -14,8 +14,11 @@
     "sync-images": "node scripts/sync-insert-images.mjs",
     "import:workbook": "python scripts/import-ranked-workbook.py",
     "import:workbook-full": "python scripts/import-workbook-full.py",
+    "check:direct-listings": "node scripts/check-direct-listings.mjs",
     "import:csv": "node scripts/import-csv.mjs",
-    "verify:links": "node scripts/verify-links.mjs"
+    "verify:links": "node scripts/verify-links.mjs",
+    "add:direct-url": "node scripts/add-direct-url.mjs",
+    "set:github-remote": "node scripts/set-github-remote.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

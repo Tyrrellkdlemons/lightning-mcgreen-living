@@ -1,0 +1,18 @@
+{
+  "_doc": "Direct listing URL overrides per workbook rank. Edit by hand as you find canonical property URLs (the ones apartments.com / rent.com / etc actually serve when you drill past their category pages and DuckDuckGo redirects). Then run `npm run check:direct-listings` to probe each URL — the script updates `status` (live | redirected | gone | stale | untested) and `last_verified_at`. Status drives a UI pill so you see at a glance whether a unit is still listed or has been taken / removed.",
+  "version": 1,
+  "updated_at": "2026-05-05T01:09:26.488Z",
+  "overrides": {
+    "7": {
+      "rank": 7,
+      "property_name": "Thrive on 5th",
+      "city": "San Pedro",
+      "direct_url": "https://www.apartments.com/thrive-on-5th-san-pedro-ca/44vgc8h/",
+      "added_at": "2026-05-04",
+      "last_verified_at": "2026-05-05T01:09:26.487Z",
+      "status": "stale",
+      "status_text": "HTTP 403",
+      "notes": "Found via apartments.com category → DuckDuckGo !ducky redirect. This is the canonical apartments.com property page."
+    }
+  }
+}
