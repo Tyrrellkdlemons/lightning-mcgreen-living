@@ -59,3 +59,7 @@ data/*.csv
 
 # Local Netlify folder
 .netlify
+# Local Next/dev server logs
+.next-dev*.log
+*.err.log
+*.out.log
