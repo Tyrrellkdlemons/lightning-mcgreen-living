@@ -43,13 +43,13 @@
       "resolution": "official-course-alternative-original-site-unavailable",
       "outcome": "unavailable",
       "title": "Comite de Bien Estar: agency course page",
-      "summary": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency.",
-      "suggestedDescription": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency.",
+      "summary": "The agency website remains under construction. Its agency-specific eHome America page lists a Yuma County homebuyer course with a $100 non-refundable fee and phone 928-627-8559. This is a course referral; counseling intake is unconfirmed.",
+      "suggestedDescription": "The agency website remains under construction. Its agency-specific eHome America page lists a Yuma County homebuyer course with a $100 non-refundable fee and phone 928-627-8559. This is a course referral; counseling intake is unconfirmed.",
       "evidenceExcerpt": "Homebuyer Education Course",
       "inspectedSections": [
-        "Original under-construction page",
-        "Agency information",
-        "Course description and displayed fee"
+        "Original destination availability",
+        "Named related course or directory record",
+        "Public referral contact and scope"
       ],
       "provenanceUrls": [
         "https://comiteaz.org/",
@@ -57,7 +57,7 @@
         "https://apps.hud.gov/offices/hsg/sfh/hcc/hcs_print.cfm?searchstate=AZ&webListAction=search"
       ],
       "method": "direct-http + web-open",
-      "checkedAt": "2026-11-03T22:33:20.066369Z",
+      "checkedAt": "2026-11-03T23:46:57.293366+00:00",
       "httpStatus": 200,
       "finalUrl": "https://comiteaz.org/",
       "limits": [
@@ -90,13 +90,83 @@
       "relatedOfficialResources": [
         {
           "url": "https://app.ehomeamerica.org/comiteaz",
-          "label": "Agency homebuyer course (fee applies)",
+          "label": "Agency homebuyer course — $100 non-refundable; 928-627-8559",
           "kind": "agency-course-page",
           "contentInspected": true,
-          "checkedAt": "2026-11-03T22:35:12.473098Z",
+          "checkedAt": "2026-11-03T23:46:57.293366+00:00",
           "identityEvidence": "Agency name, 963 E B Street San Luis address and928-627-8559 public office phone match the HUD historical print directory dated12/14/2022; the course page links comiteaz.com, which redirects to original .org."
         }
-      ]
+      ],
+      "followupHistory": [
+        {
+          "checkedAt": "2026-11-03T22:33:20.066369Z",
+          "outcome": "unavailable",
+          "summary": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency.",
+          "method": "direct-http + web-open",
+          "inspectedSections": [
+            "Original under-construction page",
+            "Agency information",
+            "Course description and displayed fee"
+          ],
+          "relatedOfficialResources": [
+            {
+              "url": "https://app.ehomeamerica.org/comiteaz",
+              "label": "Agency homebuyer course — $100 non-refundable; 928-627-8559",
+              "kind": "agency-course-page",
+              "contentInspected": true,
+              "checkedAt": "2026-11-03T23:46:57.293366+00:00",
+              "identityEvidence": "Agency name, 963 E B Street San Luis address and928-627-8559 public office phone match the HUD historical print directory dated12/14/2022; the course page links comiteaz.com, which redirects to original .org."
+            }
+          ]
+        }
+      ],
+      "latestFollowup": {
+        "id": "resource-d7c61f35aefeac8e",
+        "publisher": "Comite de Bien Estar, Inc.",
+        "canonicalOriginalUrl": "http://comiteaz.org",
+        "originalFinalUrl": "https://comiteaz.org/",
+        "newUrl": null,
+        "originalState": "unavailable-under-construction",
+        "originalContentRestored": false,
+        "checkedAt": "2026-11-03T23:46:57.293366+00:00",
+        "inspectionMethod": "Direct HTTPS GET plus full-page web open of agency-specific course page; primary regional resource PDF inspected at its housing section.",
+        "excerpt": "COMITES UNDERCONSTRUCION",
+        "identityMatch": {
+          "result": "matched agency-specific course profile",
+          "evidence": "The eHome America profile names Comite de Bien Estar, Inc., at 963 East B Street, San Luis, AZ 85349, phone 928-627-8559; the 2025-2026 regional guide independently matches this contact and comiteaz.com domain."
+        },
+        "sourceUrls": [
+          "https://comiteaz.org/",
+          "https://app.ehomeamerica.org/comiteaz",
+          "https://naair.arizona.edu/sites/default/files/2025-10/2025-Cocopah-Resource-Connection-Guide.pdf"
+        ],
+        "relatedResources": [
+          {
+            "url": "https://app.ehomeamerica.org/comiteaz",
+            "publisher": "Comite de Bien Estar, Inc. profile hosted by eHome America",
+            "type": "agency-specific homebuyer education course",
+            "contentInspected": true,
+            "checkedAt": "2026-11-03T23:46:57.533775+00:00",
+            "displayedFeeUsd": 100,
+            "feeRefundable": false,
+            "geographicScope": "Yuma County, Arizona",
+            "displayedContactPhone": "928-627-8559",
+            "serviceAvailabilityConfirmed": false
+          }
+        ],
+        "limitations": [
+          "The original body hash is unchanged from the previous under-construction result. A successful HTTP response is not service-content recovery.",
+          "The agency course page is usable for this specific course; it is not a full replacement for the agency website. No registration, payment, counseling appointment, or program eligibility was tested.",
+          "The regional PDF is a 2025-2026 directory, not real-time agency availability. The linked Facebook page could not be opened by the web tool."
+        ],
+        "proposedCatalogUpdates": {
+          "preserveOriginalUrl": true,
+          "inspection": "metadata-reviewed",
+          "reviewOutcome": "unavailable",
+          "recoveryResolution": "official-course-alternative-original-site-unavailable",
+          "action": "Keep existing official course alternative; refresh its checkedAt, explicit displayed $100 non-refundable fee, public phone, and identity corroboration. Preserve all original-site review history. Do not change the original to content-inspected."
+        }
+      }
     },
     {
       "id": "resource-9449b0b98be0e2fb",
@@ -226,20 +296,21 @@
       "resolution": "affiliated-directory-alternative-original-domain-unavailable",
       "outcome": "unavailable",
       "title": "Centro Familiar Nueva Esperanza — Esperanza national network",
-      "summary": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly.",
-      "suggestedDescription": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly.",
+      "summary": "The original agency domain is unavailable. Esperanza lists the Simi Valley affiliate; CalHFA lists its local contact as 805-813-8751. Use the labeled directories for referral and confirm services with the agency. No replacement local website was authenticated.",
+      "suggestedDescription": "The original agency domain is unavailable. Esperanza lists the Simi Valley affiliate; CalHFA lists its local contact as 805-813-8751. Use the labeled directories for referral and confirm services with the agency. No replacement local website was authenticated.",
       "evidenceExcerpt": "Centro Familiar Nueva Esperanza",
       "inspectedSections": [
-        "Original DNS failure",
-        "California locations in national affiliate directory"
+        "Original destination availability",
+        "Named related course or directory record",
+        "Public referral contact and scope"
       ],
       "provenanceUrls": [
         "https://centrofamiliarnuevaesperanza.org/",
         "https://www.esperanza.us/housing-counseling/national-housing-counseling/",
         "https://www.calhfa.ca.gov/community/nms/resources.htm"
       ],
-      "method": "direct-http + affiliated-primary-directory",
-      "checkedAt": "2026-11-03T22:33:20.472288Z",
+      "method": "direct-http + web-open",
+      "checkedAt": "2026-11-03T23:46:57.294005+00:00",
       "httpStatus": null,
       "finalUrl": "https://centrofamiliarnuevaesperanza.org/",
       "limits": [
@@ -273,10 +344,100 @@
           "label": "Esperanza affiliate directory — California section",
           "kind": "affiliated-directory",
           "contentInspected": true,
-          "checkedAt": "2026-11-03T22:35:12.611970Z",
+          "checkedAt": "2026-11-03T23:46:57.294005+00:00",
           "identityEvidence": "California section lists Centro Familiar Nueva Esperanza, Simi Valley Office, 1720 E. Los Angeles Ave. #216 and original centrofamiliarnuevaesperanza.org domain."
+        },
+        {
+          "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
+          "label": "CalHFA directory — local contact 805-813-8751",
+          "kind": "state-directory",
+          "contentInspected": true,
+          "identityEvidence": "Esperanza lists the named California affiliate at 1720 E. Los Angeles Ave. #216, Simi Valley, with the original dead domain. CalHFA names Centro Familia Esperanza in Simi Valley, gives 805-813-8751, and links esperanza.us.",
+          "checkedAt": "2026-11-03T23:46:57.294005+00:00"
         }
-      ]
+      ],
+      "followupHistory": [
+        {
+          "checkedAt": "2026-11-03T22:33:20.472288Z",
+          "outcome": "unavailable",
+          "summary": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly.",
+          "method": "direct-http + affiliated-primary-directory",
+          "inspectedSections": [
+            "Original DNS failure",
+            "California locations in national affiliate directory"
+          ],
+          "relatedOfficialResources": [
+            {
+              "url": "https://www.esperanza.us/housing-counseling/national-housing-counseling/",
+              "label": "Esperanza affiliate directory — California section",
+              "kind": "affiliated-directory",
+              "contentInspected": true,
+              "checkedAt": "2026-11-03T23:46:57.294005+00:00",
+              "identityEvidence": "California section lists Centro Familiar Nueva Esperanza, Simi Valley Office, 1720 E. Los Angeles Ave. #216 and original centrofamiliarnuevaesperanza.org domain."
+            },
+            {
+              "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
+              "label": "CalHFA directory — local contact 805-813-8751",
+              "kind": "state-directory",
+              "contentInspected": true,
+              "identityEvidence": "Esperanza lists the named California affiliate at 1720 E. Los Angeles Ave. #216, Simi Valley, with the original dead domain. CalHFA names Centro Familia Esperanza in Simi Valley, gives 805-813-8751, and links esperanza.us.",
+              "checkedAt": "2026-11-03T23:46:57.294005+00:00"
+            }
+          ]
+        }
+      ],
+      "latestFollowup": {
+        "id": "resource-e1a0800b9938bce2",
+        "publisher": "Centro Familia Esperanza / Centro Familiar Nueva Esperanza",
+        "canonicalOriginalUrl": "https://centrofamiliarnuevaesperanza.org/",
+        "originalFinalUrl": null,
+        "newUrl": null,
+        "originalState": "unavailable-dns-failure",
+        "originalContentRestored": false,
+        "checkedAt": "2026-11-03T23:46:57.294005+00:00",
+        "inspectionMethod": "Direct HTTPS GET produced getaddrinfo failure; full-page web opens of national intermediary affiliate directory and CalHFA provider directory.",
+        "excerpt": "Centro Familiar Nueva Esperanza",
+        "identityMatch": {
+          "result": "matched affiliated directory record; no agency-owned replacement authenticated",
+          "evidence": "Esperanza lists the named California affiliate at 1720 E. Los Angeles Ave. #216, Simi Valley, with the original dead domain. CalHFA names Centro Familia Esperanza in Simi Valley, gives 805-813-8751, and links esperanza.us."
+        },
+        "sourceUrls": [
+          "https://centrofamiliarnuevaesperanza.org/",
+          "https://www.esperanza.us/housing-counseling/national-housing-counseling/",
+          "https://www.calhfa.ca.gov/community/nms/resources.htm"
+        ],
+        "relatedResources": [
+          {
+            "url": "https://www.esperanza.us/housing-counseling/national-housing-counseling/",
+            "publisher": "Esperanza",
+            "type": "affiliated intermediary directory",
+            "contentInspected": true,
+            "checkedAt": "2026-11-03T23:46:57.549150+00:00",
+            "serviceAvailabilityConfirmed": false
+          },
+          {
+            "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
+            "publisher": "California Housing Finance Agency",
+            "type": "state counselor directory",
+            "contentInspected": true,
+            "checkedAt": "2026-11-03T23:46:57.972561+00:00",
+            "displayedContactPhone": "805-813-8751",
+            "serviceAvailabilityConfirmed": false
+          }
+        ],
+        "limitations": [
+          "No agency-owned replacement domain was authenticated. Search surfaced other same-name organizations outside Simi Valley; these are not replacements.",
+          "The national intermediary is distinct from the local affiliate. Both directories establish identity/referral routes, not appointment availability or a working local website.",
+          "DNS failure is not proof of organizational closure. No phone call or outbound message was made."
+        ],
+        "proposedCatalogUpdates": {
+          "preserveOriginalUrl": true,
+          "inspection": "metadata-reviewed",
+          "reviewOutcome": "unavailable",
+          "recoveryResolution": "affiliated-directory-alternative-original-domain-unavailable",
+          "action": "Retain affiliate fallback and add the separately labeled CalHFA directory plus its published local phone. Refresh dated review while preserving history; keep the original unavailable."
+        }
+      }
     },
     {
       "id": "resource-97019305b0d42d2d",
@@ -567,20 +728,21 @@
       "resolution": "blocked-provider-primary-directory-alternative",
       "outcome": "blocked",
       "title": "San Francisco LGBT Community Center",
-      "summary": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed.",
-      "suggestedDescription": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed.",
+      "summary": "The original provider website and housing-services page remain behind a security check. CalHFA lists the San Francisco center at 415-865-5555. The state directory is a referral route; current service intake is unconfirmed.",
+      "suggestedDescription": "The original provider website and housing-services page remain behind a security check. CalHFA lists the San Francisco center at 415-865-5555. The state directory is a referral route; current service intake is unconfirmed.",
       "evidenceExcerpt": "San Francisco LGBT Community Center",
       "inspectedSections": [
-        "HTTP403 response",
-        "CalHFA counselor directory row"
+        "Original destination availability",
+        "Named related course or directory record",
+        "Public referral contact and scope"
       ],
       "provenanceUrls": [
         "https://sfcenter.org/",
         "https://www.sfcenter.org/program/housing-financial/",
         "https://www.calhfa.ca.gov/community/nms/resources.htm"
       ],
-      "method": "direct-http + primary-directory",
-      "checkedAt": "2026-11-03T22:33:50.965681Z",
+      "method": "direct-http + web-open + Chrome security-screen observation",
+      "checkedAt": "2026-11-03T23:46:57.410365+00:00",
       "httpStatus": 403,
       "finalUrl": "https://sfcenter.org/",
       "limits": [
@@ -611,16 +773,92 @@
       "relatedOfficialResources": [
         {
           "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
-          "label": "CalHFA counseling directory — SF LGBT Community Center",
+          "label": "CalHFA referral directory — 415-865-5555",
           "kind": "state-directory",
           "contentInspected": true,
-          "identityEvidence": "Directory names San Francisco LGBT Community Center in San Francisco and links sfcenter.org."
+          "identityEvidence": "Directory names San Francisco LGBT Community Center in San Francisco and links sfcenter.org.",
+          "checkedAt": "2026-11-03T23:46:57.410365+00:00"
         }
       ],
       "browserEvidence": {
         "operator": "/root",
         "source": "Parent agent message",
         "result": "Performing security verification on first and later checkpoint; no bypass or further retries"
+      },
+      "followupHistory": [
+        {
+          "checkedAt": "2026-11-03T22:33:50.965681Z",
+          "outcome": "blocked",
+          "summary": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed.",
+          "method": "direct-http + primary-directory",
+          "inspectedSections": [
+            "HTTP403 response",
+            "CalHFA counselor directory row"
+          ],
+          "relatedOfficialResources": [
+            {
+              "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
+              "label": "CalHFA referral directory — 415-865-5555",
+              "kind": "state-directory",
+              "contentInspected": true,
+              "identityEvidence": "Directory names San Francisco LGBT Community Center in San Francisco and links sfcenter.org.",
+              "checkedAt": "2026-11-03T23:46:57.410365+00:00"
+            }
+          ]
+        }
+      ],
+      "latestFollowup": {
+        "id": "resource-5e632165bd461ec6",
+        "publisher": "San Francisco LGBT Community Center",
+        "canonicalOriginalUrl": "http://sfcenter.org",
+        "originalFinalUrl": "https://sfcenter.org/",
+        "newUrl": null,
+        "originalState": "blocked-security-challenge",
+        "originalContentRestored": false,
+        "checkedAt": "2026-11-03T23:46:57.410365+00:00",
+        "inspectionMethod": "Direct HTTPS GET and full-page web-open attempts on official financial services and rental pages; both blocked. Official PDF attempt also blocked. Full CalHFA directory row inspected.",
+        "excerpt": "San Francisco LGBT Community Center",
+        "identityMatch": {
+          "result": "matched state directory record; official provider content not successfully opened",
+          "evidence": "CalHFA lists the named center in San Francisco, links sfcenter.org, and supplies 415-865-5555."
+        },
+        "sourceUrls": [
+          "https://www.sfcenter.org/program/housing-financial/",
+          "https://www.sfcenter.org/below-market-rate-affordable-rental-workshops-and-counseling/",
+          "https://www.sfcenter.org/wp-content/uploads/2025/03/final-center-year-in-review-2024.pdf",
+          "https://www.calhfa.ca.gov/community/nms/resources.htm"
+        ],
+        "relatedResources": [
+          {
+            "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
+            "publisher": "California Housing Finance Agency",
+            "type": "state counselor directory",
+            "contentInspected": true,
+            "checkedAt": "2026-11-03T23:46:57.972561+00:00",
+            "displayedContactPhone": "415-865-5555",
+            "serviceAvailabilityConfirmed": false
+          }
+        ],
+        "limitations": [
+          "Official financial services, rental services, and annual-report URLs returned 403. Cached search text is discovery evidence only and was not counted as a successful page inspection.",
+          "Root independently opened the official financial-services page in shared Chrome and reported the Cloudflare security-verification screen. No challenge interaction occurred.",
+          "A state directory referral is not recovery of the original website. Appointment access, rental vacancies, and current unit photos were not established by these counselor records."
+        ],
+        "proposedCatalogUpdates": {
+          "preserveOriginalUrl": true,
+          "inspection": "metadata-reviewed",
+          "reviewOutcome": "blocked",
+          "recoveryResolution": "blocked-provider-primary-directory-alternative",
+          "action": "Retain the CalHFA fallback, refresh the dated blocked deep-page review, and expose its directory-listed public phone where appropriate. Root Chrome also confirmed a challenge; keep provider content unverified."
+        },
+        "rootBrowserEvidence": {
+          "operator": "root integrator",
+          "url": "https://www.sfcenter.org/program/housing-financial/",
+          "reportedAt": "2026-11-03T23:48:29.289870+00:00",
+          "observedState": "Just a moment... Performing security verification (Cloudflare)",
+          "challengeInteraction": false,
+          "result": "provider content not inspected"
+        }
       }
     },
     {
@@ -735,5 +973,11 @@
         "bodySha256": "a68c49df14e23a34cbfd823ffc940157b0ec9a34b301d834a79d0685d25ac0fd"
       }
     }
-  ]
+  ],
+  "followupReview": {
+    "generatedAt": "2026-11-03T23:51:07.386050+00:00",
+    "originalsInvestigated": 3,
+    "originalsRecovered": 0,
+    "verifiedAlternatives": 3
+  }
 }

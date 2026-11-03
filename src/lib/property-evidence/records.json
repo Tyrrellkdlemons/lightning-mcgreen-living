@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-03T22:02:16.278176Z",
+  "reviewedAt": "2026-11-03T23:51:07.386050+00:00",
   "records": [
     {
       "propertyIds": [
@@ -11377,6 +11377,706 @@
         "status": "unknown",
         "note": "Original gallery references remain on the publisher’s host. Images have not been individually visually reviewed; no exact-unit condition or capture date is established."
       }
+    },
+    {
+      "propertyIds": [
+        "resource-886ab5a0575048f0"
+      ],
+      "name": "Arezzo Apartment Homes",
+      "state": "CA",
+      "address": "1400 Oak Hill Drive, Escondido, CA 92027",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 1400 Oak Hill Drive #614, Escondido, CA 92027"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+        "observedAt": "2026-11-03T23:47:06.432292+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (614) was advertised Available Now at $2,595/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher identifies photos as similar units; not the exact advertised unit.",
+        "units": [
+          {
+            "unit": "614",
+            "plan": "Milan",
+            "beds": 2.0,
+            "baths": 2.0,
+            "sqft": 1000,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$2,595",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/b4dcaeac-94bd-44da-837d-c7affd1b6ea0/medium.jpg",
+          "title": "Arezzo Apartment Homes - Furnished living room with fireplace",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+          "observedAt": "2026-11-03T23:47:06.432292+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/b4dcaeac-94bd-44da-837d-c7affd1b6ea0/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339496+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/fd1a651a-c24a-4e76-9998-a4a2d2d96725/medium.jpg",
+          "title": "Arezzo Apartment Homes - Second view of the furnished living room",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+          "observedAt": "2026-11-03T23:47:06.432292+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/fd1a651a-c24a-4e76-9998-a4a2d2d96725/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339511+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-53e604d159cd1fd3"
+      ],
+      "name": "Greenfield Village Townhomes",
+      "state": "CA",
+      "address": "535 Greenfield Drive, El Cajon, CA 92021",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 535 Greenfield Drive #20, El Cajon, CA 92021"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+        "observedAt": "2026-11-03T23:47:06.656456+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (20) was advertised Available Now at $2,995/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher identifies photos as similar units; not the exact advertised unit.",
+        "units": [
+          {
+            "unit": "20",
+            "plan": "Not specified by publisher",
+            "beds": 3.0,
+            "baths": 2.5,
+            "sqft": 1120,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$2,995",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/7e723282-aa30-4931-b514-f762de1d3c06/medium.jpg",
+          "title": "Greenfield Village Townhomes - Living area, kitchen and staircase",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+          "observedAt": "2026-11-03T23:47:06.656456+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/7e723282-aa30-4931-b514-f762de1d3c06/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339519+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/a37cb54b-7f12-4d5f-9c2b-454746946102/medium.jpg",
+          "title": "Greenfield Village Townhomes - Living area with staircase",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+          "observedAt": "2026-11-03T23:47:06.656456+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/a37cb54b-7f12-4d5f-9c2b-454746946102/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339522+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Townhouse"
+    },
+    {
+      "propertyIds": [
+        "resource-a33fbdea2771a9ba"
+      ],
+      "name": "Emerald Vista Apartments",
+      "state": "CA",
+      "address": "246 N Emerald Dr, Vista, CA 92083",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 246 N Emerald Dr #106, Vista, CA 92083"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+        "observedAt": "2026-11-03T23:47:06.841265+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (106) was advertised Available Now at $2,649/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher identifies photos as similar units; not the exact advertised unit.",
+        "units": [
+          {
+            "unit": "106",
+            "plan": "Not specified by publisher",
+            "beds": 3.0,
+            "baths": 2.0,
+            "sqft": 1150,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$2,649",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/7d3624e0-ea12-4e17-9ada-e15a9a18cb98/medium.jpg",
+          "title": "Emerald Vista Apartments - Carpeted living room",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+          "observedAt": "2026-11-03T23:47:06.841265+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/7d3624e0-ea12-4e17-9ada-e15a9a18cb98/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339526+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/539989f8-0d6f-4cee-b914-a8da97b97b7c/medium.jpg",
+          "title": "Emerald Vista Apartments - Second view of the living room",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+          "observedAt": "2026-11-03T23:47:06.841265+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/539989f8-0d6f-4cee-b914-a8da97b97b7c/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339528+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-ebacfd892ac34b7c"
+      ],
+      "name": "Ni-Si Apartments",
+      "state": "CA",
+      "address": "4135 Ingraham St, San Diego, CA 92109",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 4135 Ingraham St #4, San Diego, CA 92109"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+        "observedAt": "2026-11-03T23:47:06.997056+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (4) was advertised Available Now at $1,750/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher listing gallery; whether images depict the exact advertised unit is unconfirmed.",
+        "units": [
+          {
+            "unit": "4",
+            "plan": "Not specified by publisher",
+            "beds": 0,
+            "baths": 1.0,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$1,750",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/c6cc821b-8ce7-4a55-8890-cafbee479b92/medium.jpg",
+          "title": "Ni-Si Apartments - Studio living area and kitchen",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+          "observedAt": "2026-11-03T23:47:06.997056+00:00",
+          "scope": "Visually reviewed publisher image. Publisher listing gallery; whether images depict the exact advertised unit is unconfirmed.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/c6cc821b-8ce7-4a55-8890-cafbee479b92/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339531+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/0a2e9083-b0d0-4807-ae8a-3b77854c1916/medium.jpg",
+          "title": "Ni-Si Apartments - Studio interior",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+          "observedAt": "2026-11-03T23:47:06.997056+00:00",
+          "scope": "Visually reviewed publisher image. Publisher listing gallery; whether images depict the exact advertised unit is unconfirmed.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/0a2e9083-b0d0-4807-ae8a-3b77854c1916/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339533+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-cc45460bce9cb90a"
+      ],
+      "name": "5th Avenue Apartment Homes",
+      "state": "CA",
+      "address": "332 5th Ave, Chula Vista, CA 91910",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 332 5th Ave #B, Chula Vista, CA 91910"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+        "observedAt": "2026-11-03T23:47:07.239885+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (B) was advertised Available Now at $2,275/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher identifies photos as similar units; not the exact advertised unit.",
+        "units": [
+          {
+            "unit": "B",
+            "plan": "Not specified by publisher",
+            "beds": 2.0,
+            "baths": 1.0,
+            "sqft": 780,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$2,275",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/7d92b4a1-31a6-485e-b719-1e0f1d123fc7/medium.jpg",
+          "title": "5th Avenue Apartment Homes - Kitchen with wood cabinets",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+          "observedAt": "2026-11-03T23:47:07.239885+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/7d92b4a1-31a6-485e-b719-1e0f1d123fc7/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339536+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/178b25ff-4486-41e3-a4ff-ec0607e3052c/medium.jpg",
+          "title": "5th Avenue Apartment Homes - Second view of the kitchen",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+          "observedAt": "2026-11-03T23:47:07.239885+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/178b25ff-4486-41e3-a4ff-ec0607e3052c/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339538+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-049ba8de01cc519d"
+      ],
+      "name": "Valley View Apartment Homes",
+      "state": "CA",
+      "address": "423 Vandegrift Blvd., Oceanside, CA 92057",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 423 Vandegrift Blvd. #42, Oceanside, CA 92057"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+        "observedAt": "2026-11-03T23:47:07.258123+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (42) was advertised Available Now at $2,300/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher identifies photos as similar units; not the exact advertised unit.",
+        "units": [
+          {
+            "unit": "42",
+            "plan": "Not specified by publisher",
+            "beds": 2.0,
+            "baths": 1.0,
+            "sqft": 925,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$2,300",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/01fcf99c-e7b4-4cc5-8b30-917b7ec04a37/medium.jpg",
+          "title": "Valley View Apartment Homes - Living area with sliding door",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+          "observedAt": "2026-11-03T23:47:07.258123+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/01fcf99c-e7b4-4cc5-8b30-917b7ec04a37/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339540+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/2878b8b7-2ced-481e-9ac3-70d8d1a95c47/medium.jpg",
+          "title": "Valley View Apartment Homes - Open living area",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+          "observedAt": "2026-11-03T23:47:07.258123+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/2878b8b7-2ced-481e-9ac3-70d8d1a95c47/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339550+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-9f6d8fb2ef2b6c2f"
+      ],
+      "name": "La Mesa-Spring Gardens",
+      "state": "CA",
+      "address": "4201 Spring St, La Mesa, CA 91941",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 4201 Spring St #14, La Mesa, CA 91941"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+        "observedAt": "2026-11-03T23:47:07.537117+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (14) was advertised Available Now at $1,895/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher identifies photos as similar units; not the exact advertised unit.",
+        "units": [
+          {
+            "unit": "14",
+            "plan": "Not specified by publisher",
+            "beds": 1.0,
+            "baths": 1.0,
+            "sqft": 650,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$1,895",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/399d570d-56e6-43d2-8181-ea2bbaccb425/medium.jpg",
+          "title": "La Mesa-Spring Gardens - Living room with balcony door",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+          "observedAt": "2026-11-03T23:47:07.537117+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/399d570d-56e6-43d2-8181-ea2bbaccb425/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339554+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/05aeacbd-1437-4f63-b150-2faea5c8153c/medium.jpg",
+          "title": "La Mesa-Spring Gardens - Living and dining area",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+          "observedAt": "2026-11-03T23:47:07.537117+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/05aeacbd-1437-4f63-b150-2faea5c8153c/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339556+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-e52e1d8215ad420c"
+      ],
+      "name": "Lakeshore Terrace",
+      "state": "CA",
+      "address": "12345 Lakeshore Dr, Lakeside, CA 92040",
+      "officialUrl": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+      "galleryUrl": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+      "identityEvidence": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+        "note": "Listing names the community and Hoban Management; exact advertised address: 12345 Lakeshore Dr #12, Lakeside, CA 92040"
+      },
+      "availability": {
+        "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+        "observedAt": "2026-11-03T23:47:07.567337+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "One sampled unit (12) was advertised Available Now at $2,045/month when inspected.",
+        "limitations": "Public publisher advertisement observed at the recorded time; not an independent vacancy inspection, reservation, approval or guarantee. Confirm the precise unit, fees and current lease terms with the operator. Publisher identifies photos as similar units; not the exact advertised unit.",
+        "units": [
+          {
+            "unit": "12",
+            "plan": "Not specified by publisher",
+            "beds": 2.0,
+            "baths": 2.0,
+            "sqft": 815,
+            "availableLabel": "Available Now",
+            "labelMethod": "Exact visible label on directly retrieved public listing detail page.",
+            "rent": "$2,045",
+            "rentBasis": "Advertised monthly rent; additional charges and deposits may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/d65668c4-bd99-40cc-9b26-a79a2c51b67a/medium.jpg",
+          "title": "Lakeshore Terrace - Kitchen",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+          "observedAt": "2026-11-03T23:47:07.567337+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/d65668c4-bd99-40cc-9b26-a79a2c51b67a/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339559+00:00"
+        },
+        {
+          "url": "https://images.cdn.appfolio.com/hobanmanagement/images/a65f4de0-97eb-4585-a8b4-d132aa97e9b5/medium.jpg",
+          "title": "Lakeshore Terrace - Small interior room",
+          "sourceUrl": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+          "observedAt": "2026-11-03T23:47:07.567337+00:00",
+          "scope": "Visually reviewed publisher image. Publisher identifies photos as similar units; not the exact advertised unit.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://images.cdn.appfolio.com/hobanmanagement/images/a65f4de0-97eb-4585-a8b4-d132aa97e9b5/medium.jpg",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339560+00:00"
+        }
+      ],
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Publisher-hosted photo URLs only. No photo files downloaded or rehosted; no redistribution license was established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-f80fb84eaab527bc"
+      ],
+      "name": "Avalon Brea Place",
+      "state": "CA",
+      "address": "185 S. State College Blvd, Brea, CA 92821",
+      "officialUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+      "galleryUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+      "identityEvidence": {
+        "sourceUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+        "note": "Community identity and address from publisher-rendered page data."
+      },
+      "availability": {
+        "sourceUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+        "observedAt": "2026-11-03T23:47:36.542537+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "3 sampled units advertised availability starting November 4, 2026; base rent depends on the quoted lease term.",
+        "limitations": "Publisher advertisements observed at the recorded time. Source labels are not independently confirmed physical vacancies, reservations or guarantees. Furnished prices/dates differ. Counts and sampled prices are not a promise of availability at contact.",
+        "units": [
+          {
+            "unit": "001-2057",
+            "plan": "BldgA-S2",
+            "beds": 0,
+            "baths": 1,
+            "sqft": 518,
+            "availableLabel": "Available starting Nov 04",
+            "availableDate": "2026-11-04",
+            "sourceAvailableDate": "2026-11-04T05:00:00+00:00",
+            "labelMethod": "Visible server-rendered card and public Fusion.globalContent agree on Nov 04.",
+            "rent": "$2,616",
+            "rentBasis": "Unfurnished base rent for a 15-month lease. Publisher total monthly price is $2,675; additional one-time or conditional charges may apply."
+          },
+          {
+            "unit": "001-3057",
+            "plan": "BldgA-S2",
+            "beds": 0,
+            "baths": 1,
+            "sqft": 518,
+            "availableLabel": "Available starting Nov 04",
+            "availableDate": "2026-11-04",
+            "sourceAvailableDate": "2026-11-04T05:00:00+00:00",
+            "labelMethod": "Visible server-rendered card and public Fusion.globalContent agree on Nov 04.",
+            "rent": "$2,616",
+            "rentBasis": "Unfurnished base rent for a 15-month lease. Publisher total monthly price is $2,675; additional one-time or conditional charges may apply."
+          },
+          {
+            "unit": "001-4066",
+            "plan": "BldgA-S4",
+            "beds": 0,
+            "baths": 1,
+            "sqft": 591,
+            "availableLabel": "Available starting Nov 04",
+            "availableDate": "2026-11-04",
+            "sourceAvailableDate": "2026-11-04T05:00:00+00:00",
+            "labelMethod": "Visible server-rendered card and public Fusion.globalContent agree on Nov 04.",
+            "rent": "$2,765",
+            "rentBasis": "Unfurnished base rent for a 15-month lease. Publisher total monthly price is $2,824; additional one-time or conditional charges may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/OHXVSZLTXJD6HLIDA2QAUOS4MY.jpg?auth=0ec4f6e295c585658577b16d483dcf8455b9a0cb06b37d107be9654ec17ea7ac&quality=85&smart=true&width=2400&height=940",
+          "title": "Avalon Brea Place - Furnished kitchen and living area",
+          "sourceUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+          "observedAt": "2026-11-03T23:47:36.542537+00:00",
+          "scope": "Visually reviewed publisher image. Community image, not evidence of an exact unit or current vacancy.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/OHXVSZLTXJD6HLIDA2QAUOS4MY.jpg?auth=0ec4f6e295c585658577b16d483dcf8455b9a0cb06b37d107be9654ec17ea7ac&quality=85&smart=true&width=2400&height=940",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339565+00:00"
+        }
+      ],
+      "tours": [
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=FUedA7ifZAc",
+          "title": "Avalon Brea Place - publisher-labelled actual unit 001-2057",
+          "officialSourceUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+          "embedStatus": "link-only"
+        },
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=ymdsRDrna9Q",
+          "title": "Avalon Brea Place - publisher-labelled actual unit 001-3057",
+          "officialSourceUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+          "embedStatus": "link-only"
+        },
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=fPUmZ1f3XQc",
+          "title": "Avalon Brea Place - publisher-labelled actual unit 001-4066",
+          "officialSourceUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+          "embedStatus": "link-only"
+        }
+      ],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Original public publisher image URL only; no photo files downloaded or rehosted and no redistribution license established."
+      },
+      "propertyType": "Apartment"
+    },
+    {
+      "propertyIds": [
+        "resource-554c7ce4dc87d49d"
+      ],
+      "name": "Avalon Calabasas",
+      "state": "CA",
+      "address": "3831 N. Orchid Ln., Calabasas, CA 91302",
+      "officialUrl": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+      "galleryUrl": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+      "identityEvidence": {
+        "sourceUrl": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+        "note": "Community identity and address from publisher-rendered page data."
+      },
+      "availability": {
+        "sourceUrl": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+        "observedAt": "2026-11-03T23:47:36.543034+00:00",
+        "status": "unit-observations",
+        "sampleOnly": true,
+        "summary": "2 sampled units advertised availability starting November 4, 2026; base rent depends on the quoted lease term.",
+        "limitations": "Publisher advertisements observed at the recorded time. Source labels are not independently confirmed physical vacancies, reservations or guarantees. Furnished prices/dates differ. Counts and sampled prices are not a promise of availability at contact.",
+        "units": [
+          {
+            "unit": "001-10E",
+            "plan": "680",
+            "beds": 1,
+            "baths": 1,
+            "sqft": 680,
+            "availableLabel": "Available starting Nov 04",
+            "availableDate": "2026-11-04",
+            "sourceAvailableDate": "2026-11-04T05:00:00+00:00",
+            "labelMethod": "Visible server-rendered card and public Fusion.globalContent agree on Nov 04.",
+            "rent": "$2,390",
+            "rentBasis": "Unfurnished base rent for a 7-month lease. Publisher total monthly price is $2,493; additional one-time or conditional charges may apply."
+          },
+          {
+            "unit": "001-18K",
+            "plan": "680",
+            "beds": 1,
+            "baths": 1,
+            "sqft": 680,
+            "availableLabel": "Available starting Nov 04",
+            "availableDate": "2026-11-04",
+            "sourceAvailableDate": "2026-11-04T05:00:00+00:00",
+            "labelMethod": "Visible server-rendered card and public Fusion.globalContent agree on Nov 04.",
+            "rent": "$2,392",
+            "rentBasis": "Unfurnished base rent for a 7-month lease. Publisher total monthly price is $2,495; additional one-time or conditional charges may apply."
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/XFLGYGEXTFCQFO6UPICE6VY4CE.jpg?auth=657b43cd1329eac5366a385102dad11aa5707d9fbb838191c4f9abc103ed011e&quality=85&smart=true&width=2400&height=940",
+          "title": "Avalon Calabasas - Kitchen with white cabinets",
+          "sourceUrl": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+          "observedAt": "2026-11-03T23:47:36.543034+00:00",
+          "scope": "Visually reviewed publisher image. Community image, not evidence of an exact unit or current vacancy.",
+          "visualInspection": "PASS",
+          "captionProvenance": "Image contents reviewed in Chrome against the exact publisher-hosted URL; date and exact current unit remain unconfirmed.",
+          "thumbnailUrl": "https://avalonbay-avalon-communities-prod.cdn.arcpublishing.com/resizer/v2/XFLGYGEXTFCQFO6UPICE6VY4CE.jpg?auth=657b43cd1329eac5366a385102dad11aa5707d9fbb838191c4f9abc103ed011e&quality=85&smart=true&width=2400&height=940",
+          "visuallyReviewedAt": "2026-11-03T23:55:04.339576+00:00"
+        }
+      ],
+      "tours": [
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=qsonune9Poc",
+          "title": "Avalon Calabasas - representative floor-plan tour",
+          "officialSourceUrl": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+          "embedStatus": "link-only"
+        }
+      ],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Original public publisher image URL only; no photo files downloaded or rehosted and no redistribution license established."
+      },
+      "propertyType": "Apartment"
     }
   ]
 }

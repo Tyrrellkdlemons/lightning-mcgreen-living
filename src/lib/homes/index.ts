@@ -33,7 +33,7 @@ export function rentalObservations(): HomeListing[] {
     return rows.map(unit => ({
       id: `${canonicalId}${unit ? `:${unit.unit ?? `plan-${unit.plan}`}` : ''}`, name: record.name, intent: 'rent' as const,
       city, state: record.state, address: record.address ?? `${city}, ${record.state}`,
-      propertyType: rental?.unit_type === 'townhouse' ? 'Townhouse' : rental ? 'Apartment' : 'Rental community',
+      propertyType: record.propertyType ?? (rental?.unit_type === 'townhouse' ? 'Townhouse' : rental ? 'Apartment' : 'Rental community'),
       beds: number(unit?.beds), baths: number(unit?.baths), sqft: number(unit?.sqft), price: number(unit?.rent),
       priceLabel: unit?.rent ? `${unit.rent} / month` : 'Ask for current rent',
       observedAt: record.availability.observedAt,
