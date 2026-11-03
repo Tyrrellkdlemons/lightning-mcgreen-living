@@ -1,6 +1,6 @@
 # Owner photo publishing
 
-The existing owner photo key is configured in Netlify Functions scope for production and deploy previews. It is not a user-account system; only the owner with the private editor key can publish. A Windows DPAPI-encrypted copy is held outside the repository at `%LOCALAPPDATA%/LightningMcGreenLiving/owner-photo-key.xml`. Only the same Windows user on this computer can decrypt it. Never upload that file or paste its decrypted value into chats, source, screenshots or public issues.
+The existing owner photo key is configured in Netlify Functions scope for production and deploy previews. It is not a user-account system; only the owner with the private editor key can publish. A Windows DPAPI-encrypted copy is held outside the repository at `%LOCALAPPDATA%/LightningMcGreenLiving/owner-photo-key.xml`. Windows packaged-app file redirection may place it under the Codex package’s LocalCache/Local folder. The helper checks both the normal location and that existing package location; an explicit encrypted XML path can be supplied with `-KeyFile`. Only the same Windows user on this computer can decrypt it. Never upload that file or paste its decrypted value into chats, source, screenshots or public issues.
 
 ## Publish without displaying or copying the key
 

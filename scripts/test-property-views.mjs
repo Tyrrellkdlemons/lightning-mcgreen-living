@@ -9,7 +9,8 @@ else {
   const ts = (await import('typescript')).default;
   code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText;
 }
-const { propertyMapLinks, safeSourceUrl, workbookView, normalizePropertySource, filterWorkbookProperties, propertyPath } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+const { propertyMapLinks, safeSourceUrl, workbookView, normalizePropertySource, filterWorkbookProperties, propertyPath, recordedRent } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+for (const [low, high, expected] of [[0,0,'Not recorded'],[-1,0,'Not recorded'],[null,null,'Not recorded'],[NaN,Infinity,'Not recorded'],[2500,2800,'$2,500–$2,800'],[2500,2500,'$2,500'],[0,2800,'Up to $2,800'],[2500,0,'$2,500'],[2800,2500,'Not recorded']]) assert.equal(recordedRent(low,high),expected);
 const ranked = JSON.parse(await readFile(new URL('../src/lib/data/generated/workbook-ranked-listings.json', import.meta.url), 'utf8'));
 const full = JSON.parse(await readFile(new URL('../src/lib/data/generated/workbook-listings-full.json', import.meta.url), 'utf8'));
 assert.equal(ranked.length, 79);

@@ -77,7 +77,7 @@ export function PlaceGallery({ placeId, name, targetKind = 'city', contextOnly =
       <div className="mb-5 flex items-start gap-3">
         <Camera className="mt-1 h-6 w-6 shrink-0 text-lightning-800" aria-hidden="true" />
         <div>
-          <h2 id={'photos-' + placeId} className="font-display text-2xl font-extrabold text-chocolate-900">A closer look at {name}</h2>
+          <h2 id={'photos-' + placeId} className="font-display text-2xl font-extrabold text-chocolate-900">Editor photo collection: {name}</h2>
           <p className="mt-1 text-sm text-chocolate-700">{contextOnly ? 'Area photographs published by the site editor. These do not represent a specific property or available rental unit.' : 'Photographs published by the site editor for this property record. Check captions and source credits; images do not establish current condition or unit availability.'}</p>
         </div>
       </div>
