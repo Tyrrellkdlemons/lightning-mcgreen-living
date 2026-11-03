@@ -127,8 +127,8 @@ export function ApartmentApplyEngine() {
   }
 
   return (
-    <div className="mt-6 grid gap-5 xl:grid-cols-[370px_1fr]">
-      <aside className="space-y-4">
+    <div className="mt-6 grid grid-cols-1 gap-5 xl:grid-cols-[370px_minmax(0,1fr)]">
+      <aside className="min-w-0 space-y-4">
         <CandyCard>
           <div className="flex items-center gap-2">
             <Route className="h-5 w-5 text-lightning-700" aria-hidden />
@@ -190,7 +190,7 @@ export function ApartmentApplyEngine() {
         <ProfilePanel profile={profile} onChange={setProfile} />
       </aside>
 
-      <div className="space-y-5">
+      <div className="min-w-0 space-y-5">
         <CandyCard className="overflow-hidden !p-0">
           <PhotoGallery photos={selected.photos} height={280} rounded={false} interval={6500} />
           <div className="p-4 sm:p-5">
