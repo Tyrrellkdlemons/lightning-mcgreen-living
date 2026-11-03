@@ -3,7 +3,7 @@ import { CookieCar, WorkVan } from './CookieCar';
 import { RacePad, PitLaneLeds, SpeedTicker, TireTreadDivider } from './RaceAccents';
 
 /**
- * Race-day hero — x10 detail. All original. NO Disney/Pixar Cars / NASCAR
+ * Race-day hero — x10 detail. All original. NO third-party film or motorsport
  * assets. The numbered race pad is "MG-7" / "MG-21" / etc., never "95".
  *
  * Layers:

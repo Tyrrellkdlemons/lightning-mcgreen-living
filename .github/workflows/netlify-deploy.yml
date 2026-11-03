@@ -31,6 +31,12 @@ jobs:
       - name: Validate static checks
         run: node ./scripts/validate.mjs
 
+      - name: Guard and photo regressions
+        run: |
+          node scripts/test-compliance.mjs
+          node scripts/test-static-scan.mjs
+          node --test scripts/test-photos.mjs
+
       - name: Lint
         run: npm run lint --if-present
 

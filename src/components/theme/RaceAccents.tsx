@@ -1,5 +1,5 @@
 /**
- * Original racing accents. NO Disney/Pixar Cars / NASCAR assets — see
+ * Original racing accents. NO third-party film or motorsport assets — see
  * docs/UI_THEME_GUIDE.md §11 for the do-not list. Numbered race pad uses
  * "MG" + caller-provided suffix, never "95".
  */

@@ -24,6 +24,12 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Regression checks
+        run: |
+          node scripts/test-compliance.mjs
+          node scripts/test-static-scan.mjs
+          node --test scripts/test-photos.mjs
+
       - name: Lint
         run: npm run lint --if-present
 
@@ -42,33 +48,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: No Cars/NASCAR/Zillow trademark strings
-        run: |
-          set -e
-          # Trademarked strings that must NEVER appear in source.
-          # (Substrings — adjust if you add legal "we are not affiliated" copy that uses one.)
-          # The footer carries an explicit "not affiliated" line, so allow it inside docs/ and README.
-          ! grep -RIn --exclude-dir=node_modules --exclude-dir=.git \
-              --exclude-dir=docs --exclude=README.md \
-              -e "Lightning McQueen" -e "Pixar Cars" \
-              -e "NASCAR-themed" \
-              src/ public/
-
-      - name: No Fair-Housing-protected filter copy
-        run: |
-          set -e
-          ! grep -RIn --exclude-dir=node_modules --exclude-dir=.git \
-              --exclude-dir=docs --exclude=README.md \
-              -e "great for kids" -e "perfect for families" \
-              -e "young professionals only" -e "no children" -e "singles only" \
-              src/
-
-      - name: No "guaranteed approval" claims
-        run: |
-          set -e
-          ! grep -RIn --exclude-dir=node_modules --exclude-dir=.git \
-              --exclude-dir=docs --exclude=README.md \
-              -e "guaranteed approval" -e "guaranteed financing" \
-              -e "guaranteed zero down" \
-              src/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Scan required files, brand, housing copy and guarantees
+        run: node scripts/validate.mjs
