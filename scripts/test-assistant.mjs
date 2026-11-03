@@ -12,7 +12,7 @@ const before = JSON.stringify([catalog, workbook]);
 const knowledge = buildKnowledge(catalog, workbook, places);
 const origin = 'https://lightning-mcgreen-living.netlify.app';
 // Public dummy strings; no real credentials or provider requests are used.
-const environment = { GEMINI_API_KEY: 'fixture-only-not-a-credential', GOOGLE_GEMINI_BASE_URL: 'https://6b005e3f-bc71-4f4f-a2c7-520763994fb6.netlify.app/.netlify/ai/gemini' };
+const environment = { GEMINI_API_KEY: 'fixture-only-not-a-credential', GOOGLE_GEMINI_BASE_URL: 'https://6b005e3f-bc71-4f4f-a2c7-520763994fb6.netlify.app/.netlify/ai' };
 const day = new Date('2026-11-03T12:00:00Z');
 const input = { question: 'Where can I find rental assistance?', state: 'AZ', consent: true };
 class MemoryStore {
@@ -63,12 +63,14 @@ test('state and city retrieval never returns the other state or a different reco
 });
 test('gateway requires an HTTPS Netlify gateway address; direct provider, URL credentials and redirects are excluded', () => {
   assert(gatewayConfig(environment));
+  for (const host of ['lightning-mcgreen-living.netlify.app','deploy-preview-2--lightning-mcgreen-living.netlify.app']) assert(gatewayConfig({...environment,GOOGLE_GEMINI_BASE_URL:`https://${host}/.netlify/ai`}));
+  for (const base of ['https://evil.netlify.app/.netlify/ai','https://lightning-mcgreen-living.netlify.app/.netlify/ai/evil','https://lightning-mcgreen-living.netlify.app/.netlify/ai?token=x','https://lightning-mcgreen-living.netlify.app:444/.netlify/ai']) assert.equal(gatewayConfig({...environment,GOOGLE_GEMINI_BASE_URL:base}),null);
   for (const base of ['https://generativelanguage.googleapis.com', 'https://evil.netlify.app/api/v1/ai-gateway/test', 'https://api.netlify.com.evil.example/api/v1/ai-gateway/test', 'http://api.netlify.com/api/v1/ai-gateway/test', 'https://name:secret@api.netlify.com/api/v1/ai-gateway/test', 'https://api.netlify.com/api/v1/ai-gateway/test?key=bad', 'https://api.netlify.com/other']) assert.equal(gatewayConfig({ ...environment, GOOGLE_GEMINI_BASE_URL: base }), null);
   assert.equal(gatewayConfig({ ...environment, ASSISTANT_ENABLED: 'false' }), null);
 });
 test('GET reports only configuration and never calls provider or storage', async () => {
   const s = setup(); const response = await s.handler(new Request(origin + '/api/assistant'));
-  assert.deepEqual(await response.json(), { configured: true, keyPresent: true, gatewayOrigin: 'https://6b005e3f-bc71-4f4f-a2c7-520763994fb6.netlify.app', gatewayPath: '/.netlify/ai/gemini' }); assert.equal(s.calls(), 0); assert.equal(s.storeCalls(), 0);
+  assert.deepEqual(await response.json(), { configured: true, keyPresent: true, gatewayOrigin: 'https://6b005e3f-bc71-4f4f-a2c7-520763994fb6.netlify.app', gatewayPath: '/.netlify/ai' }); assert.equal(s.calls(), 0); assert.equal(s.storeCalls(), 0);
   assert.equal(response.headers.get('cache-control'), 'no-store');
 });
 test('same-origin, JSON, consent, method, shape and actual byte-size boundaries reject before provider or quota', async () => {
