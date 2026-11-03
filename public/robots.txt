@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: /sitemap.xml
+Sitemap: https://lightning-mcgreen-living.netlify.app/sitemap.xml

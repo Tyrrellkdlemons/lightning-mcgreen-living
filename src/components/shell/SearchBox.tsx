@@ -79,7 +79,7 @@ export function SearchBox({ className }: { className?: string }) {
               inputRef.current?.blur();
             }
           }}
-          placeholder="Search rentals, cars, dealers, work vans, help…"
+          placeholder="Search cities, rentals, cars, and help…"
           aria-label="Site search"
           className="w-full bg-transparent text-sm placeholder:text-chocolate-700/70 focus:outline-none"
         />

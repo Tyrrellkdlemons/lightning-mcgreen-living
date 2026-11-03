@@ -5,7 +5,7 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 
 export const metadata: Metadata = {
   title: 'Compare Life Budget',
-  description: 'Match a Southern California rental to a car and/or work vehicle that actually fits your monthly budget.',
+  description: 'Match a California and Arizona rental to a car and/or work vehicle that actually fits your monthly budget.',
 };
 
 export default function LifeBudgetPage() {

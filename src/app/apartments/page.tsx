@@ -8,7 +8,9 @@ import { WORKBOOK_FULL_LISTINGS } from '@/lib/data/workbook-listings-full';
 
 export const metadata: Metadata = { title: 'Apartments' };
 
-export default function ApartmentsPage() {
+export default function ApartmentsPage({ searchParams }: { searchParams: { state?: string; city?: string } }) {
+  const state = searchParams.state === 'CA' || searchParams.state === 'AZ' ? searchParams.state : undefined;
+  const city = typeof searchParams.city === 'string' ? searchParams.city.trim().slice(0, 100) : undefined;
   const total = WORKBOOK_FULL_LISTINGS.length;
   return (
     <>
@@ -27,7 +29,7 @@ export default function ApartmentsPage() {
         <Link href="/rentals" className="underline decoration-lightning-500 underline-offset-2">See both</Link>.
       </p>
 
-      <RentalSearch unitTypeLock="apartment" />
+      <RentalSearch key={`${state ?? ""}:${city ?? ""}`} unitTypeLock="apartment" initialState={state} initialCity={city} />
 
       <section className="mt-10">
         <header className="mb-3 flex flex-wrap items-end justify-between gap-2">

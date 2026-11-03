@@ -58,7 +58,7 @@ export function RaceHero({
             <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-lightning-300">
               <span className="tach">RPM · LIVE</span>
               <PitLaneLeds />
-              <span className="rounded-full border border-lightning-300/40 bg-black/30 px-2 py-1">SoCal grid only</span>
+              <span className="rounded-full border border-lightning-300/40 bg-black/30 px-2 py-1">California + Arizona</span>
               <span className="rounded-full border border-lightning-300/40 bg-black/30 px-2 py-1">Verified chains</span>
             </div>
           </div>

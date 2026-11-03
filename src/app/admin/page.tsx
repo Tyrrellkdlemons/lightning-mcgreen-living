@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 
-export const metadata: Metadata = { title: 'Admin' };
+export const metadata: Metadata = { title: 'Admin', robots: { index: false, follow: false } };
 
 export default function AdminPage() {
   return (
@@ -17,7 +17,8 @@ export default function AdminPage() {
         </p>
       </header>
 
-      <div className="mt-3">
+      <div className="mt-3 flex flex-wrap gap-3">
+        <Link href="/admin/photos" className="bolt-btn text-sm">Manage place photos</Link>
         <Link href="/admin/verify" className="bolt-btn text-sm">
           🔗 Open exact-link verifier →
         </Link>

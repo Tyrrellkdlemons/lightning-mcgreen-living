@@ -11,6 +11,7 @@
  * the client search box.
  */
 
+import { PLACES, stateSlug } from '@/lib/places';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
 import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
@@ -24,7 +25,8 @@ export type SearchKind =
   | 'vehicle'
   | 'dealer'
   | 'work-vehicle'
-  | 'assistance';
+  | 'assistance'
+  | 'place-guide';
 
 export interface SearchEntry {
   kind: SearchKind;
@@ -272,6 +274,13 @@ export function buildSearchIndex(): SearchEntry[] {
     });
   }
 
+  for (const p of PLACES) {
+    const text = expandText([p.name, p.state, p.state === 'CA' ? 'California' : 'Arizona', p.region, p.description, 'city guide housing shelter'].join(' '));
+    entries.push({ kind: 'place-guide', id: p.id, title: p.name,
+      subtitle: `${p.region} · ${p.state} · City guide`,
+      href: `/places/${stateSlug(p.state)}/${p.slug}`, city: p.name,
+      text, tokens: tokenize(text) });
+  }
   return entries;
 }
 
@@ -356,6 +365,7 @@ export const KIND_LABEL: Record<SearchKind, string> = {
   dealer: 'Dealer',
   'work-vehicle': 'Work vehicle',
   assistance: 'Assistance',
+  'place-guide': 'City guide',
 };
 
 export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
@@ -366,4 +376,5 @@ export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
   dealer: 'mute',
   'work-vehicle': 'ok',
   assistance: 'warn',
+  'place-guide': 'info',
 };

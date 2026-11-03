@@ -59,3 +59,7 @@ data/*.csv
 
 # Local Netlify folder
 .netlify
+
+# Isolated revamp validation outputs
+.revamp-npm-cache/
+.revamp-evidence/

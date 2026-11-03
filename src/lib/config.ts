@@ -9,8 +9,8 @@ export const config = {
   appName: 'Lightning McGreen Living',
   shortName: 'McGreen Living',
   tagline:
-    'Southern California rentals + cars + work vehicles. Find what you can actually qualify for.',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+    'Explore California and Arizona city guides, housing resources, rentals, cars, and work vehicles. Plan your next move with clear sources and practical tools.',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lightning-mcgreen-living.netlify.app',
 
   dataMode: (process.env.NEXT_PUBLIC_DATA_MODE ?? 'production') as DataMode,
   geofenceSocal: (process.env.NEXT_PUBLIC_GEOFENCE_SOCAL ?? 'true') === 'true',

@@ -8,10 +8,12 @@ import { WORKBOOK_FULL_LISTINGS } from '@/lib/data/workbook-listings-full';
 
 export const metadata: Metadata = {
   title: 'Apartments & Townhomes',
-  description: 'Find Southern California apartments and townhomes you are more likely to qualify for.',
+  description: 'Find California and Arizona apartments and townhomes you are more likely to qualify for.',
 };
 
-export default function RentalsPage() {
+export default function RentalsPage({ searchParams }: { searchParams: { state?: string; city?: string } }) {
+  const state = searchParams.state === 'CA' || searchParams.state === 'AZ' ? searchParams.state : undefined;
+  const city = typeof searchParams.city === 'string' ? searchParams.city.trim().slice(0, 100) : undefined;
   const total = WORKBOOK_FULL_LISTINGS.length;
   return (
     <>
@@ -20,7 +22,7 @@ export default function RentalsPage() {
         title="Apartments & Townhomes"
         subtitle="Real SoCal operators — Greystar, Irvine Company, Essex, AvalonBay, Camden, FPI, Western National, ConAm, MG, Alliance, Decron, UDR. See exactly who you'll be applying through and how strict their screening will be."
       />
-      <RentalSearch />
+      <RentalSearch key={`${state ?? ""}:${city ?? ""}`} initialState={state} initialCity={city} />
 
       <section className="mt-10">
         <header className="mb-3">

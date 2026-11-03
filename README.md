@@ -1,12 +1,12 @@
 # Lightning McGreen Living ⚡🍪
 
-A Southern California rental + vehicle qualification discovery platform with a
+A California and Arizona living-guide, rental + vehicle discovery platform with a
 green-lightning gingerbread racing theme.
 
 > **Project name:** Lightning McGreen Living
 > **Site name:** Lightning McGreen Living
 > **Theme:** Green lightning · gingerbread streets · candy garages · racing energy
-> **Geography:** Southern California only (geofenced)
+> **Geography:** California and Arizona guides and intake; existing inventory remains concentrated in Southern California.
 
 This project is **original and legally distinct**. It does not use Disney/Pixar
 "Lightning McQueen", NASCAR branding, the Cars franchise, or any protected
@@ -17,7 +17,7 @@ racing films and professional motorsport dashboards" — not copied from them.
 
 ## What it does
 
-Lightning McGreen Living helps Southern California users find:
+Lightning McGreen Living helps California and Arizona users research:
 
 1. **Apartments & Townhomes for rent** — qualification-aware, application-ready
 2. **Cars to buy or finance** — dealer + inventory + budget-fit
@@ -155,7 +155,7 @@ lightning-mcgreen-living/
     │   ├── scoring/                       ← Qualification fit engine
     │   ├── calculators/                   ← Move-in cost, payment, rental
     │   ├── compliance/                    ← Disclaimers + Fair-Housing guards
-    │   ├── geofence/                      ← Southern California gating
+    │   ├── geofence/                      ← California and Arizona intake validation
     │   ├── data/                          ← Mock/demo data (labeled)
     │   └── db/                            ← Schema + query helpers
     └── types/
@@ -181,3 +181,17 @@ Apartments.com, Cars.com, Autotrader, CarGurus, or any property manager / dealer
 without an explicit license.
 
 See `docs/COMPLIANCE_NOTES.md` for Fair Housing, FCRA, and data-sourcing rules.
+
+## California + Arizona refresh (2026-11-03)
+
+- `/places`: searchable city guides, state filters, and statewide housing/shelter referral resources.
+- `/places/california` and `/places/arizona`: regional starting points, with 27 authored city guides in total.
+- City pages link current matching records and official resources. Guides are not live listings; no unit, rate or shelter-bed availability is implied.
+- `/admin/photos`: owner photo manager. Configure a random 32+ character `ADMIN_SHARED_SECRET` in Netlify Functions scope. Use the manager's password field; it is kept in memory only. Upload only photos you own or have permission to publish, and enter useful alt text and credit.
+- Uploaded JPEG/PNG/WebP images go to Netlify Blobs, with separate production and per-deploy preview stores. Public galleries use a real image-serving Function and Netlify Image CDN. See [PHOTO_WORKFLOW.md](docs/PHOTO_WORKFLOW.md).
+- No new Git Gateway, Identity, paid API, database migration, or runtime image generation is required. The existing owner-secret authorization pattern is retained.
+- Existing Apply Engine, all 79 ranked records, maps, saved items, comparisons, and cars/work-vehicle routes remain in place.
+
+Focused checks: `node scripts/test-geography.mjs` and `node scripts/test-photos.mjs`. Run the existing typecheck/lint/build and browser checks before release. Storage tests use an isolated fixture store; they do not prove live cloud uploads.
+
+See [revamp evidence and decisions](docs/REVAMP_2026-11-03.md).

@@ -14,13 +14,15 @@ export function Footer() {
               Lightning McGreen Living
             </div>
             <p className="mt-2 max-w-xs text-xs leading-relaxed">
-              Southern California rentals + cars + work vehicles. We help
+              California and Arizona city guides, rentals + cars + work vehicles. We help
               prepare and compare. Final approval is controlled by the property,
               dealer, lender, or rental provider.
             </p>
           </div>
 
           <FooterCol title="Discover">
+            <FooterLink href="/places">California + Arizona guides</FooterLink>
+            <FooterLink href="/places#housing-help">Housing + shelter support</FooterLink>
             <FooterLink href="/rentals">Apartments & Townhomes</FooterLink>
             <FooterLink href="/operators">Operator index</FooterLink>
             <FooterLink href="/cars">Cars</FooterLink>

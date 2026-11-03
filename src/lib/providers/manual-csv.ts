@@ -9,7 +9,7 @@
 import { z } from 'zod';
 import Papa from 'papaparse';
 import type { RentalListing, Dealer, VehicleListing, WorkVehicleRental } from '@/types';
-import { isWithinSoCal } from '@/lib/geofence/socal';
+import { isWithinCoverage } from '@/lib/geofence/socal';
 
 const sourceMetaSchema = z.object({
   source: z.enum(['official', 'partner', 'public-open-data', 'property-or-dealer-website', 'manual-verified', 'unverified']),
@@ -36,7 +36,7 @@ const apartmentRow = z.object({
   address_line: z.string(),
   city: z.string(),
   county: z.string(),
-  state: z.literal('CA'),
+  state: z.enum(['CA', 'AZ']),
   zip: z.string(),
   lat: num,
   lng: num,
@@ -76,7 +76,7 @@ const dealerRow = z.object({
   address_line: z.string(),
   city: z.string(),
   county: z.string(),
-  state: z.literal('CA'),
+  state: z.enum(['CA', 'AZ']),
   zip: z.string(),
   lat: num,
   lng: num,
@@ -115,7 +115,7 @@ const workRow = z.object({
   branch_address: z.string(),
   city: z.string(),
   county: z.string(),
-  state: z.literal('CA'),
+  state: z.enum(['CA', 'AZ']),
   zip: z.string(),
   lat: num,
   lng: num,
@@ -169,8 +169,8 @@ export function importApartments(csv: string): ImportResult<RentalListing> {
       });
       return;
     }
-    if (!isWithinSoCal({ lat: body.data.lat, lng: body.data.lng, city: body.data.city, county: body.data.county })) {
-      rejected.push({ row: i + 2, reason: 'outside SoCal geofence', raw });
+    if (!isWithinCoverage({ state: body.data.state, lat: body.data.lat, lng: body.data.lng, city: body.data.city, county: body.data.county })) {
+      rejected.push({ row: i + 2, reason: 'outside California / Arizona coverage or inconsistent location', raw });
       return;
     }
     ok.push({
@@ -200,8 +200,8 @@ export function importDealers(csv: string): ImportResult<Dealer> {
       });
       return;
     }
-    if (!isWithinSoCal({ lat: body.data.lat, lng: body.data.lng, city: body.data.city, county: body.data.county })) {
-      rejected.push({ row: i + 2, reason: 'outside SoCal geofence', raw });
+    if (!isWithinCoverage({ state: body.data.state, lat: body.data.lat, lng: body.data.lng, city: body.data.city, county: body.data.county })) {
+      rejected.push({ row: i + 2, reason: 'outside California / Arizona coverage or inconsistent location', raw });
       return;
     }
     ok.push({ id: `csv-${body.data.external_id}`, ...body.data, meta: meta.data });
@@ -271,8 +271,8 @@ export function importWorkVehicles(csv: string): ImportResult<WorkVehicleRental>
       });
       return;
     }
-    if (!isWithinSoCal({ lat: body.data.lat, lng: body.data.lng, city: body.data.city, county: body.data.county })) {
-      rejected.push({ row: i + 2, reason: 'outside SoCal geofence', raw });
+    if (!isWithinCoverage({ state: body.data.state, lat: body.data.lat, lng: body.data.lng, city: body.data.city, county: body.data.county })) {
+      rejected.push({ row: i + 2, reason: 'outside California / Arizona coverage or inconsistent location', raw });
       return;
     }
     ok.push({ id: `csv-${body.data.external_id}`, ...body.data, meta: meta.data });

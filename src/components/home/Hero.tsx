@@ -1,30 +1,24 @@
-import { LightningBolt } from '@/components/theme/LightningBolt';
-
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, MapPin, Search, ShieldCheck } from 'lucide-react';
 export function Hero() {
-  return (
-    <section className="relative pt-8 sm:pt-12 pb-6 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full border border-gingerbread-300/60 bg-frosting-100 px-3 py-1 text-xs font-semibold text-gingerbread-700">
-        <LightningBolt className="h-4" />
-        Southern California · gingerbread streets · racing energy
+    return (<section className="discovery-hero" aria-labelledby="hero-title">
+      <div className="hero-copy">
+        <p className="eyebrow"><span className="status-dot"/> CALIFORNIA + ARIZONA</p>
+        <h1 id="hero-title">A fresh start.<br />A sweeter <span>way home.</span></h1>
+        <p className="hero-description">Find your next place, plan the move, and keep life moving. Real resources. Clear next steps. All in one place.</p>
+        <form action="/places" method="get" className="place-finder" role="search" aria-label="Find a city guide">
+          <label><span>Where to?</span><div className="finder-input"><MapPin size={18} aria-hidden/><input type="search" name="q" placeholder="City or region" aria-label="City or region"/></div></label>
+          <label><span>State</span><select name="state" aria-label="State"><option value="">Both states</option><option value="CA">California</option><option value="AZ">Arizona</option></select></label>
+          <button type="submit" className="finder-button"><Search size={19} aria-hidden/><span>Explore</span></button>
+        </form>
+        <div className="hero-shortcuts"><span>Start somewhere:</span><Link href="/places/california/los-angeles">Los Angeles</Link><Link href="/places/arizona/phoenix">Phoenix</Link><Link href="/places/california/san-diego">San Diego</Link></div>
+        <p className="hero-trust"><ShieldCheck size={16} aria-hidden/> No approval promises. You stay in control.</p>
       </div>
-
-      <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-chocolate-900 sm:text-5xl">
-        Find a place to <span className="text-lightning-600">live</span>,
-        a car to <span className="text-lightning-600">drive</span>,
-        a van to <span className="text-lightning-600">earn</span>.
-      </h1>
-
-      <p className="mx-auto mt-3 max-w-2xl text-sm text-chocolate-700 sm:text-base">
-        Lightning McGreen Living helps you discover apartments, townhomes, cars,
-        dealers, and work vehicles you are more likely to qualify for —
-        with honest fees, real application steps, and a sweet little theme.
-      </p>
-
-      <p className="mx-auto mt-3 max-w-2xl text-xs text-chocolate-600">
-        We are not a property manager, dealer, lender, or rental booking
-        service. We help prepare and compare; final approval is controlled by
-        the property, dealer, lender, or rental provider.
-      </p>
-    </section>
-  );
+      <div className="hero-art">
+        <Image src="/backgrounds/ggb_bg_1.png" alt="Illustrated gingerbread neighborhood with green lightning and winding roads" fill priority sizes="(max-width: 767px) 100vw, 48vw" className="object-cover"/>
+        <span className="art-label">A little imagination. A practical next step.</span>
+        <Link href="/apartments/apply-engine" className="hero-pass"><span className="pass-icon"><MapPin size={22} aria-hidden/></span><span><strong>Your move starts here</strong><small>Open the Apartment Apply Engine</small></span><ArrowRight size={20} aria-hidden/></Link>
+      </div>
+    </section>);
 }

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { PLACES, stateSlug } from '@/lib/places';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
 import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
@@ -8,7 +9,7 @@ const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lightning-mcgreen-livi
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const staticRoutes = [
-    '/', '/rentals', '/apartments', '/apartments/apply-engine', '/townhomes',
+    '/', '/places', '/places/california', '/places/arizona', '/rentals', '/apartments', '/apartments/apply-engine', '/townhomes',
     '/cars', '/work-vehicles', '/life-budget',
     '/compare', '/saved', '/search',
     '/data-sources', '/assistance', '/templates',
@@ -22,7 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const dealerRoutes = REAL_DEALERS.map((d) => `/dealers/${d.id}`);
   const workRoutes = REAL_WORK_VEHICLES.map((w) => `/work-vehicles/${w.id}`);
 
-  const all = [...staticRoutes, ...rentalRoutes, ...vehicleRoutes, ...dealerRoutes, ...workRoutes];
+  const placeRoutes = PLACES.map(p => `/places/${stateSlug(p.state)}/${p.slug}`);
+  const all = [...placeRoutes, ...staticRoutes, ...rentalRoutes, ...vehicleRoutes, ...dealerRoutes, ...workRoutes];
 
   return all.map((path) => ({
     url: `${BASE}${path}`,

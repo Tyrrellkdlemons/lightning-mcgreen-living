@@ -1,12 +1,13 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
 
 export interface RentalFilterState {
   unit_type: 'all' | 'apartment' | 'townhouse';
   city?: string;
+  state?: 'CA' | 'AZ';
   max_rent?: number;
   beds?: number | '';
   pets?: boolean;
@@ -23,9 +24,10 @@ export interface RentalFilterState {
  * a listing in a new city, it shows up in the dropdown automatically — no
  * hardcoded list to maintain.
  */
-function buildCityOptions() {
+function buildCityOptions(state?: 'CA' | 'AZ') {
   const byCounty = new Map<string, Map<string, number>>();
   for (const r of REAL_RENTALS) {
+    if (state && r.state !== state) continue;
     if (!byCounty.has(r.county)) byCounty.set(r.county, new Map());
     const m = byCounty.get(r.county)!;
     m.set(r.city, (m.get(r.city) ?? 0) + 1);
@@ -47,8 +49,8 @@ export function RentalFilters({
   initial: RentalFilterState;
   onChange: (next: RentalFilterState) => void;
 }) {
-  const [state, setState] = useState<RentalFilterState>(initial);
-  const cityGroups = useMemo(buildCityOptions, []);
+  const state = initial;
+  const cityGroups = useMemo(() => buildCityOptions(state.state), [state.state]);
   const totalCities = useMemo(
     () => cityGroups.reduce((n, g) => n + g.cities.length, 0),
     [cityGroups],
@@ -56,12 +58,11 @@ export function RentalFilters({
 
   function update(patch: Partial<RentalFilterState>) {
     const next = { ...state, ...patch };
-    setState(next);
     onChange(next);
   }
 
   return (
-    <aside className="cookie-card sticky top-20 hidden h-fit space-y-4 p-4 lg:block lg:w-72">
+    <aside className="cookie-card h-fit space-y-4 p-4 lg:sticky lg:top-20 lg:w-72 lg:shrink-0">
       <div>
         <p className="text-xs font-bold uppercase tracking-wider text-chocolate-700">Show</p>
         <div className="mt-2 grid grid-cols-3 gap-1 text-xs font-semibold">
@@ -70,6 +71,7 @@ export function RentalFilters({
               key={u}
               type="button"
               onClick={() => update({ unit_type: u })}
+              aria-pressed={state.unit_type === u}
               className={
                 'rounded-full px-2 py-1.5 ' +
                 (state.unit_type === u
@@ -83,13 +85,19 @@ export function RentalFilters({
         </div>
       </div>
 
+      <Field label="State">
+        <select value={state.state ?? ''} onChange={(e) => update({ state: (e.target.value || undefined) as 'CA' | 'AZ' | undefined, city: undefined })} className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-2 text-sm">
+          <option value="">California + Arizona</option><option value="CA">California</option><option value="AZ">Arizona</option>
+        </select>
+      </Field>
       <Field label={`City (${totalCities} with listings)`}>
         <select
           value={state.city ?? '__ALL__'}
           onChange={(e) => update({ city: e.target.value === '__ALL__' ? undefined : e.target.value })}
           className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
         >
-          <option value="__ALL__">All cities</option>
+          <option value="__ALL__">All cities with listings</option>
+          {state.city && !cityGroups.some((g) => g.cities.some((city) => city.city === state.city)) && <option value={state.city}>{state.city} (no listed inventory)</option>}
           {cityGroups.map((g) => (
             <optgroup key={g.county} label={`${g.county} County`}>
               {g.cities.map(({ city, count }) => (
@@ -161,6 +169,7 @@ function Toggle({ label, value, onChange }: { label: string; value: boolean; onC
         type="button"
         role="switch"
         aria-checked={value}
+        aria-label={label}
         onClick={() => onChange(!value)}
         className={
           'relative h-6 w-11 rounded-full transition-colors ' +

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { REAL_RENTALS, type RentalWithPhotos } from '@/lib/data/real-rentals';
 import { RentalCard } from './RentalCard';
@@ -19,9 +20,9 @@ import {
 
 const PER_PAGE = 9;
 
-export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 'townhouse' }) {
+export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unitTypeLock?: 'apartment' | 'townhouse'; initialState?: 'CA' | 'AZ'; initialCity?: string }) {
   const [profile, setProfile] = useRenterProfile();
-  const [filters, setFilters] = useState<RentalFilterState>({ unit_type: unitTypeLock ?? 'all' });
+  const [filters, setFilters] = useState<RentalFilterState>({ unit_type: unitTypeLock ?? 'all', state: initialState, city: initialCity });
   const [sort, setSort] = useState<SortKey>('best-fit');
   const [page, setPage] = useState(1);
   const [workbookQuery, setWorkbookQuery] = useState('');
@@ -56,7 +57,7 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
         <ProfilePanel profile={profile} onChange={setProfile} />
         <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-chocolate-700">
           <span>
-            <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'} · SoCal-only
+            <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'} · {filters.state === 'AZ' ? 'Arizona' : filters.state === 'CA' ? 'California' : 'California + Arizona'}
           </span>
           <SortDropdown value={sort} onChange={setSort} />
         </div>
@@ -72,7 +73,11 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
         </ul>
         {filtered.length === 0 && (
           <div className="cookie-card p-6 text-center text-sm text-chocolate-700">
-            No matches. Try widening your max rent or city.
+            <p>No listed rentals match this search. Our directory is growing; an empty result does not mean there are no rentals in this area.</p>
+            <div className="mt-3 flex flex-wrap justify-center gap-3">
+              <button type="button" className="cinnamon-btn" onClick={() => setFilters({ unit_type: unitTypeLock ?? 'all' })}>Clear filters</button>
+              <Link href={filters.state === 'AZ' ? '/places/arizona' : '/places/california'} className="bolt-btn">Explore city guides and local resources</Link>
+            </div>
           </div>
         )}
         <Pagination page={page} pageCount={pageCount} onChange={setPage} />
@@ -165,7 +170,8 @@ function filterRentals(
       if (f.unit_type === 'apartment' && !apartmentSide) return false;
       if (f.unit_type === 'townhouse' && r.unit_type !== 'townhouse') return false;
     }
-    if (f.city && r.city !== f.city) return false;
+    if (f.state && r.state !== f.state) return false;
+    if (f.city && r.city.toLowerCase() !== f.city.toLowerCase()) return false;
     if (f.max_rent && r.min_rent > f.max_rent) return false;
     if (f.beds !== '' && f.beds != null && r.beds_max < f.beds) return false;
     if (f.pets && r.pet_policy && /no pets/i.test(r.pet_policy)) return false;

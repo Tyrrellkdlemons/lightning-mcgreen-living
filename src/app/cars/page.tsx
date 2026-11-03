@@ -6,10 +6,12 @@ import { RaceHero } from '@/components/theme/RaceHero';
 
 export const metadata: Metadata = {
   title: 'Cars',
-  description: 'Find Southern California cars and dealers that fit your real budget — race-day theme, honest payment math.',
+  description: 'Find California and Arizona cars and dealers that fit your real budget — race-day theme, honest payment math.',
 };
 
-export default function CarsPage() {
+export default function CarsPage({ searchParams }: { searchParams: { state?: string; city?: string } }) {
+  const state = searchParams.state === 'CA' || searchParams.state === 'AZ' ? searchParams.state : undefined;
+  const city = typeof searchParams.city === 'string' ? searchParams.city.trim().slice(0, 100) : undefined;
   return (
     <>
       <TopToggle />
@@ -22,7 +24,7 @@ export default function CarsPage() {
         <span>Public promos only · we never invent &ldquo;zero-down&rdquo;.</span>
         <Link href="/work-vehicles" className="cinnamon-btn text-xs">Need a work vehicle? →</Link>
       </div>
-      <CarSearch />
+      <CarSearch key={`${state ?? ""}:${city ?? ""}`} initialState={state} />
     </>
   );
 }

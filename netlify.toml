@@ -6,7 +6,7 @@
 [build]
   command   = "npm install --no-audit --no-fund && npm run build"
   publish   = ".next"
-  functions = ".netlify/functions"
+  functions = "netlify/functions"
 
 [build.environment]
   # Production by default. Flip back to "demo" only if you want the

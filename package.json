@@ -2,7 +2,7 @@
   "name": "lightning-mcgreen-living",
   "version": "0.1.0",
   "private": true,
-  "description": "Southern California rental + vehicle qualification discovery platform with a green-lightning gingerbread racing theme.",
+  "description": "California and Arizona living guides, rental and vehicle discovery with protected place-photo galleries.",
   "scripts": {
     "dev": "node scripts/sync-insert-images.mjs && next dev",
     "build": "next build",
@@ -34,7 +34,8 @@
     "react-hook-form": "^7.51.1",
     "tailwind-merge": "^2.2.2",
     "zod": "^3.22.4",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "@netlify/blobs": "10.7.13"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",

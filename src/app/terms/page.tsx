@@ -7,7 +7,7 @@ export default function TermsPage() {
     <article className="prose prose-sm mx-auto mt-6 max-w-3xl text-chocolate-800">
       <h1 className="font-display text-3xl font-extrabold text-chocolate-900">Terms</h1>
       <p>
-        Lightning McGreen Living is a discovery and preparation tool for Southern California
+        Lightning McGreen Living is a discovery and preparation tool for California and Arizona
         rentals, vehicles, and work-vehicle rentals. We are not a property manager, dealer,
         lender, screening provider, or rental booking system.
       </p>
