@@ -1,16 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 
 /**
- * External-redirect screen — required by the L spec before sending users off
- * to any official application / finance / reservation page.
- *
- * Renders an inline modal-style card with the EXACT spec wording and a
- * clear "Open the official page" link. The user must click through; we
- * never auto-redirect.
+ * External destination preview. A source or search page is not necessarily
+ * an application. Users choose whether to open it; packets are never sent.
  */
 export function RedirectScreen({
   open,
@@ -18,6 +14,8 @@ export function RedirectScreen({
   href,
   fallbackHref,
   destinationLabel,
+  actionLabel = 'Open external page',
+  isSearch = false,
   packetSummary,
 }: {
   open: boolean;
@@ -25,28 +23,49 @@ export function RedirectScreen({
   href: string | null;
   fallbackHref?: string | null;
   destinationLabel: string;
+  actionLabel?: string;
+  isSearch?: boolean;
   packetSummary: { label: string; value: string }[];
 }) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    dialogRef.current?.focus();
+    return () => { document.body.style.overflow = overflow; previous?.focus(); };
+  }, [open]);
   if (!open) return null;
   return (
     <div
+      ref={dialogRef}
       role="dialog"
+      aria-modal="true"
+      tabIndex={-1}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') { event.preventDefault(); onClose(); }
+        if (event.key !== 'Tab') return;
+        const items = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled])'));
+        const first = items[0]; const last = items[items.length - 1];
+        if (!first) { event.preventDefault(); return; }
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === event.currentTarget)) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && (document.activeElement === last || document.activeElement === event.currentTarget)) { event.preventDefault(); first.focus(); }
+      }}
       aria-label="Leaving Lightning McGreen Living"
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/55 p-4 sm:items-center"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <CandyCard className="w-full max-w-xl">
+      <CandyCard className="max-h-[calc(100dvh-2rem)] w-full max-w-xl overflow-y-auto overscroll-contain [overflow-wrap:anywhere]">
         <Gumdrop tone="warn">Leaving Lightning McGreen Living</Gumdrop>
         <h2 className="mt-2 font-display text-xl font-extrabold text-chocolate-900">
           Heading to: {destinationLabel}
         </h2>
         <p className="mt-2 text-sm text-chocolate-800">
-          You are leaving Lightning McGreen Living and opening the official
-          application, finance, or reservation page. We prepared your
-          information below so you can copy, paste, and complete the
-          official process faster. Final approval, pricing, and availability
-          are controlled by the official property, dealer, lender, or rental
-          provider.
+          {isSearch ? 'This opens a search page, not a verified application. Review the results and confirm the property or provider.' : 'This opens the linked external page. Confirm the property or provider and the purpose of that page before continuing.'}
+          {' '}Your packet stays here unless you choose to copy and share it. Confirm the destination
+          before entering personal information, paying fees or uploading documents. The provider
+          controls its current prices, availability and application decisions.
         </p>
 
         {packetSummary.length > 0 && (
@@ -54,7 +73,7 @@ export function RedirectScreen({
             <p className="font-bold uppercase tracking-wider text-chocolate-700">Your packet (copy/paste-ready)</p>
             <dl className="mt-1 grid grid-cols-1 gap-1 sm:grid-cols-2">
               {packetSummary.map((row) => (
-                <div key={row.label} className="flex justify-between gap-2">
+                <div key={row.label} className="flex min-w-0 flex-wrap justify-between gap-2">
                   <dt className="text-chocolate-700">{row.label}</dt>
                   <dd className="font-semibold text-chocolate-900">{row.value || '—'}</dd>
                 </div>
@@ -78,9 +97,9 @@ export function RedirectScreen({
                 rel="noopener noreferrer"
                 onClick={onClose}
                 className="bolt-btn text-sm"
-                title="DuckDuckGo !ducky redirects to the top result — the actual property listing page"
+                title={isSearch ? 'Open search results; no automatic property redirect' : 'Open the linked external page'}
               >
-                Open the actual listing page →
+                {actionLabel} →
               </a>
             ) : (
               <span className="text-xs text-peppermint-600">No verified link — call the property/dealer/provider.</span>
@@ -92,16 +111,16 @@ export function RedirectScreen({
                 rel="noopener noreferrer"
                 onClick={onClose}
                 className="cinnamon-btn text-sm"
-                title="If the direct redirect doesn't land on the property, browse the city search"
+                title="Open the separately supplied search or provider fallback"
               >
-                Browse all listings instead
+                Open fallback source
               </a>
             )}
           </div>
         </div>
 
         <p className="mt-3 text-[11px] text-chocolate-600">
-          We never auto-submit anything. You always click the official page yourself.
+          We never auto-submit your information. You choose whether to open an external page.
         </p>
       </CandyCard>
     </div>

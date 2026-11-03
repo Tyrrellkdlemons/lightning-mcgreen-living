@@ -58,7 +58,7 @@ export interface RentalListing {
   address_line: string;
   city: string;
   county: string;
-  state: 'CA';
+  state: 'CA' | 'AZ';
   zip: string;
   lat: number;
   lng: number;
@@ -116,7 +116,7 @@ export interface Dealer {
   address_line: string;
   city: string;
   county: string;
-  state: 'CA';
+  state: 'CA' | 'AZ';
   zip: string;
   lat: number;
   lng: number;
@@ -177,7 +177,7 @@ export interface WorkVehicleRental {
   branch_address: string;
   city: string;
   county: string;
-  state: 'CA';
+  state: 'CA' | 'AZ';
   zip: string;
   lat: number;
   lng: number;

@@ -11,6 +11,7 @@ import { scoreVehicle } from '@/lib/scoring';
 const PER_PAGE = 9;
 
 interface FilterState {
+  state?: 'CA' | 'AZ';
   body?: string;
   max_price?: number;
   max_monthly?: number;
@@ -18,20 +19,21 @@ interface FilterState {
   condition?: 'all' | 'new' | 'used' | 'cpo';
 }
 
-export function CarSearch() {
+export function CarSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   const [profile, setProfile] = useBuyerProfile();
-  const [filters, setFilters] = useState<FilterState>({ condition: 'all' });
+  const [filters, setFilters] = useState<FilterState>({ condition: 'all', state: initialState });
   const [sort, setSort] = useState<SortKey>('best-fit');
   const [page, setPage] = useState(1);
 
   const dealers = useMemo(() => Object.fromEntries(REAL_DEALERS.map((d) => [d.id, d])), []);
   const filtered = useMemo(() => REAL_VEHICLES.filter((v) => {
+    if (filters.state && dealers[v.dealer_id]?.state !== filters.state) return false;
     if (filters.body && v.body_type !== filters.body) return false;
     if (filters.max_price && v.price > filters.max_price) return false;
     if (filters.fuel && v.fuel_type !== filters.fuel) return false;
     if (filters.condition && filters.condition !== 'all' && v.condition !== filters.condition) return false;
     return true;
-  }), [filters]);
+  }), [filters, dealers]);
   const sorted = useMemo(() => {
     const arr = [...filtered];
     if (sort === 'price-asc') return arr.sort((a, b) => a.price - b.price);
@@ -49,6 +51,11 @@ export function CarSearch() {
       <BuyerProfilePanel profile={profile} onChange={setProfile} />
 
       <div className="cookie-card flex flex-wrap items-end gap-3 p-4">
+        <Field label="State">
+          <select className="rounded-md border border-gingerbread-300 bg-white px-2 py-2 text-sm" value={filters.state ?? ''} onChange={(e) => setFilters({ ...filters, state: (e.target.value || undefined) as 'CA' | 'AZ' | undefined })}>
+            <option value="">California + Arizona</option><option value="CA">California</option><option value="AZ">Arizona</option>
+          </select>
+        </Field>
         <Field label="Body type">
           <select className="rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
                   value={filters.body ?? ''} onChange={(e) => setFilters({ ...filters, body: e.target.value || undefined })}>
@@ -85,7 +92,7 @@ export function CarSearch() {
           <li key={v.id}><CarCard vehicle={v} dealer={dealers[v.dealer_id]} profile={profile} /></li>
         ))}
       </ul>
-      {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700">No vehicles match these filters.</div>}
+      {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700"><p>No listed vehicles match these filters. Inventory coverage varies by area; verify availability directly with a dealer.</p><button type="button" className="cinnamon-btn mt-3" onClick={() => setFilters({ condition: 'all' })}>Clear filters</button></div>}
 
       <Pagination page={page} pageCount={pageCount} onChange={setPage} />
     </div>

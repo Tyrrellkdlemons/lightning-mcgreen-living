@@ -25,7 +25,7 @@ export default function DealerDetail({ params }: Props) {
         <h1 className="mt-1 font-display text-3xl font-extrabold text-chocolate-900">{dealer.dealer_name}</h1>
         {dealer.legal_name && <p className="text-xs text-chocolate-600">Legal: {dealer.legal_name}</p>}
         <p className="mt-1 text-sm text-chocolate-700">
-          {dealer.address_line} · {dealer.city}, CA {dealer.zip}
+          {dealer.address_line} · {dealer.city}, {dealer.state} {dealer.zip}
         </p>
         <p className="mt-1 text-sm">
           Phone: <a href={`tel:${dealer.phone}`} className="underline decoration-lightning-500 underline-offset-2">{dealer.phone}</a>

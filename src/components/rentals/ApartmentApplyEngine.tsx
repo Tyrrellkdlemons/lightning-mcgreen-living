@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { normalizePropertySource, workbookView } from '@/lib/places/property-view';
 import {
   Building2,
   ClipboardCheck,
@@ -25,7 +26,6 @@ import {
   WORKBOOK_CITY_OPTIONS,
   WORKBOOK_RANKED_LISTINGS,
   workbookMapUrl,
-  workbookPrimaryUrl,
   type WorkbookRankedListing,
 } from '@/lib/data/workbook-ranked-listings';
 import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
@@ -100,8 +100,8 @@ export function ApartmentApplyEngine() {
       `Property: ${selected.property_name}`,
       `Unit: ${selected.unit_number ?? ''}`,
       `Floor plan: ${selected.floor_plan_name ?? ''}`,
-      `Address: ${selected.address_line}, ${selected.city}, CA ${selected.zip}`,
-      `Available: ${selected.available_date ?? ''}`,
+      `Address: ${selected.address_line}, ${selected.city}, ${selected.state} ${selected.zip}`,
+      `Recorded availability (confirm): ${selected.available_date ?? ''}`,
       `Rent: ${usd(selected.min_rent)} - ${usd(selected.max_rent)}`,
       `Owner/operator: ${selected.owner_operator ?? ''}`,
       `Manager: ${selected.manager}`,
@@ -127,20 +127,20 @@ export function ApartmentApplyEngine() {
   }
 
   return (
-    <div className="mt-6 grid gap-5 xl:grid-cols-[370px_1fr]">
-      <aside className="space-y-4">
+    <div className="mt-6 grid grid-cols-1 gap-5 [overflow-wrap:anywhere] xl:grid-cols-[370px_minmax(0,1fr)]">
+      <aside className="min-w-0 space-y-4">
         <CandyCard>
           <div className="flex items-center gap-2">
             <Route className="h-5 w-5 text-lightning-700" aria-hidden />
             <div>
-              <Gumdrop tone="ok">Exact-unit queue</Gumdrop>
+              <Gumdrop tone="info">Recorded unit links</Gumdrop>
               <h2 className="mt-1 font-display text-xl font-extrabold text-chocolate-900">
-                Apply-ready listings
+                Application research
               </h2>
             </div>
           </div>
           <p className="mt-2 text-xs text-chocolate-700">
-            Official unit links only. These prepare and launch the property portal; they do not auto-submit.
+            These recorded California unit links may be stale. Confirm current units, rent and requirements on the provider site before using a link.
           </p>
           <ul className="mt-4 space-y-2">
             {APPLY_READY.map((r) => (
@@ -190,14 +190,14 @@ export function ApartmentApplyEngine() {
         <ProfilePanel profile={profile} onChange={setProfile} />
       </aside>
 
-      <div className="space-y-5">
+      <div className="min-w-0 space-y-5">
         <CandyCard className="overflow-hidden !p-0">
           <PhotoGallery photos={selected.photos} height={280} rounded={false} interval={6500} />
           <div className="p-4 sm:p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Gumdrop tone="ok">Official source</Gumdrop>
+                  <Gumdrop tone="info">Recorded official source</Gumdrop>
                   <FitBadge fit={fit} />
                   <Gumdrop tone={STRICTNESS_TONE[stack.strictness]}>
                     {STRICTNESS_LABEL[stack.strictness]}
@@ -207,7 +207,7 @@ export function ApartmentApplyEngine() {
                   {selected.property_name}
                 </h1>
                 <p className="mt-1 text-sm text-chocolate-700">
-                  {selected.address_line} - {selected.city}, CA {selected.zip}
+                  {selected.address_line} - {selected.city}, {selected.state} {selected.zip}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -225,10 +225,10 @@ export function ApartmentApplyEngine() {
             </div>
 
             <div className="mt-4 grid gap-3 md:grid-cols-4">
-              <MiniStat label="Rent" value={`${usd(selected.min_rent)} - ${usd(selected.max_rent)}`} />
+              <MiniStat label="Recorded rent" value={`${usd(selected.min_rent)} - ${usd(selected.max_rent)}`} />
               <MiniStat label="Beds / baths" value={`${selected.beds_min} bd / ${selected.baths_min} ba`} />
               <MiniStat label="Sq ft" value={selected.sqft_min ? selected.sqft_min.toLocaleString() : 'Verify'} />
-              <MiniStat label="Available" value={selected.available_date ? formatDate(selected.available_date) : 'Verify'} />
+              <MiniStat label="Recorded availability" value={selected.available_date ? formatDate(selected.available_date) : 'Verify'} />
             </div>
 
             <p className="mt-3 rounded-md bg-frosting-100 p-2 text-xs text-chocolate-700">
@@ -349,10 +349,12 @@ export function ApartmentApplyEngine() {
                 setWorkbookQuery(e.target.value);
                 setWorkbookLimit(15);
               }}
+              aria-label="Search workbook properties"
               placeholder="Search property, city, county, vendor, platform"
               className="w-full rounded-md border border-gingerbread-300 bg-white px-3 py-2 text-sm"
             />
             <select
+              aria-label="Workbook city"
               value={workbookCity}
               onChange={(e) => {
                 setWorkbookCity(e.target.value);
@@ -444,9 +446,9 @@ function MiniStat({ label, value }: { label: string; value: string }) {
 }
 
 function WorkbookRow({ item }: { item: WorkbookRankedListing }) {
-  const href = workbookPrimaryUrl(item);
   const mapUrl = workbookMapUrl(item);
-  const sourceLinks = (item.source_links ?? []).filter((x) => urlLike(x.url));
+  const application = normalizePropertySource('Recorded application source', item.direct_links?.direct_platform_apply_url, 'application');
+  const sourceLinks = [...(application ? [application] : []), ...(workbookView(item).sources ?? [])].filter((source, index, all) => all.findIndex(entry => entry.url === source.url) === index);
   const strictByDifficulty = typeof item.screening_difficulty === 'number' && item.screening_difficulty >= 4;
   const precheckNote = item.screening_precheck_note ??
     (strictByDifficulty
@@ -482,30 +484,11 @@ function WorkbookRow({ item }: { item: WorkbookRankedListing }) {
           </p>
         )}
         <div className="mt-2 flex flex-wrap gap-2">
-          {href && (
-            <a href={href} target="_blank" rel="noopener noreferrer" className="bolt-btn text-xs">
-              Open direct listing
-            </a>
-          )}
-          {urlLike(item.direct_links?.direct_platform_apply_url) && (
-            <a href={item.direct_links!.direct_platform_apply_url!} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
-              Portal apply route
-            </a>
-          )}
+          <Link href={`/properties/${item.id}`} className="cinnamon-btn text-xs">Property view & next steps</Link>
           {mapUrl && (
             <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
               <MapPinned className="h-3.5 w-3.5" aria-hidden />
               Open map
-            </a>
-          )}
-          {urlLike(item.links.floor_plan_url) && (
-            <a href={item.links.floor_plan_url!} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
-              Floor plan source
-            </a>
-          )}
-          {urlLike(item.links.leasing_url) && (
-            <a href={item.links.leasing_url!} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
-              Leasing source
             </a>
           )}
         </div>
@@ -551,10 +534,6 @@ function workbookRent(item: WorkbookRankedListing) {
   return usd(item.rent_low ?? item.rent_high ?? undefined);
 }
 
-function urlLike(s?: string | null) {
-  return !!s && /^https?:\/\//i.test(s);
-}
-
 function formatDate(date: string) {
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(`${date}T12:00:00`));
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(`${date}T12:00:00`));
 }

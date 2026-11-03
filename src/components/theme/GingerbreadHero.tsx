@@ -35,10 +35,10 @@ export function GingerbreadHero({
             </h1>
             <p className="mt-2 max-w-xl text-sm text-chocolate-800 sm:text-base">{subtitle}</p>
             <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-gingerbread-700">
-              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">SoCal-only</span>
-              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Verified operators</span>
-              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Screening insight</span>
-              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Direct application links</span>
+              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">California + Arizona</span>
+              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Source-linked operators</span>
+              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Screening questions</span>
+              <span className="rounded-full border border-gingerbread-300 bg-frosting-50 px-2 py-1">Property source links</span>
             </div>
           </div>
           <div className="flex shrink-0 items-end gap-3">

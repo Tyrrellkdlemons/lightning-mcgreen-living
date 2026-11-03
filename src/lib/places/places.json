@@ -1,0 +1,434 @@
+[
+  {
+    "id": "ca-los-angeles",
+    "slug": "los-angeles",
+    "name": "Los Angeles",
+    "state": "CA",
+    "county": "Los Angeles",
+    "region": "Greater Los Angeles",
+    "description": "Start with the part of Los Angeles that fits your daily travel, then compare the full cost of each rental.",
+    "planningTips": [
+      "Map the trip to work or school at the time you actually travel.",
+      "Ask whether parking, utilities and recurring building fees are included."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-long-beach",
+    "slug": "long-beach",
+    "name": "Long Beach",
+    "state": "CA",
+    "county": "Los Angeles",
+    "region": "Greater Los Angeles",
+    "description": "Use Long Beach as its own search area, with a shortlist built around your commute and the services you use.",
+    "planningTips": [
+      "Check the parking arrangement for the exact unit.",
+      "Compare transit routes and transfer time before choosing a neighborhood."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-irvine",
+    "slug": "irvine",
+    "name": "Irvine",
+    "state": "CA",
+    "county": "Orange",
+    "region": "Orange County",
+    "description": "Explore Irvine rentals with a clear view of application steps, total move-in costs and the terms for the specific unit.",
+    "planningTips": [
+      "Request an itemized move-in estimate before applying.",
+      "Confirm which advertised features belong to the actual floor plan."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-san-diego",
+    "slug": "san-diego",
+    "name": "San Diego",
+    "state": "CA",
+    "county": "San Diego",
+    "region": "San Diego County",
+    "description": "Build a San Diego shortlist around daily travel and the total monthly cost, including transportation.",
+    "planningTips": [
+      "Compare the full commute rather than distance alone.",
+      "Ask for the current utility billing and parking charges."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-san-francisco",
+    "slug": "san-francisco",
+    "name": "San Francisco",
+    "state": "CA",
+    "county": "San Francisco",
+    "region": "Bay Area",
+    "description": "Compare San Francisco options by the details that change daily life: access, transit, space and your monthly budget.",
+    "planningTips": [
+      "Tour the actual unit or request a current walkthrough.",
+      "Check stairs, elevator access and laundry arrangements."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-oakland",
+    "slug": "oakland",
+    "name": "Oakland",
+    "state": "CA",
+    "county": "Alameda",
+    "region": "Bay Area",
+    "description": "Use Oakland city guides and regional housing resources to organize a search that fits your budget and travel needs.",
+    "planningTips": [
+      "Compare the trip from each address to the destinations you use.",
+      "Ask who handles maintenance and how service requests are submitted."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-san-jose",
+    "slug": "san-jose",
+    "name": "San Jose",
+    "state": "CA",
+    "county": "Santa Clara",
+    "region": "Bay Area",
+    "description": "Explore San Jose with a shortlist that connects housing costs to commute time and the services you need.",
+    "planningTips": [
+      "Confirm the parking and charging arrangements if you drive.",
+      "Add commuting and utility costs to the rent comparison."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-sacramento",
+    "slug": "sacramento",
+    "name": "Sacramento",
+    "state": "CA",
+    "county": "Sacramento",
+    "region": "Sacramento Valley",
+    "description": "Plan a Sacramento move with a practical budget, a travel check and a written list of application requirements.",
+    "planningTips": [
+      "Check cooling equipment and ask how utilities are billed.",
+      "Compare the move-in total, not just the monthly rent."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-fresno",
+    "slug": "fresno",
+    "name": "Fresno",
+    "state": "CA",
+    "county": "Fresno",
+    "region": "San Joaquin Valley",
+    "description": "Start a Fresno search with clear priorities for space, travel and the complete monthly cost.",
+    "planningTips": [
+      "Ask about cooling maintenance and utility responsibility.",
+      "Confirm deposits, recurring fees and the current application process."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-bakersfield",
+    "slug": "bakersfield",
+    "name": "Bakersfield",
+    "state": "CA",
+    "county": "Kern",
+    "region": "Southern San Joaquin Valley",
+    "description": "Compare Bakersfield rentals alongside your transportation needs and a realistic move-in budget.",
+    "planningTips": [
+      "Ask which utilities and services are your responsibility.",
+      "Check the commute from the property address before applying."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-santa-barbara",
+    "slug": "santa-barbara",
+    "name": "Santa Barbara",
+    "state": "CA",
+    "county": "Santa Barbara",
+    "region": "Central Coast",
+    "description": "Explore Santa Barbara options using exact unit details and a budget that includes parking and utilities.",
+    "planningTips": [
+      "Confirm whether an advertised rental is available for your intended lease term.",
+      "Ask about parking, laundry and storage before paying an application fee."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-palm-springs",
+    "slug": "palm-springs",
+    "name": "Palm Springs",
+    "state": "CA",
+    "county": "Riverside",
+    "region": "Coachella Valley",
+    "description": "Plan a Palm Springs search around the lease you need, daily travel and the complete cost of living.",
+    "planningTips": [
+      "Confirm that the lease term matches your housing plans.",
+      "Ask about cooling equipment and how electricity is billed."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-redding",
+    "slug": "redding",
+    "name": "Redding",
+    "state": "CA",
+    "county": "Shasta",
+    "region": "Northern California",
+    "description": "Explore Redding with a practical shortlist, checking travel times and services from each property.",
+    "planningTips": [
+      "Compare access to the everyday services you use.",
+      "Ask about heating, cooling and recurring utility charges."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-eureka",
+    "slug": "eureka",
+    "name": "Eureka",
+    "state": "CA",
+    "county": "Humboldt",
+    "region": "North Coast",
+    "description": "Use Eureka as a starting point for a North Coast search and verify each rental directly with its operator.",
+    "planningTips": [
+      "Check heating, ventilation and any moisture concerns during a tour.",
+      "Ask for written lease terms and a full move-in estimate."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "ca-riverside",
+    "slug": "riverside",
+    "name": "Riverside",
+    "state": "CA",
+    "county": "Riverside",
+    "region": "Inland Empire",
+    "description": "Organize a Riverside rental search around your commute, application requirements and total monthly budget.",
+    "planningTips": [
+      "Check the actual commute at your normal travel time.",
+      "Compare parking, utility and amenity fees across the shortlist."
+    ],
+    "sourceUrl": "https://211ca.org/find-your-local-211/",
+    "sourcePublisher": "211 California",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-phoenix",
+    "slug": "phoenix",
+    "name": "Phoenix",
+    "state": "AZ",
+    "county": "Maricopa",
+    "region": "Greater Phoenix",
+    "description": "Build a Phoenix shortlist around the area you need, daily travel and the full monthly cost.",
+    "planningTips": [
+      "Ask about cooling equipment and electricity billing.",
+      "Check covered parking and the travel time from the exact address."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-tucson",
+    "slug": "tucson",
+    "name": "Tucson",
+    "state": "AZ",
+    "county": "Pima",
+    "region": "Southern Arizona",
+    "description": "Explore Tucson rentals with a clear set of priorities for commute, space and the costs due before moving in.",
+    "planningTips": [
+      "Ask about cooling maintenance and utility responsibility.",
+      "Compare the application requirements before paying separate fees."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-scottsdale",
+    "slug": "scottsdale",
+    "name": "Scottsdale",
+    "state": "AZ",
+    "county": "Maricopa",
+    "region": "Greater Phoenix",
+    "description": "Compare Scottsdale options using the exact lease term, floor plan and recurring charges for each property.",
+    "planningTips": [
+      "Confirm whether the advertised rate requires a particular lease term.",
+      "Ask for a written list of parking, amenity and utility charges."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-tempe",
+    "slug": "tempe",
+    "name": "Tempe",
+    "state": "AZ",
+    "county": "Maricopa",
+    "region": "Greater Phoenix",
+    "description": "Plan a Tempe search around your daily destinations and the specific unit and lease terms you need.",
+    "planningTips": [
+      "Check noise, access and parking during a tour at a useful time of day.",
+      "Compare walking and transit routes with your normal schedule."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-mesa",
+    "slug": "mesa",
+    "name": "Mesa",
+    "state": "AZ",
+    "county": "Maricopa",
+    "region": "Greater Phoenix",
+    "description": "Explore Mesa with a shortlist that pairs housing needs with travel time and a complete monthly budget.",
+    "planningTips": [
+      "Check cooling equipment and the current utility billing arrangement.",
+      "Confirm the exact move-in date and all required deposits."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-chandler",
+    "slug": "chandler",
+    "name": "Chandler",
+    "state": "AZ",
+    "county": "Maricopa",
+    "region": "Greater Phoenix",
+    "description": "Use Chandler as a focused search area while comparing fees, space and your daily commute.",
+    "planningTips": [
+      "Map the commute from each property rather than a city center.",
+      "Ask about maintenance response and the parking arrangement."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-glendale",
+    "slug": "glendale",
+    "name": "Glendale",
+    "state": "AZ",
+    "county": "Maricopa",
+    "region": "Greater Phoenix",
+    "description": "Organize Glendale rentals around your location needs, lease timing and a realistic move-in total.",
+    "planningTips": [
+      "Confirm recurring fees before comparing advertised rents.",
+      "Ask for current photos or a tour of the actual unit."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-flagstaff",
+    "slug": "flagstaff",
+    "name": "Flagstaff",
+    "state": "AZ",
+    "county": "Coconino",
+    "region": "Northern Arizona",
+    "description": "Build a Flagstaff shortlist with attention to the lease you need and the practical details of year-round living.",
+    "planningTips": [
+      "Ask about heating, insulation and utility costs.",
+      "Confirm parking and access arrangements for different seasons."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-sedona",
+    "slug": "sedona",
+    "name": "Sedona",
+    "state": "AZ",
+    "county": "Yavapai / Coconino",
+    "region": "Verde Valley",
+    "description": "Start a Sedona search by confirming long-term lease options and the county serving each property address.",
+    "planningTips": [
+      "Confirm that the advertised unit is offered for your intended lease term.",
+      "Use the exact address when looking up local housing assistance."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-prescott",
+    "slug": "prescott",
+    "name": "Prescott",
+    "state": "AZ",
+    "county": "Yavapai",
+    "region": "Central Arizona",
+    "description": "Explore Prescott options with a checklist for travel, access, utilities and the complete cost of the lease.",
+    "planningTips": [
+      "Check steps and access during an in-person or video tour.",
+      "Ask which utility and maintenance charges are included."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-yuma",
+    "slug": "yuma",
+    "name": "Yuma",
+    "state": "AZ",
+    "county": "Yuma",
+    "region": "Southwestern Arizona",
+    "description": "Plan a Yuma search around your everyday destinations and the costs you will pay throughout the lease.",
+    "planningTips": [
+      "Ask about cooling maintenance and typical utility billing arrangements.",
+      "Compare the lease dates and move-in total before applying."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  },
+  {
+    "id": "az-lake-havasu-city",
+    "slug": "lake-havasu-city",
+    "name": "Lake Havasu City",
+    "state": "AZ",
+    "county": "Mohave",
+    "region": "Western Arizona",
+    "description": "Explore Lake Havasu City with a shortlist based on lease length, travel needs and the full monthly budget.",
+    "planningTips": [
+      "Confirm that the rental is offered for your intended length of stay.",
+      "Check cooling, parking and utility charges with the operator."
+    ],
+    "sourceUrl": "https://211arizona.org/help/housing-shelter/emergency-shelters/",
+    "sourcePublisher": "211 Arizona",
+    "contentKind": "planning-guide"
+  }
+]

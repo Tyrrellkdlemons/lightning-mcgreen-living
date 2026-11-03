@@ -38,7 +38,7 @@ export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental
           <Gumdrop tone="mute">{TYPE_LABEL[rental.vehicle_type]}</Gumdrop>
           <h3 className="mt-1 truncate font-display text-lg font-extrabold text-chocolate-900">{rental.provider_name}</h3>
           <p className="text-xs text-chocolate-700">
-            {rental.branch_address} · {rental.city}, CA {rental.zip}
+            {rental.branch_address} · {rental.city}, {rental.state} {rental.zip}
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <FitBadge fit={fit} />

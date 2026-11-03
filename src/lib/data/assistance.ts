@@ -1,18 +1,14 @@
-import type { AssistanceResource } from '@/types/assistance';
+import type { AssistanceResource, AssistanceState } from '@/types/assistance';
 
 /**
- * Verified county + state + federal assistance resources.
- *
- * Sources verified during the 2026-04-28 research pass. Always link to the
- * official URL; we never rehost assistance forms or PDFs.
- *
- * Reopening / re-verification cadence:
- *   - LA ERRP: monthly during reopen window
- *   - OCHA payment standards: every January
- *   - State guides: annually
+ * Source-linked help directory. Legacy dates are preserved until their actual
+ * source is reviewed again; a source review does not establish available funding.
+ * The November 3 review covers LA Rent Relief, Stay Housed LA, CA DRE/CRD and
+ * the five Arizona entries. Source URLs below are the inspected primary pages.
  */
 
 const VERIFIED_AT = '2026-04-28T00:00:00-07:00';
+const REVIEWED_AT = '2026-11-03T00:00:00-08:00';
 
 export const ASSISTANCE_RESOURCES: AssistanceResource[] = [
   // -------------------- LOS ANGELES COUNTY --------------------
@@ -21,21 +17,14 @@ export const ASSISTANCE_RESOURCES: AssistanceResource[] = [
     jurisdiction: 'Los Angeles County',
     topic: 'rent_relief',
     agency: 'LA County Department of Consumer & Business Affairs',
-    program_name: 'Emergency Rent Relief Program (ERRP)',
+    program_name: 'LA County Rent Relief - application status',
     eligibility_summary:
-      'LA County tenants with past-due rent due to a documented financial hardship; tenants can self-initiate.',
-    application_url: 'https://lacountyrentrelief.com',
-    application_phone: '(800) 593-8222',
-    printable_docs: [
-      { label: 'Tenant application guide (PDF)', url: 'https://lacountyrentrelief.com/wp-content/uploads/Tenant-Application-Guide.pdf' },
-      { label: 'Landlord application guide (PDF)', url: 'https://lacountyrentrelief.com/wp-content/uploads/Landlord-Application-Guide.pdf' },
-      { label: 'Program overview (PDF)', url: 'https://lacountyrentrelief.com/wp-content/uploads/Program-Overview.pdf' },
-    ],
-    languages: ['en', 'es'],
-    reopen_date: '2026-02-09',
-    notes: 'Reopened 2026-02-09 with tenant-initiated applications.',
-    last_verified_at: VERIFIED_AT,
-    source_url: 'https://lacountyrentrelief.com',
+      'The provider reports that the application window is closed. Existing applicants can use its status portal; check other referral services for current assistance.',
+    application_url: 'https://www.lacountyrentrelief.com/',
+    application_status: 'closed',
+    notes: 'Applications were reported closed on November 3, 2026. Follow the provider page for any later changes.',
+    last_verified_at: REVIEWED_AT,
+    source_url: 'https://www.lacountyrentrelief.com/',
   },
   {
     id: 'la-housing-search',
@@ -54,13 +43,14 @@ export const ASSISTANCE_RESOURCES: AssistanceResource[] = [
     jurisdiction: 'Los Angeles County',
     topic: 'eviction_help',
     agency: 'Stay Housed L.A.',
-    program_name: 'Free legal help + eviction prevention',
-    eligibility_summary: 'LA County renters at risk of eviction; legal services + counseling.',
-    application_url: 'https://www.stayhousedla.org',
-    application_phone: '(213) child-of-help — see site',
+    program_name: 'Tenant education and eviction legal help',
+    eligibility_summary: 'Tenant workshops, legal clinics and legal services for eligible tenants facing eviction in Los Angeles County. The provider determines eligibility.',
+    application_url: 'https://www.stayhousedla.org/',
+    application_phone: '1-888-694-0040',
+    notes: 'The published hotline can help people use the Stay Housed LA website.',
     languages: ['en', 'es'],
-    last_verified_at: VERIFIED_AT,
-    source_url: 'https://www.stayhousedla.org',
+    last_verified_at: REVIEWED_AT,
+    source_url: 'https://www.stayhousedla.org/',
   },
 
   // -------------------- ORANGE COUNTY --------------------
@@ -69,9 +59,9 @@ export const ASSISTANCE_RESOURCES: AssistanceResource[] = [
     jurisdiction: 'Orange County',
     topic: 'voucher',
     agency: 'Orange County Housing Authority',
-    program_name: 'Housing Choice Voucher (Section 8) + 2026 forms',
+    program_name: 'Housing Choice Voucher (Section 8) documents and forms',
     eligibility_summary:
-      'OC Housing Authority documents-and-forms hub; current 2026 payment standards and utility-allowance schedule.',
+      'OC Housing Authority documents-and-forms hub. Confirm the applicable payment standards, utility allowance and application status with the authority.',
     application_url: 'https://www.ochousing.org/documents/',
     printable_docs: [
       { label: 'OCHA documents & forms hub', url: 'https://www.ochousing.org/documents/' },
@@ -204,32 +194,62 @@ export const ASSISTANCE_RESOURCES: AssistanceResource[] = [
     jurisdiction: 'California',
     topic: 'tenant_rights',
     agency: 'California Department of Real Estate',
-    program_name: "Residential Tenants' & Landlords' Rights and Responsibilities",
-    eligibility_summary: 'Statewide tenant/landlord rights guide; print-friendly.',
-    application_url: 'https://www.dre.ca.gov/files/pdf/recent/2024/calresidentialtenantsright.pdf',
-    printable_docs: [
-      { label: 'Tenant guide (PDF)', url: 'https://www.dre.ca.gov/files/pdf/recent/2024/calresidentialtenantsright.pdf' },
-    ],
+    program_name: 'California Tenants guide',
+    eligibility_summary: 'State landlord-tenant guide with English and Spanish editions. Use the current edition and get advice about your own situation from a qualified legal service.',
+    application_url: 'https://www.dre.ca.gov/publications/ResourceGuidebook/Index.html',
     languages: ['en', 'es'],
-    last_verified_at: VERIFIED_AT,
-    source_url: 'https://www.dre.ca.gov/',
+    last_verified_at: REVIEWED_AT,
+    source_url: 'https://www.dre.ca.gov/publications/ResourceGuidebook/Index.html',
   },
   {
     id: 'ca-crd-source-of-income',
     jurisdiction: 'California',
     topic: 'tenant_rights',
     agency: 'California Civil Rights Department',
-    program_name: 'Source-of-Income Discrimination FAQ',
+    program_name: 'California housing discrimination guidance',
     eligibility_summary:
-      'California prohibits "no Section 8 / no voucher" rejection patterns; FAQ explains how source-of-income protection works.',
-    application_url:
-      'https://calcivilrights.ca.gov/wp-content/uploads/sites/32/2020/02/SourceofIncomeFAQ_ENG.pdf',
-    printable_docs: [
-      { label: 'CRD source-of-income FAQ (PDF)', url: 'https://calcivilrights.ca.gov/wp-content/uploads/sites/32/2020/02/SourceofIncomeFAQ_ENG.pdf' },
-    ],
-    languages: ['en', 'es'],
-    last_verified_at: VERIFIED_AT,
-    source_url: 'https://calcivilrights.ca.gov/',
+      'CRD explains California housing protections, including source-of-income protections, and how to seek help or submit a complaint. State and local rules differ.',
+    application_url: 'https://calcivilrights.ca.gov/housing/',
+    last_verified_at: REVIEWED_AT,
+    source_url: 'https://calcivilrights.ca.gov/housing/',
+  },
+
+  // -------------------- ARIZONA --------------------
+  {
+    id: 'az-211', jurisdiction: 'Arizona', topic: 'general_housing',
+    agency: '211 Arizona / Solari', program_name: 'Arizona housing and community-service referrals',
+    eligibility_summary: 'Find local shelter, housing, utility and other community resources through the statewide referral service. Each provider determines eligibility and availability.',
+    application_url: 'https://211arizona.org/', application_phone: '211', languages: ['en', 'es'],
+    last_verified_at: REVIEWED_AT, source_url: 'https://211arizona.org/',
+  },
+  {
+    id: 'az-community-action', jurisdiction: 'Arizona', topic: 'general_housing',
+    agency: 'Arizona Department of Economic Security', program_name: 'Find your Community Action Agency',
+    eligibility_summary: 'County and local contacts for housing instability, rental deposits, emergency shelter and utility help. Ask the agency about its service area, documents and current resources.',
+    application_url: 'https://des.az.gov/CommunityActionAgencies',
+    last_verified_at: REVIEWED_AT, source_url: 'https://des.az.gov/CommunityActionAgencies',
+  },
+  {
+    id: 'az-short-term-crisis', jurisdiction: 'Arizona', topic: 'rent_relief',
+    agency: 'Arizona Department of Economic Security', program_name: 'Short-Term Crisis Services',
+    eligibility_summary: 'Emergency support for qualifying Arizona families with a dependent child. Contact your local Community Action Agency for the current criteria; assistance is not guaranteed.',
+    application_url: 'https://des.az.gov/services/basic-needs/shelter-housing/short-term-crisis-services',
+    last_verified_at: REVIEWED_AT, source_url: 'https://des.az.gov/services/basic-needs/shelter-housing/short-term-crisis-services',
+  },
+  {
+    id: 'az-fair-housing', jurisdiction: 'Arizona', topic: 'tenant_rights',
+    agency: 'Arizona Attorney General', program_name: 'Arizona fair-housing guidance and complaints',
+    eligibility_summary: 'Learn about Arizona housing-discrimination protections and the Civil Rights Division complaint process. Check the rules and deadlines that apply to your situation.',
+    application_url: 'https://www.azag.gov/civil-rights/fair-housing',
+    last_verified_at: REVIEWED_AT, source_url: 'https://www.azag.gov/civil-rights/fair-housing',
+  },
+  {
+    id: 'az-arap-status', jurisdiction: 'Arizona', topic: 'rent_relief',
+    agency: 'Arizona Department of Economic Security', program_name: 'Arizona Rental Assistance - closed program information',
+    eligibility_summary: 'DES reports that ARAP has ended and is no longer accepting applications. The page supports prior applicants and points to other community resources.',
+    application_url: 'https://des.az.gov/ARAP', application_status: 'closed',
+    notes: 'Closed status recorded November 3, 2026. Do not use this page as an open application opportunity.',
+    last_verified_at: REVIEWED_AT, source_url: 'https://des.az.gov/ARAP',
   },
 
   // -------------------- FEDERAL / AUTO --------------------
@@ -304,9 +324,24 @@ export function resourcesForJurisdiction(j: AssistanceResource['jurisdiction']) 
   return ASSISTANCE_RESOURCES.filter((r) => r.jurisdiction === j);
 }
 
-export function resourcesForCountyAndState(county: 'Los Angeles' | 'Orange' | 'Riverside' | 'San Bernardino' | 'Ventura') {
-  const byCounty = ASSISTANCE_RESOURCES.filter((r) => r.jurisdiction === `${county} County`);
-  const statewide = ASSISTANCE_RESOURCES.filter((r) => r.jurisdiction === 'California');
+/** State is explicit for new callers. The CA default preserves legacy callers. */
+export function resourcesForCountyAndState(county: string, state: AssistanceState = 'CA') {
+  const countyName = county.trim().replace(/\s+County$/i, '').toLowerCase();
+  // Existing county-specific entries belong to California. Never infer state
+  // from a county name: counties with the same name can exist in both states.
+  const byCounty = state === 'CA' ? ASSISTANCE_RESOURCES.filter(
+    (r) => r.jurisdiction.toLowerCase() === `${countyName} county`,
+  ) : [];
+  const jurisdiction = state === 'AZ' ? 'Arizona' : 'California';
+  const statewide = ASSISTANCE_RESOURCES.filter((r) => r.jurisdiction === jurisdiction);
   const federal = ASSISTANCE_RESOURCES.filter((r) => r.jurisdiction === 'Federal');
   return { byCounty, statewide, federal };
+}
+
+/** Reject incomplete or placeholder phones instead of producing a bad tel link. */
+export function assistancePhoneHref(phone?: string): string | null {
+  if (!phone || !/^[+\d\s().-]+$/.test(phone)) return null;
+  const number = phone.replace(/[^\d+]/g, '');
+  if (number === '211' || /^\d{10}$/.test(number) || /^1\d{10}$/.test(number) || /^\+[1-9]\d{7,14}$/.test(number)) return `tel:${number}`;
+  return null;
 }

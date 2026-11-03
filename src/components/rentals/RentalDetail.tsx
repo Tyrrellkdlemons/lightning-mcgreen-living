@@ -17,8 +17,8 @@ import { ScreeningPanel } from './ScreeningPanel';
 import { ApartmentPrepPacket } from '@/components/common/PrepPackets';
 import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
 import { AdverseActionPanel } from '@/components/assistance/AdverseActionPanel';
-import { resourcesForCountyAndState } from '@/lib/data/assistance';
-import { AssistanceCard } from '@/components/assistance/AssistanceCard';
+import { CountyHelp } from '@/components/assistance/CountyHelp';
+import { PropertyView } from '@/components/places/PropertyView';
 import { MapPanel } from '@/components/maps/MapPanel';
 
 const APP_PLATFORM_NOTES: Record<string, string> = {
@@ -65,7 +65,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-3">
       <div className="lg:col-span-2 space-y-6">
-        {rental.photos && (
+        {rental.photos && rental.meta.source !== 'unverified' && (
           <CandyCard className="!p-0 overflow-hidden">
             <PhotoGallery photos={rental.photos} height={340} rounded={false} />
           </CandyCard>
@@ -78,12 +78,12 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
                 {rental.property_name}
               </h1>
               <p className="mt-1 text-sm text-chocolate-700">
-                {rental.address_line} · {rental.city}, CA {rental.zip}
+                {rental.address_line} · {rental.city}, {rental.state} {rental.zip}
               </p>
               <div className="mt-2 flex flex-wrap items-center gap-2">
                 <FitBadge fit={fit} />
                 {rental.unit_number && <Gumdrop tone="ok">Unit #{rental.unit_number}</Gumdrop>}
-                {rental.available_date && <Gumdrop tone="ok">Available {formatDate(rental.available_date)}</Gumdrop>}
+                {rental.available_date && <Gumdrop tone="mute">Recorded availability: {formatDate(rental.available_date)}</Gumdrop>}
                 <Gumdrop tone="info">Managed by {rental.manager}</Gumdrop>
                 {rental.owner_operator && <Gumdrop tone="info">Owner/operator: {rental.owner_operator}</Gumdrop>}
                 {rental.application_platform !== 'Unknown' && <Gumdrop tone="mute">via {rental.application_platform}</Gumdrop>}
@@ -93,6 +93,10 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
           </div>
         </CandyCard>
 
+        <PropertyView name={rental.property_name} address={rental.address_line} city={rental.city} state={rental.state} lat={rental.lat} lng={rental.lng} locationPrecision={rental.meta.source === 'unverified' ? 'area' : 'recorded'} sourceDate={rental.meta.last_verified_at} sources={[
+          { label: rental.meta.source === 'unverified' ? 'Operator source / search' : 'Property source & gallery', url: rental.official_property_url || rental.meta.source_url, kind: 'property' as const },
+          { label: 'Recorded listing source', url: rental.meta.source_url, kind: 'source' as const },
+        ].filter((source, index, all) => all.findIndex(item => item.url === source.url) === index)} />
         <CandyCard>
           <h2 className="font-display text-xl font-extrabold text-chocolate-900">Move-in cost calculator</h2>
           <p className="text-xs text-chocolate-700">Adjust rent to model what your specific unit would cost up-front.</p>
@@ -154,7 +158,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
               return link.url ? (
                 <>
                   <a href={link.url} target="_blank" rel="noopener noreferrer" className="bolt-btn" title={link.reason}>
-                    Open the actual listing page →
+                    {link.label} →
                   </a>
                   {link.fallback_url && (
                     <a href={link.fallback_url} target="_blank" rel="noopener noreferrer" className="cinnamon-btn"
@@ -182,7 +186,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
             </button>
           </div>
           <p className="mt-3 text-xs text-chocolate-600">
-            We never auto-submit applications. The buttons above just open the official site.
+            We never auto-submit applications. Follow each link’s label; a search result is not a verified application destination.
           </p>
         </CandyCard>
 
@@ -191,6 +195,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
           <div className="mt-2"><FitExplain fit={fit} /></div>
         </CandyCard>
 
+        {rental.meta.source !== 'unverified' && (
         <CandyCard>
           <h2 className="font-display text-xl font-extrabold text-chocolate-900">Where it is</h2>
           <p className="mt-1 text-xs text-chocolate-700">
@@ -224,6 +229,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
             </a>
           </div>
         </CandyCard>
+        )}
 
         <ApartmentPrepPacket
           rental={rental}
@@ -237,11 +243,11 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
           publiclyDisclosed={rental.screening_vendor}
         />
 
-        <SourceOfIncomeNotice />
+        {rental.state === 'CA' && <SourceOfIncomeNotice />}
 
         <AdverseActionPanel />
 
-        <CountyHelp county={rental.county} />
+        <CountyHelp county={rental.county} state={rental.state} />
 
         <ProfilePanel profile={profile} onChange={setProfile} />
       </div>
@@ -315,29 +321,11 @@ function formatDate(date: string) {
   return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(`${date}T12:00:00`));
 }
 
-function CountyHelp({ county }: { county: string }) {
-  const SUPPORTED = ['Los Angeles', 'Orange', 'Riverside', 'San Bernardino', 'Ventura'] as const;
-  if (!SUPPORTED.includes(county as any)) return null;
-  const { byCounty, statewide } = resourcesForCountyAndState(county as any);
-  const top = [...byCounty, ...statewide].slice(0, 3);
-  if (top.length === 0) return null;
-  return (
-    <CandyCard>
-      <h2 className="font-display text-xl font-extrabold text-chocolate-900">If you need more time to stay</h2>
-      <p className="mt-1 text-sm text-chocolate-700">Verified {county} County and statewide programs. Always confirm eligibility on the agency&apos;s site.</p>
-      <ul className="mt-3 grid gap-3 md:grid-cols-3">
-        {top.map((r) => <li key={r.id}><AssistanceCard resource={r} /></li>)}
-      </ul>
-      <p className="mt-3 text-xs"><a href="/assistance" className="underline decoration-lightning-500 underline-offset-2">See all assistance resources →</a></p>
-    </CandyCard>
-  );
-}
-
 function copyApplicationSheet(rental: RentalListing, profile: any) {
   const sheet = [
     `LIGHTNING MCGREEN LIVING — APPLICATION COPY SHEET`,
     `Property: ${rental.property_name}`,
-    `Address: ${rental.address_line}, ${rental.city}, CA ${rental.zip}`,
+    `Address: ${rental.address_line}, ${rental.city}, ${rental.state} ${rental.zip}`,
     `Unit: ${rental.unit_number ?? ''}`,
     `Floor plan: ${rental.floor_plan_name ?? ''}`,
     `Available date: ${rental.available_date ?? ''}`,

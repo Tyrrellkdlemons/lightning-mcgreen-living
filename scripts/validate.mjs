@@ -47,7 +47,7 @@ function walk(dir, files = []) {
 
 const SOURCE_FILES = walk(join(REPO, 'src'))
   .concat(existsSync(join(REPO, 'public')) ? walk(join(REPO, 'public')) : [])
-  .filter((p) => /\.(tsx?|jsx?|css|html)$/.test(p));
+  .filter((p) => /\.(tsx?|jsx?|mjs|cjs|css|html|json|svg|webmanifest|txt|md|csv|xml|yml|yaml)$/.test(p));
 
 // Trademarked / brand-confusing strings that must NOT appear in source.
 // Allowed inside docs/ + README + this validator.
@@ -83,7 +83,11 @@ const ALL_BANNED = [
 for (const file of SOURCE_FILES) {
   const text = readFileSync(file, 'utf8');
   for (const { kind, s } of ALL_BANNED) {
-    if (text.toLowerCase().includes(s.toLowerCase())) {
+    // The guard's deny-list defines prohibited inputs; it is not customer copy.
+    // Scope this exception to that exact declaration, and test its actual behavior in CI.
+    const scanned = kind === 'fair-housing' && relative(REPO, file).replaceAll('\\', '/') === 'src/lib/compliance/guards.ts'
+      ? text.replace(/const PROTECTED_TERMS = \[[\s\S]*?\];/, '') : text;
+    if (scanned.toLowerCase().includes(s.toLowerCase())) {
       errors.push(`${kind} violation in ${relative(REPO, file)}: contains "${s}"`);
     }
   }

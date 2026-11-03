@@ -4,13 +4,12 @@ import { config } from '@/lib/config';
 import { TopNav } from '@/components/shell/TopNav';
 import { BottomNav } from '@/components/shell/BottomNav';
 import { Footer } from '@/components/shell/Footer';
-import { RainingObjects } from '@/components/theme/RainingObjects';
-import { RotatingBackground } from '@/components/theme/RotatingBackground';
 import { PwaRegister } from '@/components/shell/PwaRegister';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(config.url),
   title: {
-    default: `${config.appName} — SoCal rentals, cars & work vehicles`,
+    default: `${config.appName} — California & Arizona living`,
     template: `%s · ${config.shortName}`,
   },
   description: config.tagline,
@@ -44,10 +43,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="h-full">
       <body className="relative min-h-dvh text-chocolate-800 antialiased">
-        <RotatingBackground />
-        <RainingObjects count={14} className="hidden md:block" />
         <TopNav />
-        <main className="relative z-20 mx-auto max-w-7xl px-4 pb-24 md:pb-12">
+        <main id="main-content" tabIndex={-1} className="relative z-20 mx-auto max-w-7xl px-4 pb-24 md:pb-12">
           {children}
         </main>
         <Footer />

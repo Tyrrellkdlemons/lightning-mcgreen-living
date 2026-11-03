@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { REAL_RENTALS, type RentalWithPhotos } from '@/lib/data/real-rentals';
 import { RentalCard } from './RentalCard';
@@ -13,15 +14,14 @@ import {
   WORKBOOK_CITY_OPTIONS,
   WORKBOOK_RANKED_LISTINGS,
   workbookMapUrl,
-  workbookPrimaryUrl,
   type WorkbookRankedListing,
 } from '@/lib/data/workbook-ranked-listings';
 
 const PER_PAGE = 9;
 
-export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 'townhouse' }) {
+export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unitTypeLock?: 'apartment' | 'townhouse'; initialState?: 'CA' | 'AZ'; initialCity?: string }) {
   const [profile, setProfile] = useRenterProfile();
-  const [filters, setFilters] = useState<RentalFilterState>({ unit_type: unitTypeLock ?? 'all' });
+  const [filters, setFilters] = useState<RentalFilterState>({ unit_type: unitTypeLock ?? 'all', state: initialState, city: initialCity });
   const [sort, setSort] = useState<SortKey>('best-fit');
   const [page, setPage] = useState(1);
   const [workbookQuery, setWorkbookQuery] = useState('');
@@ -52,11 +52,11 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
   return (
     <div className="mt-4 flex flex-col gap-4 lg:flex-row">
       <RentalFilters initial={filters} onChange={setFilters} />
-      <div className="flex-1 space-y-4">
+      <div className="min-w-0 flex-1 space-y-4">
         <ProfilePanel profile={profile} onChange={setProfile} />
         <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-chocolate-700">
           <span>
-            <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'} · SoCal-only
+            <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'} · {filters.state === 'AZ' ? 'Arizona' : filters.state === 'CA' ? 'California' : 'California + Arizona'}
           </span>
           <SortDropdown value={sort} onChange={setSort} />
         </div>
@@ -72,7 +72,11 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
         </ul>
         {filtered.length === 0 && (
           <div className="cookie-card p-6 text-center text-sm text-chocolate-700">
-            No matches. Try widening your max rent or city.
+            <p>No listed rentals match this search. Our directory is growing; an empty result does not mean there are no rentals in this area.</p>
+            <div className="mt-3 flex flex-wrap justify-center gap-3">
+              <button type="button" className="cinnamon-btn" onClick={() => setFilters({ unit_type: unitTypeLock ?? 'all' })}>Clear filters</button>
+              <Link href={filters.state === 'AZ' ? '/places/arizona' : '/places/california'} className="bolt-btn">Explore city guides and local resources</Link><Link href={`/resources?state=${filters.state==='AZ'?'AZ':'CA'}&category=property`} className="cinnamon-btn mt-3">Browse property sources in this state</Link>
+            </div>
           </div>
         )}
         <Pagination page={page} pageCount={pageCount} onChange={setPage} />
@@ -86,12 +90,14 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
           </p>
           <div className="mt-3 grid gap-2 md:grid-cols-[minmax(0,1fr)_220px]">
             <input
+              aria-label="Search workbook properties"
               value={workbookQuery}
               onChange={(e) => { setWorkbookQuery(e.target.value); setWorkbookLimit(10); }}
               placeholder="Search workbook listings"
               className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
             />
             <select
+              aria-label="Workbook city"
               value={workbookCity}
               onChange={(e) => { setWorkbookCity(e.target.value); setWorkbookLimit(10); }}
               className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
@@ -117,16 +123,12 @@ export function RentalSearch({ unitTypeLock }: { unitTypeLock?: 'apartment' | 't
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
                   <span className="text-chocolate-700">{workbookRent(item)}</span>
                   {item.application_platform_inferred && <span className="text-chocolate-700">via {item.application_platform_inferred}</span>}
-                  {workbookPrimaryUrl(item) && (
-                    <a
-                      href={workbookPrimaryUrl(item)!}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2"
-                    >
-                      Direct listing
-                    </a>
-                  )}
+                  <Link
+                    href={`/properties/${item.id}`}
+                    className="font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2"
+                  >
+                    Property view &amp; source links
+                  </Link>
                   {workbookMapUrl(item) && (
                     <a
                       href={workbookMapUrl(item)!}
@@ -165,7 +167,8 @@ function filterRentals(
       if (f.unit_type === 'apartment' && !apartmentSide) return false;
       if (f.unit_type === 'townhouse' && r.unit_type !== 'townhouse') return false;
     }
-    if (f.city && r.city !== f.city) return false;
+    if (f.state && r.state !== f.state) return false;
+    if (f.city && r.city.toLowerCase() !== f.city.toLowerCase()) return false;
     if (f.max_rent && r.min_rent > f.max_rent) return false;
     if (f.beds !== '' && f.beds != null && r.beds_max < f.beds) return false;
     if (f.pets && r.pet_policy && /no pets/i.test(r.pet_policy)) return false;

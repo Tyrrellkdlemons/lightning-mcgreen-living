@@ -12,7 +12,7 @@ export default function ApartmentApplyEnginePage() {
       <TopToggle />
       <GingerbreadHero
         title="Auto Apartment Apply Engine"
-        subtitle="Apartment-side application queue with direct deep links, owner/operator routing, strict-screening alerts, open map links, and editable owned visuals."
+        subtitle="Prepare applications from recorded California property research, compare requirements, and confirm current details with the provider."
       />
       <p className="mt-3 max-w-3xl text-xs text-chocolate-700">
         This prepares packets and opens the official property portals. It does not auto-submit forms,

@@ -10,8 +10,9 @@ import { scoreWorkRental } from '@/lib/scoring';
 
 const PER_PAGE = 9;
 
-export function WorkSearch() {
+export function WorkSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   const [profile, setProfile] = useWorkProfile();
+  const [state, setState] = useState<'' | 'CA' | 'AZ'>(initialState ?? '');
   const [type, setType] = useState<'all' | string>('all');
   const [maxDaily, setMaxDaily] = useState<number | ''>('');
   const [businessOnly, setBusinessOnly] = useState(false);
@@ -19,11 +20,12 @@ export function WorkSearch() {
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => REAL_WORK_VEHICLES.filter((r) => {
+    if (state && r.state !== state) return false;
     if (type !== 'all' && r.vehicle_type !== type) return false;
     if (maxDaily !== '' && r.daily_rate && r.daily_rate > Number(maxDaily)) return false;
     if (businessOnly && !r.business_account_available) return false;
     return true;
-  }), [type, maxDaily, businessOnly]);
+  }), [state, type, maxDaily, businessOnly]);
 
   const sorted = useMemo(() => {
     const arr = [...filtered];
@@ -34,7 +36,7 @@ export function WorkSearch() {
   }, [filtered, sort, profile]);
   const { items: paged, pageCount } = paginate(sorted, page, PER_PAGE);
 
-  const filterKey = `${type}|${maxDaily}|${businessOnly}|${sort}`;
+  const filterKey = `${state}|${type}|${maxDaily}|${businessOnly}|${sort}`;
   useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
@@ -42,6 +44,11 @@ export function WorkSearch() {
       <WorkProfilePanel profile={profile} onChange={setProfile} />
 
       <div className="cookie-card flex flex-wrap items-end gap-3 p-4">
+        <Field label="State">
+          <select value={state} onChange={(e) => setState(e.target.value as '' | 'CA' | 'AZ')} className="rounded-md border border-gingerbread-300 bg-white px-2 py-2 text-sm">
+            <option value="">California + Arizona</option><option value="CA">California</option><option value="AZ">Arizona</option>
+          </select>
+        </Field>
         <Field label="Vehicle type">
           <select value={type} onChange={(e) => setType(e.target.value)}
                   className="rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm">
@@ -74,7 +81,7 @@ export function WorkSearch() {
       <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {paged.map((r) => <li key={r.id}><WorkVehicleCard rental={r} profile={profile} /></li>)}
       </ul>
-      {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700">No matches with these filters.</div>}
+      {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700"><p>No listed providers match this search. Contact providers directly to confirm branch coverage and vehicle availability.</p><button type="button" className="cinnamon-btn mt-3" onClick={() => { setState(''); setType('all'); setMaxDaily(''); setBusinessOnly(false); }}>Clear filters</button></div>}
 
       <Pagination page={page} pageCount={pageCount} onChange={setPage} />
     </div>

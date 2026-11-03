@@ -27,7 +27,7 @@ export function TwoDoors() {
           <LightningBolt className="h-6 opacity-70 group-hover:opacity-100" />
         </div>
         <p className="mt-2 text-sm text-chocolate-700">
-          Find Southern California rentals you are more likely to qualify for.
+          Find California and Arizona rentals you are more likely to qualify for.
         </p>
         <div className="mt-6 flex items-end gap-3">
           <GingerbreadApartment className="h-20 w-auto" />
@@ -58,7 +58,7 @@ export function TwoDoors() {
           <LightningBolt className="h-6 opacity-70 group-hover:opacity-100" />
         </div>
         <p className="mt-2 text-sm text-chocolate-700">
-          Find Southern California dealers, promos, cars, and work vehicles that
+          Find California and Arizona dealers, promos, cars, and work vehicles that
           fit your real budget.
         </p>
         <div className="mt-6 flex items-end gap-3">

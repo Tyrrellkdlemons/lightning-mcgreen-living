@@ -3,7 +3,7 @@ import { CookieCar, WorkVan } from './CookieCar';
 import { RacePad, PitLaneLeds, SpeedTicker, TireTreadDivider } from './RaceAccents';
 
 /**
- * Race-day hero — x10 detail. All original. NO Disney/Pixar Cars / NASCAR
+ * Race-day hero — x10 detail. All original. NO third-party film or motorsport
  * assets. The numbered race pad is "MG-7" / "MG-21" / etc., never "95".
  *
  * Layers:
@@ -58,7 +58,7 @@ export function RaceHero({
             <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-lightning-300">
               <span className="tach">RPM · LIVE</span>
               <PitLaneLeds />
-              <span className="rounded-full border border-lightning-300/40 bg-black/30 px-2 py-1">SoCal grid only</span>
+              <span className="rounded-full border border-lightning-300/40 bg-black/30 px-2 py-1">California + Arizona</span>
               <span className="rounded-full border border-lightning-300/40 bg-black/30 px-2 py-1">Verified chains</span>
             </div>
           </div>

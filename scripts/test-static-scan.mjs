@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import { mkdirSync, mkdtempSync, writeFileSync, readFileSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { spawnSync } from 'node:child_process';
+
+const validator = resolve('scripts/validate.mjs');
+const source = readFileSync(validator, 'utf8');
+const required = [...source.match(/const REQUIRED = \[([\s\S]*?)\];/)[1].matchAll(/'([^']+)'/g)].map((match) => match[1]);
+mkdirSync('.revamp-evidence', { recursive: true });
+const fixture = mkdtempSync(resolve('.revamp-evidence/static-scan-'));
+const put = (name, text) => {
+  const path = resolve(fixture, name);
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, text);
+};
+for (const name of required) put(name, '');
+put('src/lib/compliance/guards.ts', "const PROTECTED_TERMS = ['singles only'];");
+const scan = () => spawnSync(process.execPath, [validator], { cwd: fixture, encoding: 'utf8' });
+assert.equal(scan().status, 0, 'Exact guard deny-list must be allowed');
+put('src/lib/places/places.json', JSON.stringify({ description: 'guaranteed approval' }));
+let result = scan();
+assert.equal(result.status, 1);
+assert.match(result.stderr, /places\.json/);
+put('src/lib/places/places.json', JSON.stringify({ description: 'Compare your housing options' }));
+put('public/help.json', JSON.stringify({ description: 'perfect for families' }));
+result = scan();
+assert.equal(result.status, 1);
+assert.match(result.stderr, /help\.json/);
+put('public/help.json', '{}');
+put('src/lib/compliance/guards.ts', "const PROTECTED_TERMS = ['singles only'];\nexport const customerCopy = 'singles only';");
+result = scan();
+assert.equal(result.status, 1, 'Customer copy outside deny-list must still fail');
+assert.match(result.stderr, /guards\.ts/);
+console.log('PASS: source/public JSON rejected; exact deny-list allowed; surrounding copy remains scanned.');

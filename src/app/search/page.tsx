@@ -7,10 +7,11 @@ export const metadata: Metadata = {
 };
 
 interface Props {
-  searchParams: { q?: string; kind?: string };
+  searchParams: { q?: string | string[]; kind?: string | string[] };
 }
 
 export default function SearchPage({ searchParams }: Props) {
-  const q = (searchParams.q ?? '').trim();
-  return <SearchResults initialQuery={q} initialKind={searchParams.kind} />;
+  const scalar = (value: string | string[] | undefined) => typeof value === 'string' ? value : value?.[0];
+  const q = (scalar(searchParams.q) ?? '').trim();
+  return <SearchResults initialQuery={q} initialKind={scalar(searchParams.kind)} />;
 }

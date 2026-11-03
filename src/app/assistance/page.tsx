@@ -8,16 +8,17 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 export const metadata: Metadata = {
   title: 'Stay-housed & vehicle hardship help',
   description:
-    'County-by-county rent-relief, voucher, eviction-help, and auto-loan hardship resources for Southern California — verified, source-linked.',
+    'Housing, tenant-rights and hardship resources for California and Arizona, with provider links and recorded source dates.',
 };
 
 const SECTIONS: { jurisdiction: Parameters<typeof resourcesForJurisdiction>[0]; label: string; sub: string }[] = [
-  { jurisdiction: 'Los Angeles County', label: 'Los Angeles County', sub: 'ERRP reopened 2026-02-09 + housing search' },
+  { jurisdiction: 'Los Angeles County', label: 'Los Angeles County', sub: 'Housing referrals, tenant legal help and rent-relief program status' },
   { jurisdiction: 'Orange County', label: 'Orange County', sub: 'OCHA forms, payment standards, tenant-rights' },
   { jurisdiction: 'Riverside County', label: 'Riverside County', sub: 'DPSS Housing Support, voucher, legal aid' },
   { jurisdiction: 'San Bernardino County', label: 'San Bernardino County', sub: 'Project list, voucher, court help' },
   { jurisdiction: 'California', label: 'Statewide California', sub: 'CalWORKs, tenant guide, source-of-income FAQ' },
-  { jurisdiction: 'Federal', label: 'Federal & auto hardship', sub: 'CFPB, FTC, BAR Consumer Assistance Program' },
+  { jurisdiction: 'Arizona', label: 'Statewide Arizona', sub: '211 referrals, Community Action Agencies, crisis services and fair housing' },
+  { jurisdiction: 'Federal', label: 'Federal & auto hardship', sub: 'CFPB and FTC guidance' },
 ];
 
 export default function AssistancePage() {
@@ -29,19 +30,19 @@ export default function AssistancePage() {
           Help &amp; hardship resources
         </h1>
         <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-          When the math gets tight, real programs can help. Every link below
-          goes to the official agency or program — never a third-party
-          intermediary. {ASSISTANCE_RESOURCES.length} verified resources.
+          Start with your state or county. These {ASSISTANCE_RESOURCES.length} source-linked entries
+          include public agencies, referral services and legal-aid providers. A recorded source date
+          does not establish current funding, eligibility or an open application window.
         </p>
       </header>
 
       <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
         {SECTIONS.map((s) => (
-          <a key={s.jurisdiction} href={`#${slug(s.jurisdiction)}`} className="rounded-full border border-gingerbread-300 bg-frosting-100 px-3 py-1 font-semibold text-chocolate-800 hover:bg-frosting-200">
+          <a key={s.jurisdiction} href={`#${slug(s.jurisdiction)}`} className="inline-flex min-h-11 items-center rounded-full border border-gingerbread-300 bg-frosting-100 px-3 py-2 font-semibold text-chocolate-800 hover:bg-frosting-200">
             {s.label}
           </a>
         ))}
-        <Link href="/templates" className="rounded-full border border-lightning-500 bg-lightning-100 px-3 py-1 font-semibold text-lightning-700 hover:bg-lightning-200">
+        <Link href="/templates" className="inline-flex min-h-11 items-center rounded-full border border-lightning-500 bg-lightning-100 px-3 py-2 font-semibold text-lightning-700 hover:bg-lightning-200">
           Printable letter templates →
         </Link>
       </div>

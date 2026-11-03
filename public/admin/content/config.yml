@@ -1,0 +1,767 @@
+{
+  "backend": {
+    "name": "github",
+    "repo": "Tyrrellkdlemons/lightning-mcgreen-living",
+    "branch": "main",
+    "site_domain": "lightning-mcgreen-living.netlify.app"
+  },
+  "publish_mode": "editorial_workflow",
+  "media_folder": "public/content-media",
+  "public_folder": "/content-media",
+  "media_library": {
+    "name": "managed-place-photos"
+  },
+  "site_url": "https://lightning-mcgreen-living.netlify.app",
+  "display_url": "https://lightning-mcgreen-living.netlify.app",
+  "show_preview_links": true,
+  "collections": [
+    {
+      "name": "places",
+      "label": "City guides",
+      "description": "Edit the real California and Arizona city registry. Existing IDs and city URLs stay stable. Save a draft and review its GitHub pull request.",
+      "format": "places-array",
+      "publish": false,
+      "delete": false,
+      "editor": {
+        "preview": false
+      },
+      "files": [
+        {
+          "name": "places",
+          "label": "Places",
+          "file": "src/lib/places/places.json",
+          "fields": [
+            {
+              "name": "places",
+              "label": "City guides",
+              "widget": "list",
+              "summary": "{{fields.name}}, {{fields.state}}",
+              "collapsed": true,
+              "fields": [
+                {
+                  "name": "id",
+                  "widget": "hidden",
+                  "default": ""
+                },
+                {
+                  "name": "slug",
+                  "label": "City URL slug",
+                  "widget": "string"
+                },
+                {
+                  "name": "name",
+                  "label": "City",
+                  "widget": "string"
+                },
+                {
+                  "name": "state",
+                  "label": "state",
+                  "widget": "select",
+                  "options": [
+                    "CA",
+                    "AZ"
+                  ]
+                },
+                {
+                  "name": "county",
+                  "label": "County",
+                  "widget": "string"
+                },
+                {
+                  "name": "region",
+                  "label": "Region",
+                  "widget": "string"
+                },
+                {
+                  "name": "description",
+                  "label": "Planning introduction",
+                  "widget": "text",
+                  "hint": "At least 51 characters; describe the city without inventing property availability."
+                },
+                {
+                  "name": "planningTips",
+                  "label": "Planning tips",
+                  "widget": "list",
+                  "min": 2,
+                  "max": 12,
+                  "field": {
+                    "name": "tip",
+                    "label": "Tip",
+                    "widget": "string"
+                  }
+                },
+                {
+                  "name": "sourceUrl",
+                  "label": "Public resource URL (HTTPS)",
+                  "widget": "string"
+                },
+                {
+                  "name": "sourcePublisher",
+                  "label": "Source publisher",
+                  "widget": "string"
+                },
+                {
+                  "name": "contentKind",
+                  "widget": "hidden",
+                  "default": "planning-guide"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "inventory",
+      "label": "Rentals, dealers & vehicles",
+      "description": "Supplemental inventory displayed in site searches after the reviewed pull request is merged and deployed. Original listings and the 79-property workbook are maintained separately.",
+      "format": "inventory-json",
+      "publish": false,
+      "delete": false,
+      "editor": {
+        "preview": false
+      },
+      "files": [
+        {
+          "name": "inventory",
+          "label": "Supplemental listings",
+          "file": "src/lib/data/editor-content.json",
+          "fields": [
+            {
+              "name": "schema_version",
+              "widget": "hidden",
+              "default": 1
+            },
+            {
+              "name": "rentals",
+              "label": "Rentals",
+              "widget": "list",
+              "required": false,
+              "default": [],
+              "collapsed": true,
+              "summary": "{{fields.property_name}} â€” {{fields.city}}",
+              "fields": [
+                {
+                  "name": "external_id",
+                  "label": "Stable reference",
+                  "widget": "string",
+                  "pattern": [
+                    "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                    "Use lowercase letters, numbers and hyphens."
+                  ]
+                },
+                {
+                  "name": "property_name",
+                  "label": "Property name",
+                  "widget": "string"
+                },
+                {
+                  "name": "unit_type",
+                  "label": "unit type",
+                  "widget": "select",
+                  "options": [
+                    "apartment",
+                    "townhouse",
+                    "townhome-style-apartment"
+                  ]
+                },
+                {
+                  "name": "address_line",
+                  "label": "Street address",
+                  "widget": "string"
+                },
+                {
+                  "name": "city",
+                  "label": "City",
+                  "widget": "string"
+                },
+                {
+                  "name": "county",
+                  "label": "County",
+                  "widget": "string"
+                },
+                {
+                  "name": "state",
+                  "label": "state",
+                  "widget": "select",
+                  "options": [
+                    "CA",
+                    "AZ"
+                  ]
+                },
+                {
+                  "name": "zip",
+                  "label": "ZIP code",
+                  "widget": "string"
+                },
+                {
+                  "name": "lat",
+                  "label": "Latitude",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 31.3,
+                  "max": 42.01
+                },
+                {
+                  "name": "lng",
+                  "label": "Longitude",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": -124.5,
+                  "max": -109.03
+                },
+                {
+                  "name": "manager",
+                  "label": "Manager",
+                  "widget": "string"
+                },
+                {
+                  "name": "application_platform",
+                  "label": "application platform",
+                  "widget": "select",
+                  "options": [
+                    "RentCafe",
+                    "Entrata",
+                    "AppFolio",
+                    "RealPage",
+                    "Knock",
+                    "On-Site",
+                    "G5/Knock",
+                    "Other",
+                    "Unknown"
+                  ],
+                  "default": "Unknown"
+                },
+                {
+                  "name": "application_url",
+                  "label": "Application URL (HTTPS)",
+                  "widget": "string"
+                },
+                {
+                  "name": "official_property_url",
+                  "label": "Official property URL (HTTPS)",
+                  "widget": "string"
+                },
+                {
+                  "name": "min_rent",
+                  "label": "Minimum monthly rent",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 1
+                },
+                {
+                  "name": "max_rent",
+                  "label": "Maximum monthly rent",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 1
+                },
+                {
+                  "name": "beds_min",
+                  "label": "Minimum bedrooms",
+                  "widget": "number",
+                  "value_type": "int",
+                  "min": 0,
+                  "max": 30
+                },
+                {
+                  "name": "beds_max",
+                  "label": "Maximum bedrooms",
+                  "widget": "number",
+                  "value_type": "int",
+                  "min": 0,
+                  "max": 30
+                },
+                {
+                  "name": "baths_min",
+                  "label": "Minimum bathrooms",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 0,
+                  "max": 30
+                },
+                {
+                  "name": "baths_max",
+                  "label": "Maximum bathrooms",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 0,
+                  "max": 30
+                },
+                {
+                  "name": "deposit",
+                  "label": "deposit",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 0,
+                  "required": false
+                },
+                {
+                  "name": "application_fee",
+                  "label": "application fee",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 0,
+                  "required": false
+                },
+                {
+                  "name": "admin_fee",
+                  "label": "admin fee",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 0,
+                  "required": false
+                },
+                {
+                  "name": "parking_fee",
+                  "label": "parking fee",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 0,
+                  "required": false
+                },
+                {
+                  "name": "pet_fee",
+                  "label": "pet fee",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 0,
+                  "required": false
+                },
+                {
+                  "name": "pet_policy",
+                  "label": "Pet policy",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "parking_type",
+                  "label": "Parking",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "meta",
+                  "label": "Source and review details",
+                  "widget": "object",
+                  "collapsed": true,
+                  "fields": [
+                    {
+                      "name": "source",
+                      "label": "source",
+                      "widget": "select",
+                      "options": [
+                        "official",
+                        "partner",
+                        "public-open-data",
+                        "property-or-dealer-website",
+                        "manual-verified",
+                        "unverified"
+                      ],
+                      "default": "unverified"
+                    },
+                    {
+                      "name": "source_url",
+                      "label": "Source URL (HTTPS)",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "confidence_score",
+                      "label": "Source confidence (0â€“100)",
+                      "widget": "number",
+                      "value_type": "int",
+                      "min": 0,
+                      "max": 100,
+                      "default": 0
+                    },
+                    {
+                      "name": "last_seen_at",
+                      "label": "Last observed at",
+                      "widget": "string",
+                      "hint": "Enter the actual observation time, e.g. 2026-10-20T10:30:00-07:00. No automatic current timestamp."
+                    },
+                    {
+                      "name": "last_verified_at",
+                      "label": "Last reviewed at",
+                      "widget": "string",
+                      "hint": "Enter the actual review time with timezone; this does not by itself make a listing verified."
+                    },
+                    {
+                      "name": "data_freshness_status",
+                      "label": "data freshness status",
+                      "widget": "select",
+                      "options": [
+                        "live",
+                        "recent",
+                        "stale",
+                        "manual-review-needed"
+                      ],
+                      "default": "manual-review-needed"
+                    },
+                    {
+                      "name": "trust_label",
+                      "label": "trust label",
+                      "widget": "select",
+                      "options": [
+                        "official",
+                        "partner",
+                        "public-open-data",
+                        "manual-verified",
+                        "unverified"
+                      ],
+                      "default": "unverified"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "dealers",
+              "label": "Dealers",
+              "widget": "list",
+              "required": false,
+              "default": [],
+              "collapsed": true,
+              "summary": "{{fields.dealer_name}} â€” {{fields.city}}",
+              "fields": [
+                {
+                  "name": "external_id",
+                  "label": "Stable reference",
+                  "widget": "string",
+                  "pattern": [
+                    "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                    "Use lowercase letters, numbers and hyphens."
+                  ]
+                },
+                {
+                  "name": "dealer_name",
+                  "label": "Dealer name",
+                  "widget": "string"
+                },
+                {
+                  "name": "address_line",
+                  "label": "Street address",
+                  "widget": "string"
+                },
+                {
+                  "name": "city",
+                  "label": "City",
+                  "widget": "string"
+                },
+                {
+                  "name": "county",
+                  "label": "County",
+                  "widget": "string"
+                },
+                {
+                  "name": "state",
+                  "label": "state",
+                  "widget": "select",
+                  "options": [
+                    "CA",
+                    "AZ"
+                  ]
+                },
+                {
+                  "name": "zip",
+                  "label": "ZIP code",
+                  "widget": "string"
+                },
+                {
+                  "name": "lat",
+                  "label": "Latitude",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 31.3,
+                  "max": 42.01
+                },
+                {
+                  "name": "lng",
+                  "label": "Longitude",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": -124.5,
+                  "max": -109.03
+                },
+                {
+                  "name": "phone",
+                  "label": "Public business phone",
+                  "widget": "string"
+                },
+                {
+                  "name": "website",
+                  "label": "Official website (HTTPS)",
+                  "widget": "string"
+                },
+                {
+                  "name": "financing_application_url",
+                  "label": "Financing URL (HTTPS)",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "meta",
+                  "label": "Source and review details",
+                  "widget": "object",
+                  "collapsed": true,
+                  "fields": [
+                    {
+                      "name": "source",
+                      "label": "source",
+                      "widget": "select",
+                      "options": [
+                        "official",
+                        "partner",
+                        "public-open-data",
+                        "property-or-dealer-website",
+                        "manual-verified",
+                        "unverified"
+                      ],
+                      "default": "unverified"
+                    },
+                    {
+                      "name": "source_url",
+                      "label": "Source URL (HTTPS)",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "confidence_score",
+                      "label": "Source confidence (0â€“100)",
+                      "widget": "number",
+                      "value_type": "int",
+                      "min": 0,
+                      "max": 100,
+                      "default": 0
+                    },
+                    {
+                      "name": "last_seen_at",
+                      "label": "Last observed at",
+                      "widget": "string",
+                      "hint": "Enter the actual observation time, e.g. 2026-10-20T10:30:00-07:00. No automatic current timestamp."
+                    },
+                    {
+                      "name": "last_verified_at",
+                      "label": "Last reviewed at",
+                      "widget": "string",
+                      "hint": "Enter the actual review time with timezone; this does not by itself make a listing verified."
+                    },
+                    {
+                      "name": "data_freshness_status",
+                      "label": "data freshness status",
+                      "widget": "select",
+                      "options": [
+                        "live",
+                        "recent",
+                        "stale",
+                        "manual-review-needed"
+                      ],
+                      "default": "manual-review-needed"
+                    },
+                    {
+                      "name": "trust_label",
+                      "label": "trust label",
+                      "widget": "select",
+                      "options": [
+                        "official",
+                        "partner",
+                        "public-open-data",
+                        "manual-verified",
+                        "unverified"
+                      ],
+                      "default": "unverified"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "vehicles",
+              "label": "Vehicles",
+              "widget": "list",
+              "required": false,
+              "default": [],
+              "collapsed": true,
+              "summary": "{{fields.year}} {{fields.make}} {{fields.model}}",
+              "fields": [
+                {
+                  "name": "vin",
+                  "label": "VIN",
+                  "widget": "string",
+                  "pattern": [
+                    "^[A-HJ-NPR-Z0-9]{17}$",
+                    "Enter an uppercase 17-character VIN; I, O and Q are not allowed."
+                  ]
+                },
+                {
+                  "name": "dealer_external_id",
+                  "label": "Dealer stable reference",
+                  "widget": "string",
+                  "hint": "Must match a dealer in the Dealers list above. Add the dealer before saving its vehicles."
+                },
+                {
+                  "name": "year",
+                  "label": "Model year",
+                  "widget": "number",
+                  "value_type": "int",
+                  "min": 1886
+                },
+                {
+                  "name": "make",
+                  "label": "Make",
+                  "widget": "string"
+                },
+                {
+                  "name": "model",
+                  "label": "Model",
+                  "widget": "string"
+                },
+                {
+                  "name": "trim",
+                  "label": "Trim",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "mileage",
+                  "label": "Mileage",
+                  "widget": "number",
+                  "value_type": "int",
+                  "min": 0
+                },
+                {
+                  "name": "price",
+                  "label": "Advertised price",
+                  "widget": "number",
+                  "value_type": "float",
+                  "min": 1
+                },
+                {
+                  "name": "condition",
+                  "label": "condition",
+                  "widget": "select",
+                  "options": [
+                    "new",
+                    "used",
+                    "cpo"
+                  ]
+                },
+                {
+                  "name": "availability_status",
+                  "label": "availability status",
+                  "widget": "select",
+                  "options": [
+                    "available",
+                    "pending",
+                    "sold"
+                  ]
+                },
+                {
+                  "name": "listing_url",
+                  "label": "Listing URL (HTTPS)",
+                  "widget": "string"
+                },
+                {
+                  "name": "body_type",
+                  "label": "body type",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "fuel_type",
+                  "label": "fuel type",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "transmission",
+                  "label": "transmission",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "drive",
+                  "label": "drive",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "meta",
+                  "label": "Source and review details",
+                  "widget": "object",
+                  "collapsed": true,
+                  "fields": [
+                    {
+                      "name": "source",
+                      "label": "source",
+                      "widget": "select",
+                      "options": [
+                        "official",
+                        "partner",
+                        "public-open-data",
+                        "property-or-dealer-website",
+                        "manual-verified",
+                        "unverified"
+                      ],
+                      "default": "unverified"
+                    },
+                    {
+                      "name": "source_url",
+                      "label": "Source URL (HTTPS)",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "confidence_score",
+                      "label": "Source confidence (0â€“100)",
+                      "widget": "number",
+                      "value_type": "int",
+                      "min": 0,
+                      "max": 100,
+                      "default": 0
+                    },
+                    {
+                      "name": "last_seen_at",
+                      "label": "Last observed at",
+                      "widget": "string",
+                      "hint": "Enter the actual observation time, e.g. 2026-10-20T10:30:00-07:00. No automatic current timestamp."
+                    },
+                    {
+                      "name": "last_verified_at",
+                      "label": "Last reviewed at",
+                      "widget": "string",
+                      "hint": "Enter the actual review time with timezone; this does not by itself make a listing verified."
+                    },
+                    {
+                      "name": "data_freshness_status",
+                      "label": "data freshness status",
+                      "widget": "select",
+                      "options": [
+                        "live",
+                        "recent",
+                        "stale",
+                        "manual-review-needed"
+                      ],
+                      "default": "manual-review-needed"
+                    },
+                    {
+                      "name": "trust_label",
+                      "label": "trust label",
+                      "widget": "select",
+                      "options": [
+                        "official",
+                        "partner",
+                        "public-open-data",
+                        "manual-verified",
+                        "unverified"
+                      ],
+                      "default": "unverified"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

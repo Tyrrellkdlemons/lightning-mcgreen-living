@@ -1,34 +1,4 @@
 import type { Metadata } from 'next';
-
-export const metadata: Metadata = { title: 'Privacy' };
-
-export default function PrivacyPage() {
-  return (
-    <article className="prose prose-sm mx-auto mt-6 max-w-3xl text-chocolate-800">
-      <h1 className="font-display text-3xl font-extrabold text-chocolate-900">Privacy</h1>
-      <p>
-        Lightning McGreen Living is a discovery and qualification-prep tool. Everything you enter into
-        a profile (renter, buyer, work-vehicle) is stored on your device first.
-      </p>
-      <h2>What we don&apos;t collect</h2>
-      <ul>
-        <li>We do not ask for your Social Security Number.</li>
-        <li>We do not ask for full bank credentials.</li>
-        <li>We do not pull your credit. The credit range field is self-selected and stays on your device.</li>
-        <li>We do not store government-issued IDs unless secure storage and explicit consent are implemented.</li>
-      </ul>
-      <h2>What we may collect (only if you opt in)</h2>
-      <ul>
-        <li>Account email + an encrypted backup of your profile (if you create an account).</li>
-        <li>Anonymous usage analytics (page views, events). No personally identifying data.</li>
-      </ul>
-      <h2>Third parties</h2>
-      <p>
-        When you click an &ldquo;Open official application&rdquo; or &ldquo;Open dealer&rdquo; / &ldquo;Open rental
-        provider&rdquo; button, you leave our site. Their privacy policy applies from that point forward.
-      </p>
-      <h2>Contact</h2>
-      <p>For privacy questions, file an issue in the project repository.</p>
-    </article>
-  );
-}
+import { ClearDeviceData } from '@/components/privacy/ClearDeviceData';
+export const metadata: Metadata = { title: 'Privacy & device data' };
+export default function PrivacyPage() { return <article className="prose prose-sm mx-auto mt-6 max-w-3xl text-chocolate-800"><h1 className="font-display text-3xl font-extrabold">Privacy &amp; device data</h1><p>Lightning McGreen Living helps you research and prepare. You do not need an account to browse public sources. This release does not provide an encrypted account backup or a live AI chat.</p><h2>What stays in your browser</h2><p>Renter, buyer and work-vehicle profiles, saved items and comparison choices use this website’s browser storage. They can remain after the page closes and are available to other people using the same browser profile. They are not an encrypted vault. The help navigator checklist stays only in the open page session; leaving or reloading it clears those checks.</p><p>Budget and letter tools use the information you enter. Copying, printing or downloading creates copies outside this page. The site does not automatically submit a packet or letter to a property or provider.</p><h2>Personal documents</h2><p>Do not enter Social Security numbers, bank passwords or identity-document images here. Confirm a provider’s identity and secure application process before supplying documents on its own site. Source directories and the research notebook contain public research, not applicants’ personal records.</p><h2>External websites and maps</h2><p>Opening a provider, map or search link sends a request to that service, which can receive your network address and the property or place query in the link. Loading an embedded map also contacts its map provider. Those services have their own privacy policies. Hosting and network providers may process request logs; browser storage is separate from those logs.</p><ClearDeviceData/><h2>Questions</h2><p>Use the <a href="https://github.com/Tyrrellkdlemons/lightning-mcgreen-living/issues" target="_blank" rel="noopener noreferrer">project’s public issue tracker</a> for general site questions. Do not post private application, identity or financial details there.</p></article>; }

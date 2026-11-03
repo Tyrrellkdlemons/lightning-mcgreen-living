@@ -11,11 +11,13 @@
  * the client search box.
  */
 
+import { PLACES, stateSlug } from '@/lib/places';
+import { RESOURCE_SOURCES, RESOURCE_CATEGORIES } from '@/lib/resources';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
 import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
 import { ASSISTANCE_RESOURCES } from '@/lib/data/assistance';
-import { WORKBOOK_RANKED_LISTINGS, workbookPrimaryUrl } from '@/lib/data/workbook-ranked-listings';
+import { WORKBOOK_RANKED_LISTINGS } from '@/lib/data/workbook-ranked-listings';
 
 export type SearchKind =
   | 'rental-apartment'
@@ -24,7 +26,9 @@ export type SearchKind =
   | 'vehicle'
   | 'dealer'
   | 'work-vehicle'
-  | 'assistance';
+  | 'assistance'
+  | 'place-guide'
+  | 'resource-source';
 
 export interface SearchEntry {
   kind: SearchKind;
@@ -153,7 +157,7 @@ export function buildSearchIndex(): SearchEntry[] {
       kind: r.unit_type === 'townhouse' ? 'rental-townhouse' : 'rental-apartment',
       id: r.id,
       title: r.property_name,
-      subtitle: `${r.manager} · ${r.city}, CA · $${r.min_rent.toLocaleString()}+`,
+      subtitle: `${r.manager} · ${r.city}, ${r.state} · $${r.min_rent.toLocaleString()}+`,
       href: r.unit_type === 'townhouse' ? `/townhomes/${r.id}` : `/apartments/${r.id}`,
       manager_or_provider: r.manager,
       city: r.city,
@@ -198,7 +202,7 @@ export function buildSearchIndex(): SearchEntry[] {
       kind: 'dealer',
       id: d.id,
       title: d.dealer_name,
-      subtitle: `${d.city}, CA · ${d.inventory_count ?? '—'} vehicles`,
+      subtitle: `${d.city}, ${d.state} · ${d.inventory_count ?? '—'} vehicles`,
       href: `/dealers/${d.id}`,
       manager_or_provider: d.dealer_name,
       city: d.city,
@@ -216,7 +220,7 @@ export function buildSearchIndex(): SearchEntry[] {
       kind: 'work-vehicle',
       id: w.id,
       title: w.provider_name,
-      subtitle: `${w.vehicle_type.replace('-', ' ')} · ${w.city}, CA · $${w.daily_rate ?? '?'}/day`,
+      subtitle: `${w.vehicle_type.replace('-', ' ')} · ${w.city}, ${w.state} · $${w.daily_rate ?? '?'}/day`,
       href: `/work-vehicles/${w.id}`,
       manager_or_provider: w.provider_name,
       city: w.city,
@@ -244,7 +248,7 @@ export function buildSearchIndex(): SearchEntry[] {
   }
 
   for (const w of WORKBOOK_RANKED_LISTINGS) {
-    const href = workbookPrimaryUrl(w) ? '/apartments/apply-engine' : '/apartments/apply-engine';
+    const href = `/properties/${w.id}`;
     const text = expandText(
       [
         w.property_name,
@@ -272,6 +276,17 @@ export function buildSearchIndex(): SearchEntry[] {
     });
   }
 
+  for (const p of PLACES) {
+    const text = expandText([p.name, p.state, p.state === 'CA' ? 'California' : 'Arizona', p.region, p.description, 'city guide housing shelter'].join(' '));
+    entries.push({ kind: 'place-guide', id: p.id, title: p.name,
+      subtitle: `${p.region} · ${p.state} · City guide`,
+      href: `/places/${stateSlug(p.state)}/${p.slug}`, city: p.name,
+      text, tokens: tokenize(text) });
+  }
+  for (const source of RESOURCE_SOURCES) {
+    const text = expandText([source.title, source.publisher, source.state, source.state === 'CA' ? 'California' : source.state === 'AZ' ? 'Arizona' : 'California Arizona', source.city ?? '', source.category, source.description].join(' '));
+    entries.push({ kind: 'resource-source', id: source.id, title: source.title, subtitle: `${source.state} · ${RESOURCE_CATEGORIES[source.category]} · Source directory`, href: `/resources/${source.id}`, city: source.city, county: source.county, text, tokens: tokenize(text) });
+  }
   return entries;
 }
 
@@ -356,6 +371,8 @@ export const KIND_LABEL: Record<SearchKind, string> = {
   dealer: 'Dealer',
   'work-vehicle': 'Work vehicle',
   assistance: 'Assistance',
+  'place-guide': 'City guide',
+  'resource-source': 'Source library',
 };
 
 export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
@@ -366,4 +383,6 @@ export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
   dealer: 'mute',
   'work-vehicle': 'ok',
   assistance: 'warn',
+  'place-guide': 'info',
+  'resource-source': 'mute',
 };
