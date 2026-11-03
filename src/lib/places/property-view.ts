@@ -116,7 +116,11 @@ export function filterWorkbookProperties<T extends Pick<WorkbookRankedListing, '
 
 export function recordedRent(low?: number | null, high?: number | null): string {
   const format = (value: number) => `$${value.toLocaleString('en-US')}`;
-  if (typeof low === 'number' && Number.isFinite(low)) return typeof high === 'number' && Number.isFinite(high) && high !== low ? `${format(low)}–${format(high)}` : format(low);
-  if (typeof high === 'number' && Number.isFinite(high)) return `Up to ${format(high)}`;
+  // Nonpositive workbook sentinels are missing data, never a free-rent offer.
+  const validLow = typeof low === 'number' && Number.isFinite(low) && low > 0;
+  const validHigh = typeof high === 'number' && Number.isFinite(high) && high > 0;
+  if (validLow && validHigh && high < low) return 'Not recorded';
+  if (validLow) return validHigh && high !== low ? `${format(low)}–${format(high)}` : format(low);
+  if (validHigh) return `Up to ${format(high)}`;
   return 'Not recorded';
 }

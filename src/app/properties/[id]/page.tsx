@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { WORKBOOK_RANKED_LISTINGS } from '@/lib/data/workbook-ranked-listings';
 import { WORKBOOK_FULL_LISTINGS, WORKBOOK_FIELDS, WORKBOOK_FIELD_GROUPS } from '@/lib/data/workbook-listings-full';
 import { propertyPath, recordedRent, safeSourceUrl, workbookView } from '@/lib/places/property-view';
+import { PropertyEvidence } from '@/components/properties/PropertyEvidence';
+import { PlaceGallery } from '@/components/photos/PlaceGallery';
 import { PropertyView } from '@/components/places/PropertyView';
 
 export const dynamicParams = false;
@@ -33,6 +35,8 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
       <div className="mt-6 grid gap-3 sm:grid-cols-3">{[['Recorded rent', recordedRent(listing.rent_low, listing.rent_high)], ['Recorded layout', [listing.beds && `${listing.beds} beds`, listing.baths && `${listing.baths} baths`].filter(Boolean).join(' · ') || 'Not recorded'], ['Research source date', listing.source_date || 'Not recorded']].map(([label, value]) => <div key={label} className="min-w-0 rounded-2xl border border-gingerbread-200 bg-white p-4"><p className="text-xs font-bold uppercase tracking-wide text-chocolate-600">{label}</p><p className="mt-2 break-words text-lg font-bold text-chocolate-900">{value}</p></div>)}</div>
       <p className="mt-5 max-w-3xl text-sm leading-relaxed text-chocolate-700">This is a historical research snapshot. Rent, availability, fees, rankings and screening notes are recorded research, not current offers or approval predictions. Confirm details directly before applying.</p>
     </header>
+    <PropertyEvidence propertyId={listing.id} />
+    <PlaceGallery placeId={listing.id} name={listing.property_name} targetKind="workbook" />
     <PropertyView {...workbookView(listing)} />
     <section className="mt-8 explore-card p-5 sm:p-6" aria-labelledby="property-next-steps">
       <p className="eyebrow">Turn a possibility into a plan</p><h2 id="property-next-steps" className="section-heading mt-2">Before you book a tour</h2>

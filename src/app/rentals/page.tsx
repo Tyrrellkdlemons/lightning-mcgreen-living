@@ -8,7 +8,7 @@ import { WORKBOOK_FULL_LISTINGS } from '@/lib/data/workbook-listings-full';
 
 export const metadata: Metadata = {
   title: 'Apartments & Townhomes',
-  description: 'Find California and Arizona apartments and townhomes you are more likely to qualify for.',
+  description: 'Explore recorded rental research, compare costs and prepare questions for property providers.',
 };
 
 export default function RentalsPage({ searchParams }: { searchParams: { state?: string; city?: string } }) {
@@ -20,7 +20,7 @@ export default function RentalsPage({ searchParams }: { searchParams: { state?: 
       <TopToggle />
       <GingerbreadHero
         title="Apartments & Townhomes"
-        subtitle="Real SoCal operators — Greystar, Irvine Company, Essex, AvalonBay, Camden, FPI, Western National, ConAm, MG, Alliance, Decron, UDR. See exactly who you'll be applying through and how strict their screening will be."
+        subtitle="Explore recorded Southern California rental and operator research. Compare the details, then confirm current availability, costs and screening requirements directly with the provider."
       />
       <RentalSearch key={`${state ?? ""}:${city ?? ""}`} initialState={state} initialCity={city} />
 
@@ -34,7 +34,7 @@ export default function RentalsPage({ searchParams }: { searchParams: { state?: 
           </h2>
           <p className="mt-1 max-w-3xl text-xs text-chocolate-700">
             Inline view of every spreadsheet listing — match %, fit tier, amenity dots,
-            screening difficulty, plus one-tap Apply (direct URL when verified).{' '}
+            screening difficulty, plus recorded source and map links.{' '}
             <Link
               href="/apartments/apply-engine"
               className="font-semibold underline decoration-lightning-500 underline-offset-2"

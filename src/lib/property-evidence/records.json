@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-03T14:41:44Z",
+  "records": [
+    {
+      "propertyIds": [
+        "r-solimar-wilmington-0217",
+        "r-solimar-wilmington-0281",
+        "r-solimar-wilmington-0115"
+      ],
+      "name": "Solimar Luxury Homes",
+      "state": "CA",
+      "address": "1500 West Pacific Coast Highway, Wilmington, CA 90744",
+      "officialUrl": "https://www.livesolimar.com/apartments/ca/wilmington/",
+      "galleryUrl": "https://www.livesolimar.com/apartments/ca/wilmington/gallery",
+      "identityEvidence": {
+        "sourceUrl": "https://www.livesolimar.com/apartments/ca/wilmington/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.livesolimar.com/apartments/ca/wilmington/floor-plans",
+        "observedAt": "2026-11-03T14:41:44Z",
+        "status": "unconfirmed",
+        "summary": "The official floor-plan page was inspected, but current unit-level availability was not exposed in the retrieved content.",
+        "limitations": "Saved units #0217, #0281 and #0115 remain historical records. The gallery depicts the community or example interiors, not confirmed current photographs of those units. Displayed base rents may exclude additional fees."
+      },
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Official photos are available at the linked source. No permission to copy, rehost or hotlink those photos was established."
+      }
+    },
+    {
+      "propertyIds": [
+        "r-presidio-anaheim-129",
+        "r-presidio-anaheim-118"
+      ],
+      "name": "Presidio Townhomes",
+      "state": "CA",
+      "address": "2726 West Lincoln Avenue, Anaheim, CA 92801",
+      "officialUrl": "https://www.presidioanaheim.com/",
+      "galleryUrl": "https://www.presidioanaheim.com/gallery/",
+      "identityEvidence": {
+        "sourceUrl": "https://www.presidioanaheim.com/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.presidioanaheim.com/floorplans/",
+        "observedAt": "2026-11-03T14:41:44Z",
+        "status": "unconfirmed",
+        "summary": "The official floor-plan page did not expose a current unit-level vacancy list in the retrieved content.",
+        "limitations": "Availability of saved units #129 and #118 was not confirmed. Community imagery is not evidence of either unit's present condition or vacancy."
+      },
+      "tours": [],
+      "photoReuse": {
+        "status": "permission-required",
+        "termsUrl": "https://www.conam.com/terms-of-use/",
+        "note": "The property footer asserts copyright over site content and images. No redistribution permission was obtained; use the official gallery link."
+      }
+    },
+    {
+      "propertyIds": [
+        "wb-1-the-residences-on-jamboree-irvine"
+      ],
+      "name": "The Residences on Jamboree",
+      "state": "CA",
+      "address": "2801 Kelvin Avenue, Irvine, CA 92614",
+      "officialUrl": "https://www.udr.com/orange-county-apartments/irvine/the-residences-on-jamboree/",
+      "galleryUrl": "https://www.udr.com/orange-county-apartments/irvine/the-residences-on-jamboree/photos-and-tours/",
+      "identityEvidence": {
+        "sourceUrl": "https://www.udr.com/orange-county-apartments/irvine/the-residences-on-jamboree/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.udr.com/orange-county-apartments/irvine/the-residences-on-jamboree/apartments-pricing/",
+        "observedAt": "2026-11-03T14:41:44Z",
+        "status": "unconfirmed",
+        "summary": "Availability is unconfirmed: indexed unit results and the retrieved interactive pricing page did not agree.",
+        "limitations": "The retrieved pricing page showed zero matching apartments and a pricing-update label of November 2, 2026 at 11:30 AM PT, while search metadata showed units. A filter or rendering state can cause this discrepancy; zero matches is not evidence that the community has no vacancies."
+      },
+      "tours": [
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=SwpiS7dcmbF",
+          "title": "Skydeck community tour",
+          "officialSourceUrl": "https://www.udr.com/orange-county-apartments/irvine/the-residences-on-jamboree/photos-and-tours/",
+          "sourcePublishedAt": "2022-11-16T21:27:47Z",
+          "embedStatus": "link-only",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Official source publishes this tour; third-party embedding permission remains unconfirmed."
+        },
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=2pTquUJ4FGc",
+          "title": "Clubhouse community tour",
+          "officialSourceUrl": "https://www.udr.com/orange-county-apartments/irvine/the-residences-on-jamboree/photos-and-tours/",
+          "sourcePublishedAt": "2026-04-28T16:57:58Z",
+          "embedStatus": "link-only",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Official source publishes this tour; third-party embedding permission remains unconfirmed."
+        },
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=ej3bEyWsTvP",
+          "title": "Apartment kitchen example tour",
+          "officialSourceUrl": "https://www.udr.com/orange-county-apartments/irvine/the-residences-on-jamboree/photos-and-tours/",
+          "sourcePublishedAt": "2018-10-10T10:56:00Z",
+          "embedStatus": "link-only",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Official source publishes this tour; third-party embedding permission remains unconfirmed."
+        }
+      ],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Official photos are available at the linked source. No permission to copy, rehost or hotlink those photos was established."
+      }
+    },
+    {
+      "propertyIds": [
+        "wb-2-paseos-at-ontario-ontario"
+      ],
+      "name": "Paseos at Ontario",
+      "state": "CA",
+      "address": "2615 E Date Palm Paseo, Ontario, CA 91764",
+      "officialUrl": "https://www.paseosontario.com/",
+      "galleryUrl": "https://www.paseosontario.com/photogallery.aspx",
+      "identityEvidence": {
+        "sourceUrl": "https://www.paseosontario.com/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.paseosontario.com/availableunits.aspx",
+        "observedAt": "2026-11-03T14:41:44Z",
+        "status": "unconfirmed",
+        "summary": "A current vacancy snapshot could not be established reliably from the accessible page content.",
+        "limitations": "Official search metadata contained unit rows, but the availability page timed out on content inspection. Old move-in-date query variants were excluded. Direct homepage/gallery retrieval also returned 403; no access restriction was bypassed."
+      },
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Official photos are available at the linked source. No permission to copy, rehost or hotlink those photos was established."
+      }
+    },
+    {
+      "propertyIds": [
+        "wb-3-villas-at-the-gardens-rancho-cucamonga"
+      ],
+      "name": "Villas at the Gardens",
+      "state": "CA",
+      "address": "7828 Day Creek Boulevard, Rancho Cucamonga, CA 91739",
+      "officialUrl": "https://www.villasatthegardens.com/",
+      "galleryUrl": "https://www.villasatthegardens.com/photogallery",
+      "identityEvidence": {
+        "sourceUrl": "https://www.villasatthegardens.com/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.villasatthegardens.com/floorplans",
+        "observedAt": "2026-11-03T14:40:47Z",
+        "status": "plan-counts",
+        "summary": "The inspected page listed 17 available homes across five floor-plan groups: Diamond Valley 6, Vail 4, Perris 3, Skinner 2 and Gregory 2. Arrowhead required an inquiry.",
+        "limitations": "These are provider-reported plan counts, not unit confirmations. An earlier retrieval showed different counts and prices. The latest inspected response is recorded here; confirm with leasing. No capture date or exact-unit match was established for gallery images.",
+        "sampleOnly": false,
+        "reportedCount": 17,
+        "plans": [
+          {
+            "plan": "Diamond Valley",
+            "beds": 1,
+            "baths": 1,
+            "availableUnits": 6
+          },
+          {
+            "plan": "Vail",
+            "beds": 1,
+            "baths": 1,
+            "availableUnits": 4
+          },
+          {
+            "plan": "Perris",
+            "beds": 3,
+            "baths": 2,
+            "availableUnits": 3
+          },
+          {
+            "plan": "Skinner",
+            "beds": 2,
+            "baths": 2,
+            "availableUnits": 2
+          },
+          {
+            "plan": "Gregory",
+            "beds": 2,
+            "baths": 2,
+            "availableUnits": 2
+          }
+        ]
+      },
+      "tours": [
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=DaCkC1V5QRn",
+          "title": "Official example tour 1",
+          "officialSourceUrl": "https://www.villasatthegardens.com/virtualtours",
+          "embedStatus": "link-only",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Official source publishes this tour; third-party embedding permission remains unconfirmed."
+        },
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=YXmiBpbVEW2",
+          "title": "Official example tour 2",
+          "officialSourceUrl": "https://www.villasatthegardens.com/virtualtours",
+          "embedStatus": "link-only",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Official source publishes this tour; third-party embedding permission remains unconfirmed."
+        }
+      ],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Official photos are available at the linked source. No permission to copy, rehost or hotlink those photos was established."
+      }
+    },
+    {
+      "propertyIds": [
+        "wb-4-the-core-on-foothill-rancho-cucamonga"
+      ],
+      "name": "The Core on Foothill",
+      "state": "CA",
+      "address": "13250 Foothill Boulevard, Rancho Cucamonga, CA 91739",
+      "officialUrl": "https://www.thecoreonfoothill.com/",
+      "galleryUrl": "https://www.thecoreonfoothill.com/gallery/",
+      "identityEvidence": {
+        "sourceUrl": "https://www.thecoreonfoothill.com/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.thecoreonfoothill.com/plans-availability/",
+        "observedAt": "2026-11-03T14:41:44Z",
+        "status": "unconfirmed",
+        "summary": "The official availability interface and manager's listing were inspected, but current unit rows were not exposed in the retrieved content.",
+        "limitations": "Search-index unit prices and dates were not promoted to current vacancy facts. The manager's current listing is https://www.greystar.com/the-core-on-foothill-rancho-cucamonga-ca/p_20077. Lifestyle stock images on the property site are not treated as property photographs."
+      },
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Official photos are available at the linked source. No permission to copy, rehost or hotlink those photos was established."
+      }
+    },
+    {
+      "propertyIds": [
+        "wb-5-the-upland-upland"
+      ],
+      "name": "The Upland",
+      "state": "CA",
+      "address": "1162 E 19th Street, Upland, CA 91784",
+      "officialUrl": "https://www.uplandapts.com/",
+      "galleryUrl": "https://www.uplandapts.com/gallery",
+      "identityEvidence": {
+        "sourceUrl": "https://www.uplandapts.com/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.uplandapts.com/floorplans",
+        "observedAt": "2026-11-03T14:41:03.601432Z",
+        "status": "unit-observations",
+        "summary": "A direct retrieval showed apartment #1107 available now and apartment #2302 available November 10, 2026. These are selected provider-reported unit observations.",
+        "limitations": "This is a dated sample, not a guaranteed vacancy or complete inventory. No rent was shown in these unit rows. An earlier indexed response gave November 11 for #2302; the later direct response is retained. Gallery models are not confirmed photographs of these exact units.",
+        "sampleOnly": true,
+        "units": [
+          {
+            "unit": "1107",
+            "plan": "B1",
+            "beds": 2,
+            "baths": 2,
+            "sqft": 1072,
+            "availableLabel": "Now"
+          },
+          {
+            "unit": "2302",
+            "plan": "B2",
+            "beds": 2,
+            "baths": 2,
+            "sqft": 1113,
+            "availableLabel": "11/10/2026"
+          }
+        ]
+      },
+      "tours": [],
+      "photoReuse": {
+        "status": "permission-required",
+        "termsUrl": "https://northcoastliving.com/terms",
+        "note": "The operator's terms limit the materials to personal viewing and require written permission for republication or public display. Link to the gallery; no photo republication is authorized by this evidence."
+      }
+    },
+    {
+      "propertyIds": [
+        "wb-6-union-south-bay-carson"
+      ],
+      "name": "Union South Bay",
+      "state": "CA",
+      "address": "615 E Carson Street, Carson, CA 90745",
+      "officialUrl": "https://www.unionsouthbay.com/",
+      "galleryUrl": "https://www.unionsouthbay.com/gallery",
+      "identityEvidence": {
+        "sourceUrl": "https://www.unionsouthbay.com/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.unionsouthbay.com/floorplans",
+        "observedAt": "2026-11-03T14:41:04.080356Z",
+        "status": "plan-counts",
+        "summary": "A direct retrieval listed two S1 studios, one A1 one-bedroom and two B1A two-bedroom homes as available. The page displayed $2,295, $2,675 and $3,300 respectively.",
+        "limitations": "Selected floor-plan counts only; no unit numbers or move-in dates were confirmed. The source did not establish an all-in monthly cost for these figures. S3 appeared wait-listed in the direct response although an earlier indexed response showed availability.",
+        "sampleOnly": true,
+        "plans": [
+          {
+            "plan": "S1",
+            "beds": 0,
+            "baths": 1,
+            "sqft": 522,
+            "availableUnits": 2,
+            "startingRent": 2295,
+            "rentBasis": "Displayed plan rent; mandatory fees not established."
+          },
+          {
+            "plan": "A1",
+            "beds": 1,
+            "baths": 1,
+            "sqft": 666,
+            "availableUnits": 1,
+            "startingRent": 2675,
+            "rentBasis": "Displayed plan rent; mandatory fees not established."
+          },
+          {
+            "plan": "B1A",
+            "beds": 2,
+            "baths": 2,
+            "sqft": 1125,
+            "availableUnits": 2,
+            "startingRent": 3300,
+            "rentBasis": "Displayed plan rent; mandatory fees not established."
+          }
+        ]
+      },
+      "tours": [
+        {
+          "provider": "matterport",
+          "url": "https://my.matterport.com/show/?m=q23czeKg9d1",
+          "title": "Official community or model tour",
+          "officialSourceUrl": "https://www.unionsouthbay.com/gallery",
+          "embedStatus": "link-only",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Official source publishes this tour; third-party embedding permission remains unconfirmed.",
+          "sourcePublishedDate": "2026-02-16"
+        }
+      ],
+      "photoReuse": {
+        "status": "permission-required",
+        "termsUrl": "https://www.unionsouthbay.com/terms",
+        "note": "The site terms provide personal viewing rights and restrict copying and public display. No separate permission to republish photographs was obtained."
+      }
+    },
+    {
+      "propertyIds": [
+        "resource-3704263f121b2aea"
+      ],
+      "name": "Bellagio",
+      "state": "AZ",
+      "address": "5635 E Bell Road, Scottsdale, AZ 85254",
+      "officialUrl": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/",
+      "galleryUrl": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/photos/",
+      "identityEvidence": {
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/floor-plans/",
+        "observedAt": "2026-11-03T14:41:44Z",
+        "status": "unconfirmed",
+        "summary": "The official floor-plan page describes one-, two- and three-bedroom homes, but current unit availability was not exposed in the retrieved content.",
+        "limitations": "Operator-directory starting prices and third-party unit counts were excluded from the vacancy snapshot. Published tours are community or model examples; recording dates and current-unit correspondence are unknown."
+      },
+      "tours": [
+        {
+          "url": "https://www.youtube.com/watch?v=tVFhYkt0k68",
+          "title": "Bellagio community tour",
+          "provider": "youtube",
+          "officialSourceUrl": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/virtual-tour/",
+          "embedStatus": "supported-public-player",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Use the standard provider player with controls and attribution. Uploader restrictions apply. Playback remains unverified."
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=xpZRhTor49I",
+          "title": "Bellagio one-bedroom model example — 750 square feet",
+          "provider": "youtube",
+          "officialSourceUrl": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/virtual-tour/",
+          "embedStatus": "supported-public-player",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Use the standard provider player with controls and attribution. Uploader restrictions apply. Playback remains unverified."
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=J3vj4cmFRCk",
+          "title": "Bellagio two-bedroom model example — 1,040 square feet",
+          "provider": "youtube",
+          "officialSourceUrl": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/virtual-tour/",
+          "embedStatus": "supported-public-player",
+          "captureDate": null,
+          "playbackVerified": false,
+          "rightsNote": "Use the standard provider player with controls and attribution. Uploader restrictions apply. Playback remains unverified."
+        }
+      ],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Official photos are available at the linked source. No permission to copy, rehost or hotlink those photos was established."
+      }
+    },
+    {
+      "propertyIds": [
+        "resource-ca0cdd2b3119d29b"
+      ],
+      "name": "Sentio",
+      "state": "AZ",
+      "address": "3600 W Happy Valley Road, Glendale, AZ 85310",
+      "officialUrl": "https://www.mark-taylor.com/apartments/az/glendale/sentio/",
+      "galleryUrl": "https://www.mark-taylor.com/apartments/az/glendale/sentio/photos/",
+      "identityEvidence": {
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/glendale/sentio/",
+        "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
+      },
+      "availability": {
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/glendale/sentio/floor-plans/",
+        "observedAt": "2026-11-03T14:41:44Z",
+        "status": "unconfirmed",
+        "summary": "The official floor-plan page describes one-, two- and three-bedroom homes, but no current unit-level availability was exposed in the retrieved content.",
+        "limitations": "The official tour page offers a tour with an agent, not a published virtual-player tour. No unrelated Mark-Taylor corporate video is substituted. The canonical Glendale community is used, not a Phoenix alias."
+      },
+      "tours": [],
+      "photoReuse": {
+        "status": "unknown",
+        "note": "Official photos are available at the linked source. No permission to copy, rehost or hotlink those photos was established."
+      }
+    }
+  ]
+}

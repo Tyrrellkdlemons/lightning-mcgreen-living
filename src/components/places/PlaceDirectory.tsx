@@ -2,31 +2,33 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowUpRight, MapPin, Search } from 'lucide-react';
+import { ArrowUpRight, MapPin, Search, X } from 'lucide-react';
 import { PLACES, STATES, placeUrl, type StateCode } from '@/lib/places';
 
+const control = 'mt-2 min-h-11 w-full min-w-0 rounded-xl border border-gingerbread-300 bg-white px-3 py-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-lightning-700';
 export function PlaceDirectory({ initialState = '', initialQuery = '', fixedState }: { initialState?: string; initialQuery?: string; fixedState?: StateCode }) {
-  const [state, setState] = useState(fixedState ?? initialState);
-  const [query, setQuery] = useState(initialQuery);
-  useEffect(() => { setState(fixedState ?? initialState); setQuery(initialQuery); }, [initialState, initialQuery, fixedState]);
+  const [state, setState] = useState(fixedState ?? (['CA', 'AZ'].includes(initialState) ? initialState : ''));
+  const [query, setQuery] = useState(initialQuery); const [sort, setSort] = useState('name');
+  useEffect(() => { setState(fixedState ?? (['CA', 'AZ'].includes(initialState) ? initialState : '')); setQuery(initialQuery); setSort('name'); }, [initialState, initialQuery, fixedState]);
+  const total = fixedState ? PLACES.filter(place => place.state === fixedState).length : PLACES.length;
   const places = useMemo(() => {
     const words = query.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/).filter(Boolean);
-    return PLACES.filter((place) => (!state || place.state === state) && words.every((word) => `${place.name} ${place.state} ${place.region} ${place.county} ${STATES[place.state].name}`.toLowerCase().includes(word)));
-  }, [state, query]);
-  return (
-    <section className="mt-8" aria-labelledby="directory-heading">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div><p className="eyebrow">Find your starting point</p><h2 id="directory-heading" className="mt-2 font-display text-2xl font-extrabold">Explore city guides</h2></div>
-        <p className="text-sm text-chocolate-700" role="status">{places.length} guide{places.length === 1 ? '' : 's'}</p>
+    return PLACES.filter(place => (!state || place.state === state) && words.every(word => `${place.name} ${place.state} ${place.region} ${place.county} ${STATES[place.state].name}`.toLowerCase().includes(word))).sort((a, b) => (sort === 'region' ? a.state.localeCompare(b.state) || a.region.localeCompare(b.region) : 0) || a.name.localeCompare(b.name));
+  }, [state, query, sort]);
+  const reset = () => { setQuery(''); setState(fixedState ?? ''); setSort('name'); };
+  const filters = [...(query ? [{ label: `Search: ${query}`, clear: () => setQuery('') }] : []), ...(!fixedState && state ? [{ label: STATES[state as StateCode].name, clear: () => setState('') }] : [])];
+  return <section className="mt-8 min-w-0" aria-labelledby="directory-heading">
+    <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="eyebrow">Find your starting point</p><h2 id="directory-heading" className="section-heading mt-2">Explore city guides</h2></div><p className="text-sm font-semibold text-chocolate-700" role="status" aria-atomic="true">{places.length} of {total} city guides</p></div>
+    <div className="mt-4 rounded-2xl border border-gingerbread-300 bg-white p-4 sm:p-5">
+      <p className="text-sm leading-relaxed text-chocolate-700">Start with a city, county or region. Each guide connects local context with housing resources; guide counts do not represent available homes.</p>
+      <div className="mt-4 grid min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)]">
+        <label className="min-w-0 text-xs font-bold text-chocolate-700">City, county or region<div className="relative"><Search className="absolute left-3 top-3.5 h-4 w-4 text-chocolate-600" aria-hidden /><input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Try Phoenix, Bay Area or Humboldt" className={`${control} pl-9`} /></div></label>
+        {!fixedState ? <label className="min-w-0 text-xs font-bold text-chocolate-700">State<select value={state} onChange={event => setState(event.target.value)} className={control}><option value="">California + Arizona</option><option value="CA">California</option><option value="AZ">Arizona</option></select></label> : <div className="self-end rounded-xl bg-frosting-100 p-3 text-sm text-chocolate-700"><span className="block text-xs font-bold">Guide collection</span><span className="mt-1 block">{STATES[fixedState].name}</span></div>}
+        <label className="min-w-0 text-xs font-bold text-chocolate-700">Sort guides<select value={sort} onChange={event => setSort(event.target.value)} className={control}><option value="name">City name A–Z</option><option value="region">State, then region</option></select></label>
       </div>
-      <div className="mt-4 grid gap-3 rounded-2xl border border-gingerbread-300 bg-white p-4 sm:grid-cols-[1fr_220px]">
-        <label className="block"><span className="text-xs font-bold text-chocolate-700">City, county or region</span><div className="mt-1 flex items-center gap-2"><Search className="h-5 w-5 text-chocolate-700" aria-hidden /><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Try Phoenix, Bay Area or Humboldt" className="min-w-0 w-full rounded-lg border border-gingerbread-300 px-3 py-2.5 text-sm" /></div></label>
-        {!fixedState ? <label className="block"><span className="text-xs font-bold text-chocolate-700">State</span><select value={state} onChange={(event) => setState(event.target.value)} className="mt-1 w-full rounded-lg border border-gingerbread-300 bg-white px-3 py-2.5 text-sm"><option value="">California + Arizona</option><option value="CA">California</option><option value="AZ">Arizona</option></select></label> : <p className="self-center text-sm text-chocolate-700">Guides for {STATES[fixedState].name}</p>}
-      </div>
-      <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {places.map((place) => <li key={place.id}><Link href={placeUrl(place)} className="explore-card group flex h-full flex-col p-5"><div className="flex items-center justify-between"><span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-chocolate-700"><MapPin className="h-4 w-4" aria-hidden />{place.state} · {place.region}</span><ArrowUpRight className="h-5 w-5 shrink-0 text-lightning-700" aria-hidden /></div><h3 className="mt-4 font-display text-xl font-extrabold text-chocolate-900">{place.name}</h3><p className="mt-2 flex-1 text-sm leading-relaxed text-chocolate-700">{place.description}</p><span className="mt-4 text-xs font-bold text-lightning-700">Open city guide</span></Link></li>)}
-      </ul>
-      {places.length === 0 && <div className="mt-4 rounded-2xl border border-gingerbread-300 bg-frosting-100 p-6"><h3 className="font-bold text-chocolate-900">No city guide matches yet.</h3><p className="mt-2 text-sm text-chocolate-700">Try a nearby city or use the statewide housing resources below. Guide coverage is growing; these results are not a list of available homes.</p><button type="button" onClick={() => { setQuery(''); setState(fixedState ?? ''); }} className="cinnamon-btn mt-4">Reset search</button></div>}
-    </section>
-  );
+      {(filters.length > 0 || sort !== 'name') && <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-gingerbread-200 pt-4" aria-label="Active guide filters">{filters.map(filter => <button type="button" key={filter.label} onClick={filter.clear} aria-label={`Remove ${filter.label}`} className="inline-flex min-h-11 max-w-full items-center gap-2 rounded-full border border-gingerbread-300 px-3 py-2 text-left text-xs font-semibold text-chocolate-900 focus:outline-none focus:ring-2 focus:ring-lightning-700"><span className="break-words [overflow-wrap:anywhere]">{filter.label}</span><X className="h-3.5 w-3.5 shrink-0" aria-hidden /></button>)}<button type="button" onClick={reset} className="min-h-11 px-3 text-sm font-bold text-lightning-800 underline">Reset all</button></div>}
+    </div>
+    {places.length > 0 ? <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{places.map(place => <li key={place.id} className="min-w-0"><Link href={placeUrl(place)} className="explore-card group flex h-full min-w-0 flex-col p-5"><div className="flex items-start justify-between gap-3"><span className="flex items-start gap-2 text-xs font-bold uppercase tracking-wider text-chocolate-700"><MapPin className="h-4 w-4 shrink-0" aria-hidden />{place.state} · {place.region}</span><ArrowUpRight className="h-5 w-5 shrink-0 text-lightning-700" aria-hidden /></div><h3 className="mt-4 break-words font-display text-xl font-extrabold text-chocolate-900">{place.name}</h3><p className="mt-1 text-xs text-chocolate-600">{place.county} County · City guide</p><p className="mt-3 flex-1 text-sm leading-relaxed text-chocolate-700">{place.description}</p><span className="mt-4 text-sm font-bold text-lightning-700">Open city guide</span></Link></li>)}</ul> : <div className="mt-5 rounded-2xl border border-gingerbread-300 bg-frosting-100 p-6"><h3 className="font-display text-xl font-bold text-chocolate-900">No city guide matches yet.</h3><p className="mt-2 max-w-2xl text-sm leading-relaxed text-chocolate-700">Try a nearby city or remove a search word. You can still use statewide housing resources even when your area does not have an authored guide.</p><div className="mt-4 flex flex-wrap gap-3"><button type="button" onClick={reset} className="bolt-btn">Show {fixedState ? STATES[fixedState].name : 'all'} guides</button><Link href={state === 'AZ' ? '/assistance#arizona' : state === 'CA' ? '/assistance#california' : '/help'} className="cinnamon-btn">Find housing help</Link><Link href="/assistant" className="inline-flex min-h-11 items-center font-semibold text-lightning-800 underline">Ask the housing assistant</Link></div></div>}
+    <p className="mt-5 text-sm leading-relaxed text-chocolate-700">Looking beyond these guides? <Link href="/resources" className="font-semibold text-lightning-800 underline">Search the source library</Link> for housing, counseling and referral services across both states.</p>
+  </section>;
 }

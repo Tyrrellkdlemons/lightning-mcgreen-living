@@ -13,7 +13,7 @@ import { SaveHeart } from '@/components/common/SaveHeart';
 import { findOperatorProfile, TIER_LABEL, TIER_TONE } from '@/lib/data/operator-profiles';
 import { ApartmentLinkBadge, VerifiedAtBadge } from '@/components/common/LinkConfidenceBadge';
 import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
-import { usd } from '@/lib/calculators';
+import { recordedRent } from '@/lib/places/property-view';
 import type { RentalListing, RenterProfile } from '@/types';
 import type { PhotoSet } from '@/lib/data/photo-sets';
 import { scoreRental } from '@/lib/scoring';
@@ -68,7 +68,7 @@ export function RentalCard({
       </div>
 
       <div className="grid grid-cols-3 gap-2 text-xs">
-        <Stat label="Rent" value={`${usd(rental.min_rent)} – ${usd(rental.max_rent)}`} />
+        <Stat label="Recorded rent" value={recordedRent(rental.min_rent, rental.max_rent)} />
         <Stat
           label="Beds"
           value={rental.beds_min === rental.beds_max ? `${rental.beds_min}` : `${rental.beds_min}–${rental.beds_max}`}
@@ -93,16 +93,17 @@ export function RentalCard({
           <Gumdrop tone="mute" title="Application platform">via {rental.application_platform}</Gumdrop>
         )}
         {preferredPlatform && <Gumdrop tone="ok">Preferred portal</Gumdrop>}
-        {rental.unit_number && <Gumdrop tone="ok" title="Verified unit number">Unit #{rental.unit_number}</Gumdrop>}
-        {rental.available_date && <Gumdrop tone="ok" title="Available date">Available {formatDate(rental.available_date)}</Gumdrop>}
+        {rental.unit_number && <Gumdrop tone="mute" title="Unit number in the stored record">Recorded unit #{rental.unit_number}</Gumdrop>}
+        {rental.available_date && <Gumdrop tone="mute" title="Historical availability date from the stored record">Recorded availability: {formatDate(rental.available_date)}</Gumdrop>}
         {rental.move_in_specials && (
-          <Gumdrop tone="ok" title="Special">Special: {rental.move_in_specials}</Gumdrop>
+          <Gumdrop tone="mute" title="Recorded offer; confirm whether it still applies">Recorded offer: {rental.move_in_specials}</Gumdrop>
         )}
         <ScreeningBadge platform={rental.application_platform} manager={rental.manager} publiclyDisclosed={rental.screening_vendor} />
         <ApartmentLinkBadge kind={link.kind} confidence={link.confidence} />
         <VerifiedAtBadge iso={rental.meta.last_verified_at} />
       </div>
 
+      <p className="text-xs leading-relaxed text-chocolate-700">Current availability is not confirmed. Check the exact unit, rent and fees with the provider.</p>
       <SourcePanel meta={rental.meta} dense />
 
       <div className="mt-1 flex items-center justify-between gap-2">
@@ -138,7 +139,8 @@ export function RentalCard({
 }
 
 function formatDate(date: string) {
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(`${date}T12:00:00`));
+  const parsed = new Date(`${date}T12:00:00`);
+  return Number.isFinite(parsed.getTime()) ? new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(parsed) : 'Not recorded';
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
