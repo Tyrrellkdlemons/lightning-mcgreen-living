@@ -53,7 +53,7 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
   return (
     <div className="mt-4 flex flex-col gap-4 lg:flex-row">
       <RentalFilters initial={filters} onChange={setFilters} />
-      <div className="flex-1 space-y-4">
+      <div className="min-w-0 flex-1 space-y-4">
         <ProfilePanel profile={profile} onChange={setProfile} />
         <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-chocolate-700">
           <span>

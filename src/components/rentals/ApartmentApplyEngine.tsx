@@ -127,7 +127,7 @@ export function ApartmentApplyEngine() {
   }
 
   return (
-    <div className="mt-6 grid grid-cols-1 gap-5 xl:grid-cols-[370px_minmax(0,1fr)]">
+    <div className="mt-6 grid grid-cols-1 gap-5 [overflow-wrap:anywhere] xl:grid-cols-[370px_minmax(0,1fr)]">
       <aside className="min-w-0 space-y-4">
         <CandyCard>
           <div className="flex items-center gap-2">

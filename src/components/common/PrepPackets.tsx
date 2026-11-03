@@ -228,7 +228,7 @@ function workSummary(r: WorkVehicleRental, p: WorkRentalProfile, estimatedTotal?
 
 function PacketTable({ rows }: { rows: { label: string; value: string }[] }) {
   return (
-    <table className="mt-3 w-full text-sm">
+    <table className="mt-3 w-full table-fixed text-sm [overflow-wrap:anywhere]">
       <tbody>
         {rows.map((r) => (
           <tr key={r.label} className="border-b border-gingerbread-300/30 last:border-b-0">
