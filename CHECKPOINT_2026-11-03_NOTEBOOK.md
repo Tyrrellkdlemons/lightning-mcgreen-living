@@ -21,7 +21,7 @@ Root: coordination, notebook/Gemini, integration, verification and release. loca
 
 ## Current state and next action
 
-The user authorized requesting a safe browser/heavy-job handoff. The prior owner explicitly released its own reservation on November3; root then acquired browser:shared and the existing GitHub/Netlify targets. No other owner lock was removed. Root current owner is codex/01a1a12d/release-v2, claimb82cfc37c3744da195421aa898900ae2. No local heavy job is active for this project.
+The user authorized requesting a safe browser/heavy-job handoff. The prior owner explicitly released its own reservation on November3; root then acquired browser:shared and the existing GitHub/Netlify targets. No other owner lock was removed. Root current owner is codex/01a1a12d/release-final, claim0ecf6a36908d470195737f6147ba3bbb. No local heavy job is active for this project.
 
 Notebook initial state was empty. Ten public sources, one232-URL metadata catalog and a Studio implementation record were added. Gemini Argon gave a real homepage review and source suggestions; internal-page access was unavailable. The notebook now shows12 context sources including its Gemini chat. Private evidence stays ignored under .revamp-evidence/notebook-v2. See docs/NOTEBOOK_CAPABILITIES_2026-11-03.md.
 
@@ -33,3 +33,13 @@ Existing PR: https://github.com/Tyrrellkdlemons/lightning-mcgreen-living/pull/1
 Preview: https://deploy-preview-1--lightning-mcgreen-living.netlify.app/
 Production: https://lightning-mcgreen-living.netlify.app/
 Previous production revision:9a7dbd5bd67da0199d2ba1e0f72b1680404b54b0; revalidate release receipt.
+
+## Acceptance corrections after209027b
+
+Full remote lint/typecheck/build passed209027b and preview deploy6ae9dc84af313a09b03e7039 was ready. Browser at360px verified property filtering, an Arizona operator record, workbook detail and embeddedOSMmap; no horizontal overflow. It reproduced an overheight application dialog and emptyArizona shelter filter; both fixed with bounded independent checks. Historical application labels now include years and recorded-source context.
+
+Gemini final design review identified catalog issues. Independent primary-source audit corrected a placeholder,404 utility page,Sentio alias and four names;232 final URLs now include29content-inspected and203metadata-only. Notebook current auditedcatalogv2 is selected; supersededv1 remains preserved,deselected.
+
+Saved/Compare placeholders discovered during acceptance were replaced with functional existing-store views and12regression checks; privacyshared-device reset onlyfiveownkeys and requires userconfirmation. No existing personal data was cleared. Next: final independentreview, remotechecks forcorrectioncommit, mobilemodal/help andSaved/Compare persistence verification, authorizedmerge andproductionreceipt.
+
+Independent final reviews approved privacy reset, source audit/replay, modal keyboard behavior, and Saved/Compare model and actual-store fixtures. Final local checks: planning12, catalog232/29, validate194files/0warnings, diff-check PASS. New integrated CI and browser acceptance follow this checkpoint.

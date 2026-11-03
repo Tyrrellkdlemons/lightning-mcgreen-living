@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 
@@ -27,15 +27,36 @@ export function RedirectScreen({
   isSearch?: boolean;
   packetSummary: { label: string; value: string }[];
 }) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    dialogRef.current?.focus();
+    return () => { document.body.style.overflow = overflow; previous?.focus(); };
+  }, [open]);
   if (!open) return null;
   return (
     <div
+      ref={dialogRef}
       role="dialog"
+      aria-modal="true"
+      tabIndex={-1}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') { event.preventDefault(); onClose(); }
+        if (event.key !== 'Tab') return;
+        const items = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled])'));
+        const first = items[0]; const last = items[items.length - 1];
+        if (!first) { event.preventDefault(); return; }
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === event.currentTarget)) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && (document.activeElement === last || document.activeElement === event.currentTarget)) { event.preventDefault(); first.focus(); }
+      }}
       aria-label="Leaving Lightning McGreen Living"
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/55 p-4 sm:items-center"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <CandyCard className="w-full max-w-xl">
+      <CandyCard className="max-h-[calc(100dvh-2rem)] w-full max-w-xl overflow-y-auto overscroll-contain [overflow-wrap:anywhere]">
         <Gumdrop tone="warn">Leaving Lightning McGreen Living</Gumdrop>
         <h2 className="mt-2 font-display text-xl font-extrabold text-chocolate-900">
           Heading to: {destinationLabel}
@@ -52,7 +73,7 @@ export function RedirectScreen({
             <p className="font-bold uppercase tracking-wider text-chocolate-700">Your packet (copy/paste-ready)</p>
             <dl className="mt-1 grid grid-cols-1 gap-1 sm:grid-cols-2">
               {packetSummary.map((row) => (
-                <div key={row.label} className="flex justify-between gap-2">
+                <div key={row.label} className="flex min-w-0 flex-wrap justify-between gap-2">
                   <dt className="text-chocolate-700">{row.label}</dt>
                   <dd className="font-semibold text-chocolate-900">{row.value || '—'}</dd>
                 </div>

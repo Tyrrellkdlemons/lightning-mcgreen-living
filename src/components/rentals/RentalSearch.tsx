@@ -75,7 +75,7 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
             <p>No listed rentals match this search. Our directory is growing; an empty result does not mean there are no rentals in this area.</p>
             <div className="mt-3 flex flex-wrap justify-center gap-3">
               <button type="button" className="cinnamon-btn" onClick={() => setFilters({ unit_type: unitTypeLock ?? 'all' })}>Clear filters</button>
-              <Link href={filters.state === 'AZ' ? '/places/arizona' : '/places/california'} className="bolt-btn">Explore city guides and local resources</Link>
+              <Link href={filters.state === 'AZ' ? '/places/arizona' : '/places/california'} className="bolt-btn">Explore city guides and local resources</Link><Link href={`/resources?state=${filters.state==='AZ'?'AZ':'CA'}&category=property`} className="cinnamon-btn mt-3">Browse property sources in this state</Link>
             </div>
           </div>
         )}

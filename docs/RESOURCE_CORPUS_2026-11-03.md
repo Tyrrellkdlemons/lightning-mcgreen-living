@@ -1,8 +1,8 @@
-# Resource corpus expansion â€” 2026-11-03
+# Resource corpus expansion — 2026-11-03
 
 This batch adds **232 distinct public source URLs** absent from the frozen pre-expansion source baseline. It is a source directory, not a feed of vacant homes or a promise of eligibility, approval, funding, placement, price, or availability.
 
-## Scope and exact counts
+## Initial collection and final audited counts
 
 | Stage | Count | Meaning |
 | --- | ---: | --- |
@@ -14,16 +14,16 @@ This batch adds **232 distinct public source URLs** absent from the frozen pre-e
 | Existing canonical baseline URLs | 267 | URLs extracted from src and docs at revision 5eb2e395e316a9ca69f92bf06e7fdea219615039 |
 | Existing URLs excluded | 0 | None of this final candidate set overlapped that baseline |
 | Included additional URLs | 232 | Final public catalog records |
-| Content-inspected destinations | 21 | Relevant page sections read; not an assertion that every PDF page or linked page was read |
-| Metadata-only destinations | 211 | Directory fields reviewed; destination content was not inspected |
+| Content-inspected destinations | 29 | Relevant page sections read; not an assertion that every PDF page or linked page was read |
+| Metadata-only destinations | 203 | Directory fields reviewed; destination content was not inspected |
 | HEAD link attempts | 8 | Bounded requests, each recorded with linkCheckedAt |
 | Successful HEAD responses | 6 | HTTP 2xx/3xx |
 | HEAD access refusals | 2 | HTTP 403; these pages were readable through the public web tool |
-| Distinct publisher labels | 77 | Labels, not an audited count of independently controlled organizations |
+| Distinct publisher labels | 80 | Labels, not an audited count of independently controlled organizations |
 
-Coverage: Arizona 167; California 61; CA/AZ 3; Federal 1.
-Categories: property 151; housing 66; directory 8; benefits 3; legal 2; shelter 2.
-There are no new transport sources in this batch. The 147 property paths from a single operator make Arizona properties the largest group. This is a bounded expansion with that known bias, not exhaustive or balanced coverage.
+Final coverage: Arizona165; California62; CA/AZ3; Federal2.
+Final categories: property149; housing65; directory10; benefits4; legal2; shelter2.
+There are no new transport sources in this batch. The initial147 operator paths yielded145 retained property records after audit. This single operator still makes Arizona properties the largest group. This is a bounded expansion with that known bias, not exhaustive or balanced coverage.
 
 ## Collection and inclusion method
 
@@ -83,3 +83,11 @@ Live bounded collection: PASS; 3 GETs and 8 HEAD attempts, no destination crawl.
 Collector schema, uniqueness, provenance and frozen-baseline validation: PASS.
 Catalog SHA-256: c8c92d134a82e2d1003523da76f006b87e7f496d9440fe1faf6bdbc3ae648be9.
 Independent regression result and integrated browser/deploy evidence are recorded by their owners separately.
+
+## Corroborated final correction audit
+
+Gemini identified a placeholder host and a suspicious category page in the imported metadata. Independent primary-page inspection confirmed these and one duplicate/incorrect-city Sentio alias. Three records were removed and replaced with three additional content-inspected sources: Korean Community Services community support, CalHFA counseling directory and National CAPACD housing counseling network. KCS is described as benefits/community support, not an unverified counseling claim. Only its actual agency90768 is retained.
+
+Four address-derived property titles were corrected to Banyan at17North, Blume on Central, Forge Tower and Bella Olivia using official headings. The retained Glendale Sentio page was inspected too. Final counts are232 additional URLs,29 content-inspected and203 metadata-only. The original255 discovered candidates and249 directory rows remain historical collection counts; they are not invented recalculations after a separate audit. The catalog audits field records removals, replacements and five upgrades.
+
+The collector now rejects the placeholder host and reserved utility slugs, canonicalizes the confirmed Sentio alias, and retains curated title corrections and replacements. Three focused regressions prevent recurrence. The earlier catalog hash records the pre-audit artifact; final source hash is recorded with release evidence.

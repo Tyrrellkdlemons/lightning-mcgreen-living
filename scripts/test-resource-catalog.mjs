@@ -394,3 +394,10 @@ const additional = Array.from(sourceUrls).filter((url) => !existingUrls.has(url)
 assert.ok(additional >= 200, `Need 200 additional unique URLs; found ${additional} against the frozen baseline`);
 assert.equal(summary.additionalUnique, additional, 'Additional-source count must match the frozen baseline');
 console.log(`PASS: ${sourceIds.size} unique route-safe sources; ${additional} additional URLs; safe source/provenance links; supported categories/states; matching counts (${summary.contentInspected} content-inspected, ${summary.linkChecked} link-checked).`);
+
+// Independently corroborated directory defects must not return in later refreshes.
+assert.ok(!catalog.sources.some(s => new URL(s.url).hostname.endsWith('notavailable.org')), 'Reject agency placeholder host');
+assert.ok(!catalog.sources.some(s => s.url.includes('/apartments/az/tempe/pet-friendly')), 'Reject utility page as property');
+assert.ok(!catalog.sources.some(s => s.url.includes('/apartments/az/phoenix/sentio')), 'Reject duplicate incorrect-city alias');
+assert.equal(catalog.sources.find(s => s.url.includes('/apartments/az/glendale/sentio'))?.title, 'Sentio');
+console.log('PASS: placeholder, utility-page and duplicate-alias regressions.');

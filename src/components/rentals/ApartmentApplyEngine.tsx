@@ -101,7 +101,7 @@ export function ApartmentApplyEngine() {
       `Unit: ${selected.unit_number ?? ''}`,
       `Floor plan: ${selected.floor_plan_name ?? ''}`,
       `Address: ${selected.address_line}, ${selected.city}, ${selected.state} ${selected.zip}`,
-      `Available: ${selected.available_date ?? ''}`,
+      `Recorded availability (confirm): ${selected.available_date ?? ''}`,
       `Rent: ${usd(selected.min_rent)} - ${usd(selected.max_rent)}`,
       `Owner/operator: ${selected.owner_operator ?? ''}`,
       `Manager: ${selected.manager}`,
@@ -133,14 +133,14 @@ export function ApartmentApplyEngine() {
           <div className="flex items-center gap-2">
             <Route className="h-5 w-5 text-lightning-700" aria-hidden />
             <div>
-              <Gumdrop tone="ok">Exact-unit queue</Gumdrop>
+              <Gumdrop tone="info">Recorded unit links</Gumdrop>
               <h2 className="mt-1 font-display text-xl font-extrabold text-chocolate-900">
-                Apply-ready listings
+                Application research
               </h2>
             </div>
           </div>
           <p className="mt-2 text-xs text-chocolate-700">
-            Official unit links only. These prepare and launch the property portal; they do not auto-submit.
+            These recorded California unit links may be stale. Confirm current units, rent and requirements on the provider site before using a link.
           </p>
           <ul className="mt-4 space-y-2">
             {APPLY_READY.map((r) => (
@@ -197,7 +197,7 @@ export function ApartmentApplyEngine() {
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Gumdrop tone="ok">Official source</Gumdrop>
+                  <Gumdrop tone="info">Recorded official source</Gumdrop>
                   <FitBadge fit={fit} />
                   <Gumdrop tone={STRICTNESS_TONE[stack.strictness]}>
                     {STRICTNESS_LABEL[stack.strictness]}
@@ -225,10 +225,10 @@ export function ApartmentApplyEngine() {
             </div>
 
             <div className="mt-4 grid gap-3 md:grid-cols-4">
-              <MiniStat label="Rent" value={`${usd(selected.min_rent)} - ${usd(selected.max_rent)}`} />
+              <MiniStat label="Recorded rent" value={`${usd(selected.min_rent)} - ${usd(selected.max_rent)}`} />
               <MiniStat label="Beds / baths" value={`${selected.beds_min} bd / ${selected.baths_min} ba`} />
               <MiniStat label="Sq ft" value={selected.sqft_min ? selected.sqft_min.toLocaleString() : 'Verify'} />
-              <MiniStat label="Available" value={selected.available_date ? formatDate(selected.available_date) : 'Verify'} />
+              <MiniStat label="Recorded availability" value={selected.available_date ? formatDate(selected.available_date) : 'Verify'} />
             </div>
 
             <p className="mt-3 rounded-md bg-frosting-100 p-2 text-xs text-chocolate-700">
@@ -535,5 +535,5 @@ function workbookRent(item: WorkbookRankedListing) {
 }
 
 function formatDate(date: string) {
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(`${date}T12:00:00`));
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(`${date}T12:00:00`));
 }

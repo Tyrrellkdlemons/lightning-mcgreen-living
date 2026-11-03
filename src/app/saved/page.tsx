@@ -1,26 +1,11 @@
 import type { Metadata } from 'next';
-import { CandyCard } from '@/components/ui/CandyCard';
+import { PlanningList } from '@/components/planning/PlanningList';
 
-export const metadata: Metadata = { title: 'Saved' };
+export const metadata: Metadata = { title: 'Saved', description: 'Review the rentals, cars and work vehicles saved on this device, and choose items to compare.' };
 
 export default function SavedPage() {
-  return (
-    <>
-      <header className="mt-6">
-        <h1 className="font-display text-3xl font-extrabold text-chocolate-900">Saved</h1>
-        <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-          Your saved rentals, cars, and work vehicles. Stored on this device only — works offline.
-        </p>
-      </header>
-      <div className="mt-6">
-        <CandyCard className="text-center text-sm text-chocolate-700">
-          <p>Use the &ldquo;Save&rdquo; star on any card to add it here.</p>
-          <p className="mt-2 text-xs">
-            Saved items are kept in <code>localStorage</code> via the
-            {' '}<code>useSavedStore</code> Zustand slice and are visible offline.
-          </p>
-        </CandyCard>
-      </div>
-    </>
-  );
+  return <>
+    <header className="mt-6"><p className="eyebrow">Keep your possibilities together</p><h1 className="mt-2 font-display text-3xl font-extrabold text-chocolate-900 sm:text-5xl">Saved</h1><p className="mt-3 max-w-2xl text-sm leading-relaxed text-chocolate-700">Return to your saved rentals, cars and work vehicles. Review the details or add them to your comparison.</p></header>
+    <PlanningList mode="saved" />
+  </>;
 }

@@ -18,7 +18,7 @@ export default function TemplatesPage() {
         <Gumdrop tone="ok">Printable</Gumdrop>
         <h1 className="mt-2 font-display text-3xl font-extrabold text-chocolate-900">Letters &amp; checklists</h1>
         <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-          Clean, print-friendly templates you can fill in or copy. We never auto-send these on your behalf.
+          Templates you can fill in, copy or print. These are requests to a provider, not court filings or legal advice. If you received court papers, contact qualified local legal help promptly; a letter does not replace a required court response. We never auto-send these on your behalf.
         </p>
       </header>
 
@@ -44,7 +44,7 @@ export default function TemplatesPage() {
         <CandyCard>
           <Gumdrop tone="mute">County assistance</Gumdrop>
           <h2 className="mt-2 font-display text-xl font-extrabold text-chocolate-900">County assistance packet checklist</h2>
-          <p className="mt-1 text-sm text-chocolate-700">A single packet that satisfies most LA / OC / Riverside / SB programs.</p>
+          <p className="mt-1 text-sm text-chocolate-700">A preparation checklist for LA / OC / Riverside / SB programs. Each provider determines its own required documents.</p>
           <CountyPacketChecklist />
         </CandyCard>
       </section>

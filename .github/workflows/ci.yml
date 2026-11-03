@@ -34,6 +34,7 @@ jobs:
           node scripts/test-streetview.mjs
           node scripts/test-resource-catalog.mjs
           node scripts/test-link-routing.mjs
+          node scripts/test-planning.mjs
           node --test scripts/test-photos.mjs
 
       - name: Lint

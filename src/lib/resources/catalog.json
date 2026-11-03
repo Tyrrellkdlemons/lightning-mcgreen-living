@@ -12,12 +12,13 @@
     "existingExcluded": 0,
     "directoryRecords": 249,
     "rejectedDirectoryRecords": 15,
-    "contentInspected": 21,
-    "metadataOnly": 211,
+    "contentInspected": 29,
+    "metadataOnly": 203,
     "linkChecked": 8,
     "linkSuccessful": 6,
-    "publisherCount": 77,
-    "countsMeaning": "Distinct source URLs, not independent publications or available homes. Directory metadata retrieval is not a destination-page visit."
+    "publisherCount": 80,
+    "countsMeaning": "Distinct source URLs, not independent publications or available homes. Directory metadata retrieval is not a destination-page visit.",
+    "discoveryStageNote": "Discovery-stage counts retain the original three-directory collection; final included and inspection counts include the separately recorded correction audit."
   },
   "sources": [
     {
@@ -579,6 +580,22 @@
       "id": "resource-865d68cd6d7159f5"
     },
     {
+      "id": "resource-e9ac5aff17acfe4a",
+      "title": "California housing counseling directory",
+      "url": "https://calhfa.ca.gov/community/nms/resources.htm",
+      "publisher": "California Housing Finance Agency",
+      "state": "CA",
+      "category": "directory",
+      "description": "State directory of housing counseling agencies, searchable by city or language. Confirm current services directly.",
+      "discoveredFrom": "https://calhfa.ca.gov/",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "kind": "official-resource",
+      "contentInspectionMethod": "Independent research worker inspected official page sections after Gemini audit"
+    },
+    {
       "url": "https://www.hud.gov/sites/dfiles/PIH/documents/PHA_Contact_Report_CA.pdf",
       "title": "California public housing authority contacts",
       "publisher": "HUD",
@@ -1026,6 +1043,26 @@
       "id": "resource-dde6d08dfb41060f"
     },
     {
+      "id": "resource-cd5cc939b233a80a",
+      "title": "Korean Community Services community support",
+      "url": "https://www.kcsinc.org/community-services/",
+      "publisher": "Korean Community Services",
+      "state": "CA",
+      "category": "benefits",
+      "description": "Orange County assistance with public-benefit enrollment, forms and connections to community resources.",
+      "discoveredFrom": "https://www.kcsinc.org/kcs-locations/",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "kind": "official-resource",
+      "contentInspectionMethod": "Independent research worker inspected official page sections after Gemini audit",
+      "city": "Buena Park",
+      "directoryAgencyIds": [
+        "90768"
+      ]
+    },
+    {
       "title": "KOREAN RESOURCE CENTER",
       "url": "http://www.krcla.org/housing",
       "publisher": "KOREAN RESOURCE CENTER",
@@ -1045,28 +1082,6 @@
         "P"
       ],
       "id": "resource-42174bd23df07688"
-    },
-    {
-      "title": "KOREAN RESOURCE CENTER",
-      "url": "http://site.notavailable.org",
-      "publisher": "KOREAN RESOURCE CENTER",
-      "state": "CA",
-      "category": "housing",
-      "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
-      "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
-      "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "directoryAgencyIds": [
-        "82557",
-        "90768"
-      ],
-      "directoryStatusCodes": [
-        "A",
-        "P"
-      ],
-      "id": "resource-46bf08a5775c12e6"
     },
     {
       "url": "https://www.lahsa.org/get-help",
@@ -1667,6 +1682,22 @@
       "id": "resource-a4ade7401d5167dd"
     },
     {
+      "id": "resource-4b09942ac7d42828",
+      "title": "National CAPACD housing counseling network",
+      "url": "https://www.nationalcapacd.org/housing-counseling/",
+      "publisher": "National CAPACD",
+      "state": "Federal",
+      "category": "directory",
+      "description": "National nonprofit housing counseling network with California member agencies serving renters and homeowners.",
+      "discoveredFrom": "https://www.nationalcapacd.org/",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "kind": "official-resource",
+      "contentInspectionMethod": "Independent research worker inspected official page sections after Gemini audit"
+    },
+    {
       "url": "https://rdmfhrentals.sc.egov.usda.gov/RDMFHRentals/about_mfh.jsp",
       "title": "USDA rural multifamily rental housing",
       "publisher": "USDA Rural Development",
@@ -1922,6 +1953,25 @@
       "id": "resource-d3cfec1d2c56c87e"
     },
     {
+      "title": "Banyan at 17 North",
+      "url": "https://www.mark-taylor.com/apartments/az/phoenix/n-black-canyon-hwy/",
+      "publisher": "Mark-Taylor",
+      "state": "AZ",
+      "city": "Phoenix",
+      "category": "property",
+      "kind": "property-provider",
+      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
+      "discoveredFrom": "https://www.mark-taylor.com/",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "titleBasis": "official page heading",
+      "locationBasis": "published URL path",
+      "id": "resource-857cf96ab852df2c",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "contentInspectionMethod": "Independent research worker inspected official page heading and address"
+    },
+    {
       "title": "Banyan At South Mountain",
       "url": "https://www.mark-taylor.com/apartments/az/phoenix/banyan-at-south-mountain/",
       "publisher": "Mark-Taylor",
@@ -1973,6 +2023,25 @@
       "id": "resource-731418b715af792d"
     },
     {
+      "title": "Bella Olivia",
+      "url": "https://www.mark-taylor.com/apartments/az/peoria/w-olive-ave/",
+      "publisher": "Mark-Taylor",
+      "state": "AZ",
+      "city": "Peoria",
+      "category": "property",
+      "kind": "property-provider",
+      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
+      "discoveredFrom": "https://www.mark-taylor.com/",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "titleBasis": "official page heading",
+      "locationBasis": "published URL path",
+      "id": "resource-15c1520091eb2ec3",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "contentInspectionMethod": "Independent research worker inspected official page heading and address"
+    },
+    {
       "url": "https://www.mark-taylor.com/apartments/az/scottsdale/bellagio/",
       "title": "Bellagio",
       "publisher": "Mark-Taylor",
@@ -1988,6 +2057,25 @@
       "kind": "official-resource",
       "city": "Scottsdale",
       "id": "resource-3704263f121b2aea"
+    },
+    {
+      "title": "Blume on Central",
+      "url": "https://www.mark-taylor.com/apartments/az/phoenix/n-central-ave/",
+      "publisher": "Mark-Taylor",
+      "state": "AZ",
+      "city": "Phoenix",
+      "category": "property",
+      "kind": "property-provider",
+      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
+      "discoveredFrom": "https://www.mark-taylor.com/",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "titleBasis": "official page heading",
+      "locationBasis": "published URL path",
+      "id": "resource-5b4aa60bf4b2c715",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "contentInspectionMethod": "Independent research worker inspected official page heading and address"
     },
     {
       "title": "Borrego At Spectrum",
@@ -2483,6 +2571,25 @@
       "id": "resource-7bd5e3d3208de72f"
     },
     {
+      "title": "Forge Tower",
+      "url": "https://www.mark-taylor.com/apartments/az/mesa/n-robson-rd-forge-tower/",
+      "publisher": "Mark-Taylor",
+      "state": "AZ",
+      "city": "Mesa",
+      "category": "property",
+      "kind": "property-provider",
+      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
+      "discoveredFrom": "https://www.mark-taylor.com/",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "titleBasis": "official page heading",
+      "locationBasis": "published URL path",
+      "id": "resource-6d2151cf9135647e",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "contentInspectionMethod": "Independent research worker inspected official page heading and address"
+    },
+    {
       "title": "Grandstone At Sunrise",
       "url": "https://www.mark-taylor.com/apartments/az/peoria/grandstone-at-sunrise/",
       "publisher": "Mark-Taylor",
@@ -2823,57 +2930,6 @@
       "id": "resource-90c15fa5431e97f2"
     },
     {
-      "title": "N Black Canyon Hwy",
-      "url": "https://www.mark-taylor.com/apartments/az/phoenix/n-black-canyon-hwy/",
-      "publisher": "Mark-Taylor",
-      "state": "AZ",
-      "city": "Phoenix",
-      "category": "property",
-      "kind": "property-provider",
-      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
-      "discoveredFrom": "https://www.mark-taylor.com/",
-      "retrievedAt": "2026-11-03T12:59:06.869447Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "titleBasis": "published URL path",
-      "locationBasis": "published URL path",
-      "id": "resource-857cf96ab852df2c"
-    },
-    {
-      "title": "N Central Ave",
-      "url": "https://www.mark-taylor.com/apartments/az/phoenix/n-central-ave/",
-      "publisher": "Mark-Taylor",
-      "state": "AZ",
-      "city": "Phoenix",
-      "category": "property",
-      "kind": "property-provider",
-      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
-      "discoveredFrom": "https://www.mark-taylor.com/",
-      "retrievedAt": "2026-11-03T12:59:06.869447Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "titleBasis": "published URL path",
-      "locationBasis": "published URL path",
-      "id": "resource-5b4aa60bf4b2c715"
-    },
-    {
-      "title": "N Robson Rd Forge Tower",
-      "url": "https://www.mark-taylor.com/apartments/az/mesa/n-robson-rd-forge-tower/",
-      "publisher": "Mark-Taylor",
-      "state": "AZ",
-      "city": "Mesa",
-      "category": "property",
-      "kind": "property-provider",
-      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
-      "discoveredFrom": "https://www.mark-taylor.com/",
-      "retrievedAt": "2026-11-03T12:59:06.869447Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "titleBasis": "published URL path",
-      "locationBasis": "published URL path",
-      "id": "resource-6d2151cf9135647e"
-    },
-    {
       "title": "Nacona",
       "url": "https://www.mark-taylor.com/apartments/az/glendale/nacona/",
       "publisher": "Mark-Taylor",
@@ -2991,23 +3047,6 @@
       "titleBasis": "published URL path",
       "locationBasis": "published URL path",
       "id": "resource-3e2669b77376f6cf"
-    },
-    {
-      "title": "Pet Friendly",
-      "url": "https://www.mark-taylor.com/apartments/az/tempe/pet-friendly/",
-      "publisher": "Mark-Taylor",
-      "state": "AZ",
-      "city": "Tempe",
-      "category": "property",
-      "kind": "property-provider",
-      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
-      "discoveredFrom": "https://www.mark-taylor.com/",
-      "retrievedAt": "2026-11-03T12:59:06.869447Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "titleBasis": "published URL path",
-      "locationBasis": "published URL path",
-      "id": "resource-98b633b556235178"
     },
     {
       "title": "Redstone At San Tan Village",
@@ -3512,29 +3551,14 @@
       "kind": "property-provider",
       "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
       "discoveredFrom": "https://www.mark-taylor.com/",
-      "retrievedAt": "2026-11-03T12:59:06.869447Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "titleBasis": "published URL path",
+      "retrievedAt": "2026-11-03T13:12:47Z",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "titleBasis": "official page heading",
       "locationBasis": "published URL path",
-      "id": "resource-ca0cdd2b3119d29b"
-    },
-    {
-      "title": "Sentio",
-      "url": "https://www.mark-taylor.com/apartments/az/phoenix/sentio/",
-      "publisher": "Mark-Taylor",
-      "state": "AZ",
-      "city": "Phoenix",
-      "category": "property",
-      "kind": "property-provider",
-      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
-      "discoveredFrom": "https://www.mark-taylor.com/",
-      "retrievedAt": "2026-11-03T12:59:06.869447Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "titleBasis": "published URL path",
-      "locationBasis": "published URL path",
-      "id": "resource-c66a21f0528d1e05"
+      "id": "resource-ca0cdd2b3119d29b",
+      "pageRetrievedAt": "2026-11-03T13:12:47Z",
+      "contentInspectionMethod": "Independent research worker inspected official page heading and address"
     },
     {
       "title": "Shadow Mountain",
@@ -4132,23 +4156,6 @@
       "id": "resource-fe15c417afb6a2dc"
     },
     {
-      "title": "W Olive Ave",
-      "url": "https://www.mark-taylor.com/apartments/az/peoria/w-olive-ave/",
-      "publisher": "Mark-Taylor",
-      "state": "AZ",
-      "city": "Peoria",
-      "category": "property",
-      "kind": "property-provider",
-      "description": "Official property source listed by Mark-Taylor. Confirm current details with the operator; no price or vacancy is asserted.",
-      "discoveredFrom": "https://www.mark-taylor.com/",
-      "retrievedAt": "2026-11-03T12:59:06.869447Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
-      "titleBasis": "published URL path",
-      "locationBasis": "published URL path",
-      "id": "resource-15c1520091eb2ec3"
-    },
-    {
       "title": "Waterside At Ocotillo",
       "url": "https://www.mark-taylor.com/apartments/az/chandler/waterside-at-ocotillo/",
       "publisher": "Mark-Taylor",
@@ -4249,6 +4256,38 @@
       "kind": "official-resource",
       "city": "Inglewood",
       "id": "resource-f00fb20adf510ecc"
+    }
+  ],
+  "audits": [
+    {
+      "reviewedAt": "2026-11-03T13:12:47Z",
+      "trigger": "Gemini final review independently corroborated by research worker",
+      "removedRecordIds": [
+        "resource-46bf08a5775c12e6",
+        "resource-98b633b556235178",
+        "resource-c66a21f0528d1e05"
+      ],
+      "addedUrls": [
+        "https://www.kcsinc.org/community-services/",
+        "https://calhfa.ca.gov/community/nms/resources.htm",
+        "https://www.nationalcapacd.org/housing-counseling/"
+      ],
+      "upgradedRecordIds": [
+        "resource-857cf96ab852df2c",
+        "resource-5b4aa60bf4b2c715",
+        "resource-6d2151cf9135647e",
+        "resource-15c1520091eb2ec3",
+        "resource-ca0cdd2b3119d29b"
+      ],
+      "reasons": [
+        "Reject placeholder host and merged unrelated agency metadata",
+        "Reject reserved utility path confirmed404",
+        "Collapse confirmed Sentio Phoenix alias into Glendale property"
+      ],
+      "originalIncluded": 232,
+      "removed": 3,
+      "added": 3,
+      "upgraded": 5
     }
   ]
 }
