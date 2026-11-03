@@ -1,12 +1,12 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useId, useState } from 'react';
+import {useNow} from '@/lib/client/state';
+import { useId, useState } from 'react';
 import { observationExpired, youtubeEmbed, type PropertyEvidenceRecord } from '@/lib/property-evidence/presentation';
 export function PropertyEvidenceView({ propertyId, record }: { propertyId: string; record: PropertyEvidenceRecord }) {
  const sectionId = useId();
  const [photosLoadedFor, setPhotosLoadedFor] = useState<string | null>(null); const photosLoaded = photosLoadedFor === propertyId; const [failedPhotos, setFailedPhotos] = useState<string[]>([]);
- const [now, setNow] = useState<number | null>(null); const [loaded, setLoaded] = useState<string[]>([]);
- useEffect(() => { setNow(Date.now()); const timer = setInterval(() => setNow(Date.now()), 60000); return () => clearInterval(timer); }, []);
+ const now = useNow(); const [loaded, setLoaded] = useState<string[]>([]);
  const a = record.availability; const expired = now === null || observationExpired(a.observedAt, now);
  const observedLabel = new Date(a.observedAt).toISOString().replace('T', ' ').slice(0,16) + ' UTC';
  return <section aria-labelledby={sectionId} className="mt-8 min-w-0 rounded-3xl border border-lightning-300 bg-white p-5 sm:p-8">

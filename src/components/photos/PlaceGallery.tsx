@@ -37,23 +37,26 @@ function Photo({ photo }: { photo: PlacePhoto }) {
   );
 }
 
-export function PlaceGallery({ placeId, name, targetKind = 'city', contextOnly = targetKind === 'city' }: {
+export function PlaceGallery(props: {
+  placeId: string; name: string; targetKind?: PhotoTargetKind; contextOnly?: boolean;
+}) { return <GalleryContent key={props.placeId} {...props}/>; }
+function GalleryContent({ placeId, name, targetKind = 'city', contextOnly = targetKind === 'city' }: {
   placeId: string; name: string; targetKind?: PhotoTargetKind; contextOnly?: boolean;
 }) {
   const [photos, setPhotos] = useState<PlacePhoto[]>([]);
-  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [responseStatus, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [retry, setRetry] = useState(0);
   const [truncated, setTruncated] = useState(false);
   const [page, setPage] = useState(0);
 
-  useEffect(() => { setPage(0); }, [placeId]);
+  const requestKey = `${placeId}:${page}:${retry}`;
+  const [resolvedKey,setResolvedKey] = useState<string|null>(null);
+  const status = resolvedKey === requestKey ? responseStatus : 'loading';
 
   useEffect(() => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 12000);
     let active = true;
-    setStatus('loading');
-    setPhotos([]);
     fetch('/api/place-photos/gallery?placeId=' + encodeURIComponent(placeId) + '&page=' + page, {
       signal: controller.signal, cache: 'no-store',
     })
@@ -62,15 +65,16 @@ export function PlaceGallery({ placeId, name, targetKind = 'city', contextOnly =
         const data = await response.json();
         if (!Array.isArray(data.photos)) throw new Error('invalid');
         if (active) {
+          setResolvedKey(requestKey);
           setPhotos(data.photos);
           setTruncated(Boolean(data.truncated));
           setStatus('ready');
         }
       })
-      .catch(() => { if (active) setStatus('error'); })
+      .catch(() => { if (active) { setResolvedKey(requestKey); setStatus('error'); } })
       .finally(() => clearTimeout(timer));
     return () => { active = false; clearTimeout(timer); controller.abort(); };
-  }, [placeId, retry, page]);
+  }, [placeId, retry, page, requestKey]);
 
   return (
     <section aria-labelledby={'photos-' + placeId} className="my-10">

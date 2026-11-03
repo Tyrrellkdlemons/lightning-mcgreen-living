@@ -34,6 +34,7 @@ function load(file, mocks = {}, expose = '') {
       if (name === 'next/link') return { default: 'a' };
       if (name === 'lucide-react') return new Proxy({}, { get: (_, icon) => String(icon) });
       if (name in mocks) return mocks[name];
+      if (name === '@/lib/client/state') return load('src/lib/client/state.ts', {react:mocks.react});
       throw new Error(file + ': unexpected dependency ' + name);
     },
   }, { timeout: 1500 });
@@ -51,6 +52,12 @@ function hooks() {
       },
       useRef(initial) { const index = cursor++; return slots[index] ||= { current: initial }; },
       useMemo: (fn) => fn(),
+      useCallback: (fn) => fn,
+      useSyncExternalStore(subscribe,getSnapshot,getServerSnapshot) {
+        const index=cursor++;
+        if(!(index in slots)){slots[index]=false;effects.push(()=>{slots[index]=true;});}
+        return slots[index]?getSnapshot():getServerSnapshot();
+      },
       useEffect(fn, deps) {
         const index = cursor++, previous = slots[index];
         if (!previous || deps.some((value, position) => value !== previous[position])) { effects.push(fn); slots[index] = deps; }
@@ -292,3 +299,12 @@ check('Escape never moves focus to the hidden desktop filter trigger', () => {
   assert.equal(focused, false);
 });
 console.log('Mobile rental behavior checks: ' + checks + ' passed. Browser layout and assistive-technology checks are separate.');
+
+const keyedHooks = hooks();
+const keyedState = load('src/lib/client/state.ts', {react:keyedHooks.api});
+const keyed = (key) => keyedHooks.render(() => keyedState.useKeyedPage(key));
+check('changing filters A to B to A never revives a previous page', () => {
+  let [page,setPage]=keyed('A'); assert.equal(page,1); setPage(3);
+  assert.equal(keyed('A')[0],3); assert.equal(keyed('B')[0],1);
+  assert.equal(keyed('A')[0],1);
+});

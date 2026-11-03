@@ -1,20 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import {useStoredObject} from '@/lib/client/state';
 import type { WorkRentalProfile } from '@/types';
 
 const KEY = 'lmgl:work-rental-profile';
 
 export function useWorkProfile(): [WorkRentalProfile, (p: WorkRentalProfile) => void] {
-  const [p, setP] = useState<WorkRentalProfile>({});
-  useEffect(() => {
-    try { const raw = localStorage.getItem(KEY); if (raw) setP(JSON.parse(raw)); } catch {}
-  }, []);
-  function update(next: WorkRentalProfile) {
-    setP(next);
-    try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
-  }
-  return [p, update];
+  return useStoredObject<WorkRentalProfile>(KEY);
 }
 
 export function WorkProfilePanel({ profile, onChange }: { profile: WorkRentalProfile; onChange: (p: WorkRentalProfile) => void }) {

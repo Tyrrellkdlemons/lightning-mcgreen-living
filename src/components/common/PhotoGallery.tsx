@@ -1,4 +1,5 @@
 'use client';
+import {useReducedMotion} from '@/lib/client/state';
 
 import { useEffect, useState } from 'react';
 import type { PhotoSet } from '@/lib/data/photo-sets';
@@ -23,26 +24,9 @@ interface Props {
 
 export function PhotoGallery({ photos, rounded = true, height = 200, interval = 5000 }: Props) {
   const [idx, setIdx] = useState(0);
-  const [reduce, setReduce] = useState(false);
+  const reduce = useReducedMotion();
 
-  useEffect(() => {
-    const prefersReduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const userReduced =
-      typeof window !== 'undefined' &&
-      (document.documentElement.classList.contains('reduce-motion') ||
-        localStorage.getItem('lmgl:reduce-motion') === '1');
-    const off = prefersReduced || userReduced;
-    setReduce(off);
 
-    const onChange = () => {
-      const u = localStorage.getItem('lmgl:reduce-motion') === '1';
-      setReduce(prefersReduced || u);
-    };
-    window.addEventListener('lmgl:reduce-motion-change', onChange);
-    return () => window.removeEventListener('lmgl:reduce-motion-change', onChange);
-  }, []);
 
   useEffect(() => {
     if (reduce) return;

@@ -1,6 +1,7 @@
 'use client';
+import {useReducedMotion} from '@/lib/client/state';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { cn } from '@/lib/utils/cn';
 
 /**
@@ -23,7 +24,7 @@ type ObjectKind =
   | 'car'
   | 'coin';
 
-const OBJECT_GLYPHS: Record<ObjectKind, JSX.Element> = {
+const OBJECT_GLYPHS: Record<ObjectKind, React.JSX.Element> = {
   bolt: (
     <path d="M14 2 L4 16 L10 16 L8 30 L20 12 L14 12 L18 2 Z" fill="#34db00" stroke="#0c3a02" strokeWidth="1" />
   ),
@@ -123,21 +124,9 @@ export function RainingObjects({
   count?: number;
   className?: string;
 }) {
-  const [enabled, setEnabled] = useState(false);
+  const enabled = !useReducedMotion();
 
-  useEffect(() => {
-    // Honor OS-level reduce-motion + persisted user preference.
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const userReduced = localStorage.getItem('lmgl:reduce-motion') === '1';
-    setEnabled(!prefersReduced && !userReduced);
 
-    const onUpdate = () => {
-      const u = localStorage.getItem('lmgl:reduce-motion') === '1';
-      setEnabled(!prefersReduced && !u);
-    };
-    window.addEventListener('lmgl:reduce-motion-change', onUpdate);
-    return () => window.removeEventListener('lmgl:reduce-motion-change', onUpdate);
-  }, []);
 
   const objs = useMemo(() => generateObjects(count), [count]);
 

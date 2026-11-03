@@ -1,6 +1,7 @@
 'use client';
+import {useKeyedPage} from '@/lib/client/state';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { CarCard } from './CarCard';
 import { BuyerProfilePanel, useBuyerProfile } from './BuyerProfilePanel';
@@ -23,7 +24,7 @@ export function CarSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   const [profile, setProfile] = useBuyerProfile();
   const [filters, setFilters] = useState<FilterState>({ condition: 'all', state: initialState });
   const [sort, setSort] = useState<SortKey>('best-fit');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useKeyedPage(JSON.stringify(filters) + sort);
 
   const dealers = useMemo(() => Object.fromEntries(REAL_DEALERS.map((d) => [d.id, d])), []);
   const filtered = useMemo(() => REAL_VEHICLES.filter((v) => {
@@ -43,8 +44,6 @@ export function CarSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   }, [filtered, sort, profile]);
   const { items: paged, pageCount } = paginate(sorted, page, PER_PAGE);
 
-  const filterKey = JSON.stringify(filters) + sort;
-  useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
     <div className="mt-4 min-w-0 space-y-4 [&_input]:min-w-0 [&_input]:max-w-full [&_select]:min-w-0 [&_select]:max-w-full">

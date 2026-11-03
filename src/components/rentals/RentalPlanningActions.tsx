@@ -1,16 +1,16 @@
 'use client';
+import {useHydrated} from '@/lib/client/state';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Check, Heart, Columns2 } from 'lucide-react';
 import { useCompareStore, useSavedStore } from '@/lib/store/compare';
 
 export function RentalPlanningActions({ id, name }: { id: string; name: string }) {
   const saved = useSavedStore((state) => state.has('rental', id));
   const compared = useCompareStore((state) => state.has('rental', id));
-  const [ready, setReady] = useState(false);
+  const ready = useHydrated();
   const [message, setMessage] = useState('');
-  useEffect(() => { setReady(true); }, []);
 
   function toggleSaved() {
     const store = useSavedStore.getState();

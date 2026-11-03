@@ -1,24 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import {useStorageValue,writeStorage} from '@/lib/client/state';
 
 /**
  * Header toggle that flips a CSS class on `<html>` and persists in
  * localStorage. RainingObjects + Framer transitions both honor it.
  */
 export function ReduceMotionToggle() {
-  const [reduce, setReduce] = useState(false);
+  const reduce = useStorageValue('lmgl:reduce-motion') === '1';
 
   useEffect(() => {
-    const initial = localStorage.getItem('lmgl:reduce-motion') === '1';
-    setReduce(initial);
-    document.documentElement.classList.toggle('reduce-motion', initial);
-  }, []);
+    document.documentElement.classList.toggle('reduce-motion', reduce);
+  }, [reduce]);
 
   function toggle() {
     const next = !reduce;
-    setReduce(next);
-    localStorage.setItem('lmgl:reduce-motion', next ? '1' : '0');
+    try { writeStorage('lmgl:reduce-motion', next ? '1' : '0'); } catch {}
     document.documentElement.classList.toggle('reduce-motion', next);
     window.dispatchEvent(new Event('lmgl:reduce-motion-change'));
   }

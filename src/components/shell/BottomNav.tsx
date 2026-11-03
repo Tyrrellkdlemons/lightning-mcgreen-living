@@ -1,8 +1,9 @@
 'use client';
+import {useHydrated} from '@/lib/client/state';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+
 import { CarFront, Heart, Home, PackageSearch, Truck } from 'lucide-react';
 import { useSavedStore } from '@/lib/store/compare';
 
@@ -25,8 +26,7 @@ export function isBottomNavActive(pathname: string, href: string) {
 export function BottomNav() {
   const pathname = usePathname();
   const savedCount = useSavedStore((state) => state.ids.length);
-  const [ready, setReady] = useState(false);
-  useEffect(() => { setReady(true); }, []);
+  const ready = useHydrated();
 
   return (
     <nav aria-label="Mobile primary" className="app-bottom-nav">

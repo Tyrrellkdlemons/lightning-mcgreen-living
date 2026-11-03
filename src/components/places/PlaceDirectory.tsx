@@ -1,15 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ArrowUpRight, MapPin, Search, X } from 'lucide-react';
 import { PLACES, STATES, placeUrl, type StateCode } from '@/lib/places';
 
 const control = 'mt-2 min-h-11 w-full min-w-0 rounded-xl border border-gingerbread-300 bg-white px-3 py-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-lightning-700';
-export function PlaceDirectory({ initialState = '', initialQuery = '', fixedState }: { initialState?: string; initialQuery?: string; fixedState?: StateCode }) {
+export function PlaceDirectory(props: { initialState?: string; initialQuery?: string; fixedState?: StateCode }) { return <PlaceDirectoryContent key={JSON.stringify([props.initialState,props.initialQuery,props.fixedState])} {...props}/>; }
+function PlaceDirectoryContent({ initialState = '', initialQuery = '', fixedState }: { initialState?: string; initialQuery?: string; fixedState?: StateCode }) {
   const [state, setState] = useState(fixedState ?? (['CA', 'AZ'].includes(initialState) ? initialState : ''));
   const [query, setQuery] = useState(initialQuery); const [sort, setSort] = useState('name');
-  useEffect(() => { setState(fixedState ?? (['CA', 'AZ'].includes(initialState) ? initialState : '')); setQuery(initialQuery); setSort('name'); }, [initialState, initialQuery, fixedState]);
   const total = fixedState ? PLACES.filter(place => place.state === fixedState).length : PLACES.length;
   const places = useMemo(() => {
     const words = query.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/).filter(Boolean);

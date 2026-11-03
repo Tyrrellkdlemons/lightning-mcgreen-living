@@ -1,3 +1,4 @@
+import {requestTime} from '@/lib/homes/request-time';
 import type {Metadata} from 'next';
 import Link from 'next/link';
 import {ArrowUpRight,MapPin,SlidersHorizontal,Building2,BedDouble,Bath,Clock3} from 'lucide-react';
@@ -16,12 +17,12 @@ export default async function HomesPage({searchParams}:{searchParams:Promise<Rec
  const selected=f.city?getLocation(f.city):undefined;
  const invalidState=!!f.state&&!['CA','AZ'].includes(f.state);
  const cities=searchLocations({query:selected?'':f.q,state:f.state||undefined,county:f.county||undefined,pageSize:12,page:Number(scalar('cityPage'))||1});
- const all=[...rentalObservations(),...SALE_OBSERVATIONS];const rows=filterHomes(all,f);
+ const now=await requestTime();
+ const all=[...rentalObservations(),...SALE_OBSERVATIONS];const rows=filterHomes(all,f,now);
  const pageCount=Math.max(1,Math.ceil(rows.length/12)),page=Math.min(pageCount,Math.max(1,Math.floor(Number(scalar('page'))||1))),shown=rows.slice((page-1)*12,page*12);
  const counties=[...new Map(LOCATIONS.filter(p=>!f.state||p.state===f.state).flatMap(p=>p.counties.map(c=>[c.geoid,c] as const))).values()].sort((a,b)=>a.name.localeCompare(b.name));
  function href(changes:Record<string,string|undefined>){const p=new URLSearchParams();for(const [k,v]of Object.entries({...f,...changes}))if(v)p.set(k,v);return `/homes?${p}`;}
  const title=selected?`${selected.name}, ${selected.state}`:f.q|| (f.state==='CA'?'California':f.state==='AZ'?'Arizona':'California + Arizona');
- const now=Date.now();
  return <div className="homes-page py-6 sm:py-10">
   <header className="homes-hero relative overflow-hidden rounded-[2rem] bg-chocolate-900 px-6 py-8 text-white sm:px-10 sm:py-12">
    <div className="relative z-10 max-w-2xl"><p className="text-xs font-bold uppercase tracking-[.18em] text-lightning-300">Your next chapter starts here</p><h1 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">A place for<br/><span className="text-lightning-300">every possibility.</span></h1><p className="mt-5 max-w-xl text-sm leading-relaxed text-frosting-100 sm:text-base">Find your city. Explore homes to rent or buy. Keep the photos, prices and source evidence close as you build your shortlist.</p><div className="mt-6 flex flex-wrap gap-2 text-xs"><span className="rounded-full border border-white/25 px-3 py-2">{LOCATIONS.length.toLocaleString()} cities & communities</span><span className="rounded-full border border-white/25 px-3 py-2">California + Arizona</span><span className="rounded-full border border-white/25 px-3 py-2">Sources you can open</span></div></div><Building2 aria-hidden className="pointer-events-none absolute -right-9 bottom-0 h-72 w-72 text-lightning-300/10 sm:right-10 sm:h-80 sm:w-80"/>

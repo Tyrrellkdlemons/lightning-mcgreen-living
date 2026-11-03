@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ArrowUpRight, MapPin, Search, SlidersHorizontal, X } from 'lucide-react';
 import { WORKBOOK_RANKED_LISTINGS, WORKBOOK_CITY_OPTIONS, type WorkbookRankedListing } from '@/lib/data/workbook-ranked-listings';
 import { filterWorkbookProperties, propertyPath, recordedRent } from '@/lib/places/property-view';
@@ -44,10 +44,10 @@ function compareProperties(a: WorkbookRankedListing, b: WorkbookRankedListing, s
 const BED_OPTIONS = Array.from(new Set(WORKBOOK_RANKED_LISTINGS.map(item => exactBedrooms(item.beds)).filter((value): value is number => value !== null))).sort((a, b) => a - b);
 const UNKNOWN_RENT_COUNT = WORKBOOK_RANKED_LISTINGS.filter(item => recordedMaximum(item) === null).length;
 
-export function PropertyDirectory({ initialQuery = '', initialCity = '', initialTier = '' }: { initialQuery?: string; initialCity?: string; initialTier?: string }) {
+export function PropertyDirectory(props: { initialQuery?: string; initialCity?: string; initialTier?: string }) { return <PropertyDirectoryContent key={JSON.stringify([props.initialQuery,props.initialCity,props.initialTier])} {...props}/>; }
+function PropertyDirectoryContent({ initialQuery = '', initialCity = '', initialTier = '' }: { initialQuery?: string; initialCity?: string; initialTier?: string }) {
   const [query, setQuery] = useState(initialQuery); const [city, setCity] = useState(initialCity); const [tier, setTier] = useState(initialTier);
   const [maxRent, setMaxRent] = useState(''); const [beds, setBeds] = useState(''); const [sort, setSort] = useState<PropertySort>('rank'); const [limit, setLimit] = useState(PAGE_SIZE);
-  useEffect(() => { setQuery(initialQuery); setCity(initialCity); setTier(initialTier); setMaxRent(''); setBeds(''); setSort('rank'); setLimit(PAGE_SIZE); }, [initialQuery, initialCity, initialTier]);
   const results = useMemo(() => filterWorkbookProperties(WORKBOOK_RANKED_LISTINGS, query, city, tier).filter(item => matchesRecordedFilters(item, maxRent, beds)).sort((a, b) => compareProperties(a, b, sort)), [query, city, tier, maxRent, beds, sort]);
   const reset = () => { setQuery(''); setCity(''); setTier(''); setMaxRent(''); setBeds(''); setSort('rank'); setLimit(PAGE_SIZE); };
   const filters = [

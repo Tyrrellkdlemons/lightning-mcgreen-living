@@ -1,7 +1,9 @@
 'use client';
+import {useKeyedPage} from '@/lib/client/state';
+import {useHydrated} from '@/lib/client/state';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { SlidersHorizontal, Columns2 } from 'lucide-react';
 import { useCompareStore } from '@/lib/store/compare';
 import { REAL_RENTALS, type RentalWithPhotos } from '@/lib/data/real-rentals';
@@ -28,16 +30,15 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
   const [profile, setProfile] = useRenterProfile();
   const [filters, setFilters] = useState<RentalFilterState>({ unit_type: unitTypeLock ?? 'all', state: initialState, city: initialCity });
   const [sort, setSort] = useState<SortKey>('best-fit');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useKeyedPage(JSON.stringify(filters) + sort + (unitTypeLock ?? ''));
   const [workbookQuery, setWorkbookQuery] = useState('');
   const [workbookCity, setWorkbookCity] = useState('all');
   const [workbookLimit, setWorkbookLimit] = useState(10);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [ready, setReady] = useState(false);
+  const ready = useHydrated();
   const compareCount = useCompareStore((state) => state.items.length);
   const filterToggle = useRef<HTMLButtonElement>(null);
   const resultsHeading = useRef<HTMLHeadingElement>(null);
-  useEffect(() => { setReady(true); }, []);
   function showResults() {
     setFiltersOpen(false);
     requestAnimationFrame(() => {
@@ -77,8 +78,6 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
   const workbookVisible = useMemo(() => workbookFiltered.slice(0, workbookLimit), [workbookFiltered, workbookLimit]);
 
   // reset to page 1 whenever the filters / sort / lock change
-  const filterKey = JSON.stringify(filters) + sort + (unitTypeLock ?? '');
-  useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
     <div className="rental-discovery">
