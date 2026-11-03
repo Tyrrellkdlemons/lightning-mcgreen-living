@@ -152,11 +152,18 @@ const browser = { CMS: {
   registerMediaLibrary: (library) => { media = library; },
   init: () => { initialized++; },
 } };
-vm.runInNewContext(await read('public/admin/content/cms.js'), { URL, window: browser, document: {
+const browserContext = { URL, window: browser, document: {
   currentScript: { getAttribute: () => 'true' },
   addEventListener: (name, callback) => { ready = callback; },
   getElementById: () => ({ textContent: '' }),
-} }, { timeout: 1500 });
+} };
+const browserLocation = { href: 'https://example.invalid/admin/content/' };
+Object.defineProperty(browserContext, 'location', { value: browserLocation, writable: false, configurable: false });
+vm.runInNewContext(await read('public/admin/content/cms.js'), browserContext, { timeout: 1500 });
+check('editor helpers do not redeclare or overwrite browser globals', () => {
+  assert.equal(browserContext.location, browserLocation);
+  assert.equal(browserContext.validateEditorContent, undefined);
+});
 ready();
 check('browser bootstrap registers real formatters and disables Git media uploads', () => {
   assert.equal(browser.CMS_MANUAL_INIT, true);
