@@ -32,12 +32,12 @@ export function CarCard({
   });
 
   return (
-    <CandyCard interactive className="race-card-hover relative flex flex-col gap-3">
+    <CandyCard interactive className="race-card-hover relative flex min-w-0 flex-col gap-3 [overflow-wrap:anywhere]">
       <div className="absolute right-3 top-3 z-10">
         <SaveHeart kind="car" id={vehicle.id} />
       </div>
       {vehicle.photos && <PhotoGallery photos={vehicle.photos} height={180} />}
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex min-w-0 items-start justify-between gap-3">
         <div className="min-w-0">
           <Gumdrop tone="mute">{vehicle.condition.toUpperCase()}</Gumdrop>
           <h3 className="mt-1 truncate font-display text-lg font-extrabold text-chocolate-900">
@@ -54,7 +54,7 @@ export function CarCard({
         <CookieCar className="h-12 w-auto shrink-0" />
       </div>
 
-      <div className="grid grid-cols-3 gap-2 text-xs">
+      <div className="grid min-w-0 grid-cols-3 gap-2 text-xs">
         <Stat label="Price" value={usd(vehicle.price)} />
         <Stat label="Est. monthly" value={usd(pay.monthly_payment)} />
         <Stat label="Est. down" value={usd(vehicle.down_payment_estimate)} />
@@ -67,7 +67,7 @@ export function CarCard({
 
       <SourcePanel meta={vehicle.meta} dense />
 
-      <div className="flex items-center justify-between">
+      <div className="flex min-w-0 flex-wrap items-center justify-between gap-3">
         <Link href={`/cars/${vehicle.id}`} className="bolt-btn text-sm">See details</Link>
         <a href={vehicle.listing_url} target="_blank" rel="noopener noreferrer"
            className="text-xs font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2">
@@ -80,7 +80,7 @@ export function CarCard({
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md bg-frosting-100 px-2 py-1.5">
+    <div className="min-w-0 rounded-md bg-frosting-100 px-2 py-1.5">
       <p className="text-[10px] font-semibold uppercase tracking-wider text-chocolate-600">{label}</p>
       <p className="num text-sm font-bold text-chocolate-900">{value}</p>
     </div>

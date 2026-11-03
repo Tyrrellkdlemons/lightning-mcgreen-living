@@ -40,10 +40,10 @@ export function WorkSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
-    <div className="mt-4 space-y-4">
+    <div className="mt-4 min-w-0 space-y-4 [&_input]:min-w-0 [&_input]:max-w-full [&_select]:min-w-0 [&_select]:max-w-full">
       <WorkProfilePanel profile={profile} onChange={setProfile} />
 
-      <div className="cookie-card flex flex-wrap items-end gap-3 p-4">
+      <div className="cookie-card flex min-w-0 flex-wrap items-end gap-3 p-4">
         <Field label="State">
           <select value={state} onChange={(e) => setState(e.target.value as '' | 'CA' | 'AZ')} className="rounded-md border border-gingerbread-300 bg-white px-2 py-2 text-sm">
             <option value="">California + Arizona</option><option value="CA">California</option><option value="AZ">Arizona</option>
@@ -71,15 +71,15 @@ export function WorkSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
           <input type="checkbox" checked={businessOnly} onChange={(e) => setBusinessOnly(e.target.checked)} />
           Business account only
         </label>
-        <div className="ml-auto"><SortDropdown value={sort} onChange={setSort} /></div>
+        <div className="ml-auto min-w-0 max-w-full"><SortDropdown value={sort} onChange={setSort} className="min-w-0 flex-wrap" /></div>
       </div>
 
       <p className="text-xs text-chocolate-700">
         <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'}
       </p>
 
-      <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {paged.map((r) => <li key={r.id}><WorkVehicleCard rental={r} profile={profile} /></li>)}
+      <ul className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {paged.map((r) => <li className="min-w-0" key={r.id}><WorkVehicleCard rental={r} profile={profile} /></li>)}
       </ul>
       {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700"><p>No listed providers match this search. Contact providers directly to confirm branch coverage and vehicle availability.</p><button type="button" className="cinnamon-btn mt-3" onClick={() => { setState(''); setType('all'); setMaxDaily(''); setBusinessOnly(false); }}>Clear filters</button></div>}
 
@@ -90,9 +90,9 @@ export function WorkSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="block">
+    <label className="block min-w-0 max-w-full">
       <span className="block text-xs font-bold uppercase tracking-wider text-chocolate-700">{label}</span>
-      <div className="mt-1">{children}</div>
+      <div className="mt-1 min-w-0">{children}</div>
     </label>
   );
 }
