@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { randomUUID } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import * as nodeModule from 'node:module';
+import vm from 'node:vm';
+import { buildPhotoTargets, filterPhotoTargets } from '../src/lib/photos/targets.mjs';
 import {
   authorize, storeName, readLimitedBody, validateImage, validateFields,
-  createUploadHandler, createGalleryHandler, createPhotoHandler, MAX_BODY_BYTES,
+  createUploadHandler, createGalleryHandler, createPhotoHandler, createStatusHandler, MAX_BODY_BYTES,
 } from '../src/lib/photos/server.mjs';
 
 const secret = 'fixture-' + 'b7c8e9f0'.repeat(5);
@@ -186,4 +191,122 @@ test('gallery pagination makes every published photo reachable after 48 records'
   assert.equal(second.photos.length, 3); assert.equal(second.truncated, false);
   assert.deepEqual(new Set([...first.photos, ...second.photos].map(photo => photo.id)), expected);
   assert.equal((await gallery(new Request('https://site.example/api/place-photos/gallery?placeId=ca-los-angeles&page=-1'), preview)).status, 400);
+});
+
+// Exercise actual catalogs and editorial validation; only photo URL rendering is stubbed.
+const read = file => readFile(new URL('../' + file, import.meta.url), 'utf8');
+async function evaluate(file, globals, names) {
+  const source = await read(file);
+  const js = typeof nodeModule.stripTypeScriptTypes === 'function'
+    ? nodeModule.stripTypeScriptTypes(source, { mode: 'strip' })
+    : (await import('typescript')).default.transpileModule(source, { compilerOptions: { module: 99, target: 9 } }).outputText;
+  const code = js.replace(/^import[\s\S]*?;\s*/gm, '').replace(/\bexport\s+(?=const|let|function|class)/g, '');
+  return vm.runInNewContext(code + ';({' + names.join(',') + '});', globals, { timeout: 1500 });
+}
+const cms = createRequire(import.meta.url)('../public/admin/content/cms.js');
+const raw = JSON.parse(await read('src/lib/data/editor-content.json'));
+const geo = await evaluate('src/lib/geofence/socal.ts', {}, ['isWithinCoverage']);
+const editor = await evaluate('src/lib/data/editor-content.ts', { raw, ...cms, ...geo }, ['EDITOR_RENTALS', 'withEditorRecords']);
+const { REAL_RENTALS } = await evaluate('src/lib/data/real-rentals.ts', { ...editor, rentalPhotos: () => ({ urls: [], alt: 'Fixture' }) }, ['REAL_RENTALS']);
+const catalogInput = {
+  places: cms.validatePlaces(JSON.parse(await read('src/lib/places/places.json'))),
+  workbook: JSON.parse(await read('src/lib/data/generated/workbook-ranked-listings.json')),
+  rentals: REAL_RENTALS,
+  resources: JSON.parse(await read('src/lib/resources/catalog.json')).sources,
+};
+const originalCatalog = JSON.stringify(catalogInput);
+const targets = buildPhotoTargets(catalogInput);
+const targetMap = new Map(targets.map(target => [target.id, target]));
+function targetStorage() { return Object.assign(fakeStorage(), { targets: targetMap, knownPlaceIds: new Set(targetMap.keys()) }); }
+function targetFields(target, id = randomUUID()) {
+  const form = fields(id); form.set('placeId', target.id); form.set('targetKind', target.kind); return form;
+}
+test('canonical target catalog covers every supported record once without source mutation', () => {
+  const expected = [...catalogInput.places, ...catalogInput.workbook, ...catalogInput.rentals,
+    ...catalogInput.resources.filter(item => item.category === 'property' && ['CA', 'AZ'].includes(item.state))];
+  assert.equal(targets.length, expected.length); assert.equal(targetMap.size, expected.length);
+  assert.deepEqual(new Set(targets.map(target => target.id)), new Set(expected.map(item => item.id)));
+  for (const target of targets) {
+    assert.match(target.href, /^\/(places|properties|apartments|townhomes|resources)\/[a-z0-9_/-]+$/);
+    assert.ok(['CA', 'AZ'].includes(target.state));
+  }
+  assert.equal(JSON.stringify(catalogInput), originalCatalog);
+  console.log('Photo targets: ' + targets.length + ' (' + ['city', 'workbook', 'rental', 'property-source'].map(kind => kind + '=' + targets.filter(t => t.kind === kind).length).join(', ') + ')');
+});
+test('colliding or unsafe IDs fail closed instead of selecting an ambiguous destination', () => {
+  assert.throws(() => buildPhotoTargets({ ...catalogInput, workbook: [{ ...catalogInput.workbook[0], id: catalogInput.places[0].id }] }), /duplicate/);
+  assert.throws(() => buildPhotoTargets({ places: [{ ...catalogInput.places[0], id: '../private' }] }), /Invalid/);
+});
+test('city and rental targets keep existing detail routes and truthful area precision', () => {
+  for (const place of catalogInput.places) {
+    assert.equal(targetMap.get(place.id).href, '/places/' + (place.state === 'CA' ? 'california' : 'arizona') + '/' + place.slug);
+    assert.equal(targetMap.get(place.id).contextOnly, true);
+  }
+  for (const rental of catalogInput.rentals) {
+    const target = targetMap.get(rental.id);
+    assert.equal(target.href, '/' + (rental.unit_type === 'townhouse' ? 'townhomes' : 'apartments') + '/' + rental.id);
+    assert.equal(target.contextOnly, !rental.meta || rental.meta.source === 'unverified' || rental.meta.trust_label === 'unverified');
+  }
+  assert.ok(targets.some(target => target.kind === 'rental' && target.contextOnly));
+  assert.ok(targets.some(target => target.kind === 'rental' && !target.contextOnly));
+});
+test('destination search supports exact IDs and state names without dropping records', () => {
+  assert.equal(filterPhotoTargets(targets, '  ').length, targets.length);
+  for (const target of targets) assert.ok(filterPhotoTargets(targets, target.id).some(match => match.id === target.id));
+  assert.ok(filterPhotoTargets(targets, 'arizona').length > 0);
+  assert.ok(filterPhotoTargets(targets, 'arizona').every(target => target.state === 'AZ'));
+  assert.equal(filterPhotoTargets(targets, 'no-such-fixture-destination').length, 0);
+});
+test('public setup status reveals only configuration, never credentials', async () => {
+  const req = new Request('https://site.example/api/place-photos/status');
+  for (const value of [undefined, '', 'short', 'replace-me-with-your-admin-secret-123456789', secret]) {
+    const response = await createStatusHandler({ getSecret: () => value })(req);
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await response.json(), { configured: value === secret });
+  }
+  assert.deepEqual(await (await createStatusHandler({ getSecret: () => { throw new Error(secret); } })(req)).json(), { configured: false });
+  assert.equal((await createStatusHandler({ getSecret: () => secret })(new Request(req.url, { method: 'POST' }))).status, 405);
+});
+test('each target kind publishes and serves only its own photos with server-derived labels', async () => {
+  const storage = targetStorage(); const photos = [];
+  const representatives = ['city', 'workbook', 'rental', 'property-source'].map(kind => targets.find(target => target.kind === kind));
+  for (const target of representatives) {
+    const form = targetFields(target); form.set('targetLabel', 'Untrusted request label');
+    const response = await createUploadHandler(storage)(request(form), production);
+    assert.equal(response.status, 201);
+    const { photo } = await response.json(); assert.deepEqual(photo.target, target); photos.push(photo);
+    const gallery = await (await createGalleryHandler(storage)(new Request('https://site.example/gallery?placeId=' + target.id), production)).json();
+    assert.deepEqual(gallery.target, target); assert.equal(gallery.photos.length, 1); assert.equal(gallery.photos[0].placeId, target.id);
+    const image = await createPhotoHandler(storage)(new Request('https://site.example' + photo.url), { ...production, params: { placeId: target.id, photoId: photo.id } });
+    assert.deepEqual(new Uint8Array(await image.arrayBuffer()), png);
+  }
+  assert.equal((await createPhotoHandler(storage)(new Request('https://site.example/photo'), { ...production, params: { placeId: representatives[1].id, photoId: photos[0].id } })).status, 404);
+});
+test('credentials, cross-site requests and conflicting target kinds reject before property storage', async () => {
+  const storage = targetStorage(); const target = targets.find(target => target.kind === 'workbook');
+  const upload = createUploadHandler(storage);
+  assert.equal((await upload(request(targetFields(target), { 'x-admin-secret': 'wrong' }), production)).status, 401);
+  assert.equal((await upload(request(targetFields(target), { 'sec-fetch-site': 'cross-site' }), production)).status, 403);
+  const mismatch = targetFields(target); mismatch.set('targetKind', 'city');
+  assert.equal((await upload(request(mismatch), production)).status, 400); assert.equal(storage.calls, 0);
+});
+test('legacy city retry stays identical after adding server-derived target metadata', async () => {
+  const storage = fakeStorage(); const id = randomUUID();
+  assert.equal((await createUploadHandler(storage)(request(fields(id)), production)).status, 201);
+  storage.targets = targetMap;
+  const response = await createUploadHandler(storage)(request(fields(id)), production);
+  assert.equal(response.status, 200); assert.equal((await response.json()).photo.target.kind, 'city');
+  assert.equal(storage.stores.get('place-photos-production').size, 2);
+});
+test('property retries repair interrupted publication while preserving content and preview isolation', async () => {
+  const storage = targetStorage(); const target = targets.find(target => target.kind === 'property-source');
+  const upload = createUploadHandler(storage); const id = randomUUID();
+  storage.failNextPublication();
+  assert.equal((await upload(request(targetFields(target, id)), preview)).status, 503);
+  assert.equal((await upload(request(targetFields(target, id)), preview)).status, 200);
+  const changed = targetFields(target, id); changed.set('caption', 'Changed');
+  assert.equal((await upload(request(changed), preview)).status, 409);
+  const gallery = createGalleryHandler(storage);
+  assert.equal((await (await gallery(new Request('https://site.example/gallery?placeId=' + target.id), preview)).json()).photos.length, 1);
+  assert.equal((await (await gallery(new Request('https://site.example/gallery?placeId=' + target.id), production)).json()).photos.length, 0);
 });

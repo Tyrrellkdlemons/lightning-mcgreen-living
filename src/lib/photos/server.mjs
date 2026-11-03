@@ -20,9 +20,21 @@ export function failure(error) {
   return json({ error: 'Photo storage is unavailable. Please try again later.' }, 503);
 }
 
+export function isPublishingConfigured(expected) {
+  return typeof expected === 'string' && expected.length >= 32 && expected.length <= 512 &&
+    !/change.?me|replace.?me|your[-_ ]?(admin|secret)|example|placeholder/i.test(expected);
+}
+
+export function createStatusHandler({ getSecret }) {
+  return async (req) => {
+    if (req.method !== 'GET') return json({ error: 'Use GET to check publishing setup.' }, 405, { Allow: 'GET' });
+    try { return json({ configured: isPublishingConfigured(getSecret()) }); }
+    catch { return json({ configured: false }); }
+  };
+}
+
 export function authorize(req, expected) {
-  if (typeof expected !== 'string' || expected.length < 32 || expected.length > 512 ||
-      /change.?me|replace.?me|your[-_ ]?(admin|secret)|example|placeholder/i.test(expected)) {
+  if (!isPublishingConfigured(expected)) {
     throw new PhotoError(503, 'Photo publishing is not configured.');
   }
   const supplied = req.headers.get('x-admin-secret') || '';
@@ -96,7 +108,7 @@ export function validateImage(bytes, claimedType) {
   return actual;
 }
 
-export function validateFields(form, knownPlaceIds) {
+export function validateFields(form, knownPlaceIds, targets) {
   const field = (key, max, required = false) => {
     const raw = form.get(key);
     if (typeof raw !== 'string') throw new PhotoError(400, 'Invalid ' + key + '.');
@@ -107,7 +119,10 @@ export function validateFields(form, knownPlaceIds) {
     return value;
   };
   const placeId = field('placeId', 80, true);
-  if (!knownPlaceIds.has(placeId)) throw new PhotoError(400, 'Choose a city from the directory.');
+  if (!knownPlaceIds.has(placeId)) throw new PhotoError(400, 'Choose a photo destination from the directory.');
+  if (form.has('targetKind') && form.get('targetKind') !== targets?.get(placeId)?.kind) {
+    throw new PhotoError(400, 'The photo destination type does not match this record.');
+  }
   const id = field('uploadId', 36, true);
   if (!UUID.test(id)) throw new PhotoError(400, 'Invalid upload reference. Choose the photo again.');
   const sourceUrl = field('sourceUrl', 500);
@@ -129,16 +144,17 @@ export function validateFields(form, knownPlaceIds) {
   };
 }
 
-export function publicPhoto(record) {
+export function publicPhoto(record, target) {
   return {
     id: record.id, placeId: record.placeId, alt: record.alt, caption: record.caption,
     credit: record.credit, sourceUrl: record.sourceUrl, rights: record.rights,
     createdAt: record.createdAt,
     url: '/place-photos/' + record.placeId + '/' + record.id,
+    ...(target ? { target } : {}),
   };
 }
 
-export function createUploadHandler({ getStore, knownPlaceIds, getSecret }) {
+export function createUploadHandler({ getStore, knownPlaceIds, targets, getSecret }) {
   return async (req, context) => {
     if (req.method !== 'POST') return json({ error: 'Use POST to publish a photo.' }, 405, { Allow: 'POST' });
     try {
@@ -150,7 +166,7 @@ export function createUploadHandler({ getStore, knownPlaceIds, getSecret }) {
       let form;
       try { form = await new Response(body, { headers: { 'content-type': type } }).formData(); }
       catch { throw new PhotoError(400, 'The upload form could not be read.'); }
-      const fields = validateFields(form, knownPlaceIds);
+      const fields = validateFields(form, knownPlaceIds, targets);
       const file = form.get('photo');
       if (!file || typeof file === 'string' || typeof file.arrayBuffer !== 'function') throw new PhotoError(400, 'Choose a photo to upload.');
       const bytes = new Uint8Array(await file.arrayBuffer());
@@ -172,12 +188,12 @@ export function createUploadHandler({ getStore, knownPlaceIds, getSecret }) {
       await store.setJSON(recordKey, record, { onlyIfNew: true });
       const published = await store.get(recordKey, { type: 'json', consistency: 'strong' });
       if (!published || published.id !== fields.id) throw new PhotoError(503, 'Publication could not be confirmed. Retry this upload.');
-      return json({ photo: publicPhoto(published), duplicate: !write.modified, environment: context.deploy.context }, write.modified ? 201 : 200);
+      return json({ photo: publicPhoto(published, targets?.get(fields.placeId)), duplicate: !write.modified, environment: context.deploy.context }, write.modified ? 201 : 200);
     } catch (error) { return failure(error); }
   };
 }
 
-export function createGalleryHandler({ getStore, knownPlaceIds }) {
+export function createGalleryHandler({ getStore, knownPlaceIds, targets }) {
   return async (req, context) => {
     if (req.method !== 'GET') return json({ error: 'Use GET to view photos.' }, 405, { Allow: 'GET' });
     try {
@@ -185,7 +201,7 @@ export function createGalleryHandler({ getStore, knownPlaceIds }) {
       const placeId = query.get('placeId') || '';
       const pageIndex = Number(query.get('page') || '0');
       if (!Number.isSafeInteger(pageIndex) || pageIndex < 0 || pageIndex > 999) throw new PhotoError(400, 'Invalid gallery page.');
-      if (!knownPlaceIds.has(placeId)) throw new PhotoError(404, 'City not found.');
+      if (!knownPlaceIds.has(placeId)) throw new PhotoError(404, 'Photo destination not found.');
       const store = getStore({ name: storeName(context), consistency: 'strong' });
       const keys = [];
       let truncated = false;
@@ -201,8 +217,8 @@ export function createGalleryHandler({ getStore, knownPlaceIds }) {
       }
       const records = await Promise.all(keys.map((key) => store.get(key, { type: 'json' })));
       const photos = records.filter((record) => record && record.placeId === placeId && UUID.test(record.id))
-        .sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map(publicPhoto);
-      return json({ photos, truncated, page: pageIndex, environment: context.deploy.context });
+        .sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map(record => publicPhoto(record, targets?.get(placeId)));
+      return json({ photos, truncated, page: pageIndex, target: targets?.get(placeId), environment: context.deploy.context });
     } catch (error) { return failure(error); }
   };
 }

@@ -33,6 +33,7 @@ export function Footer() {
           </FooterCol>
 
           <FooterCol title="Tools">
+            <FooterLink href="/assistant">Ask Gemini about housing</FooterLink>
             <FooterLink href="/compare">Compare</FooterLink>
             <FooterLink href="/saved">Saved</FooterLink>
             <FooterLink href="/admin">Admin</FooterLink>

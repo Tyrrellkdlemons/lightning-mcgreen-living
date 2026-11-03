@@ -11,7 +11,7 @@ const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lightning-mcgreen-livi
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const staticRoutes = [
-    '/', '/help', '/resources', '/properties', '/places', '/places/california', '/places/arizona', '/rentals', '/apartments', '/apartments/apply-engine', '/townhomes',
+    '/', '/help', '/assistant', '/resources', '/properties', '/places', '/places/california', '/places/arizona', '/rentals', '/apartments', '/apartments/apply-engine', '/townhomes',
     '/cars', '/work-vehicles', '/life-budget',
     '/compare', '/saved', '/search',
     '/data-sources', '/assistance', '/templates',

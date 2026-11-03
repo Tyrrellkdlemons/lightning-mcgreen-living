@@ -18,6 +18,8 @@ import { ApartmentPrepPacket } from '@/components/common/PrepPackets';
 import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
 import { AdverseActionPanel } from '@/components/assistance/AdverseActionPanel';
 import { CountyHelp } from '@/components/assistance/CountyHelp';
+import { PropertyEvidence } from '@/components/properties/PropertyEvidence';
+import { PlaceGallery } from '@/components/photos/PlaceGallery';
 import { PropertyView } from '@/components/places/PropertyView';
 import { MapPanel } from '@/components/maps/MapPanel';
 
@@ -93,6 +95,8 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
           </div>
         </CandyCard>
 
+        <PropertyEvidence propertyId={rental.id} />
+        <PlaceGallery placeId={rental.id} name={rental.property_name} targetKind="rental" contextOnly={rental.meta.source === 'unverified' || rental.meta.trust_label === 'unverified'} />
         <PropertyView name={rental.property_name} address={rental.address_line} city={rental.city} state={rental.state} lat={rental.lat} lng={rental.lng} locationPrecision={rental.meta.source === 'unverified' ? 'area' : 'recorded'} sourceDate={rental.meta.last_verified_at} sources={[
           { label: rental.meta.source === 'unverified' ? 'Operator source / search' : 'Property source & gallery', url: rental.official_property_url || rental.meta.source_url, kind: 'property' as const },
           { label: 'Recorded listing source', url: rental.meta.source_url, kind: 'source' as const },

@@ -1,8 +1,9 @@
-# City photographs
+# Place and property photographs
 
 The editor at /admin/photos publishes owner-curated photographs to California and
-Arizona city guides. Photos describe the area; they are not evidence that a
-particular rental unit is available. No fabricated property images or AI photo
+Arizona city guides, workbook properties, rental detail pages and property-source
+pages. Area-example rentals accept context photographs and stay labeled as area
+examples. Photos do not establish current unit availability. No fabricated property images or AI photo
 generation is part of this feature.
 
 ## Configuration
@@ -14,7 +15,8 @@ generation is part of this feature.
    NEXT_PUBLIC variables, source, chat, URLs, or a committed file. Missing,
    short, or recognizable placeholder values disable publishing.
 3. Deploy with the functions directory set to netlify/functions and esbuild.
-   The three functions export their route configuration directly:
+   The functions export their route configuration directly:
+   - GET /api/place-photos/status (only `{configured:boolean}`, no credentials)
    - POST /api/place-photos/upload
    - GET /api/place-photos/gallery?placeId=ca-los-angeles
    - GET or HEAD /place-photos/:placeId/:photoId
@@ -52,7 +54,10 @@ after confirming they are no longer needed. No cleanup runs automatically.
 ## Publishing
 
 1. Open /admin/photos on the intended live or preview URL.
-2. Enter the editor key, select a city, then choose a JPEG, PNG, or WebP under 4 MB.
+2. Check the publishing setup message, enter the editor key, and search destinations
+   by property name, city, state or record ID. Select the exact record in the grouped
+   destination menu. Open its page to confirm the destination, then choose a JPEG,
+   PNG, or WebP under 4 MB. A configured status does not authenticate your key.
 3. The browser decodes and re-encodes the image to remove EXIF camera/location
    metadata and reduce its largest dimension to 2560 pixels.
 4. Enter accurate alt text, a caption, photographer credit, optional HTTPS source
@@ -70,12 +75,23 @@ and publication fields. There is no general-purpose public upload endpoint.
 
 ## Implementation and limits
 
-The canonical city allowlist is src/lib/places/places.json. Unknown city IDs,
+The shared canonical allowlist is src/lib/photos/catalog.ts, built from the validated
+city catalog, preserved ranked workbook, rental catalog including editorial records,
+and California/Arizona property entries in the resource catalog. Other resource
+categories cannot accept uploads. Duplicate IDs across categories stop catalog
+construction instead of silently choosing a destination. Unknown destination IDs,
 arbitrary blob keys, HTML/SVG content, mismatched MIME signatures, oversize bodies,
 missing consent, and invalid source URLs are rejected. The stream is bounded
 before multipart parsing; Content-Length is checked but not trusted alone.
 
-Images use immutable UUID keys with conditional onlyIfNew writes. The
+The API retains the `placeId` field for every destination type. Existing city keys,
+URLs and stored metadata remain unchanged; no migration is required. The server
+adds its own current catalog `target` metadata to public responses and rejects a
+submitted `targetKind` that conflicts with that ID. Labels from a request never
+override the catalog. Each photo belongs only to its selected canonical record;
+photos do not automatically propagate to related units or similarly named properties.
+
+Images use immutable UUID keys per destination with conditional onlyIfNew writes. The
 request digest covers metadata plus bytes. A retry cannot change an existing
 photo; it can repair an interrupted metadata publication. Images are served only
 after the corresponding public record exists.
@@ -99,7 +115,9 @@ Run: node --test scripts/test-photos.mjs
 The no-dependency fixture suite checks authentication/origin failures, body
 limits, MIME signatures, allowed fields, immutable upload retries, interrupted
 publication recovery, environment isolation, public reads, and sanitized errors.
-It uses in-memory storage; it does not prove Netlify configuration or live upload.
+It also checks actual catalog coverage, collisions, destination search, safe public
+setup status, server-derived labels, cross-target isolation and unchanged legacy city
+retries. It uses in-memory storage; it does not prove Netlify configuration or live upload.
 
 Before accepting the deployed workflow, verify:
 
@@ -109,6 +127,10 @@ Before accepting the deployed workflow, verify:
 - Preview and production galleries differ as expected.
 - The image source route and /.netlify/images return an image.
 - Captions and credits render, and keyboard/mobile interaction works.
+- A city, workbook property, rental record and property-source record each show
+  their uploaded photo only on the intended page. Area examples remain labeled.
+- Search the destination selector by name, state and ID, and confirm the selected
+  destination remains visible when it falls outside the search results.
 - Existing rental, apply-engine and vehicle routes still work.
 
 The implementation alone does not establish that these deployed checks passed.
@@ -123,4 +145,4 @@ The implementation alone does not establish that these deployed checks passed.
 - Supported SDK methods were checked in @netlify/blobs 10.7.13 declarations:
   https://unpkg.com/@netlify/blobs@10.7.13/dist/main.d.ts
 
-Gallery navigation exposes subsequent pages (up to 1,000 pages / 48,000 photos per city). This is a curated editor collection, not an unbounded public upload service. Concurrent edits may change page membership; reload if the collection changes.
+Gallery navigation exposes subsequent pages (up to 1,000 pages / 48,000 photos per destination). This is a curated editor collection, not an unbounded public upload service. Concurrent edits may change page membership; reload if the collection changes.

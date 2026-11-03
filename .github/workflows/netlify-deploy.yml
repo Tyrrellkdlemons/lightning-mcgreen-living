@@ -43,6 +43,8 @@ jobs:
           node scripts/test-link-routing.mjs
           node scripts/test-planning.mjs
           node --test scripts/test-photos.mjs
+          node --test scripts/test-assistant.mjs
+          node scripts/test-property-evidence.mjs
 
       - name: Lint
         run: npm run lint --if-present

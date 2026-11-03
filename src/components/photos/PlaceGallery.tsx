@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Camera, RefreshCw } from 'lucide-react';
-import { photoUrl, type PlacePhoto } from '@/lib/photos/types';
+import { photoUrl, type PlacePhoto, type PhotoTargetKind } from '@/lib/photos/types';
 
 function Photo({ photo }: { photo: PlacePhoto }) {
   const [failed, setFailed] = useState(false);
@@ -37,12 +37,16 @@ function Photo({ photo }: { photo: PlacePhoto }) {
   );
 }
 
-export function PlaceGallery({ placeId, name }: { placeId: string; name: string }) {
+export function PlaceGallery({ placeId, name, targetKind = 'city', contextOnly = targetKind === 'city' }: {
+  placeId: string; name: string; targetKind?: PhotoTargetKind; contextOnly?: boolean;
+}) {
   const [photos, setPhotos] = useState<PlacePhoto[]>([]);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [retry, setRetry] = useState(0);
   const [truncated, setTruncated] = useState(false);
   const [page, setPage] = useState(0);
+
+  useEffect(() => { setPage(0); }, [placeId]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -74,14 +78,14 @@ export function PlaceGallery({ placeId, name }: { placeId: string; name: string 
         <Camera className="mt-1 h-6 w-6 shrink-0 text-lightning-800" aria-hidden="true" />
         <div>
           <h2 id={'photos-' + placeId} className="font-display text-2xl font-extrabold text-chocolate-900">A closer look at {name}</h2>
-          <p className="mt-1 text-sm text-chocolate-700">Photographs of the area, shared with permission. These do not represent available rental units.</p>
+          <p className="mt-1 text-sm text-chocolate-700">{contextOnly ? 'Area photographs published by the site editor. These do not represent a specific property or available rental unit.' : 'Photographs published by the site editor for this property record. Check captions and source credits; images do not establish current condition or unit availability.'}</p>
         </div>
       </div>
       <div aria-live="polite" aria-busy={status === 'loading'}>
-        {status === 'loading' && <p className="rounded-2xl bg-frosting-100 p-6 text-sm text-chocolate-700">Loading city photographs...</p>}
+        {status === 'loading' && <p className="rounded-2xl bg-frosting-100 p-6 text-sm text-chocolate-700">Loading photographs...</p>}
         {status === 'error' && (
           <div className="rounded-2xl border border-gingerbread-200 bg-frosting-50 p-6">
-            <p className="text-sm text-chocolate-700">We couldn&apos;t load this city&apos;s photographs. The guide and resource links are still available.</p>
+            <p className="text-sm text-chocolate-700">We couldn&apos;t load this photo collection. The page&apos;s source and resource links are still available.</p>
             <button type="button" onClick={() => setRetry((value) => value + 1)} className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-bold text-lightning-800 underline">
               <RefreshCw size={16} aria-hidden="true" /> Try photos again
             </button>
@@ -90,7 +94,7 @@ export function PlaceGallery({ placeId, name }: { placeId: string; name: string 
         {status === 'ready' && photos.length === 0 && (
           <div className="rounded-2xl border border-dashed border-gingerbread-300 bg-frosting-50 p-6">
             <p className="font-semibold text-chocolate-900">The {name} photo collection is just getting started.</p>
-            <p className="mt-2 text-sm text-chocolate-700">No city photographs have been published yet. Use the official resources in this guide to explore local options.</p>
+            <p className="mt-2 text-sm text-chocolate-700">No photographs have been published to this collection yet. Explore the linked sources for more information.</p>
           </div>
         )}
         {status === 'ready' && photos.length > 0 && (

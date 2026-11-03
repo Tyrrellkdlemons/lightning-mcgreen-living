@@ -5,7 +5,7 @@ import { Heart, Menu } from 'lucide-react';
 import { LightningBolt } from '@/components/theme/LightningBolt';
 import { ReduceMotionToggle } from './ReduceMotionToggle';
 import { SearchBox } from './SearchBox';
-const LINKS = [{ href: '/places', label: 'Explore places' }, { href: '/rentals', label: 'Rentals' }, { href: '/cars', label: 'Cars' }, { href: '/work-vehicles', label: 'Work vehicles' }, { href: '/life-budget', label: 'Life budget' }, { href: '/help', label: 'Get help' }];
+const LINKS = [{ href: '/places', label: 'Explore places' }, { href: '/rentals', label: 'Rentals' }, { href: '/cars', label: 'Cars' }, { href: '/work-vehicles', label: 'Work vehicles' }, { href: '/life-budget', label: 'Life budget' }, { href: '/help', label: 'Get help' }, { href: '/assistant', label: 'Ask Gemini' }];
 export function TopNav() {
     const menu = useRef<HTMLDetailsElement>(null);
     const closeMenu = () => { if (menu.current)
