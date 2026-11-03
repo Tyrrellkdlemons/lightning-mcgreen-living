@@ -45,3 +45,5 @@ for(const response of [phoenix,sanTan,wrongState,shortQuery]) {
   assert.match(response.headers.get('Netlify-Vary'),/query=q\|state/);
 }
 console.log('PASS: actual city API query/state isolation and no-store policy on full and empty responses.');
+
+for(const file of ['src/components/homes/CityInput.tsx','src/components/shell/SearchBox.tsx']) assert.match(fs.readFileSync(file,'utf8'), /cache:\s*'no-store'/, 'Previously cached city responses must be bypassed by both search clients');

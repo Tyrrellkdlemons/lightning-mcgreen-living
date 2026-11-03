@@ -27,7 +27,7 @@ export function SearchBox({ className }: { className?: string }) {
     const controller = new AbortController();
     if (q.trim().length < 2) return () => controller.abort();
     const timer = setTimeout(() => {
-      fetch(`/api/locations?q=${encodeURIComponent(q.trim())}`, {signal: controller.signal}).then(r => r.ok ? r.json() : Promise.reject()).then(data => {if(!controller.signal.aborted)setCityHits((data.items ?? []).slice(0, 3).map((p: {id:string;name:string;state:string;county:string}) => ({score:100,entry:{kind:'housing-city',id:p.id,title:`${p.name}, ${p.state}`,subtitle:`Rent or buy · ${p.county}`,href:`/homes?city=${p.id}&state=${p.state}`,text:p.name,tokens:[]}})));}).catch(() => {});
+      fetch(`/api/locations?q=${encodeURIComponent(q.trim())}`, {signal: controller.signal, cache: 'no-store'}).then(r => r.ok ? r.json() : Promise.reject()).then(data => {if(!controller.signal.aborted)setCityHits((data.items ?? []).slice(0, 3).map((p: {id:string;name:string;state:string;county:string}) => ({score:100,entry:{kind:'housing-city',id:p.id,title:`${p.name}, ${p.state}`,subtitle:`Rent or buy · ${p.county}`,href:`/homes?city=${p.id}&state=${p.state}`,text:p.name,tokens:[]}})));}).catch(() => {});
     }, 180);
     return () => { clearTimeout(timer); controller.abort(); };
   }, [q]);
