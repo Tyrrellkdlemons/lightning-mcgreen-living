@@ -47,12 +47,14 @@ function buildCityOptions(state: RentalFilterState['state'], unitType: RentalFil
   }));
 }
 
-export function RentalFilters({ initial: state, onChange, unitTypeLock, activeCount = 0, onReset }: {
+export function RentalFilters({ initial: state, onChange, unitTypeLock, activeCount = 0, onReset, onDone, resultCount }: {
   initial: RentalFilterState;
   onChange: (next: RentalFilterState) => void;
   unitTypeLock?: 'apartment' | 'townhouse';
   activeCount?: number;
   onReset: () => void;
+  onDone?: () => void;
+  resultCount?: number;
 }) {
   const cityGroups = useMemo(() => buildCityOptions(state.state, unitTypeLock ?? state.unit_type), [state.state, state.unit_type, unitTypeLock]);
   const totalCities = cityGroups.reduce((n, group) => n + group.cities.length, 0);
@@ -63,9 +65,9 @@ export function RentalFilters({ initial: state, onChange, unitTypeLock, activeCo
   function update(patch: Partial<RentalFilterState>) { onChange({ ...state, ...patch }); }
 
   return (
-    <aside aria-label="Filter rental records" className="cookie-card min-w-0 h-fit space-y-4 p-4 lg:w-72 lg:shrink-0">
+    <aside aria-label="Filter rental records" className="rental-filter-card cookie-card min-w-0 h-fit space-y-4 p-4">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="font-display text-lg font-extrabold text-chocolate-900">Find your fit</h2>
+        <h2 className="font-display text-lg font-extrabold text-chocolate-900">Refine your search</h2>
         <button type="button" disabled={activeCount === 0} onClick={onReset} className="min-h-[44px] rounded-lg px-3 text-sm font-semibold text-chocolate-800 underline underline-offset-4 disabled:opacity-40 focus-visible:outline focus-visible:outline-2">Reset</button>
       </div>
       {unitTypeLock ? (
@@ -119,7 +121,9 @@ export function RentalFilters({ initial: state, onChange, unitTypeLock, activeCo
           <p className="pt-2 text-xs leading-relaxed text-chocolate-700">Feature filters exclude missing details. Confirm pet restrictions, accessibility and any offer with the provider. Screening estimates do not determine eligibility.</p>
         </div>
       </details>
-      <a href="#rental-results" className="inline-flex min-h-[44px] w-full items-center justify-center rounded-lg bg-chocolate-800 px-3 text-sm font-bold text-white lg:hidden">See matching records</a>
+      {onDone ? (
+        <button type="button" onClick={onDone} className="rental-filter-done">Show {resultCount ?? ''} matching records</button>
+      ) : <a href="#rental-results" className="rental-filter-done">See matching records</a>}
     </aside>
   );
 }

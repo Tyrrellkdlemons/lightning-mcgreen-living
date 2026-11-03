@@ -44,13 +44,13 @@ function setup(overrides = {}) {
 }
 const context = { ip: '203.0.113.1' };
 
-test('all 232 catalog sources and 79 workbook records remain immutable and truthfully scoped', () => {
-  assert.equal(knowledge.sources.length, catalog.sources.length + workbook.length + 2);
+test('catalog and all 79 workbook records remain immutable; disabled destinations are excluded', () => {
+  assert.equal(knowledge.sources.length, catalog.sources.filter(s => !s.outboundDisabled && s.review?.outcome !== 'mismatch').length + workbook.length + 2);
   assert.equal(JSON.stringify([catalog, workbook]), before);
   const wb = knowledge.sources.filter(s => s.id.startsWith('wb-'));
   assert.equal(wb.length, 79); assert(wb.every(s => s.state === 'CA' && s.url.startsWith('/properties/') && /Historical/.test(s.evidence)));
   assert(wb.every(s => !/ducky/.test(JSON.stringify(s))));
-  assert.equal(knowledge.sources.filter(s => /metadata only/.test(s.evidence)).length, catalog.summary.metadataOnly);
+  assert.equal(knowledge.sources.filter(s => /metadata only/.test(s.evidence)).length, catalog.sources.filter(s => s.inspection === 'metadata-reviewed' && !s.outboundDisabled && s.review?.outcome !== 'mismatch').length);
 });
 test('state and city retrieval never returns the other state or a different recorded city', () => {
   for (const state of ['CA', 'AZ']) for (const city of ['', 'Tucson', 'Irvine']) {

@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { CarFront, Heart, Home, PackageSearch, Truck } from 'lucide-react';
-import { cn } from '@/lib/utils/cn';
+import { useSavedStore } from '@/lib/store/compare';
 
 const ITEMS = [
   { href: '/rentals', label: 'Rentals', icon: Home },
@@ -13,28 +14,36 @@ const ITEMS = [
   { href: '/saved', label: 'Saved', icon: Heart },
 ];
 
+export function isBottomNavActive(pathname: string, href: string) {
+  const within = (route: string) => pathname === route || pathname.startsWith(route + '/');
+  if (href === '/rentals') {
+    return !within('/apartments/apply-engine') && ['/rentals', '/apartments', '/townhomes', '/properties'].some(within);
+  }
+  return within(href);
+}
+
 export function BottomNav() {
   const pathname = usePathname();
+  const savedCount = useSavedStore((state) => state.ids.length);
+  const [ready, setReady] = useState(false);
+  useEffect(() => { setReady(true); }, []);
+
   return (
-    <nav
-      aria-label="Mobile primary"
-      className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-gingerbread-300/60 bg-frosting-50/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
-    >
-      <ul className="grid grid-cols-5 text-[11px] font-semibold text-chocolate-800">
-        {ITEMS.map((it) => {
-          const Icon = it.icon;
-          const active = pathname === it.href || pathname.startsWith(it.href + '/');
+    <nav aria-label="Mobile primary" className="app-bottom-nav">
+      <ul>
+        {ITEMS.map((item) => {
+          const Icon = item.icon;
+          const active = isBottomNavActive(pathname, item.href);
+          const count = item.href === '/saved' && ready ? savedCount : 0;
           return (
-            <li key={it.href}>
-              <Link
-                href={it.href}
-                className={cn(
-                  'flex h-14 flex-col items-center justify-center gap-0.5',
-                  active && 'text-lightning-700',
-                )}
-              >
-                <Icon className="h-4 w-4" aria-hidden />
-                {it.label}
+            <li key={item.href}>
+              <Link href={item.href} aria-current={active ? 'page' : undefined}
+                aria-label={count > 0 ? `Saved, ${count} item${count === 1 ? '' : 's'} on this device` : undefined}>
+                <span className="app-tab-icon">
+                  <Icon size={21} aria-hidden="true" />
+                  {count > 0 && <span className="app-tab-count" aria-hidden="true">{count > 99 ? '99+' : count}</span>}
+                </span>
+                <span>{item.label}</span>
               </Link>
             </li>
           );

@@ -1,10 +1,10 @@
 {
   "name": "Lightning McGreen Living",
   "short_name": "McGreen Living",
-  "description": "Southern California rentals + cars + work vehicles. Find what you can actually qualify for.",
+  "description": "Research California and Arizona homes, compare recorded costs, save your shortlist and find local support.",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#fffaf0",
   "theme_color": "#34db00",
   "scope": "/",

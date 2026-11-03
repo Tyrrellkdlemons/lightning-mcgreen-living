@@ -17,8 +17,10 @@ const {REAL_RENTALS}=evalTs('src/lib/data/real-rentals.ts',{...editor,rentalPhot
 const workbook=JSON.parse(fs.readFileSync('src/lib/data/generated/workbook-ranked-listings.json','utf8'));
 const resources=JSON.parse(fs.readFileSync('src/lib/resources/catalog.json','utf8')).sources;
 const canonical = new Set([...workbook,...REAL_RENTALS,...resources.filter(r=>r.category==='property')].map(t=>t.id));
+const presentationModule = { exports: {} };
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('src/lib/property-evidence/presentation.ts','utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{module:presentationModule,exports:presentationModule.exports,URL,Date,Number});
 const module = { exports: {} };
-vm.runInNewContext(ts.transpileModule(fs.readFileSync('src/lib/property-evidence/index.ts','utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText,{module,exports:module.exports,require:()=>data,URL,Date,Number});
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('src/lib/property-evidence/index.ts','utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText,{module,exports:module.exports,require:(id)=>id.includes('presentation') ? presentationModule.exports : data,URL,Date,Number});
 const { observationExpired,youtubeEmbed,evidenceFor,EVIDENCE_MAX_AGE_MS }=module.exports;
 assert.equal(data.schemaVersion,1); assert(data.records.length>=10);
 const ids=new Set(); let embedded=0,links=0;
@@ -33,6 +35,8 @@ for(const r of data.records){
  if(a.status==='plan-counts')assert(a.plans.every(p=>Number.isInteger(p.availableUnits)&&p.availableUnits>=0));
  if(a.status==='unconfirmed')assert(!a.units?.length&&!a.plans?.length);
  for(const t of r.tours){https(t.url);https(t.officialSourceUrl);assert(['youtube','matterport'].includes(t.provider));const embed=youtubeEmbed(t);if(t.embedStatus==='supported-public-player'){assert(embed?.startsWith('https://www.youtube-nocookie.com/embed/'));embedded++;}else{assert.equal(embed,null);links++;}}
+ for(const photo of r.photos ?? []){https(photo.url);https(photo.sourceUrl);assert(photo.title&&photo.scope);assert(Number.isFinite(Date.parse(photo.observedAt)));if(photo.thumbnailUrl){https(photo.thumbnailUrl);const thumb=new URL(photo.thumbnailUrl);assert.equal(thumb.hostname,'s3.us-west-2.amazonaws.com');assert(thumb.pathname.startsWith('/onnieastvillage/general/_c600w/'));assert.equal(thumb.search,'');}}
+ if(a.dataSourceUrl){https(a.dataSourceUrl);assert.equal(new URL(a.dataSourceUrl).hostname,'my.gounion.com');assert((a.units??[]).length<=3);for(const unit of a.units??[]){assert.match(unit.availableDate,/^\d{4}-\d{2}-\d{2}$/);assert(unit.availableDate>=a.observedAt.slice(0,10));assert.match(unit.availableLabel,/^Advertised /);assert(unit.rentBasis.includes('fees'));}}
  assert(['unknown','permission-required'].includes(r.photoReuse.status));
 }
 const at='2026-11-03T12:00:00Z', ms=Date.parse(at);

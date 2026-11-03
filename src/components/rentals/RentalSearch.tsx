@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { SlidersHorizontal, Columns2 } from 'lucide-react';
+import { useCompareStore } from '@/lib/store/compare';
 import { REAL_RENTALS, type RentalWithPhotos } from '@/lib/data/real-rentals';
 import { RentalCard } from './RentalCard';
 import { RentalFilters, RENTAL_FEATURE_FILTERS, type RentalFilterState } from './RentalFilters';
@@ -30,6 +32,19 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
   const [workbookQuery, setWorkbookQuery] = useState('');
   const [workbookCity, setWorkbookCity] = useState('all');
   const [workbookLimit, setWorkbookLimit] = useState(10);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [ready, setReady] = useState(false);
+  const compareCount = useCompareStore((state) => state.items.length);
+  const filterToggle = useRef<HTMLButtonElement>(null);
+  const resultsHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => { setReady(true); }, []);
+  function showResults() {
+    setFiltersOpen(false);
+    requestAnimationFrame(() => {
+      resultsHeading.current?.focus({ preventScroll: true });
+      resultsHeading.current?.scrollIntoView({ block: 'start', behavior: 'auto' });
+    });
+  }
 
   const filtered = useMemo(() => filterRentals(REAL_RENTALS, filters, unitTypeLock), [filters, unitTypeLock]);
   const sorted = useMemo(() => sortRentals(filtered, sort, profile), [filtered, sort, profile]);
@@ -66,14 +81,29 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
   useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
-    <div className="mt-4 flex min-w-0 flex-col gap-5 lg:flex-row">
-      <RentalFilters initial={filters} onChange={setFilters} unitTypeLock={unitTypeLock} activeCount={activeFilters.length} onReset={resetFilters} />
+    <div className="rental-discovery">
+      <div className="rental-search-toolbar" role="group" aria-label="Rental search tools">
+        <div className="rental-toolbar-count"><strong className="num">{filtered.length}</strong><span>matching records</span></div>
+        <button ref={filterToggle} type="button" className="rental-filter-toggle" aria-expanded={filtersOpen} aria-controls="rental-filter-panel"
+          onClick={() => setFiltersOpen((open) => !open)}>
+          <SlidersHorizontal size={18} aria-hidden="true" />
+          {filtersOpen ? 'Close filters' : 'Filters'}{activeFilters.length > 0 && <span className="rental-filter-count">{activeFilters.length}</span>}
+        </button>
+        <Link href="/compare" className="rental-compare-shortcut" aria-label={ready ? `Compare ${compareCount} items on this device` : 'Compare items'}>
+          <Columns2 size={18} aria-hidden="true" /><span>Compare{ready && compareCount > 0 ? ` (${compareCount})` : ''}</span>
+        </Link>
+      </div>
+      <div className="rental-search-layout">
+      <div id="rental-filter-panel" className="rental-filter-panel" data-open={filtersOpen}
+        onKeyDown={(event) => { if (event.key === 'Escape' && filtersOpen) { setFiltersOpen(false); if (filterToggle.current?.getClientRects().length) filterToggle.current.focus(); } }}>
+        <RentalFilters initial={filters} onChange={setFilters} unitTypeLock={unitTypeLock} activeCount={activeFilters.length} onReset={resetFilters} onDone={showResults} resultCount={filtered.length} />
+      </div>
       <div className="min-w-0 flex-1 space-y-4">
         <section id="rental-results" aria-labelledby="rental-results-heading" className="cookie-card scroll-mt-28 space-y-4 p-4 sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-wider text-chocolate-700">{locationLabel}</p>
-              <h2 id="rental-results-heading" className="mt-1 font-display text-2xl font-extrabold text-chocolate-900">Rental records</h2>
+              <h2 ref={resultsHeading} tabIndex={-1} id="rental-results-heading" className="mt-1 font-display text-2xl font-extrabold text-chocolate-900">Rental records</h2>
               <p role="status" aria-live="polite" aria-atomic="true" className="mt-1 text-sm text-chocolate-700">
                 <strong className="num">{filtered.length}</strong> matching record{filtered.length === 1 ? '' : 's'}
                 {filtered.length > 0 && <> · showing {(safePage - 1) * PER_PAGE + 1}–{Math.min(safePage * PER_PAGE, filtered.length)}</>}
@@ -107,7 +137,7 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
           <ProfilePanel profile={profile} onChange={setProfile} />
         </div>
         {filtered.length > 0 ? (
-          <ul aria-label="Matching rental records" className="grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <ul aria-label="Matching rental records" className="rental-card-grid">
             {paged.map((r) => <li key={r.id} className="min-w-0"><RentalCard rental={r} profile={profile} /></li>)}
           </ul>
         ) : (
@@ -196,6 +226,7 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
             </button>
           )}
         </details>
+      </div>
       </div>
     </div>
   );
