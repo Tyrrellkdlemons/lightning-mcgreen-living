@@ -38,6 +38,10 @@ jobs:
           node --test scripts/test-photos.mjs
           node --test scripts/test-assistant.mjs
           node scripts/test-property-evidence.mjs
+          node scripts/test-source-audit.mjs
+          node scripts/test-housing-assistant.mjs
+          node scripts/test-mobile-rentals.mjs
+          node scripts/test-map-attribution.mjs
 
       - name: Lint
         run: npm run lint --if-present

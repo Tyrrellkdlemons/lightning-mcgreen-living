@@ -1,17 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 import { FitBadge } from '@/components/common/FitBadge';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { GingerbreadApartment, GingerbreadTownhome } from '@/components/theme/GingerbreadHouse';
-import { PhotoGallery } from '@/components/common/PhotoGallery';
 import { ScreeningBadge } from './ScreeningPanel';
-import { SaveHeart } from '@/components/common/SaveHeart';
+import { RentalPlanningActions } from './RentalPlanningActions';
 import { findOperatorProfile, TIER_LABEL, TIER_TONE } from '@/lib/data/operator-profiles';
-import { ApartmentLinkBadge, VerifiedAtBadge } from '@/components/common/LinkConfidenceBadge';
+import { ApartmentLinkBadge } from '@/components/common/LinkConfidenceBadge';
 import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
 import { recordedRent } from '@/lib/places/property-view';
 import type { RentalListing, RenterProfile } from '@/types';
@@ -32,7 +30,6 @@ export function RentalCard({
   rental: RentalListing & { photos?: PhotoSet };
   profile: RenterProfile;
 }) {
-  const [warnOpen, setWarnOpen] = useState(false);
   const fit = scoreRental(rental, profile);
   const isTownhome = rental.unit_type === 'townhouse';
   const link = resolveApartmentApplicationLink(rental as any);
@@ -42,19 +39,23 @@ export function RentalCard({
   const preferredPlatform = rental.application_platform === 'AppFolio' || rental.application_platform === 'On-Site';
 
   return (
-    <CandyCard interactive className="relative flex flex-col gap-3">
-      <div className="absolute right-3 top-3 z-10">
-        <SaveHeart kind="rental" id={rental.id} />
-      </div>
-      {rental.photos && <PhotoGallery photos={rental.photos} height={180} />}
+    <CandyCard className="rental-card flex flex-col gap-3">
+      {rental.photos?.urls[0] && (
+        <figure className="rental-card-preview">
+          {/* Catalog preview sets begin with an original decorative SVG. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={rental.photos.urls[0]} alt="" loading="lazy" decoding="async" width={600} height={180} />
+          <figcaption>Illustration · property evidence in details</figcaption>
+        </figure>
+      )}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Gumdrop tone="mute">{UNIT_LABEL[rental.unit_type]}</Gumdrop>
             <FitBadge fit={fit} />
           </div>
-          <h3 className="mt-1 truncate font-display text-lg font-extrabold text-chocolate-900">
-            {rental.property_name}
+          <h3 className="mt-2 font-display text-xl font-extrabold leading-snug text-chocolate-900 [overflow-wrap:anywhere]">
+            <Link href={detailHref} className="rental-card-title">{rental.property_name}</Link>
           </h3>
           <p className="text-xs text-chocolate-700">
             {rental.address_line} · {rental.city}, {rental.state} {rental.zip}
@@ -67,7 +68,7 @@ export function RentalCard({
         )}
       </div>
 
-      <div className="grid grid-cols-3 gap-2 text-xs">
+      <div className="rental-card-stats">
         <Stat label="Recorded rent" value={recordedRent(rental.min_rent, rental.max_rent)} />
         <Stat
           label="Beds"
@@ -100,40 +101,23 @@ export function RentalCard({
         )}
         <ScreeningBadge platform={rental.application_platform} manager={rental.manager} publiclyDisclosed={rental.screening_vendor} />
         <ApartmentLinkBadge kind={link.kind} confidence={link.confidence} />
-        <VerifiedAtBadge iso={rental.meta.last_verified_at} />
+        <Gumdrop tone="mute">Record date: {formatDate(rental.meta.last_verified_at.slice(0, 10))}</Gumdrop>
       </div>
 
       <p className="text-xs leading-relaxed text-chocolate-700">Current availability is not confirmed. Check the exact unit, rent and fees with the provider.</p>
       <SourcePanel meta={rental.meta} dense />
 
-      <div className="mt-1 flex items-center justify-between gap-2">
-        {strictEntry ? (
-          <button type="button" onClick={() => setWarnOpen(true)} className="bolt-btn text-sm">
-            See details
-          </button>
-        ) : (
-          <Link href={detailHref} className="bolt-btn text-sm">
-            See details
-          </Link>
-        )}
-        <a
-          href={rental.official_property_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2"
-        >
-          Official property page →
-        </a>
+      {strictEntry && (
+        <details className="rental-screening-notes">
+          <summary>Screening estimate: {STRICTNESS_LABEL[stack.strictness]}</summary>
+          <p>Recorded portal: {rental.application_platform}. Manager: {rental.manager}. This estimate does not establish the current screening rules or your eligibility. Ask the property for its written criteria before paying a fee.</p>
+        </details>
+      )}
+      <div className="rental-card-links">
+        <Link href={detailHref} className="bolt-btn" aria-label={`View details for ${rental.property_name}`}>View details <span aria-hidden="true">→</span></Link>
+        <a href={rental.official_property_url} target="_blank" rel="noopener noreferrer">Property source <span aria-hidden="true">↗</span></a>
       </div>
-      <ListingNoticeModal
-        open={warnOpen}
-        onClose={() => setWarnOpen(false)}
-        href={detailHref}
-        platform={rental.application_platform}
-        strictnessLabel={STRICTNESS_LABEL[stack.strictness]}
-        vendorSummary={stack.vendors.map((v) => v.name).join(' + ') || 'Not publicly verified yet'}
-        manager={rental.manager}
-      />
+      <RentalPlanningActions id={rental.id} name={rental.property_name} />
     </CandyCard>
   );
 }
@@ -146,63 +130,8 @@ function formatDate(date: string) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md bg-frosting-100 px-2 py-1.5">
-      <p className="text-[10px] font-semibold uppercase tracking-wider text-chocolate-600">{label}</p>
+      <p className="text-xs font-semibold text-chocolate-700">{label}</p>
       <p className="num text-sm font-bold text-chocolate-900">{value}</p>
-    </div>
-  );
-}
-
-function ListingNoticeModal({
-  open,
-  onClose,
-  href,
-  platform,
-  strictnessLabel,
-  vendorSummary,
-  manager,
-}: {
-  open: boolean;
-  onClose: () => void;
-  href: string;
-  platform: RentalListing['application_platform'];
-  strictnessLabel: string;
-  vendorSummary: string;
-  manager: string;
-}) {
-  if (!open) return null;
-  return (
-    <div
-      role="dialog"
-      aria-label="Screening notice"
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/55 p-4 sm:items-center"
-      onClick={(e) => e.target === e.currentTarget && onClose()}
-    >
-      <CandyCard className="w-full max-w-lg">
-        <Gumdrop tone="warn">Screening notice before opening</Gumdrop>
-        <h3 className="mt-2 font-display text-lg font-extrabold text-chocolate-900">
-          This listing may use stricter application checks
-        </h3>
-        <p className="mt-2 text-sm text-chocolate-800">
-          Manager: {manager}
-          <br />
-          Portal: {platform}
-          <br />
-          Strictness: {strictnessLabel}
-          <br />
-          Likely vendors: {vendorSummary}
-        </p>
-        <p className="mt-2 text-xs text-chocolate-700">
-          AppFolio and On-Site are preferred in your ranking, but strict operators are still included.
-        </p>
-        <div className="mt-4 flex items-center justify-between gap-2">
-          <button type="button" onClick={onClose} className="cinnamon-btn text-sm">
-            Stay on results
-          </button>
-          <Link href={href} onClick={onClose} className="bolt-btn text-sm">
-            Continue to listing
-          </Link>
-        </div>
-      </CandyCard>
     </div>
   );
 }

@@ -18,7 +18,7 @@ function broadReferral(url) { const u = new URL(url); return BROAD_REFERRALS.has
 export function buildKnowledge(catalog, workbook, places = []) {
   const locations = [...places.map(p => ({ city: p.name, state: p.state, county: p.county })), ...workbook.map(w => ({ city: w.city, state: 'CA', county: w.county }))].filter(p => p.city && p.county);
   const countyNames = [...new Set(locations.flatMap(p => p.county.split(' / ')))];
-  const sources = (catalog.sources ?? []).filter(s => /^[a-z0-9-]+$/.test(s.id) && STATE_CODES.has(s.state) && safePublicUrl(s.url)).map(s => {
+  const sources = (catalog.sources ?? []).filter(s => !s.outboundDisabled && s.review?.outcome !== 'mismatch' && /^[a-z0-9-]+$/.test(s.id) && STATE_CODES.has(s.state) && safePublicUrl(s.url)).map(s => {
     const geography = `${s.title} ${s.description} ${s.publisher}`.toLowerCase();
     const county = clean(s.county, 80) || countyNames.filter(c => geography.includes(c.toLowerCase() + ' county')).join(' / ');
     return { id: s.id, title: clean(s.title, 180), url: safePublicUrl(s.url), detailUrl: `/resources/${s.id}`,

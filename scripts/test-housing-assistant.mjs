@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { buildKnowledge } from '../src/lib/assistant/knowledge.mjs';
+import { gatewayConfig } from '../src/lib/assistant/server.mjs';
+const fixture = {id:'resource-example', title:'Provider', state:'AZ', url:'https://example.org/', category:'housing'};
+const sources = buildKnowledge({sources:[fixture,{...fixture,id:'disabled',outboundDisabled:true},{...fixture,id:'mismatch',review:{outcome:'mismatch'}}]},[]).sources;
+assert(sources.some(s=>s.id==='resource-example'));
+assert(!sources.some(s=>['disabled','mismatch'].includes(s.id)));
+const config=url=>gatewayConfig({GEMINI_API_KEY:'fixture', GOOGLE_GEMINI_BASE_URL:url});
+for(const id of ['3','12','999']) assert(config(`https://deploy-preview-${id}--lightning-mcgreen-living.netlify.app/.netlify/ai`));
+for(const host of ['deploy-preview-3--another-site.netlify.app','deploy-preview-3--lightning-mcgreen-living.netlify.app.evil.org','deploy-preview-3--lightning-mcgreen-livingXnetlifyXapp','deploy-preview-0--lightning-mcgreen-living.netlify.app']) assert.equal(config(`https://${host}/.netlify/ai`),null);
+assert.equal(config('https://deploy-preview-3--lightning-mcgreen-living.netlify.app/not-ai'),null);
+console.log('PASS: disabled/mismatched sources excluded; exact own-site preview gateway hosts only.');

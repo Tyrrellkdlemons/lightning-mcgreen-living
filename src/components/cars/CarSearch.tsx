@@ -47,10 +47,10 @@ export function CarSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
-    <div className="mt-4 space-y-4">
+    <div className="mt-4 min-w-0 space-y-4 [&_input]:min-w-0 [&_input]:max-w-full [&_select]:min-w-0 [&_select]:max-w-full">
       <BuyerProfilePanel profile={profile} onChange={setProfile} />
 
-      <div className="cookie-card flex flex-wrap items-end gap-3 p-4">
+      <div className="cookie-card flex min-w-0 flex-wrap items-end gap-3 p-4">
         <Field label="State">
           <select className="rounded-md border border-gingerbread-300 bg-white px-2 py-2 text-sm" value={filters.state ?? ''} onChange={(e) => setFilters({ ...filters, state: (e.target.value || undefined) as 'CA' | 'AZ' | undefined })}>
             <option value="">California + Arizona</option><option value="CA">California</option><option value="AZ">Arizona</option>
@@ -80,16 +80,16 @@ export function CarSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
             <option value="all">All</option><option value="new">New</option><option value="used">Used</option><option value="cpo">CPO</option>
           </select>
         </Field>
-        <div className="ml-auto"><SortDropdown value={sort} onChange={setSort} /></div>
+        <div className="ml-auto min-w-0 max-w-full"><SortDropdown value={sort} onChange={setSort} className="min-w-0 flex-wrap" /></div>
       </div>
 
       <p className="text-xs text-chocolate-700">
         <strong>{filtered.length}</strong> result{filtered.length === 1 ? '' : 's'}
       </p>
 
-      <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <ul className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {paged.map((v) => (
-          <li key={v.id}><CarCard vehicle={v} dealer={dealers[v.dealer_id]} profile={profile} /></li>
+          <li className="min-w-0" key={v.id}><CarCard vehicle={v} dealer={dealers[v.dealer_id]} profile={profile} /></li>
         ))}
       </ul>
       {filtered.length === 0 && <div className="cookie-card p-6 text-center text-sm text-chocolate-700"><p>No listed vehicles match these filters. Inventory coverage varies by area; verify availability directly with a dealer.</p><button type="button" className="cinnamon-btn mt-3" onClick={() => setFilters({ condition: 'all' })}>Clear filters</button></div>}
@@ -101,9 +101,9 @@ export function CarSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="block">
+    <label className="block min-w-0 max-w-full">
       <span className="block text-xs font-bold uppercase tracking-wider text-chocolate-700">{label}</span>
-      <div className="mt-1">{children}</div>
+      <div className="mt-1 min-w-0">{children}</div>
     </label>
   );
 }

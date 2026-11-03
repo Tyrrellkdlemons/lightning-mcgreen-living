@@ -11,7 +11,7 @@ export function gatewayConfig(env) {
   try {
     const base = new URL(env.GOOGLE_GEMINI_BASE_URL);
     // Fail closed until a deployed gateway address matches this Netlify-owned origin/path.
-    if (base.protocol !== 'https:' || !['6b005e3f-bc71-4f4f-a2c7-520763994fb6.netlify.app', 'lightning-mcgreen-living.netlify.app', 'deploy-preview-2--lightning-mcgreen-living.netlify.app'].includes(base.hostname) || !['/.netlify/ai', '/.netlify/ai/'].includes(base.pathname) || base.username || base.password || base.search || base.hash || base.port) return null;
+    if (base.protocol !== 'https:' || !(['6b005e3f-bc71-4f4f-a2c7-520763994fb6.netlify.app', 'lightning-mcgreen-living.netlify.app'].includes(base.hostname) || /^deploy-preview-[1-9][0-9]*--lightning-mcgreen-living\.netlify\.app$/.test(base.hostname)) || !['/.netlify/ai', '/.netlify/ai/'].includes(base.pathname) || base.username || base.password || base.search || base.hash || base.port) return null;
     return { key: env.GEMINI_API_KEY, url: `${base.href.replace(/\/$/, '')}/v1beta/models/${MODEL}:generateContent` };
   } catch { return null; }
 }

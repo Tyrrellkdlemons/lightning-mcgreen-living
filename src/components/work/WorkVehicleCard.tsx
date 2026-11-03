@@ -28,12 +28,12 @@ export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental
   const link = resolveWorkRentalReservationLink(rental as any);
 
   return (
-    <CandyCard interactive className="race-card-hover relative flex flex-col gap-3">
+    <CandyCard interactive className="race-card-hover relative flex min-w-0 flex-col gap-3 [overflow-wrap:anywhere]">
       <div className="absolute right-3 top-3 z-10">
         <SaveHeart kind="work-vehicle" id={rental.id} />
       </div>
       {rental.photos && <PhotoGallery photos={rental.photos} height={180} />}
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex min-w-0 items-start justify-between gap-3">
         <div className="min-w-0">
           <Gumdrop tone="mute">{TYPE_LABEL[rental.vehicle_type]}</Gumdrop>
           <h3 className="mt-1 truncate font-display text-lg font-extrabold text-chocolate-900">{rental.provider_name}</h3>
@@ -49,13 +49,13 @@ export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental
         <WorkVan className="h-12 w-auto shrink-0" />
       </div>
 
-      <div className="grid grid-cols-3 gap-2 text-xs">
+      <div className="grid min-w-0 grid-cols-3 gap-2 text-xs">
         <Stat label="Daily" value={usd(rental.daily_rate)} />
         <Stat label="Weekly" value={usd(rental.weekly_rate)} />
         <Stat label="Monthly" value={usd(rental.monthly_rate)} />
       </div>
 
-      <div className="grid grid-cols-3 gap-2 text-xs">
+      <div className="grid min-w-0 grid-cols-3 gap-2 text-xs">
         <Stat label="Deposit" value={usd(rental.deposit)} />
         <Stat label="Mileage fee" value={rental.mileage_fee_per_mile != null ? `$${rental.mileage_fee_per_mile.toFixed(2)}/mi` : '—'} />
         <Stat label="Incl miles/day" value={rental.included_miles_per_day != null ? String(rental.included_miles_per_day) : '—'} />
@@ -68,7 +68,7 @@ export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental
 
       <SourcePanel meta={rental.meta} dense />
 
-      <div className="flex items-center justify-between">
+      <div className="flex min-w-0 flex-wrap items-center justify-between gap-3">
         <Link href={`/work-vehicles/${rental.id}`} className="bolt-btn text-sm">See details</Link>
         <a href={rental.website} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2">
           Provider site →
@@ -80,7 +80,7 @@ export function WorkVehicleCard({ rental, profile }: { rental: WorkVehicleRental
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md bg-frosting-100 px-2 py-1.5">
+    <div className="min-w-0 rounded-md bg-frosting-100 px-2 py-1.5">
       <p className="text-[10px] font-semibold uppercase tracking-wider text-chocolate-600">{label}</p>
       <p className="num text-sm font-bold text-chocolate-900">{value}</p>
     </div>

@@ -844,3 +844,91 @@ h2.section-heading { display:block; font-size:clamp(26px,3vw,34px); font-weight:
   .discovery-home .hero-pass:hover,.discovery-home .path-card:hover { transform:none; }
 }
 .reduce-motion .discovery-home .hero-pass:hover,.reduce-motion .discovery-home .path-card:hover { transform:none; }
+
+/* Rental discovery: one filter panel, an in-flow mobile disclosure, and
+   persistent local planning controls. These selectors do not restyle data pages. */
+.app-main { padding-bottom:3rem; }
+.app-bottom-nav { display:none; }
+.rental-discovery { min-width:0; margin-top:1.25rem; --rental-ink:#2a1809; --rental-green:#13510e; --rental-line:#d6c4aa; }
+.rental-search-toolbar { position:sticky; top:max(.5rem,env(safe-area-inset-top)); z-index:30; display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; padding:.65rem .85rem; border:1px solid var(--rental-line); border-radius:1.15rem; background:#fffaf0; box-shadow:0 5px 18px #2a180912; }
+.rental-toolbar-count { display:flex; align-items:baseline; gap:.5rem; min-width:0; margin-right:auto; color:var(--rental-ink); }
+.rental-toolbar-count strong { font-size:1.5rem; line-height:1.1; }
+.rental-toolbar-count span { font-size:.8125rem; line-height:1.3; }
+.rental-filter-toggle,.rental-compare-shortcut { display:inline-flex; min-height:44px; align-items:center; justify-content:center; gap:.4rem; padding:.55rem .8rem; border:1px solid var(--rental-line); border-radius:.8rem; font-size:.8125rem; font-weight:750; line-height:1.2; color:var(--rental-ink); background:white; transition:background-color 160ms ease,border-color 160ms ease; }
+.rental-filter-toggle { display:none; }
+.rental-filter-toggle[aria-expanded="true"] { background:#e8f5df; border-color:#65875b; }
+.rental-filter-count { display:inline-grid; place-items:center; min-width:1.25rem; height:1.25rem; border-radius:50%; background:var(--rental-ink); color:white; font-size:.75rem; }
+.rental-search-layout { display:flex; align-items:flex-start; gap:1.25rem; min-width:0; }
+.rental-filter-panel { width:18rem; min-width:0; flex-shrink:0; }
+.rental-filter-card { border-color:var(--rental-line); }
+.rental-filter-done { display:none; }
+.rental-card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; min-width:0; }
+.rental-card { min-width:0; height:100%; border-color:var(--rental-line); box-shadow:0 2px 0 #2a18090a,0 8px 24px #2a18090b; }
+.rental-card [class*="text-[10px]"],.rental-card [class*="text-[11px]"] { font-size:.75rem; }
+.rental-card-preview { overflow:hidden; border:1px solid #e4d7c2; border-radius:.9rem; background:#f5eddf; }
+.rental-card-preview img { width:100%; height:150px; object-fit:cover; }
+.rental-card-preview figcaption { padding:.5rem .65rem; background:#fffaf0; color:#3c2412; font-size:.75rem; line-height:1.4; }
+.rental-card-title { display:inline-flex; min-height:44px; align-items:center; text-decoration-thickness:2px; text-underline-offset:4px; }
+.rental-card-title:hover { text-decoration-line:underline; }
+.rental-card-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
+.rental-card-stats > div { min-width:0; padding:.65rem .75rem; overflow-wrap:anywhere; }
+.rental-card-stats > div:first-child { grid-column:1 / -1; background:#eef5e7; }
+.rental-card-stats > div:first-child .num { margin-top:.2rem; font-size:1.35rem; line-height:1.25; color:var(--rental-green); }
+.rental-screening-notes { border:1px solid #dfc9a2; border-radius:.7rem; background:#fff6e5; color:#3c2412; }
+.rental-screening-notes summary { min-height:44px; padding:.75rem; cursor:pointer; font-size:.8125rem; font-weight:700; }
+.rental-screening-notes p { padding:0 .75rem .75rem; font-size:.8125rem; line-height:1.6; }
+.rental-card-links { display:grid; grid-template-columns:minmax(0,1fr); gap:.2rem; margin-top:auto; padding-top:.35rem; }
+.rental-card-links > a { display:flex; align-items:center; justify-content:center; gap:.5rem; min-width:0; min-height:44px; padding:.65rem .5rem; text-align:center; font-size:.875rem; line-height:1.3; }
+.rental-card-links > a + a { font-size:.8125rem; font-weight:650; text-decoration:underline; text-underline-offset:4px; }
+.rental-planning { border-top:1px solid #e4d7c2; padding-top:.75rem; }
+.rental-planning-buttons { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
+.rental-planning-buttons button { display:flex; align-items:center; justify-content:center; gap:.45rem; min-height:44px; min-width:0; padding:.6rem .4rem; border:1px solid #b9a88f; border-radius:.75rem; font-size:.8125rem; font-weight:700; color:var(--rental-ink); background:#fffaf0; transition:background-color 160ms ease,border-color 160ms ease; }
+.rental-planning-buttons button[aria-pressed="true"] { border-color:#65875b; color:var(--rental-green); background:#e8f5df; }
+.rental-planning-buttons button:disabled { opacity:.6; cursor:wait; }
+.rental-planning-status { margin:0; color:#3c2412; font-size:.75rem; line-height:1.5; }
+.rental-planning-status:not(:empty) { margin-top:.5rem; }
+.rental-planning-link { display:inline-flex; min-height:44px; align-items:center; font-size:.8125rem; font-weight:700; text-decoration:underline; text-underline-offset:4px; }
+#rental-results-heading { scroll-margin-top:7rem; }
+@media (hover:hover) {
+  .rental-filter-toggle:hover,.rental-compare-shortcut:hover,.rental-planning-buttons button:not(:disabled):hover { border-color:#65875b; background:#e8f5df; }
+}
+@media (max-width:1023px) {
+  .app-main { padding-bottom:calc(5.5rem + env(safe-area-inset-bottom)); }
+  .app-shell > footer { padding-bottom:calc(6rem + env(safe-area-inset-bottom)); }
+  .app-bottom-nav { display:block; position:fixed; z-index:40; inset:auto 0 0; padding:0 max(.4rem,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(.4rem,env(safe-area-inset-left)); border-top:1px solid #cbb89e; background:#fffaf0; box-shadow:0 -4px 20px #2a18090c; }
+  .app-bottom-nav ul { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); max-width:720px; margin:0 auto; padding:.35rem 0; }
+  .app-bottom-nav li { min-width:0; }
+  .app-bottom-nav a { display:flex; min-height:54px; align-items:center; justify-content:center; flex-direction:column; gap:.2rem; margin:0 .15rem; border-radius:.8rem; color:#3c2412; font-size:.75rem; font-weight:650; line-height:1.2; transition:background-color 160ms ease,color 160ms ease; }
+  .app-bottom-nav a[aria-current="page"] { background:#e8f5df; color:#13510e; font-weight:800; box-shadow:inset 0 0 0 1px #a9c29b; }
+  .app-tab-icon { display:flex; position:relative; }
+  .app-tab-count { position:absolute; top:-5px; left:14px; min-width:18px; padding:2px 4px; border-radius:12px; color:white; background:#13510e; font-size:.75rem; line-height:1; font-weight:700; }
+  .rental-filter-toggle { display:inline-flex; }
+  .rental-search-layout { display:block; }
+  .rental-filter-panel { display:none; width:100%; margin-bottom:1rem; }
+  .rental-filter-panel[data-open="true"] { display:block; animation:rental-panel-in 180ms ease-out; }
+  .rental-filter-done { display:flex; align-items:center; justify-content:center; width:100%; min-height:44px; padding:.8rem; border-radius:.75rem; background:#2a1809; color:white; font-size:.875rem; font-weight:750; }
+  .rental-discovery:has(input:focus,select:focus,textarea:focus) .rental-search-toolbar { position:static; }
+}
+@media (max-width:639px) {
+  .rental-card-grid { grid-template-columns:minmax(0,1fr); }
+  .rental-search-toolbar { gap:.5rem; padding:.5rem; border-radius:1rem; }
+  .rental-toolbar-count { flex-direction:column; align-items:flex-start; gap:.2rem; }
+  .rental-toolbar-count strong { font-size:1.25rem; }
+  .rental-toolbar-count span { font-size:.75rem; }
+  .rental-filter-toggle,.rental-compare-shortcut { padding:.6rem; font-size:.75rem; }
+  .rental-card-preview img { height:160px; }
+}
+@media (max-width:380px) {
+  .rental-filter-toggle > svg,.rental-compare-shortcut > svg { display:none; }
+}
+@media (max-height:500px) {
+  .rental-search-toolbar { position:static; }
+  #rental-results-heading { scroll-margin-top:1rem; }
+}
+@keyframes rental-panel-in { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
+.reduce-motion .rental-filter-panel { animation:none; }
+.reduce-motion .rental-discovery *,.reduce-motion .app-bottom-nav * { transition:none; }
+@media (prefers-reduced-motion:reduce) {
+  .rental-filter-panel { animation:none!important; }
+  .rental-discovery *,.app-bottom-nav * { transition:none!important; }
+}

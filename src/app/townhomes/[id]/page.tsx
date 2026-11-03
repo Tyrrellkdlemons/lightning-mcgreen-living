@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
+import { PropertyEvidence } from '@/components/properties/PropertyEvidence';
 import { RentalDetailClient } from '@/components/rentals/RentalDetail';
 
 interface Props { params: { id: string } }
@@ -13,5 +14,5 @@ export function generateMetadata({ params }: Props): Metadata {
 export default function TownhomeDetail({ params }: Props) {
   const rental = REAL_RENTALS.find((x) => x.id === params.id);
   if (!rental || rental.unit_type !== 'townhouse') notFound();
-  return <RentalDetailClient rental={rental} />;
+  return <RentalDetailClient rental={rental} propertyEvidence={<PropertyEvidence propertyId={rental.id} />} />;
 }
