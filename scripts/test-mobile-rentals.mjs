@@ -34,6 +34,7 @@ function load(file, mocks = {}, expose = '') {
       if (name === 'next/link') return { default: 'a' };
       if (name === 'lucide-react') return new Proxy({}, { get: (_, icon) => String(icon) });
       if (name in mocks) return mocks[name];
+      if (name === '@/lib/client/state') return load('src/lib/client/state.ts', {react:mocks.react});
       throw new Error(file + ': unexpected dependency ' + name);
     },
   }, { timeout: 1500 });
@@ -51,6 +52,12 @@ function hooks() {
       },
       useRef(initial) { const index = cursor++; return slots[index] ||= { current: initial }; },
       useMemo: (fn) => fn(),
+      useCallback: (fn) => fn,
+      useSyncExternalStore(subscribe,getSnapshot,getServerSnapshot) {
+        const index=cursor++;
+        if(!(index in slots)){slots[index]=false;effects.push(()=>{slots[index]=true;});}
+        return slots[index]?getSnapshot():getServerSnapshot();
+      },
       useEffect(fn, deps) {
         const index = cursor++, previous = slots[index];
         if (!previous || deps.some((value, position) => value !== previous[position])) { effects.push(fn); slots[index] = deps; }
@@ -214,13 +221,13 @@ check('state selection clears stale city while preserving the budget', () => {
 const navHooks = hooks();
 let pathname = '/apartments/apply-engine';
 const nav = load('src/components/shell/BottomNav.tsx', { react: navHooks.api, 'next/navigation': { usePathname: () => pathname }, '@/lib/store/compare': stores });
-check('Apply is the only selected tab on the engine; property detail selects Rentals', () => {
+check('Apply is the only selected tab on the engine; property detail selects Homes', () => {
   let tree = navHooks.render(nav.BottomNav);
   assert.equal(all(tree, (item) => item.props.href).length, 5);
   assert.equal(node(tree, (item) => item.props['aria-current'] === 'page').props.href, '/apartments/apply-engine');
-  for (const route of ['/apartments/example', '/townhomes/example', '/properties/wb-1', '/rentals']) {
+  for (const route of ['/homes', '/homes/sale-fixture', '/apartments/example', '/townhomes/example', '/properties/wb-1', '/rentals']) {
     pathname = route; tree = navHooks.render(nav.BottomNav);
-    assert.equal(node(tree, (item) => item.props['aria-current'] === 'page').props.href, '/rentals');
+    assert.equal(node(tree, (item) => item.props['aria-current'] === 'page').props.href, '/homes');
   }
 });
 check('saved tab count is deferred until hydration and includes all saved categories', () => {
@@ -290,5 +297,27 @@ check('Escape never moves focus to the hidden desktop filter trigger', () => {
   tree = search();
   node(tree, (item) => item.props.id === 'rental-filter-panel').props.onKeyDown({ key: 'Escape' });
   assert.equal(focused, false);
+});
+
+const keyedHooks = hooks();
+const keyedState = load('src/lib/client/state.ts', {react:keyedHooks.api});
+const keyed = (key) => keyedHooks.render(() => keyedState.useKeyedPage(key));
+check('changing filters A to B to A never revives a previous page', () => {
+  let [page,setPage]=keyed('A'); assert.equal(page,1); setPage(3);
+  assert.equal(keyed('A')[0],3); assert.equal(keyed('B')[0],1);
+  assert.equal(keyed('A')[0],1);
+});
+
+const locationHooks=hooks();
+const {LocationFilters}=load('src/components/homes/LocationFilters.tsx',{react:locationHooks.api});
+const locationProps={initialState:'CA',initialCounty:'06059',counties:[{geoid:'06059',name:'Orange County'},{geoid:'04013',name:'Maricopa County'}]};
+check('state changes immediately clear county and expose matching county options',()=>{
+ let tree=locationHooks.render(LocationFilters,locationProps);
+ node(tree,x=>x.type==='select'&&x.props.name==='state').props.onChange({target:{value:'AZ'}});
+ tree=locationHooks.render(LocationFilters,locationProps);
+ const county=node(tree,x=>x.type==='select'&&x.props.name==='county');
+ assert.equal(county.props.value,'');
+ assert.equal(all(county,x=>x.type==='option'&&x.props.value==='06059').length,0);
+ assert.equal(all(county,x=>x.type==='option'&&x.props.value==='04013').length,1);
 });
 console.log('Mobile rental behavior checks: ' + checks + ' passed. Browser layout and assistive-technology checks are separate.');

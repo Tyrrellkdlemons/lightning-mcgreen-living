@@ -8,7 +8,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/properties' },
 };
 
-export default function PropertiesPage({ searchParams }: { searchParams: { q?: string | string[]; city?: string | string[]; tier?: string | string[] } }) {
+export default async function PropertiesPage({ searchParams: searchParamsPromise }: { searchParams: Promise<{ q?: string | string[]; city?: string | string[]; tier?: string | string[] }> }) {
+  const searchParams = await searchParamsPromise;
+
   const first = (value?: string | string[]) => typeof value === 'string' ? value : value?.[0] || '';
   return <>
     <header className="mt-6 rounded-3xl border border-gingerbread-300 bg-frosting-100 p-6 sm:p-10">

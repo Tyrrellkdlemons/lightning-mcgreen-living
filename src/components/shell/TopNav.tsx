@@ -8,12 +8,13 @@ import { ReduceMotionToggle } from './ReduceMotionToggle';
 import { SearchBox } from './SearchBox';
 
 const PRIMARY = [
-  { href: '/rentals', label: 'Find a home', sections: ['/rentals', '/apartments', '/townhomes', '/properties', '/operators'] },
+  { href: '/homes', label: 'Find a home', sections: ['/homes', '/rentals', '/apartments', '/townhomes', '/properties', '/operators'] },
   { href: '/help', label: 'Shelter & support', sections: ['/help', '/assistance'] },
   { href: '/places', label: 'Explore places', sections: ['/places'] },
   { href: '/assistant', label: 'Ask Gemini', sections: ['/assistant'] },
 ];
 const MORE = [
+  { href: '/rentals', label: 'Rental planning & comparison' },
   { href: '/properties', label: 'Property research' },
   { href: '/resources', label: 'Source library' },
   { href: '/apartments/apply-engine', label: 'Apartment Apply Engine' },

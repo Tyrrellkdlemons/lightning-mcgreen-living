@@ -1,17 +1,17 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { ArrowUpRight, Camera, MapPin, Navigation } from 'lucide-react';
 import { propertyMapLinks, safeSourceUrl, type PropertyViewData } from '@/lib/places/property-view';
 
 const SOURCE_LABELS = { property: 'Property / leasing', 'floor-plan': 'Floor plan', listing: 'Listing', search: 'Search results', application: 'Application', source: 'Research source' };
 
 export function PropertyView(view: PropertyViewData) {
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const [loadedEmbed, setLoadedEmbed] = useState<string | null>(null);
   const mapId = useId();
   const links = propertyMapLinks(view);
   const sources = (view.sources || []).filter((source) => safeSourceUrl(source.url));
-  useEffect(() => { setMapLoaded(false); }, [links.embed]);
+  const mapLoaded = loadedEmbed === links.embed;
   return (
     <section className="mt-8 min-w-0" aria-label={`Location and source views for ${view.name}`}>
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
@@ -31,7 +31,7 @@ export function PropertyView(view: PropertyViewData) {
           </div>
           {links.embed && <div className="border-t border-gingerbread-200 bg-frosting-100">
             <div className="flex flex-wrap items-center justify-between gap-3 p-4">
-              <button type="button" aria-expanded={mapLoaded} aria-controls={mapId} onClick={() => setMapLoaded((value) => !value)} className="bolt-btn min-h-11 text-sm">{mapLoaded ? 'Hide area map' : 'Load area map'}</button>
+              <button type="button" aria-expanded={mapLoaded} aria-controls={mapId} onClick={() => setLoadedEmbed(value => value === links.embed ? null : links.embed ?? null)} className="bolt-btn min-h-11 text-sm">{mapLoaded ? 'Hide area map' : 'Load area map'}</button>
               <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="text-xs text-chocolate-700 underline">© OpenStreetMap contributors</a>
             </div>
             <div id={mapId}>

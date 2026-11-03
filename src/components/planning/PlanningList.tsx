@@ -1,7 +1,8 @@
 'use client';
+import {useHydrated} from '@/lib/client/state';
 
 import Link from 'next/link';
-import { useEffect, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
 import { REAL_DEALERS, REAL_VEHICLES } from '@/lib/data/real-vehicles';
 import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
@@ -17,11 +18,10 @@ export function PlanningList({ mode }: { mode: 'saved' | 'compare' }) {
   const compared = useCompareStore((state) => state.items);
   const addCompared = useCompareStore((state) => state.add);
   const removeCompared = useCompareStore((state) => state.remove);
-  const [ready, setReady] = useState(false);
+  const ready = useHydrated();
   const [notice, setNotice] = useState('');
   // Persisted browser state may differ from the server's empty store.
   // Keep the server and first client render identical before displaying it.
-  useEffect(() => { setReady(true); }, []);
   const selections = mode === 'saved' ? saved : compared;
   const records = ready ? selections.map((selection) => ({ selection, record: resolvePlanningItem(selection, catalog) })) : [];
   const missing = records.filter((entry) => !entry.record);

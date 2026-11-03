@@ -9,10 +9,10 @@ export function Hero() {
       <h1 id="hero-title">A fresh start.<br />A clearer <span>way home.</span></h1>
       <p className="hero-description">A place to begin your housing search, find local support, and prepare for what comes next.</p>
       <div className="hero-actions">
-        <Link href="/rentals" className="finder-button"><Building2 size={19} aria-hidden />Find a home<ArrowRight size={18} aria-hidden /></Link>
+        <Link href="/homes" className="finder-button"><Building2 size={19} aria-hidden />Find a home<ArrowRight size={18} aria-hidden /></Link>
         <Link href="/help" className="hero-support-link"><HeartHandshake size={19} aria-hidden />Shelter &amp; support</Link>
       </div>
-      <form action="/places" method="get" className="place-finder" role="search" aria-label="Find a city guide">
+      <form action="/homes" method="get" className="place-finder" role="search" aria-label="Find housing by city">
         <label><span>Explore a place</span><div className="finder-input"><MapPin size={18} aria-hidden /><input type="search" name="q" placeholder="City or region" aria-label="City or region" /></div></label>
         <label><span>State</span><select name="state" aria-label="State"><option value="">Both states</option><option value="CA">California</option><option value="AZ">Arizona</option></select></label>
         <button type="submit" className="finder-button"><Search size={18} aria-hidden /><span>Explore</span></button>

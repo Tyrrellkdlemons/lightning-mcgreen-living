@@ -1,0 +1,1151 @@
+{
+  "schemaVersion": 1,
+  "limitations": [
+    "Sampled current HomePath result cards, not full MLS coverage. Individual details inspected for two properties; other records retain search-card scope.",
+    "Displayed prices and photographs do not establish vacant possession, condition, eligibility, fees or availability at the time of contact."
+  ],
+  "records": [
+    {
+      "id": "sale-3367c73c-021a-4b37-9e66-62c70c85cac1",
+      "name": "7660 E Gato De Luna",
+      "intent": "buy",
+      "city": "Prescott Valley",
+      "state": "AZ",
+      "address": "7660 E Gato De Luna, Prescott Valley, AZ 86315",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 2040,
+      "price": 700000,
+      "priceLabel": "$700,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-3367c73c-021a-4b37-9e66-62c70c85cac1",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/3367c73c-021a-4b37-9e66-62c70c85cac1",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/daa337eed3b9459d97d126a794a27433/REO2HP_D2600BY_REOImage_481085845.jpg",
+          "title": "Property exterior",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/3367c73c-021a-4b37-9e66-62c70c85cac1",
+          "visuallyReviewed": true
+        },
+        {
+          "url": "https://homepath.fanniemae.com/images/d4dddb6b05ba467888c7749fa8deb343/REO2HP_D2600BY_REOImage_481085860.jpg",
+          "title": "Property grounds",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/3367c73c-021a-4b37-9e66-62c70c85cac1",
+          "visuallyReviewed": true
+        },
+        {
+          "url": "https://homepath.fanniemae.com/images/8bb67d758f1d4051afb2bf4837df5162/REO2HP_D2600BY_REOImage_481085859.jpg",
+          "title": "Property room",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/3367c73c-021a-4b37-9e66-62c70c85cac1",
+          "visuallyReviewed": true
+        }
+      ],
+      "detailInspectedAt": "2026-11-03T22:46:06.950Z"
+    },
+    {
+      "id": "sale-e6ae67d8-70e9-4bfa-9bad-0f0eb0fb43c9",
+      "name": "3550 W Mariposa Grande",
+      "intent": "buy",
+      "city": "Glendale",
+      "state": "AZ",
+      "address": "3550 W Mariposa Grande, Glendale, AZ 85310",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1967,
+      "price": 491900,
+      "priceLabel": "$491,900",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-e6ae67d8-70e9-4bfa-9bad-0f0eb0fb43c9",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/e6ae67d8-70e9-4bfa-9bad-0f0eb0fb43c9",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/d5a1b462ed9f4342b30a91dcb1b4efaf/REO2HP_D2600PM_REOImage_481499527.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/e6ae67d8-70e9-4bfa-9bad-0f0eb0fb43c9",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-503d5fc2-2d93-4bae-abd8-5dd8087bbc95",
+      "name": "5301 W Sheena Dr",
+      "intent": "buy",
+      "city": "Glendale",
+      "state": "AZ",
+      "address": "5301 W Sheena Dr, Glendale, AZ 85306",
+      "propertyType": "Single Family",
+      "beds": 2.0,
+      "baths": 1.0,
+      "sqft": 462,
+      "price": 185000,
+      "priceLabel": "$185,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-503d5fc2-2d93-4bae-abd8-5dd8087bbc95",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/503d5fc2-2d93-4bae-abd8-5dd8087bbc95",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/11b2cd9fae5e480195fb116c88b6f515/REO2HP_D2600J8_REOImage_481085391.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/503d5fc2-2d93-4bae-abd8-5dd8087bbc95",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-6d09deb2-395d-44a0-9f89-b4bd5e97210f",
+      "name": "603 W 4th Ave",
+      "intent": "buy",
+      "city": "San Manuel",
+      "state": "AZ",
+      "address": "603 W 4th Ave, San Manuel, AZ 85631",
+      "propertyType": "Single Family",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1107,
+      "price": 165000,
+      "priceLabel": "$165,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-6d09deb2-395d-44a0-9f89-b4bd5e97210f",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/6d09deb2-395d-44a0-9f89-b4bd5e97210f",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/c40b6aae35304494ad00ddb539097135/REO2HP_D26007B_REOImage_481083587.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/6d09deb2-395d-44a0-9f89-b4bd5e97210f",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-ea790152-1310-4654-b40c-a1fe41d4c2e2",
+      "name": "16425 S Paseo Bocoy",
+      "intent": "buy",
+      "city": "Sahuarita",
+      "state": "AZ",
+      "address": "16425 S Paseo Bocoy, Sahuarita, AZ 85629",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1564,
+      "price": 290000,
+      "priceLabel": "$290,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-ea790152-1310-4654-b40c-a1fe41d4c2e2",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/ea790152-1310-4654-b40c-a1fe41d4c2e2",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/ce4d0854f8f849339b4abcf84f21e32a/REO2HP_D26003Z_REOImage_479447780.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/ea790152-1310-4654-b40c-a1fe41d4c2e2",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-60245524-6c20-44c6-b034-4b197d970899",
+      "name": "415 Patillo Drive",
+      "intent": "buy",
+      "city": "Bullhead City",
+      "state": "AZ",
+      "address": "415 Patillo Drive, Bullhead City, AZ 86442",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1326,
+      "price": 250000,
+      "priceLabel": "$250,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-60245524-6c20-44c6-b034-4b197d970899",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/60245524-6c20-44c6-b034-4b197d970899",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/abeab27bec9047c5aa8abfb832688fcd/REO2HP_D26003B_REOImage_480881282.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/60245524-6c20-44c6-b034-4b197d970899",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-67c94d1a-5fab-4073-adbe-366a99bd4f12",
+      "name": "1099 Jocabima Drive",
+      "intent": "buy",
+      "city": "Bullhead City",
+      "state": "AZ",
+      "address": "1099 Jocabima Drive, Bullhead City, AZ 86442",
+      "propertyType": "Manufactured Housing",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1344,
+      "price": 229900,
+      "priceLabel": "$229,900",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-67c94d1a-5fab-4073-adbe-366a99bd4f12",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/67c94d1a-5fab-4073-adbe-366a99bd4f12",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/762d6b3dd9fd4ee182bb8479485ee4e8/REO2HP_D25000X_REOImage_481050428.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/67c94d1a-5fab-4073-adbe-366a99bd4f12",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-88d952f0-a607-44d2-ab7a-5cb65aeac6ea",
+      "name": "7830 E Camelback Rd 104",
+      "intent": "buy",
+      "city": "Scottsdale",
+      "state": "AZ",
+      "address": "7830 E Camelback Rd 104, Scottsdale, AZ 85251",
+      "propertyType": "Condo",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1200,
+      "price": 261000,
+      "priceLabel": "$261,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-88d952f0-a607-44d2-ab7a-5cb65aeac6ea",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/88d952f0-a607-44d2-ab7a-5cb65aeac6ea",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/101a5d71f3bc411bad434419ac2384cf/REO2HP_D2500LA_REOImage_480152846.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/88d952f0-a607-44d2-ab7a-5cb65aeac6ea",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-9c8259f6-82c2-4bb6-9506-3b3a2b7bfd87",
+      "name": "6745 N 93rd Ave Unit 1128",
+      "intent": "buy",
+      "city": "Glendale",
+      "state": "AZ",
+      "address": "6745 N 93rd Ave Unit 1128, Glendale, AZ 85305",
+      "propertyType": "Single Family",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1784,
+      "price": 300000,
+      "priceLabel": "$300,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-9c8259f6-82c2-4bb6-9506-3b3a2b7bfd87",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/9c8259f6-82c2-4bb6-9506-3b3a2b7bfd87",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/85fe658def144398990f91b70875fce6/REO2HP_D2500SB_REOImage_479349724.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/9c8259f6-82c2-4bb6-9506-3b3a2b7bfd87",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-eb595dab-ef67-461b-962e-ff6ab3652b6e",
+      "name": "38 W Gold Dust Way",
+      "intent": "buy",
+      "city": "San Tan Valley",
+      "state": "AZ",
+      "address": "38 W Gold Dust Way, San Tan Valley, AZ 85143",
+      "propertyType": "Single Family",
+      "beds": 4.0,
+      "baths": 3.0,
+      "sqft": 2655,
+      "price": 324900,
+      "priceLabel": "$324,900",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-eb595dab-ef67-461b-962e-ff6ab3652b6e",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/eb595dab-ef67-461b-962e-ff6ab3652b6e",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/c51898fd49ca4b759f09cc4107f1fc8d/REO2HP_D2600VV_REOImage_481547155.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/eb595dab-ef67-461b-962e-ff6ab3652b6e",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-c4880e98-9f91-4212-9621-657685e3999b",
+      "name": "5497 S Tierra Linda Dr",
+      "intent": "buy",
+      "city": "Fort Mohave",
+      "state": "AZ",
+      "address": "5497 S Tierra Linda Dr, Fort Mohave, AZ 86426",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1254,
+      "price": 299000,
+      "priceLabel": "$299,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-c4880e98-9f91-4212-9621-657685e3999b",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/c4880e98-9f91-4212-9621-657685e3999b",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/8ba12164001440c990a69a39ce696d18/REO2HP_D26006W_REOImage_481367633.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/c4880e98-9f91-4212-9621-657685e3999b",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-3a39cfb0-bf35-4985-b98b-5f5a3e383e09",
+      "name": "500 N Gila Springs Blvd Unit 124",
+      "intent": "buy",
+      "city": "Chandler",
+      "state": "AZ",
+      "address": "500 N Gila Springs Blvd Unit 124, Chandler, AZ 85226",
+      "propertyType": "Condo",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 920,
+      "price": 288900,
+      "priceLabel": "$288,900",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-3a39cfb0-bf35-4985-b98b-5f5a3e383e09",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/3a39cfb0-bf35-4985-b98b-5f5a3e383e09",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/fba05f8494bb4496ac19df237d389f77/REO2HP_D2600G3_REOImage_481385804.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/3a39cfb0-bf35-4985-b98b-5f5a3e383e09",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-a27b1648-61b4-49b2-89e4-a72fef7fefbc",
+      "name": "4635 West Dailey Street",
+      "intent": "buy",
+      "city": "Glendale",
+      "state": "AZ",
+      "address": "4635 West Dailey Street, Glendale, AZ 85306",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1642,
+      "price": 387000,
+      "priceLabel": "$387,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-a27b1648-61b4-49b2-89e4-a72fef7fefbc",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/a27b1648-61b4-49b2-89e4-a72fef7fefbc",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/82457c9cf77543a7b5ec55af90de8441/REO2HP_D2600VY_REOImage_481182039.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/a27b1648-61b4-49b2-89e4-a72fef7fefbc",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-798c8633-fcfb-4053-853b-43683988c3c4",
+      "name": "18942 W Laurel Ln",
+      "intent": "buy",
+      "city": "Surprise",
+      "state": "AZ",
+      "address": "18942 W Laurel Ln, Surprise, AZ 85388",
+      "propertyType": "Single Family",
+      "beds": 4.0,
+      "baths": 3.0,
+      "sqft": 2586,
+      "price": 537000,
+      "priceLabel": "$537,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-798c8633-fcfb-4053-853b-43683988c3c4",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/798c8633-fcfb-4053-853b-43683988c3c4",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/e30d742e94c94c78883090df5c1e955a/REO2HP_D2600NF_REOImage_480907213.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/798c8633-fcfb-4053-853b-43683988c3c4",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-f7e8bca6-0ae5-4810-8561-61bad9a14623",
+      "name": "10012 West Lakeview Cir Cle Sou",
+      "intent": "buy",
+      "city": "Sun City",
+      "state": "AZ",
+      "address": "10012 West Lakeview Cir Cle Sou, Sun City, AZ 85351",
+      "propertyType": "Single Family",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1073,
+      "price": 180000,
+      "priceLabel": "$180,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-f7e8bca6-0ae5-4810-8561-61bad9a14623",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/f7e8bca6-0ae5-4810-8561-61bad9a14623",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/4933acae89f24de6ba01d3f39ed450ee/REO2HP_D25003F_REOImage_479722842.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/f7e8bca6-0ae5-4810-8561-61bad9a14623",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-8b983af9-426f-4908-8eb1-273c8ebf6b0b",
+      "name": "10037 N 43rd Ave",
+      "intent": "buy",
+      "city": "Phoenix",
+      "state": "AZ",
+      "address": "10037 N 43rd Ave, Phoenix, AZ 85051",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1806,
+      "price": 345000,
+      "priceLabel": "$345,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-8b983af9-426f-4908-8eb1-273c8ebf6b0b",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/8b983af9-426f-4908-8eb1-273c8ebf6b0b",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/a53e8d7cb0014e5ba42bfed496828fc8/REO2HP_D2600RB_REOImage_480973113.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/8b983af9-426f-4908-8eb1-273c8ebf6b0b",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-23a20f23-35d2-4263-bb5b-7677f362c099",
+      "name": "2929 W Yorkshire Drive Un It 1122",
+      "intent": "buy",
+      "city": "Phoenix",
+      "state": "AZ",
+      "address": "2929 W Yorkshire Drive Un It 1122, Phoenix, AZ 85027",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1215,
+      "price": 295000,
+      "priceLabel": "$295,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-23a20f23-35d2-4263-bb5b-7677f362c099",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/23a20f23-35d2-4263-bb5b-7677f362c099",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/0dcef60da56243ee9282f515d17ff2db/REO2HP_D2500R9_REOImage_480458417.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/23a20f23-35d2-4263-bb5b-7677f362c099",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-3ebea50f-a3b8-4608-a5fa-fe46c83174aa",
+      "name": "13518 West Bolero Drive",
+      "intent": "buy",
+      "city": "Sun City West",
+      "state": "AZ",
+      "address": "13518 West Bolero Drive, Sun City West, AZ 85375",
+      "propertyType": "Single Family",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1386,
+      "price": 180000,
+      "priceLabel": "$180,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-3ebea50f-a3b8-4608-a5fa-fe46c83174aa",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/3ebea50f-a3b8-4608-a5fa-fe46c83174aa",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/f16005a00cc340c98bb1cc11f6c3f7e9/REO2HP_D26007Z_REOImage_478874423.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/3ebea50f-a3b8-4608-a5fa-fe46c83174aa",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-27baa492-e42c-44df-893a-5b43f5de17bb",
+      "name": "2656 W Desierto Rd",
+      "intent": "buy",
+      "city": "Yucca",
+      "state": "AZ",
+      "address": "2656 W Desierto Rd, Yucca, AZ 86438",
+      "propertyType": "Manufactured Housing",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1456,
+      "price": 150000,
+      "priceLabel": "$150,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-27baa492-e42c-44df-893a-5b43f5de17bb",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/27baa492-e42c-44df-893a-5b43f5de17bb",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/724f3894ab004ef4abf08395eb291c7d/REO2HP_D26006Y_REOImage_479815487.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/27baa492-e42c-44df-893a-5b43f5de17bb",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-3e212aa9-717b-4683-9d20-b0c263610b8b",
+      "name": "933 N Desert Ave Unit C",
+      "intent": "buy",
+      "city": "Tucson",
+      "state": "AZ",
+      "address": "933 N Desert Ave Unit C, Tucson, AZ 85711",
+      "propertyType": "Condo",
+      "beds": 3.0,
+      "baths": 1.0,
+      "sqft": 1326,
+      "price": 210000,
+      "priceLabel": "$210,000",
+      "observedAt": "2026-11-03T22:38:51.243Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-3e212aa9-717b-4683-9d20-b0c263610b8b",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/3e212aa9-717b-4683-9d20-b0c263610b8b",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=31.332345,-114.816323,37.003725,-109.045172&address=Arizona,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/5be764d213a34f4ab0f0a0e1e8ee63ff/REO2HP_D2600AD_REOImage_480161194.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/3e212aa9-717b-4683-9d20-b0c263610b8b",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-f8af23ac-b3e8-48d1-85a5-02661c0aa104",
+      "name": "551 Jean St #410",
+      "intent": "buy",
+      "city": "Oakland",
+      "state": "CA",
+      "address": "551 Jean St #410, Oakland, CA 94610",
+      "propertyType": "Condo",
+      "beds": 1.0,
+      "baths": 1.0,
+      "sqft": 622,
+      "price": 269900,
+      "priceLabel": "$269,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-f8af23ac-b3e8-48d1-85a5-02661c0aa104",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/f8af23ac-b3e8-48d1-85a5-02661c0aa104",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/311862940baf42cab9467bf840b2903e/REO2HP_L250085_REOImage_480573715.jpg",
+          "title": "Property Photo",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/f8af23ac-b3e8-48d1-85a5-02661c0aa104",
+          "visuallyReviewed": true
+        },
+        {
+          "url": "https://homepath.fanniemae.com/images/43aa490bf68d41c699dd8bf53603f02f/REO2HP_L250085_REOImage_480573716.jpg",
+          "title": "Banner image",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/f8af23ac-b3e8-48d1-85a5-02661c0aa104",
+          "visuallyReviewed": true
+        },
+        {
+          "url": "https://homepath.fanniemae.com/images/c9404eb825784173b3c6c7c129b9b3a3/REO2HP_L250085_REOImage_480573717.jpg",
+          "title": "Banner image",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/f8af23ac-b3e8-48d1-85a5-02661c0aa104",
+          "visuallyReviewed": true
+        }
+      ],
+      "detailInspectedAt": "2026-11-03T22:46:06.950Z"
+    },
+    {
+      "id": "sale-a030860f-61c4-441d-9188-dab0c7fe9362",
+      "name": "2103 N Price Ave Unit 104",
+      "intent": "buy",
+      "city": "Fresno",
+      "state": "CA",
+      "address": "2103 N Price Ave Unit 104, Fresno, CA 93703",
+      "propertyType": "Condo",
+      "beds": 1.0,
+      "baths": 1.0,
+      "sqft": 740,
+      "price": 154900,
+      "priceLabel": "$154,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-a030860f-61c4-441d-9188-dab0c7fe9362",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/a030860f-61c4-441d-9188-dab0c7fe9362",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/2d93550ad00f4000be9bfec7905be50d/REO2HP_L26005M_REOImage_481422790.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/a030860f-61c4-441d-9188-dab0c7fe9362",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-995c3a73-0005-4cac-a4ec-eeda4a524c96",
+      "name": "1018 Tudor Street",
+      "intent": "buy",
+      "city": "Galt",
+      "state": "CA",
+      "address": "1018 Tudor Street, Galt, CA 95632",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1095,
+      "price": 340000,
+      "priceLabel": "$340,000",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-995c3a73-0005-4cac-a4ec-eeda4a524c96",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/995c3a73-0005-4cac-a4ec-eeda4a524c96",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/2beb05aea42c4b60a6c81402595ed8f5/REO2HP_L260033_REOImage_478990014.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/995c3a73-0005-4cac-a4ec-eeda4a524c96",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-8fe6c6dd-37e1-4874-89c9-43c90814aba7",
+      "name": "14966 Phillips Road",
+      "intent": "buy",
+      "city": "Oak Run",
+      "state": "CA",
+      "address": "14966 Phillips Road, Oak Run, CA 96069",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1737,
+      "price": 330000,
+      "priceLabel": "$330,000",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-8fe6c6dd-37e1-4874-89c9-43c90814aba7",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/8fe6c6dd-37e1-4874-89c9-43c90814aba7",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/93f2783be40d4c3080be19f2230db208/REO2HP_L2500AT_REOImage_481154125.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/8fe6c6dd-37e1-4874-89c9-43c90814aba7",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-014442f6-c50a-4413-a3d3-3d44d27c1145",
+      "name": "36568 Fan Palm Way",
+      "intent": "buy",
+      "city": "Palm Desert",
+      "state": "CA",
+      "address": "36568 Fan Palm Way, Palm Desert, CA 92211",
+      "propertyType": "Single Family",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 2042,
+      "price": 599900,
+      "priceLabel": "$599,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-014442f6-c50a-4413-a3d3-3d44d27c1145",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/014442f6-c50a-4413-a3d3-3d44d27c1145",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/4698f73b1fc946c9ac1ef780dc4f117e/REO2HP_L26006V_REOImage_481280722.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/014442f6-c50a-4413-a3d3-3d44d27c1145",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-7b9c3176-6c42-4d16-b6a3-9eb7783bdd5c",
+      "name": "14274 Regina Way",
+      "intent": "buy",
+      "city": "Cobb",
+      "state": "CA",
+      "address": "14274 Regina Way, Cobb, CA 95426",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 2710,
+      "price": 499900,
+      "priceLabel": "$499,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-7b9c3176-6c42-4d16-b6a3-9eb7783bdd5c",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/7b9c3176-6c42-4d16-b6a3-9eb7783bdd5c",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/b961c93b79874d2abc1850db52795d95/REO2HP_L2500C1_REOImage_479892569.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/7b9c3176-6c42-4d16-b6a3-9eb7783bdd5c",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-b0cd8452-eae4-49f2-b517-ad8de1996ef8",
+      "name": "100 La Contera Ct 143",
+      "intent": "buy",
+      "city": "Sacramento",
+      "state": "CA",
+      "address": "100 La Contera Ct 143, Sacramento, CA 95834",
+      "propertyType": "Condo",
+      "beds": 1.0,
+      "baths": 1.0,
+      "sqft": 516,
+      "price": 144900,
+      "priceLabel": "$144,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-b0cd8452-eae4-49f2-b517-ad8de1996ef8",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/b0cd8452-eae4-49f2-b517-ad8de1996ef8",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/1ddccc006d034176853093b720e106e5/REO2HP_L26002D_REOImage_479654001.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/b0cd8452-eae4-49f2-b517-ad8de1996ef8",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-7e0f59e6-f674-4088-9f1c-f96b49b35cfe",
+      "name": "12922 Shady Creek Drive",
+      "intent": "buy",
+      "city": "Nevada City",
+      "state": "CA",
+      "address": "12922 Shady Creek Drive, Nevada City, CA 95959",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 1.0,
+      "sqft": 1500,
+      "price": 269900,
+      "priceLabel": "$269,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-7e0f59e6-f674-4088-9f1c-f96b49b35cfe",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/7e0f59e6-f674-4088-9f1c-f96b49b35cfe",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/f9f0070c5f784459bb39778eaf357f9a/REO2HP_L260006_REOImage_480270714.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/7e0f59e6-f674-4088-9f1c-f96b49b35cfe",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-e7f70276-23ae-4cce-9f71-f57b726240b3",
+      "name": "9374 Deeth Ct",
+      "intent": "buy",
+      "city": "Sacramento",
+      "state": "CA",
+      "address": "9374 Deeth Ct, Sacramento, CA 95827",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1148,
+      "price": 479900,
+      "priceLabel": "$479,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-e7f70276-23ae-4cce-9f71-f57b726240b3",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/e7f70276-23ae-4cce-9f71-f57b726240b3",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/c6d8effeea084c1ab7fd4d5eab8d480c/REO2HP_L26000K_REOImage_480355767.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/e7f70276-23ae-4cce-9f71-f57b726240b3",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-3e8c2e6b-af1a-48f1-b257-3a3533e0d0a9",
+      "name": "20633 Sarazen Pl",
+      "intent": "buy",
+      "city": "Patterson",
+      "state": "CA",
+      "address": "20633 Sarazen Pl, Patterson, CA 95363",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1932,
+      "price": 359900,
+      "priceLabel": "$359,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-3e8c2e6b-af1a-48f1-b257-3a3533e0d0a9",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/3e8c2e6b-af1a-48f1-b257-3a3533e0d0a9",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/bedd63db13734670b38a9061feba43f5/REO2HP_L26005Q_REOImage_481149463.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/3e8c2e6b-af1a-48f1-b257-3a3533e0d0a9",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-b532c4f3-b278-44aa-9a5b-7b2e8e954a22",
+      "name": "5117 Fiona Walk",
+      "intent": "buy",
+      "city": "Sacramento",
+      "state": "CA",
+      "address": "5117 Fiona Walk, Sacramento, CA 95835",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 2.0,
+      "sqft": 1660,
+      "price": 469900,
+      "priceLabel": "$469,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-b532c4f3-b278-44aa-9a5b-7b2e8e954a22",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/b532c4f3-b278-44aa-9a5b-7b2e8e954a22",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/9caeecd8b61242388c8bbcc5022b6427/REO2HP_L26006S_REOImage_480785113.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/b532c4f3-b278-44aa-9a5b-7b2e8e954a22",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-a404fdbb-87ef-483a-b5c4-a8910a771d8e",
+      "name": "43875 Fern Avenue",
+      "intent": "buy",
+      "city": "Lancaster",
+      "state": "CA",
+      "address": "43875 Fern Avenue, Lancaster, CA 93534",
+      "propertyType": "Single Family",
+      "beds": 4.0,
+      "baths": 2.0,
+      "sqft": 1452,
+      "price": 425000,
+      "priceLabel": "$425,000",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-a404fdbb-87ef-483a-b5c4-a8910a771d8e",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/a404fdbb-87ef-483a-b5c4-a8910a771d8e",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/188f406f49a74b8b8cd641337c0dba67/REO2HP_L26009D_REOImage_481530689.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/a404fdbb-87ef-483a-b5c4-a8910a771d8e",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-931db233-6fe5-4b28-a2ae-b03958ee137d",
+      "name": "79780 Sheri Ln",
+      "intent": "buy",
+      "city": "Twentynine Palms",
+      "state": "CA",
+      "address": "79780 Sheri Ln, Twentynine Palms, CA 92277",
+      "propertyType": "Single Family",
+      "beds": 1.0,
+      "baths": 1.0,
+      "sqft": 400,
+      "price": 174900,
+      "priceLabel": "$174,900",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-931db233-6fe5-4b28-a2ae-b03958ee137d",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/931db233-6fe5-4b28-a2ae-b03958ee137d",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/bd0b6349654f4fe68e9211005754e534/REO2HP_L26008H_REOImage_480531186.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/931db233-6fe5-4b28-a2ae-b03958ee137d",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-f82ee56b-5bbe-49aa-af3d-e2c26ee53a97",
+      "name": "41590 Yokohl Valley Dr",
+      "intent": "buy",
+      "city": "Springville",
+      "state": "CA",
+      "address": "41590 Yokohl Valley Dr, Springville, CA 93265",
+      "propertyType": "Single Family",
+      "beds": 3.0,
+      "baths": 3.0,
+      "sqft": 2084,
+      "price": 585000,
+      "priceLabel": "$585,000",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-f82ee56b-5bbe-49aa-af3d-e2c26ee53a97",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/f82ee56b-5bbe-49aa-af3d-e2c26ee53a97",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/174cc6e213464b54823f653a5fb51411/REO2HP_L2500CC_REOImage_480208023.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/f82ee56b-5bbe-49aa-af3d-e2c26ee53a97",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-c79a1a70-69bc-44a4-aeed-b8bd9bf4ee04",
+      "name": "450 Pine Ridge Dr",
+      "intent": "buy",
+      "city": "San Ramon",
+      "state": "CA",
+      "address": "450 Pine Ridge Dr, San Ramon, CA 94582",
+      "propertyType": "Condo",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1079,
+      "price": 569000,
+      "priceLabel": "$569,000",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-c79a1a70-69bc-44a4-aeed-b8bd9bf4ee04",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/c79a1a70-69bc-44a4-aeed-b8bd9bf4ee04",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/efa03ab05a644e02bced400337137030/REO2HP_L2500D4_REOImage_479337774.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/c79a1a70-69bc-44a4-aeed-b8bd9bf4ee04",
+          "visuallyReviewed": false
+        }
+      ]
+    },
+    {
+      "id": "sale-e2421c89-9d02-4d3b-b8a5-c2d7f1aa6dea",
+      "name": "22700 Hidden Hollow Dr.",
+      "intent": "buy",
+      "city": "Groveland",
+      "state": "CA",
+      "address": "22700 Hidden Hollow Dr., Groveland, CA 95321",
+      "propertyType": "Single Family",
+      "beds": 2.0,
+      "baths": 2.0,
+      "sqft": 1636,
+      "price": 185000,
+      "priceLabel": "$185,000",
+      "observedAt": "2026-11-03T22:40:04.811Z",
+      "availabilityLabel": "Advertised for sale on HomePath",
+      "datedEvidence": true,
+      "advertisedNow": false,
+      "detailHref": "/homes/sale-e2421c89-9d02-4d3b-b8a5-c2d7f1aa6dea",
+      "sourceUrl": "https://homepath.fanniemae.com/property-detail/e2421c89-9d02-4d3b-b8a5-c2d7f1aa6dea",
+      "discoveredFrom": "https://homepath.fanniemae.com/property-finder?bounds=32.529508,-124.482003,42.009503,-114.131211&address=California,%20USA",
+      "publisher": "Fannie Mae HomePath",
+      "inspection": "rendered-search-card",
+      "photos": [
+        {
+          "url": "https://homepath.fanniemae.com/images/d0097653a3bb4c009dcc957ea6d08d4a/REO2HP_L260046_REOImage_479175050.jpg",
+          "title": "Publisher property photograph",
+          "sourceUrl": "https://homepath.fanniemae.com/property-detail/e2421c89-9d02-4d3b-b8a5-c2d7f1aa6dea",
+          "visuallyReviewed": false
+        }
+      ]
+    }
+  ]
+}

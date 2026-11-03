@@ -76,6 +76,23 @@ for (const item of catalog.sources) {
   }
   publicUrl(item.url, item.id + ' source URL');
   publicUrl(item.discoveredFrom, item.id + ' provenance URL');
+  if (item.originalUrl != null) {
+    publicUrl(item.originalUrl, item.id + ' historical original URL');
+    assert.ok(Array.isArray(item.reviewHistory) && item.reviewHistory.length > 0, item.id + ' replacement retains review history');
+    for (const review of item.reviewHistory) {
+      timestamp(review.checkedAt, item.id + ' historical review date');
+      assert.ok(['content-inspected', 'blocked', 'unavailable', 'mismatch'].includes(review.outcome), item.id + ' historical outcome');
+      assert.ok(typeof review.summary === 'string' && review.summary.trim(), item.id + ' historical summary');
+      if (review.finalUrl) publicUrl(review.finalUrl, item.id + ' historical final URL');
+    }
+  }
+  for (const alternative of item.relatedOfficialResources ?? []) {
+    publicUrl(alternative.url, item.id + ' official alternative URL');
+    assert.ok(alternative.contentInspected === true && alternative.identityEvidence, item.id + ' alternative corroboration');
+    assert.ok(typeof alternative.label === 'string' && alternative.label.trim(), item.id + ' alternative label');
+    assert.ok(['agency-course-page', 'affiliated-directory', 'state-directory'].includes(alternative.kind), item.id + ' alternative kind');
+  }
+
   const url = canonical(item.url);
   assert.ok(!sourceUrls.has(url), 'Duplicate canonical URL: ' + item.id);
   sourceUrls.add(url);

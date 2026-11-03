@@ -12,16 +12,19 @@
     "existingExcluded": 0,
     "directoryRecords": 249,
     "rejectedDirectoryRecords": 15,
-    "contentInspected": 220,
-    "metadataOnly": 12,
+    "contentInspected": 229,
+    "metadataOnly": 3,
     "linkChecked": 211,
     "linkSuccessful": 197,
     "publisherCount": 80,
     "countsMeaning": "Distinct source URLs, not independent publications or available homes. Directory metadata retrieval is not a destination-page visit.",
     "discoveryStageNote": "Discovery-stage counts retain the original three-directory collection; final included and inspection counts include the separately recorded correction audit.",
     "auditAttempted": 203,
-    "auditContentInspected": 191,
-    "auditNeedsAttention": 12
+    "auditContentInspected": 200,
+    "auditNeedsAttention": 3,
+    "recoveryAttempted": 12,
+    "recoveryContentInspected": 9,
+    "recoveryOfficialAlternatives": 3
   },
   "sources": [
     {
@@ -219,7 +222,7 @@
       "city": "Somerton",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's AZ counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=AZ",
       "retrievedAt": "2026-11-03T12:59:07.908109Z",
       "inspection": "metadata-reviewed",
@@ -232,19 +235,47 @@
       ],
       "id": "resource-d7c61f35aefeac8e",
       "review": {
-        "checkedAt": "2026-11-03T21:45:01.202362Z",
+        "checkedAt": "2026-11-03T22:33:20.066369Z",
         "outcome": "unavailable",
+        "summary": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency. The original service website has not been recovered. The course page is a related agency-specific program page, not a replacement for all agency services. Displayed course price was $100; no registration or payment was performed. A site under construction is not proof that the organization has closed. The opened HUD print directory is dated12/14/2022 and is used only for historical identity matching, not current HUD approval.",
         "finalUrl": "https://comiteaz.org/",
         "httpStatus": 200,
-        "reason": "HTTP 200 and an under-construction title are not service-content verification.",
         "inspectedSections": [
-          "Returned page title and body"
+          "Original under-construction page",
+          "Agency information",
+          "Course description and displayed fee"
         ],
-        "summary": "The destination returned an under-construction page without readable service information.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "direct-http + web-open",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:45:01.202362Z",
-      "linkStatus": 200
+      "linkStatus": 200,
+      "originalUrl": "http://comiteaz.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:45:01.202362Z",
+          "outcome": "unavailable",
+          "finalUrl": "https://comiteaz.org/",
+          "httpStatus": 200,
+          "reason": "HTTP 200 and an under-construction title are not service-content verification.",
+          "inspectedSections": [
+            "Returned page title and body"
+          ],
+          "summary": "The destination returned an under-construction page without readable service information.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "official-course-alternative-original-site-unavailable",
+      "relatedOfficialResources": [
+        {
+          "url": "https://app.ehomeamerica.org/comiteaz",
+          "label": "Agency homebuyer course (fee applies)",
+          "kind": "agency-course-page",
+          "contentInspected": true,
+          "checkedAt": "2026-11-03T22:35:12.473098Z",
+          "identityEvidence": "Agency name, 963 E B Street San Luis address and928-627-8559 public office phone match the HUD historical print directory dated12/14/2022; the course page links comiteaz.com, which redirects to original .org."
+        }
+      ]
     },
     {
       "title": "CREDIT ADVISORS FOUNDATION",
@@ -325,17 +356,17 @@
     },
     {
       "title": "HOUSING AMERICA CORPORATION",
-      "url": "http://www.housingamericacorp.com",
+      "url": "https://housingamericacorp.org/",
       "publisher": "HOUSING AMERICA CORPORATION",
       "state": "AZ",
       "city": "Somerton",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Recorded domain now serves unrelated content; outbound link disabled.",
+      "description": "Housing America describes affordable rental housing and homeownership services. Its current .org website is linked by 211 Arizona and matches the Somerton office identity. Contact the provider for current intake, eligibility and availability.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=AZ",
       "retrievedAt": "2026-11-03T12:59:07.908109Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "81338"
       ],
@@ -344,20 +375,42 @@
       ],
       "id": "resource-9449b0b98be0e2fb",
       "review": {
-        "checkedAt": "2026-11-03T21:45:02.754571Z",
-        "outcome": "mismatch",
-        "finalUrl": "https://www.housingamericacorp.com/",
+        "checkedAt": "2026-11-03T22:33:20.067241Z",
+        "outcome": "content-inspected",
+        "summary": "Housing America describes affordable rental housing and homeownership services. Its current .org website is linked by 211 Arizona and matches the Somerton office identity. Contact the provider for current intake, eligibility and availability. Do not re-enable the old .com domain: it previously served unrelated content. 211 Arizona displays Last Assured 09/01/2026; directory assurance is not a vacancy or funding guarantee. No current HUD approval or open rental units were independently confirmed.",
+        "finalUrl": "https://housingamericacorp.org/",
         "httpStatus": 200,
-        "reason": "The retrieved body is unrelated gambling promotion rather than the recorded housing organization. No independently corroborated replacement destination was found.",
         "inspectedSections": [
-          "Returned page title and body"
+          "Affordable housing mission",
+          "Homeownership and Rentals navigation",
+          "Office identity",
+          "211 Arizona website field"
         ],
-        "summary": "Recorded domain now serves unrelated content; outbound link disabled.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "direct-http + 211-primary-directory",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:45:02.754571Z",
       "linkStatus": 200,
-      "outboundDisabled": true
+      "outboundDisabled": false,
+      "originalUrl": "http://www.housingamericacorp.com",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:45:02.754571Z",
+          "outcome": "mismatch",
+          "finalUrl": "https://www.housingamericacorp.com/",
+          "httpStatus": 200,
+          "reason": "The retrieved body is unrelated gambling promotion rather than the recorded housing organization. No independently corroborated replacement destination was found.",
+          "inspectedSections": [
+            "Returned page title and body"
+          ],
+          "summary": "Recorded domain now serves unrelated content; outbound link disabled.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "replacement-domain-confirmed",
+      "relatedOfficialResources": [],
+      "contentInspectionMethod": "direct-http + 211-primary-directory",
+      "pageRetrievedAt": "2026-11-03T22:33:20.067241Z"
     },
     {
       "title": "HOUSING SOLUTIONS OF NORTHERN ARIZONA, INC",
@@ -842,17 +895,17 @@
     },
     {
       "title": "BALANCE-SF 3RD STREET",
-      "url": "https://www.balancepro.org/housing-education-and-counseling/",
+      "url": "https://www.bebalanced.org/coaching/housing",
       "publisher": "BALANCE-SF 3RD STREET",
       "state": "CA",
       "city": "San Francisco",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "BALANCE describes pre-purchase, rental, foreclosure-prevention and reverse-mortgage counseling on its current housing page. Contact the provider to confirm appointments, eligibility and any applicable program terms.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "90742"
       ],
@@ -861,20 +914,43 @@
       ],
       "id": "resource-e8783df0d462b000",
       "review": {
-        "checkedAt": "2026-11-03T21:45:26.662178Z",
-        "outcome": "unavailable",
-        "finalUrl": "https://www.bebalanced.org/housing-education-and-counseling",
+        "checkedAt": "2026-11-03T22:36:00Z",
+        "outcome": "content-inspected",
+        "summary": "BALANCE describes pre-purchase, rental, foreclosure-prevention and reverse-mortgage counseling on its current housing page. Contact the provider to confirm appointments, eligibility and any applicable program terms. Rendered content was observed by the root browser operator, not this research worker. The provider describes HUD-certified counselors; current agency approval and funding were not independently verified. No counseling appointment or intake submission was performed.",
+        "finalUrl": "https://www.bebalanced.org/coaching/housing",
         "httpStatus": 200,
-        "reason": "Chrome rendered the path and displayed Oops! This page took a detour. The homepage navigation resolved to bebalanced.org.",
         "inspectedSections": [
-          "Rendered unavailable-page message",
-          "Homepage navigation"
+          "Root-rendered Pre-purchase counseling",
+          "Root-rendered Foreclosure prevention",
+          "Root-rendered Reverse mortgage",
+          "Root-rendered Rental counseling"
         ],
-        "summary": "The original housing-education path renders an unavailable-page notice. The provider’s current homepage is available through the separate Balance records.",
-        "retrievalMethod": "browser-rendered-content"
+        "retrievalMethod": "root-browser-rendered-content + direct-http-title",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:45:26.662178Z",
-      "linkStatus": 200
+      "linkStatus": 200,
+      "originalUrl": "https://www.balancepro.org/housing-education-and-counseling/",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:45:26.662178Z",
+          "outcome": "unavailable",
+          "finalUrl": "https://www.bebalanced.org/housing-education-and-counseling",
+          "httpStatus": 200,
+          "reason": "Chrome rendered the path and displayed Oops! This page took a detour. The homepage navigation resolved to bebalanced.org.",
+          "inspectedSections": [
+            "Rendered unavailable-page message",
+            "Homepage navigation"
+          ],
+          "summary": "The original housing-education path renders an unavailable-page notice. The provider’s current homepage is available through the separate Balance records.",
+          "retrievalMethod": "browser-rendered-content"
+        }
+      ],
+      "recoveryResolution": "working-provider-route-browser-confirmed",
+      "relatedOfficialResources": [],
+      "outboundDisabled": false,
+      "contentInspectionMethod": "root-browser-rendered-content + direct-http-title",
+      "pageRetrievedAt": "2026-11-03T22:36:00Z"
     },
     {
       "url": "https://www.csd.ca.gov/Pages/FindServicesInYourArea.aspx",
@@ -950,7 +1026,7 @@
       "city": "Simi Valley",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
       "inspection": "metadata-reviewed",
@@ -963,18 +1039,45 @@
       ],
       "id": "resource-e1a0800b9938bce2",
       "review": {
-        "checkedAt": "2026-11-03T21:45:26.915889Z",
+        "checkedAt": "2026-11-03T22:33:20.472288Z",
         "outcome": "unavailable",
+        "summary": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly. The affiliated directory still links the unavailable original domain. No new agency-owned domain was authenticated. Do not imply the Philadelphia intermediary is the local Simi Valley agency or that the local agency is closed.",
         "finalUrl": "https://centrofamiliarnuevaesperanza.org/",
         "httpStatus": null,
-        "reason": "Direct DNS resolution failed and the web-tool attempt returned 502. A state directory referral is not destination-content verification.",
         "inspectedSections": [
-          "Transport failure; no destination body available"
+          "Original DNS failure",
+          "California locations in national affiliate directory"
         ],
-        "summary": "The recorded destination could not be reached; its service information remains unverified.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "direct-http + affiliated-primary-directory",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
-      "linkCheckedAt": "2026-11-03T21:45:26.915889Z"
+      "linkCheckedAt": "2026-11-03T21:45:26.915889Z",
+      "originalUrl": "https://centrofamiliarnuevaesperanza.org/",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:45:26.915889Z",
+          "outcome": "unavailable",
+          "finalUrl": "https://centrofamiliarnuevaesperanza.org/",
+          "httpStatus": null,
+          "reason": "Direct DNS resolution failed and the web-tool attempt returned 502. A state directory referral is not destination-content verification.",
+          "inspectedSections": [
+            "Transport failure; no destination body available"
+          ],
+          "summary": "The recorded destination could not be reached; its service information remains unverified.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "affiliated-directory-alternative-original-domain-unavailable",
+      "relatedOfficialResources": [
+        {
+          "url": "https://www.esperanza.us/housing-counseling/national-housing-counseling/",
+          "label": "Esperanza affiliate directory — California section",
+          "kind": "affiliated-directory",
+          "contentInspected": true,
+          "checkedAt": "2026-11-03T22:35:12.611970Z",
+          "identityEvidence": "California section lists Centro Familiar Nueva Esperanza, Simi Valley Office, 1720 E. Los Angeles Ave. #216 and original centrofamiliarnuevaesperanza.org domain."
+        }
+      ]
     },
     {
       "title": "COACHELLA VALLEY HOUSING COALITION",
@@ -1017,17 +1120,17 @@
     },
     {
       "title": "COMMUNITY HOUSING DEVELOPMENT CORPORATION OF NORTH RICHMOND",
-      "url": "http://www.communityhdc.org",
+      "url": "https://communityhdc.org/",
       "publisher": "COMMUNITY HOUSING DEVELOPMENT CORPORATION OF NORTH RICHMOND",
       "state": "CA",
       "city": "Richmond",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "CHDC describes affordable housing development and a Richmond homeownership center with financial readiness, homebuyer counseling and homeowner-support resources. Contact the organization to confirm available appointments and program terms.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "83454"
       ],
@@ -1036,18 +1139,39 @@
       ],
       "id": "resource-97019305b0d42d2d",
       "review": {
-        "checkedAt": "2026-11-03T21:45:27.333330Z",
-        "outcome": "unavailable",
-        "finalUrl": "http://www.communityhdc.org",
+        "checkedAt": "2026-11-03T22:37:02.874121Z",
+        "outcome": "content-inspected",
+        "summary": "CHDC describes affordable housing development and a Richmond homeownership center with financial readiness, homebuyer counseling and homeowner-support resources. Contact the organization to confirm available appointments and program terms. Direct HTTPS attempt timed out during TLS handshake. Web tool returned readable content and reported crawl today; exact origin fetch time is not independently known. No currently open assistance funding or HUD approval was independently established.",
+        "finalUrl": "https://communityhdc.org/",
         "httpStatus": null,
-        "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
         "inspectedSections": [
-          "Transport failure; no destination body available"
+          "Homepage services and Richmond office",
+          "Community Wealth Building service categories"
         ],
-        "summary": "The recorded destination did not provide accessible content during this audit.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "web-open-cached-fallback",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
-      "linkCheckedAt": "2026-11-03T21:45:27.333330Z"
+      "linkCheckedAt": "2026-11-03T21:45:27.333330Z",
+      "originalUrl": "http://www.communityhdc.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:45:27.333330Z",
+          "outcome": "unavailable",
+          "finalUrl": "http://www.communityhdc.org",
+          "httpStatus": null,
+          "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
+          "inspectedSections": [
+            "Transport failure; no destination body available"
+          ],
+          "summary": "The recorded destination did not provide accessible content during this audit.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "canonical-https-content-recovered",
+      "relatedOfficialResources": [],
+      "outboundDisabled": false,
+      "contentInspectionMethod": "web-open-cached-fallback",
+      "pageRetrievedAt": "2026-11-03T22:37:02.874121Z"
     },
     {
       "url": "https://chworks.org/communities/",
@@ -1340,17 +1464,17 @@
     },
     {
       "title": "FRESNO INTERDENOMINATIONAL REFUGEE MINISTRIES",
-      "url": "http://www.firminc.org",
+      "url": "https://firminc.org/",
       "publisher": "FRESNO INTERDENOMINATIONAL REFUGEE MINISTRIES",
       "state": "CA",
       "city": "Fresno",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "FIRM describes housing navigation, rental and homebuying counseling, financial education and multilingual support in Fresno. The homepage announces its Fresno Immigrant and Refugee Ministries name; confirm current services with the provider.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "90520"
       ],
@@ -1359,18 +1483,40 @@
       ],
       "id": "resource-ee23a3e89172678b",
       "review": {
-        "checkedAt": "2026-11-03T21:45:33.577736Z",
-        "outcome": "unavailable",
-        "finalUrl": "http://www.firminc.org",
+        "checkedAt": "2026-11-03T22:37:02.874121Z",
+        "outcome": "content-inspected",
+        "summary": "FIRM describes housing navigation, rental and homebuying counseling, financial education and multilingual support in Fresno. The homepage announces its Fresno Immigrant and Refugee Ministries name; confirm current services with the provider. Direct HTTPS attempt timed out during TLS handshake. Homepage web tool crawl label today; detailed housing page crawl label three weeks ago. Service descriptions are not current intake, funding or HUD approval verification.",
+        "finalUrl": "https://firminc.org/",
         "httpStatus": null,
-        "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
         "inspectedSections": [
-          "Transport failure; no destination body available"
+          "New-name announcement",
+          "Homepage housing navigation paragraph",
+          "Housing Counseling service categories and application methods"
         ],
-        "summary": "The recorded destination did not provide accessible content during this audit.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "web-open-cached-fallback",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
-      "linkCheckedAt": "2026-11-03T21:45:33.577736Z"
+      "linkCheckedAt": "2026-11-03T21:45:33.577736Z",
+      "originalUrl": "http://www.firminc.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:45:33.577736Z",
+          "outcome": "unavailable",
+          "finalUrl": "http://www.firminc.org",
+          "httpStatus": null,
+          "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
+          "inspectedSections": [
+            "Transport failure; no destination body available"
+          ],
+          "summary": "The recorded destination did not provide accessible content during this audit.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "canonical-https-content-recovered",
+      "relatedOfficialResources": [],
+      "outboundDisabled": false,
+      "contentInspectionMethod": "web-open-cached-fallback",
+      "pageRetrievedAt": "2026-11-03T22:37:02.874121Z"
     },
     {
       "title": "GREENPATH FINANCIAL WELLNESS",
@@ -1685,17 +1831,17 @@
     },
     {
       "title": "KOREAN RESOURCE CENTER",
-      "url": "http://www.krcla.org/housing",
+      "url": "https://www.krcla.org/",
       "publisher": "KOREAN RESOURCE CENTER",
       "state": "CA",
       "city": "Fullerton",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "Korean Resource Center lists housing counseling for renters, prospective buyers, seniors and low-income households. Its current site lists Los Angeles and Fullerton offices and requests an appointment before visiting.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "90099"
       ],
@@ -1704,19 +1850,41 @@
       ],
       "id": "resource-42174bd23df07688",
       "review": {
-        "checkedAt": "2026-11-03T21:45:52.688756Z",
-        "outcome": "unavailable",
-        "finalUrl": "https://www.krcla.org/housing",
-        "httpStatus": 404,
-        "reason": "The response showed organization navigation but not a working housing page. The web-tool attempt also returned 404.",
+        "checkedAt": "2026-11-03T22:33:35.597952Z",
+        "outcome": "content-inspected",
+        "summary": "Korean Resource Center lists housing counseling for renters, prospective buyers, seniors and low-income households. Its current site lists Los Angeles and Fullerton offices and requests an appointment before visiting. The old /housing path remains unavailable; the working root contains the housing service list. No intake appointment, funding or individual eligibility was confirmed.",
+        "finalUrl": "https://www.krcla.org/",
+        "httpStatus": 200,
         "inspectedSections": [
-          "Returned page title and body"
+          "Housing Counseling service list",
+          "Current Los Angeles and Fullerton offices",
+          "Appointment instruction"
         ],
-        "summary": "The recorded housing page returned 404; its housing-service information remains unverified.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "direct-http + primary-directory",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:45:52.688756Z",
-      "linkStatus": 404
+      "linkStatus": 404,
+      "originalUrl": "http://www.krcla.org/housing",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:45:52.688756Z",
+          "outcome": "unavailable",
+          "finalUrl": "https://www.krcla.org/housing",
+          "httpStatus": 404,
+          "reason": "The response showed organization navigation but not a working housing page. The web-tool attempt also returned 404.",
+          "inspectedSections": [
+            "Returned page title and body"
+          ],
+          "summary": "The recorded housing page returned 404; its housing-service information remains unverified.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "working-provider-route-confirmed",
+      "relatedOfficialResources": [],
+      "outboundDisabled": false,
+      "contentInspectionMethod": "direct-http + primary-directory",
+      "pageRetrievedAt": "2026-11-03T22:33:35.597952Z"
     },
     {
       "url": "https://www.lahsa.org/get-help",
@@ -2245,17 +2413,17 @@
     },
     {
       "title": "SACRAMENTO NEIGHBORHOOD HOUSING SERVICES INC AKA FORMALLY KNOWN AS NEIGHBORWORKS HOMEOWNERSHIP CENTER SACRAMENTO REGION",
-      "url": "http://www.nwsacramento.org",
+      "url": "https://nwsacramento.org/",
       "publisher": "SACRAMENTO NEIGHBORHOOD HOUSING SERVICES INC AKA FORMALLY KNOWN AS NEIGHBORWORKS HOMEOWNERSHIP CENTER SACRAMENTO REGION",
       "state": "CA",
       "city": "Sacramento",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "NeighborWorks Sacramento describes rental counseling, pre- and post-purchase counseling, foreclosure-prevention support and workshops. Contact the provider to confirm appointments, fees and program availability.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "80858"
       ],
@@ -2264,32 +2432,53 @@
       ],
       "id": "resource-611672756745c81d",
       "review": {
-        "checkedAt": "2026-11-03T21:46:06.807742Z",
-        "outcome": "unavailable",
-        "finalUrl": "http://www.nwsacramento.org",
+        "checkedAt": "2026-11-03T22:37:02.874121Z",
+        "outcome": "content-inspected",
+        "summary": "NeighborWorks Sacramento describes rental counseling, pre- and post-purchase counseling, foreclosure-prevention support and workshops. Contact the provider to confirm appointments, fees and program availability. Direct HTTPS attempt timed out during TLS handshake. Homepage web-tool crawl label today; detailed counseling page crawl label last week. No intake form was submitted and no current funding or HUD approval was independently confirmed.",
+        "finalUrl": "https://nwsacramento.org/",
         "httpStatus": null,
-        "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
         "inspectedSections": [
-          "Transport failure; no destination body available"
+          "Homepage service links and Sacramento office",
+          "Counseling Services rental and homeowner sections"
         ],
-        "summary": "The recorded destination did not provide accessible content during this audit.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "web-open-cached-fallback",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
-      "linkCheckedAt": "2026-11-03T21:46:06.807742Z"
+      "linkCheckedAt": "2026-11-03T21:46:06.807742Z",
+      "originalUrl": "http://www.nwsacramento.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:46:06.807742Z",
+          "outcome": "unavailable",
+          "finalUrl": "http://www.nwsacramento.org",
+          "httpStatus": null,
+          "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
+          "inspectedSections": [
+            "Transport failure; no destination body available"
+          ],
+          "summary": "The recorded destination did not provide accessible content during this audit.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "canonical-https-content-recovered",
+      "relatedOfficialResources": [],
+      "outboundDisabled": false,
+      "contentInspectionMethod": "web-open-cached-fallback",
+      "pageRetrievedAt": "2026-11-03T22:37:02.874121Z"
     },
     {
       "title": "SAN FRANCISCO HOUSING DEVELOPMENT CORPORATION",
-      "url": "http://www.sfhdc.org",
+      "url": "https://sfhdc.org/",
       "publisher": "SAN FRANCISCO HOUSING DEVELOPMENT CORPORATION",
       "state": "CA",
       "city": "San Francisco",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "SFHDC describes affordable housing development, resident services and financial counseling. Its site links rental-readiness and foreclosure-prevention resources; confirm service area, intake and assistance terms directly.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "81472"
       ],
@@ -2298,18 +2487,41 @@
       ],
       "id": "resource-785e9d9cd9768a67",
       "review": {
-        "checkedAt": "2026-11-03T21:46:24.978929Z",
-        "outcome": "unavailable",
-        "finalUrl": "http://www.sfhdc.org",
+        "checkedAt": "2026-11-03T22:37:02.874121Z",
+        "outcome": "content-inspected",
+        "summary": "SFHDC describes affordable housing development, resident services and financial counseling. Its site links rental-readiness and foreclosure-prevention resources; confirm service area, intake and assistance terms directly. Direct HTTPS attempt timed out during TLS handshake. Web tool reported crawl today; exact origin fetch time is unknown. The page mentions District10 rental assistance; no funding, eligibility or open-unit claim is made.",
+        "finalUrl": "https://sfhdc.org/",
         "httpStatus": null,
-        "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
         "inspectedSections": [
-          "Transport failure; no destination body available"
+          "Housing development",
+          "Rental readiness",
+          "Financial empowerment",
+          "Resident services"
         ],
-        "summary": "The recorded destination did not provide accessible content during this audit.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "web-open-cached-fallback",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
-      "linkCheckedAt": "2026-11-03T21:46:24.978929Z"
+      "linkCheckedAt": "2026-11-03T21:46:24.978929Z",
+      "originalUrl": "http://www.sfhdc.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:46:24.978929Z",
+          "outcome": "unavailable",
+          "finalUrl": "http://www.sfhdc.org",
+          "httpStatus": null,
+          "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
+          "inspectedSections": [
+            "Transport failure; no destination body available"
+          ],
+          "summary": "The recorded destination did not provide accessible content during this audit.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "canonical-https-content-recovered",
+      "relatedOfficialResources": [],
+      "outboundDisabled": false,
+      "contentInspectionMethod": "web-open-cached-fallback",
+      "pageRetrievedAt": "2026-11-03T22:37:02.874121Z"
     },
     {
       "title": "SAN FRANCISCO LGBT COMMUNITY CENTER",
@@ -2319,7 +2531,7 @@
       "city": "San Francisco",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
       "inspection": "metadata-reviewed",
@@ -2332,19 +2544,45 @@
       ],
       "id": "resource-5e632165bd461ec6",
       "review": {
-        "checkedAt": "2026-11-03T21:46:31.767736Z",
+        "checkedAt": "2026-11-03T22:33:50.965681Z",
         "outcome": "blocked",
+        "summary": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed. Automated requests received403; no challenge was bypassed. Search returned cached provider service text, but a successful full-page open was not obtained and it is not counted as provider content-inspection. Root Chrome operator independently observed Cloudflare Performing security verification and stopped; no challenge was bypassed.",
         "finalUrl": "https://sfcenter.org/",
         "httpStatus": 403,
-        "reason": "Direct retrieval and the web tool returned 403. The direct page was a security challenge. No challenge was bypassed.",
         "inspectedSections": [
-          "Returned page title and body"
+          "HTTP403 response",
+          "CalHFA counselor directory row"
         ],
-        "summary": "The destination blocked automated access; service content remains unverified.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "direct-http + primary-directory",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:46:31.767736Z",
-      "linkStatus": 403
+      "linkStatus": 403,
+      "originalUrl": "http://sfcenter.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:46:31.767736Z",
+          "outcome": "blocked",
+          "finalUrl": "https://sfcenter.org/",
+          "httpStatus": 403,
+          "reason": "Direct retrieval and the web tool returned 403. The direct page was a security challenge. No challenge was bypassed.",
+          "inspectedSections": [
+            "Returned page title and body"
+          ],
+          "summary": "The destination blocked automated access; service content remains unverified.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "blocked-provider-primary-directory-alternative",
+      "relatedOfficialResources": [
+        {
+          "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
+          "label": "CalHFA counseling directory — SF LGBT Community Center",
+          "kind": "state-directory",
+          "contentInspected": true,
+          "identityEvidence": "Directory names San Francisco LGBT Community Center in San Francisco and links sfcenter.org."
+        }
+      ]
     },
     {
       "title": "SANTA CLARA COUNTY ASIAN LAW ALLIANCE",
@@ -2508,17 +2746,17 @@
     },
     {
       "title": "URBAN LEAGUE OF SAN DIEGO COUNTY",
-      "url": "http://www.sdul.org",
+      "url": "https://sdul.org/home-ownership/",
       "publisher": "URBAN LEAGUE OF SAN DIEGO COUNTY",
       "state": "CA",
       "city": "San Diego",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "Agency website reported in HUD's CA counseling directory. Confirm current services and eligibility directly; current approval is not independently verified.",
+      "description": "Urban League of San Diego County describes housing and financial counseling, budgeting, homebuyer education and foreclosure-prevention support. Its housing page explains how to request counseling; confirm current program availability with the agency.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "81854"
       ],
@@ -2527,32 +2765,54 @@
       ],
       "id": "resource-1b1e10fd52bb652f",
       "review": {
-        "checkedAt": "2026-11-03T21:46:40.526077Z",
-        "outcome": "unavailable",
-        "finalUrl": "http://www.sdul.org",
+        "checkedAt": "2026-11-03T22:37:02.874121Z",
+        "outcome": "content-inspected",
+        "summary": "Urban League of San Diego County describes housing and financial counseling, budgeting, homebuyer education and foreclosure-prevention support. Its housing page explains how to request counseling; confirm current program availability with the agency. Direct homepage TLS attempt timed out; web homepage returned418. The web tool opened the housing deep page with readable content; first crawl label yesterday, subsequent open today. Exact origin freshness is not independently established. No application was submitted; no current grant funding or eligibility is guaranteed.",
+        "finalUrl": "https://sdul.org/home-ownership/",
         "httpStatus": null,
-        "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
         "inspectedSections": [
-          "Transport failure; no destination body available"
+          "Housing and Financial Empowerment service categories",
+          "How to get started",
+          "Counseling and provider identity"
         ],
-        "summary": "The recorded destination did not provide accessible content during this audit.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "web-open-cached-fallback",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
-      "linkCheckedAt": "2026-11-03T21:46:40.526077Z"
+      "linkCheckedAt": "2026-11-03T21:46:40.526077Z",
+      "originalUrl": "http://www.sdul.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:46:40.526077Z",
+          "outcome": "unavailable",
+          "finalUrl": "http://www.sdul.org",
+          "httpStatus": null,
+          "reason": "The direct request timed out and the web tool could not access the page. No service details were verified from the destination.",
+          "inspectedSections": [
+            "Transport failure; no destination body available"
+          ],
+          "summary": "The recorded destination did not provide accessible content during this audit.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "working-provider-route-cached-content-recovered",
+      "relatedOfficialResources": [],
+      "outboundDisabled": false,
+      "contentInspectionMethod": "web-open-cached-fallback",
+      "pageRetrievedAt": "2026-11-03T22:37:02.874121Z"
     },
     {
       "title": "USA HOMEOWNERSHIP FOUNDATION DBA VETERANS ASSOCIATION OF REAL ESTATE PROFESSIONAL",
-      "url": "https://myhomeownership.org",
+      "url": "https://www.myhomeownership.org/counseling/",
       "publisher": "USA HOMEOWNERSHIP FOUNDATION DBA VETERANS ASSOCIATION OF REAL ESTATE PROFESSIONAL",
       "state": "CA",
       "city": "Corona",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "The recorded destination redirects to a registration-disabled page instead of a service homepage.",
+      "description": "USA Homeownership Foundation describes pre-purchase, post-purchase, financial and foreclosure-avoidance counseling. The working www counseling page is available even though the bare-domain homepage redirects to a registration-disabled page.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
-      "inspection": "metadata-reviewed",
-      "retrievalScope": "directory-metadata",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
       "directoryAgencyIds": [
         "90312"
       ],
@@ -2561,20 +2821,42 @@
       ],
       "id": "resource-c83760d590c34189",
       "review": {
-        "checkedAt": "2026-11-03T21:46:43.177444Z",
-        "outcome": "mismatch",
-        "finalUrl": "https://www.myhomeownership.org/wp-signup.php?new=myhomeownership.org",
+        "checkedAt": "2026-11-03T22:35:12.166602Z",
+        "outcome": "content-inspected",
+        "summary": "USA Homeownership Foundation describes pre-purchase, post-purchase, financial and foreclosure-avoidance counseling. The working www counseling page is available even though the bare-domain homepage redirects to a registration-disabled page. Keep the old bare-domain redirect documented; point any enabled outbound link to the inspected www route. Provider HUD approval statements were not independently verified as current. No intake form, account, application or financial transaction was performed.",
+        "finalUrl": "https://www.myhomeownership.org/counseling/",
         "httpStatus": 200,
-        "reason": "The final URL is a WordPress registration endpoint. Branding and navigation remain, but the body says registration is disabled; no service destination was established.",
         "inspectedSections": [
-          "Returned page title and body"
+          "Original bare-domain redirect",
+          "www homepage identity",
+          "Counseling services",
+          "CalHFA www link"
         ],
-        "summary": "The recorded destination redirects to a registration-disabled page instead of a service homepage.",
-        "retrievalMethod": "direct-http"
+        "retrievalMethod": "direct-http + primary-directory",
+        "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:46:43.177444Z",
       "linkStatus": 200,
-      "outboundDisabled": true
+      "outboundDisabled": false,
+      "originalUrl": "https://myhomeownership.org",
+      "reviewHistory": [
+        {
+          "checkedAt": "2026-11-03T21:46:43.177444Z",
+          "outcome": "mismatch",
+          "finalUrl": "https://www.myhomeownership.org/wp-signup.php?new=myhomeownership.org",
+          "httpStatus": 200,
+          "reason": "The final URL is a WordPress registration endpoint. Branding and navigation remain, but the body says registration is disabled; no service destination was established.",
+          "inspectedSections": [
+            "Returned page title and body"
+          ],
+          "summary": "The recorded destination redirects to a registration-disabled page instead of a service homepage.",
+          "retrievalMethod": "direct-http"
+        }
+      ],
+      "recoveryResolution": "working-www-provider-route-confirmed",
+      "relatedOfficialResources": [],
+      "contentInspectionMethod": "direct-http + primary-directory",
+      "pageRetrievedAt": "2026-11-03T22:35:12.166602Z"
     },
     {
       "title": "VISIONARY HOME BUILDERS OF CALIFORNIA",
@@ -8582,6 +8864,14 @@
       "removed": 3,
       "added": 3,
       "upgraded": 5
+    },
+    {
+      "id": "twelve-source-recovery",
+      "source": "source-recovery.json",
+      "attempted": 12,
+      "providerRecovered": 9,
+      "originalDestinationsUnresolved": 3,
+      "officialAlternatives": 3
     }
   ]
 }

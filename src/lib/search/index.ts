@@ -28,7 +28,8 @@ export type SearchKind =
   | 'work-vehicle'
   | 'assistance'
   | 'place-guide'
-  | 'resource-source';
+  | 'resource-source'
+  | 'housing-city';
 
 export interface SearchEntry {
   kind: SearchKind;
@@ -371,6 +372,7 @@ export const KIND_LABEL: Record<SearchKind, string> = {
   dealer: 'Dealer',
   'work-vehicle': 'Work vehicle',
   assistance: 'Assistance',
+  'housing-city': 'City housing',
   'place-guide': 'City guide',
   'resource-source': 'Source library',
 };
@@ -383,6 +385,7 @@ export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
   dealer: 'mute',
   'work-vehicle': 'ok',
   assistance: 'warn',
+  'housing-city': 'info',
   'place-guide': 'info',
   'resource-source': 'mute',
 };

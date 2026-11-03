@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Search, ArrowUpRight, ExternalLink, X } from 'lucide-react';
 import { filterResources, resourceOutboundDisabled, RESOURCE_CATEGORIES, type ResourceCategory, type ResourceSource } from '@/lib/resources';
@@ -18,11 +18,11 @@ function compareSources(a: ResourceSource, b: ResourceSource, sort: SourceSort) 
   if (sort === 'location') compared = stateLabel(a.state).localeCompare(stateLabel(b.state)) || (!a.city ? (b.city ? 1 : 0) : !b.city ? -1 : a.city.localeCompare(b.city));
   return compared || a.title.localeCompare(b.title);
 }
-export function ResourceDirectory({ sources, initialState = '', initialCategory = '', initialQuery = '' }: { sources: ResourceSource[]; initialState?: string; initialCategory?: string; initialQuery?: string }) {
+export function ResourceDirectory(props: { sources: ResourceSource[]; initialState?: string; initialCategory?: string; initialQuery?: string }) { return <ResourceDirectoryContent key={JSON.stringify([props.initialState,props.initialCategory,props.initialQuery])} {...props}/>; }
+function ResourceDirectoryContent({ sources, initialState = '', initialCategory = '', initialQuery = '' }: { sources: ResourceSource[]; initialState?: string; initialCategory?: string; initialQuery?: string }) {
   const [state, setState] = useState(['CA', 'AZ'].includes(initialState) ? initialState : '');
   const [category, setCategory] = useState(Object.hasOwn(RESOURCE_CATEGORIES, initialCategory) ? initialCategory : '');
   const [query, setQuery] = useState(initialQuery); const [evidence, setEvidence] = useState(''); const [sort, setSort] = useState<SourceSort>('directory'); const [limit, setLimit] = useState(PAGE_SIZE);
-  useEffect(() => { setState(['CA', 'AZ'].includes(initialState) ? initialState : ''); setCategory(Object.hasOwn(RESOURCE_CATEGORIES, initialCategory) ? initialCategory : ''); setQuery(initialQuery); setEvidence(''); setSort('directory'); setLimit(PAGE_SIZE); }, [initialState, initialCategory, initialQuery]);
   const matches = useMemo(() => filterResources(sources, query, state, category).filter(source => !evidence || (evidence === 'dated-units' ? !!source.propertyObservation?.unitSamples : evidence === 'needs-attention' ? !!source.review && source.review.outcome !== 'content-inspected' : source.inspection === evidence)).sort((a, b) => compareSources(a, b, sort)), [sources, query, state, category, evidence, sort]);
   const reset = () => { setQuery(''); setState(''); setCategory(''); setEvidence(''); setSort('directory'); setLimit(PAGE_SIZE); };
   const filters = [

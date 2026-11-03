@@ -1,3 +1,5 @@
+'use client';
+import {useNow} from '@/lib/client/state';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 import {
   APARTMENT_LINK_LABEL,
@@ -40,11 +42,12 @@ export function ReservationLinkBadge({ kind, confidence }: BaseProps & { kind: R
 }
 
 export function VerifiedAtBadge({ iso }: { iso: string }) {
-  const days = Math.max(0, Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000));
-  const stale = days > 30;
+  const now = useNow();
+  const days = Math.max(0, Math.floor(((now ?? 0) - new Date(iso).getTime()) / 86_400_000));
+  const stale = now === null || days > 30;
   return (
     <Gumdrop tone={stale ? 'warn' : 'mute'} title={`Last verified ${iso.slice(0, 10)}`}>
-      ⏱ Verified {days < 1 ? 'today' : days === 1 ? 'yesterday' : `${days}d ago`}{stale ? ' · may be stale' : ''}
+      ⏱ Verified {now === null ? iso.slice(0,10) : days < 1 ? 'today' : days === 1 ? 'yesterday' : `${days}d ago`}{stale ? ' · may be stale' : ''}
     </Gumdrop>
   );
 }

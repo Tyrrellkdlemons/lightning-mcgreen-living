@@ -1,6 +1,7 @@
 'use client';
+import {useKeyedPage} from '@/lib/client/state';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
 import { WorkVehicleCard } from './WorkVehicleCard';
 import { useWorkProfile, WorkProfilePanel } from './WorkProfilePanel';
@@ -17,7 +18,7 @@ export function WorkSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   const [maxDaily, setMaxDaily] = useState<number | ''>('');
   const [businessOnly, setBusinessOnly] = useState(false);
   const [sort, setSort] = useState<SortKey>('best-fit');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useKeyedPage(`${state}|${type}|${maxDaily}|${businessOnly}|${sort}`);
 
   const filtered = useMemo(() => REAL_WORK_VEHICLES.filter((r) => {
     if (state && r.state !== state) return false;
@@ -36,8 +37,6 @@ export function WorkSearch({ initialState }: { initialState?: 'CA' | 'AZ' }) {
   }, [filtered, sort, profile]);
   const { items: paged, pageCount } = paginate(sorted, page, PER_PAGE);
 
-  const filterKey = `${state}|${type}|${maxDaily}|${businessOnly}|${sort}`;
-  useEffect(() => { setPage(1); }, [filterKey]);
 
   return (
     <div className="mt-4 min-w-0 space-y-4 [&_input]:min-w-0 [&_input]:max-w-full [&_select]:min-w-0 [&_select]:max-w-full">

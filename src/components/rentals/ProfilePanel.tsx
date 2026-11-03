@@ -1,23 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import {useStoredObject} from '@/lib/client/state';
 import type { RenterProfile } from '@/types';
 
 const STORAGE_KEY = 'lmgl:renter-profile';
 
 export function useRenterProfile(): [RenterProfile, (p: RenterProfile) => void] {
-  const [profile, setProfile] = useState<RenterProfile>({});
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setProfile(JSON.parse(raw));
-    } catch {}
-  }, []);
-  function update(p: RenterProfile) {
-    setProfile(p);
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch {}
-  }
-  return [profile, update];
+  return useStoredObject<RenterProfile>(STORAGE_KEY);
 }
 
 export function ProfilePanel({

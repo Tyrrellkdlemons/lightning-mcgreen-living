@@ -6,7 +6,7 @@ import { PLACES, stateSlug } from '@/lib/places';
 
 export const metadata: Metadata = { alternates: { canonical: '/' } };
 const paths = [
-  { href: '/rentals', title: 'Find a home', text: 'Explore apartments and townhomes, then check the property, costs and application steps.', icon: Building2, label: 'Explore rentals', className: 'home-path' },
+  { href: '/homes', title: 'Find a home', text: 'Search every California and Arizona Census city. Explore rentals and homes for sale with dated source evidence.', icon: Building2, label: 'Rent or buy by city', className: 'home-path' },
   { href: '/help', title: 'Shelter & support', text: 'Find local referrals and practical help staying housed. Confirm intake with the provider.', icon: HeartHandshake, label: 'Find my next step', className: 'support-path' },
   { href: '/places', title: 'Explore places', text: 'Get to know California and Arizona cities, with local context and useful source links.', icon: Compass, label: 'Choose a city', className: 'places-path' },
   { href: '/assistant', title: 'Ask Gemini', text: 'Ask a general housing question and follow the sources. Keep personal details out.', icon: MessageCircle, label: 'Start a question', className: 'assistant-path' },

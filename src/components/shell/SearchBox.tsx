@@ -22,9 +22,19 @@ export function SearchBox({ className }: { className?: string }) {
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
+  const [cityHits, setCityHits] = useState<SearchHit[]>([]);
+  useEffect(() => {
+    const controller = new AbortController();
+    if (q.trim().length < 2) return () => controller.abort();
+    const timer = setTimeout(() => {
+      fetch(`/api/locations?q=${encodeURIComponent(q.trim())}`, {signal: controller.signal, cache: 'no-store'}).then(r => r.ok ? r.json() : Promise.reject()).then(data => {if(!controller.signal.aborted)setCityHits((data.items ?? []).slice(0, 3).map((p: {id:string;name:string;state:string;county:string}) => ({score:100,entry:{kind:'housing-city',id:p.id,title:`${p.name}, ${p.state}`,subtitle:`Rent or buy · ${p.county}`,href:`/homes?city=${p.id}&state=${p.state}`,text:p.name,tokens:[]}})));}).catch(() => {});
+    }, 180);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [q]);
 
   const index = useMemo(() => buildSearchIndex(), []);
-  const hits: SearchHit[] = useMemo(() => searchIndex(index, q, { limit: 8 }), [index, q]);
+  const localHits: SearchHit[] = useMemo(() => searchIndex(index, q, { limit: 8 }), [index, q]);
+  const hits = useMemo(() => [...cityHits, ...localHits].slice(0, 8), [cityHits, localHits]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -51,6 +61,7 @@ export function SearchBox({ className }: { className?: string }) {
   function go(href: string) {
     setOpen(false);
     setQ('');
+    setCityHits([]);
     router.push(href);
   }
 
@@ -64,7 +75,7 @@ export function SearchBox({ className }: { className?: string }) {
         <input
           ref={inputRef}
           value={q}
-          onChange={(e) => { setQ(e.target.value); setOpen(true); setActive(0); }}
+          onChange={(e) => { setQ(e.target.value); setCityHits([]); setOpen(true); setActive(0); }}
           onFocus={() => setOpen(true)}
           onKeyDown={(e) => {
             if (e.key === 'ArrowDown') { e.preventDefault(); setActive((a) => Math.min(hits.length, a + 1)); }

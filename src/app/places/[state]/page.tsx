@@ -8,11 +8,15 @@ import { STATES, stateCode } from '@/lib/places';
 export const dynamicParams = false;
 
 export function generateStaticParams() { return [{ state: 'california' }, { state: 'arizona' }]; }
-export function generateMetadata({ params }: { params: { state: string } }): Metadata {
+export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ state: string }> }): Promise<Metadata> {
+  const params = await paramsPromise;
+
   const code = stateCode(params.state); if (!code) return {};
   return { title: `${STATES[code].name} city guides & housing resources`, description: STATES[code].description, alternates: { canonical: `/places/${params.state}` } };
 }
-export default function StatePage({ params }: { params: { state: string } }) {
+export default async function StatePage({ params: paramsPromise }: { params: Promise<{ state: string }> }) {
+  const params = await paramsPromise;
+
   const code = stateCode(params.state); if (!code) notFound();
   const state = STATES[code];
   return <>

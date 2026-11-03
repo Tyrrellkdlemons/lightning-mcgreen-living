@@ -69,7 +69,6 @@ export function PhotoManager({ targets }: { targets: PhotoTarget[] }) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 12000);
     let active = true;
-    setSetupError(false);
     fetch('/api/place-photos/status', { signal: controller.signal, cache: 'no-store' })
       .then(async response => {
         if (!response.ok) throw new Error('unavailable');
@@ -81,27 +80,24 @@ export function PhotoManager({ targets }: { targets: PhotoTarget[] }) {
     return () => { active = false; clearTimeout(timer); controller.abort(); };
   }, [setupCheck]);
 
-  useEffect(() => {
-    if (!photo) { setPreview(''); return; }
-    const url = URL.createObjectURL(photo);
-    setPreview(url);
-    return () => URL.revokeObjectURL(url);
-  }, [photo]);
+  useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
   useEffect(() => {
-    const clear = () => { setSecret(''); request.current?.abort(); };
+    // Invalidate the current async selection, not a captured sequence number.
+    const invalidatePreparation = () => { selection.current++; };
+    const clear = () => { invalidatePreparation(); setPreparing(false); setSecret(''); request.current?.abort(); };
     window.addEventListener('pagehide', clear);
-    return () => { window.removeEventListener('pagehide', clear); request.current?.abort(); };
+    return () => { invalidatePreparation(); window.removeEventListener('pagehide', clear); request.current?.abort(); };
   }, []);
 
   async function choosePhoto(file?: File) {
     const currentSelection = ++selection.current;
-    setPhoto(null); setMessage(''); setSuccess(false); uploadId.current = null;
+    setPhoto(null); setPreview(''); setMessage(''); setSuccess(false); uploadId.current = null;
     if (!file) { setPreparing(false); return; }
     setPreparing(true);
     try {
       const prepared = await preparePhoto(file);
-      if (currentSelection === selection.current) setPhoto(prepared);
+      if (currentSelection === selection.current) { setPhoto(prepared); setPreview(URL.createObjectURL(prepared)); }
     } catch (error) {
       if (currentSelection === selection.current) setMessage(error instanceof Error ? error.message : 'Choose another photo.');
     } finally {
@@ -135,7 +131,7 @@ export function PhotoManager({ targets }: { targets: PhotoTarget[] }) {
       if (!response.ok) throw new Error(data.error || 'The photo could not be published.');
       setEnvironment(data.environment || '');
       setMessage(data.duplicate ? 'This photo is already published. No duplicate was created.' : 'Photo published to ' + selected.label + '. Its credit and caption appear in the collection below.');
-      setSuccess(true); setPhoto(null); uploadId.current = null;
+      setSuccess(true); setPhoto(null); setPreview(''); uploadId.current = null;
       if (fileInput.current) fileInput.current.value = '';
       setGeneration((value) => value + 1);
     } catch (error) {
@@ -158,7 +154,7 @@ export function PhotoManager({ targets }: { targets: PhotoTarget[] }) {
             maxLength={512} className={inputClass} aria-describedby="key-help" />
           <p id="key-help" className="mt-2 text-xs text-chocolate-700">Use your site&apos;s private editor key. It stays in this page&apos;s memory and is sent only when you publish.</p>
           <p role="status" className="mt-3 text-sm text-chocolate-700">{configured === false ? 'Publishing is not configured for this deployment. The site owner must configure the private editor key before uploading.' : configured === true ? 'Publishing is configured. Your private editor key is still required and is checked when you publish.' : setupError ? 'We could not check publishing setup. You can retry the check or submit with your editor key.' : 'Checking publishing setup...'}</p>
-          <button type="button" disabled={busy} onClick={() => setSetupCheck(value => value + 1)} className="mt-1 min-h-11 text-sm font-semibold text-lightning-800 underline">Check publishing setup again</button>
+          <button type="button" disabled={busy} onClick={() => { setSetupError(false); setSetupCheck(value => value + 1); }} className="mt-1 min-h-11 text-sm font-semibold text-lightning-800 underline">Check publishing setup again</button>
           {secret && <button type="button" disabled={busy} onClick={() => setSecret('')} className="mt-2 min-h-11 text-sm font-semibold text-lightning-800 underline">Clear access key</button>}
         </div>
 

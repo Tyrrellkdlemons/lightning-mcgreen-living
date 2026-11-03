@@ -1,4 +1,5 @@
 'use client';
+import {useReducedMotion} from '@/lib/client/state';
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -29,7 +30,7 @@ interface BgManifest {
 export function RotatingBackground() {
   const [manifest, setManifest] = useState<BgManifest | null>(null);
   const [active, setActive] = useState(0);
-  const [reduce, setReduce] = useState(false);
+  const reduce = useReducedMotion();
   const timerRef = useRef<number | null>(null);
 
   // Load manifest once
@@ -43,23 +44,7 @@ export function RotatingBackground() {
   }, []);
 
   // Reduce-motion sync
-  useEffect(() => {
-    const prefersReduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const userReduced =
-      typeof window !== 'undefined' &&
-      (document.documentElement.classList.contains('reduce-motion') ||
-        localStorage.getItem('lmgl:reduce-motion') === '1');
-    setReduce(prefersReduced || userReduced);
 
-    const onChange = () => {
-      const u = localStorage.getItem('lmgl:reduce-motion') === '1';
-      setReduce(prefersReduced || u);
-    };
-    window.addEventListener('lmgl:reduce-motion-change', onChange);
-    return () => window.removeEventListener('lmgl:reduce-motion-change', onChange);
-  }, []);
 
   // Rotation timer
   useEffect(() => {

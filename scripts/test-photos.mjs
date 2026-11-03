@@ -310,3 +310,172 @@ test('property retries repair interrupted publication while preserving content a
   assert.equal((await (await gallery(new Request('https://site.example/gallery?placeId=' + target.id), preview)).json()).photos.length, 1);
   assert.equal((await (await gallery(new Request('https://site.example/gallery?placeId=' + target.id), production)).json()).photos.length, 0);
 });
+
+// Run the actual editor component with a small lifecycle harness. No DOM, image
+// decoder, remote request, credential, or file write is used by these fixtures.
+let editorCode;
+async function photoEditorHarness() {
+  if (!editorCode) {
+    const require = createRequire(import.meta.url);
+    let ts;
+    try { ts = require(process.env.TYPESCRIPT_PATH || 'typescript'); }
+    catch { ts = require('C:/Users/TKDL/AppData/Roaming/npm/node_modules/typescript/lib/typescript.js'); }
+    const source = await read('src/components/photos/PhotoManager.tsx');
+    const result = ts.transpileModule(source, { fileName: 'PhotoManager.tsx', reportDiagnostics: true, compilerOptions: {
+      target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX,
+    } });
+    assert.equal(result.diagnostics?.filter(d => d.category === ts.DiagnosticCategory.Error).length, 0);
+    editorCode = result.outputText;
+  }
+  const slots = [], pendingBitmaps = [], closedBitmaps = [], created = [], revoked = [];
+  const window = new EventTarget();
+  const timers = new Set();
+  let cursor = 0, tree, mounted = true, nextTimer = 0, ignoredStateUpdates = 0;
+  let pendingEffects = [];
+  const jsx = (type, props) => ({ type, props: props || {} });
+  const react = {
+    useState(initial) {
+      const index = cursor++;
+      if (!slots[index]) slots[index] = { value: typeof initial === 'function' ? initial() : initial };
+      return [slots[index].value, next => {
+        if (!mounted) { ignoredStateUpdates++; return; }
+        slots[index].value = typeof next === 'function' ? next(slots[index].value) : next;
+      }];
+    },
+    useRef(initial) {
+      const index = cursor++;
+      if (!slots[index]) slots[index] = { ref: { current: initial } };
+      return slots[index].ref;
+    },
+    useEffect(effect, deps) {
+      const index = cursor++;
+      const previous = slots[index];
+      if (!previous || !deps || deps.length !== previous.deps?.length || deps.some((v, i) => !Object.is(v, previous.deps[i]))) {
+        slots[index] = { deps, cleanup: previous?.cleanup };
+        pendingEffects.push(() => { slots[index].cleanup?.(); slots[index].cleanup = effect(); });
+      }
+    },
+  };
+  const module = { exports: {} };
+  vm.runInNewContext(editorCode, {
+    module, exports: module.exports, window, Blob, AbortController,
+    URL: {
+      createObjectURL(blob) { assert.ok(blob instanceof Blob); const url = 'blob:fixture-' + (created.length + 1); created.push(url); return url; },
+      revokeObjectURL(url) { revoked.push(url); },
+    },
+    createImageBitmap(file) { return new Promise(resolve => pendingBitmaps.push({ file, resolve })); },
+    document: { createElement(tag) {
+      assert.equal(tag, 'canvas');
+      return { width: 0, height: 0, getContext: () => ({ drawImage() {} }), toBlob: callback => callback(new Blob([png], { type: 'image/webp' })) };
+    } },
+    fetch: async (url) => { assert.equal(url, '/api/place-photos/status'); return { ok: true, json: async () => ({ configured: true }) }; },
+    setTimeout: () => { const id = ++nextTimer; timers.add(id); return id; },
+    clearTimeout: id => timers.delete(id),
+    require(name) {
+      if (name === 'react') return react;
+      if (name === 'react/jsx-runtime') return { jsx, jsxs: jsx, Fragment: 'fragment' };
+      if (name === 'next/image') return { default: 'img' };
+      if (name === 'next/link') return { default: 'a' };
+      if (name === 'lucide-react') return new Proxy({}, { get: (_, key) => key });
+      if (name === '@/lib/photos/targets.mjs') return { filterPhotoTargets };
+      if (name === './PlaceGallery') return { PlaceGallery: 'gallery' };
+      throw new Error('Unexpected editor import: ' + name);
+    },
+  }, { timeout: 1500 });
+  function nodes(node, predicate) {
+    if (Array.isArray(node)) return node.flatMap(item => nodes(item, predicate));
+    if (!node || typeof node !== 'object') return [];
+    return [...(predicate(node) ? [node] : []), ...nodes(node.props.children, predicate)];
+  }
+  function text(node) {
+    if (Array.isArray(node)) return node.map(text).join(' ');
+    return node && typeof node === 'object' ? text(node.props.children) : node == null || node === false ? '' : String(node);
+  }
+  function render() {
+    assert.ok(mounted);
+    cursor = 0; pendingEffects = [];
+    tree = module.exports.PhotoManager({ targets: [targets[0]] });
+    for (const commit of pendingEffects) commit();
+    return tree;
+  }
+  const settle = () => new Promise(resolve => setImmediate(resolve));
+  render(); await settle(); render();
+  return {
+    created, revoked, closedBitmaps,
+    isPreparing: () => text(tree).includes('Preparing your photograph...'),
+    preview: () => nodes(tree, node => node.type === 'img' && node.props.alt === 'Preview of the photograph selected for publication')[0]?.props.src,
+    select(file) {
+      nodes(tree, node => node.type === 'input' && node.props.type === 'file')[0].props.onChange({ target: { files: file ? [file] : [] } });
+      render();
+    },
+    async finish(index) {
+      const pending = pendingBitmaps[index]; assert.ok(pending, 'Selected image has a pending decoder');
+      pending.resolve({ width: 64, height: 48, close: () => closedBitmaps.push(index) });
+      await settle();
+      if (mounted) render();
+    },
+    pagehide() { window.dispatchEvent(new Event('pagehide')); render(); },
+    unmount() {
+      for (const slot of slots) slot.cleanup?.();
+      mounted = false;
+      assert.equal(timers.size, 0, 'Unmount cancels setup timers');
+    },
+    ignoredUpdates: () => ignoredStateUpdates,
+  };
+}
+const imageSelection = label => ({ name: label + '.png', type: 'image/png', size: png.length });
+
+test('photo preparation completing after unmount cannot allocate a leaked preview URL', async () => {
+  const editor = await photoEditorHarness();
+  editor.select(imageSelection('pending'));
+  assert.equal(editor.isPreparing(), true);
+  editor.unmount();
+  await editor.finish(0);
+  assert.equal(editor.created.length, 0);
+  assert.equal(editor.ignoredUpdates(), 0, 'Cancelled work does not update an unmounted editor');
+  assert.deepEqual(editor.closedBitmaps, [0], 'Image decoder resources still close');
+});
+
+test('photo preparation completing after pagehide is cancelled and the editor can recover', async () => {
+  const editor = await photoEditorHarness();
+  try {
+    editor.select(imageSelection('hidden'));
+    editor.pagehide();
+    await editor.finish(0);
+    assert.equal(editor.created.length, 0);
+    assert.equal(editor.isPreparing(), false, 'A restored page must not remain stuck preparing a cancelled photo');
+    editor.select(imageSelection('resumed'));
+    await editor.finish(1);
+    assert.equal(editor.preview(), editor.created[0]);
+    assert.equal(editor.created.length, 1);
+  } finally { editor.unmount(); }
+  assert.deepEqual(editor.revoked, editor.created);
+});
+
+test('superseded photo selection cannot replace the latest preview and clearing revokes its URL', async () => {
+  const editor = await photoEditorHarness();
+  try {
+    editor.select(imageSelection('first'));
+    editor.select(imageSelection('second'));
+    await editor.finish(0);
+    assert.equal(editor.created.length, 0);
+    assert.equal(editor.isPreparing(), true);
+    await editor.finish(1);
+    assert.equal(editor.created.length, 1);
+    assert.equal(editor.preview(), editor.created[0]);
+    assert.equal(editor.isPreparing(), false);
+    editor.select(undefined);
+    assert.equal(editor.preview(), undefined);
+    assert.deepEqual(editor.revoked, editor.created);
+  } finally { editor.unmount(); }
+});
+
+test('replacing and unmounting prepared photographs revokes each object URL once', async () => {
+  const editor = await photoEditorHarness();
+  editor.select(imageSelection('first')); await editor.finish(0);
+  editor.select(imageSelection('second')); await editor.finish(1);
+  assert.deepEqual(editor.revoked, [editor.created[0]]);
+  editor.unmount();
+  assert.equal(editor.created.length, 2);
+  assert.deepEqual(editor.revoked, editor.created);
+});

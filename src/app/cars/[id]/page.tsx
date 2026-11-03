@@ -3,14 +3,18 @@ import { notFound } from 'next/navigation';
 import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { CarDetailClient } from '@/components/cars/CarDetail';
 
-interface Props { params: { id: string } }
+interface Props { params: Promise<{ id: string }> }
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata({ params: paramsPromise }: Props): Promise<Metadata> {
+  const params = await paramsPromise;
+
   const v = REAL_VEHICLES.find((x) => x.id === params.id);
   return { title: v ? `${v.year} ${v.make} ${v.model}` : 'Vehicle' };
 }
 
-export default function CarDetail({ params }: Props) {
+export default async function CarDetail({ params: paramsPromise }: Props) {
+  const params = await paramsPromise;
+
   const vehicle = REAL_VEHICLES.find((x) => x.id === params.id);
   if (!vehicle) notFound();
   const dealer = REAL_DEALERS.find((d) => d.id === vehicle.dealer_id);

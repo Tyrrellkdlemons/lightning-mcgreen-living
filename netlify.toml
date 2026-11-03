@@ -4,7 +4,7 @@
 # =============================================================================
 
 [build]
-  command   = "npm install --no-audit --no-fund && npm run build"
+  command   = "npm ci --no-audit --no-fund && npm run build"
   publish   = ".next"
   functions = "netlify/functions"
 
@@ -13,13 +13,13 @@
   # red banner + the Demo-mode disclosures back on every page.
   NEXT_PUBLIC_DATA_MODE       = "production"
   NEXT_PUBLIC_GEOFENCE_SOCAL  = "true"
-  NODE_VERSION                = "20"
+  NODE_VERSION                = "24"
 
   # Match Crypto Site / vaultkit conventions
   NEXT_TELEMETRY_DISABLED     = "1"
   NETLIFY_NEXT_SKEW_PROTECTION = "true"
 
-# Force esbuild for functions so dependencies bundle cleanly under Node 20
+# Force esbuild for functions so dependencies bundle cleanly under Node 24
 [functions]
   node_bundler = "esbuild"
 

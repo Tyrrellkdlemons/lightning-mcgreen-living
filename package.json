@@ -4,11 +4,11 @@
   "private": true,
   "description": "California and Arizona living guides, rental and vehicle discovery with protected place-photo galleries.",
   "scripts": {
-    "dev": "node scripts/sync-insert-images.mjs && next dev",
-    "build": "next build",
+    "dev": "node scripts/sync-insert-images.mjs && next dev --webpack",
+    "build": "next build --webpack",
     "prebuild": "node scripts/sync-insert-images.mjs",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\" \"docs/**/*.md\"",
     "sync-images": "node scripts/sync-insert-images.mjs",
@@ -21,31 +21,31 @@
     "set:github-remote": "node scripts/set-github-remote.mjs"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.3.4",
+    "@hookform/resolvers": "7.0.2",
     "@tanstack/react-query": "^5.28.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.8",
-    "lucide-react": "^0.363.0",
-    "maplibre-gl": "^4.1.0",
-    "next": "^14.1.4",
+    "lucide-react": "1.67.0",
+    "maplibre-gl": "6.16.0",
+    "next": "16.4.5",
     "papaparse": "^5.4.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "react-hook-form": "^7.51.1",
     "tailwind-merge": "^2.2.2",
-    "zod": "^3.22.4",
+    "zod": "4.6.7",
     "zustand": "^4.5.2",
     "@netlify/blobs": "10.7.13"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
+    "@types/node": "^24.0.0",
     "@types/papaparse": "^5.3.14",
-    "@types/react": "^18.2.67",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "autoprefixer": "^10.4.18",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.1.4",
-    "postcss": "^8.4.36",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.5",
+    "postcss": "8.5.32",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.12",
     "tailwindcss": "^3.4.1",
@@ -53,6 +53,11 @@
     "typescript": "^5.4.3"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=24.0.0"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.4"
+    }
   }
 }

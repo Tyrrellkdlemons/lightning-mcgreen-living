@@ -1,6 +1,7 @@
 'use client';
+import {useStorageValue,writeStorage} from '@/lib/client/state';
 
-import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef} from 'react';
 import Image from 'next/image';
 import { Map as MapIcon, Moon, Satellite } from 'lucide-react';
 import {
@@ -34,7 +35,9 @@ export function MapPanel({
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const options = useMemo(() => getBasemapOptions(), []);
-  const [basemapId, setBasemapId] = useState<BasemapId>(getDefaultBasemapId());
+  const storedBasemap = useStorageValue(STYLE_STORAGE);
+  const basemapId = options.some(o => o.id === storedBasemap) ? storedBasemap as BasemapId : getDefaultBasemapId();
+  function setBasemapId(id: BasemapId) { try { writeStorage(STYLE_STORAGE,id); } catch {} }
   const selected = useMemo(() => resolveBasemap(basemapId), [basemapId]);
 
   const byKind = useMemo(
@@ -47,28 +50,6 @@ export function MapPanel({
   );
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STYLE_STORAGE) as BasemapId | null;
-      if (saved && options.some((o) => o.id === saved)) {
-        setBasemapId(saved);
-      } else if (!options.some((o) => o.id === basemapId)) {
-        setBasemapId(options[0].id);
-      }
-    } catch {
-      // ignore storage failures
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STYLE_STORAGE, basemapId);
-    } catch {
-      // ignore storage failures
-    }
-  }, [basemapId]);
-
-  useEffect(() => {
     let cleanup = () => {};
     let cancelled = false;
 
@@ -79,11 +60,12 @@ export function MapPanel({
       if (!document.head.querySelector('link[data-maplibre]')) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/maplibre-gl@4.1.0/dist/maplibre-gl.css';
+        link.href = 'https://unpkg.com/maplibre-gl@6.16.0/dist/maplibre-gl.css';
         link.dataset.maplibre = '1';
         document.head.appendChild(link);
       }
 
+      maplibre.setWorkerUrl(new URL('maplibre-gl/dist/maplibre-gl-worker.mjs', import.meta.url).toString());
       const map = new maplibre.Map({
         container: ref.current,
         style: selected.style as any,

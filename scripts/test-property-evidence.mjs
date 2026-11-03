@@ -30,13 +30,14 @@ for(const r of data.records){
  for(const id of r.propertyIds){assert(canonical.has(id),id);assert(!ids.has(id),'duplicate '+id);ids.add(id);assert.equal(evidenceFor(id).name,r.name);}
  for(const url of [r.officialUrl,r.galleryUrl,r.availability.sourceUrl])https(url);
  const a=r.availability;assert(Number.isFinite(Date.parse(a.observedAt)));assert(a.summary&&a.limitations);
- assert(['unit-observations','plan-counts','unconfirmed'].includes(a.status));
+ assert(['unit-observations','plan-counts','plan-observations','unconfirmed'].includes(a.status));
  if(a.status==='unit-observations')assert(a.units.length>0);
+ if(a.status==='plan-observations'){assert(a.plans.length);for(const plan of a.plans){assert.equal(plan.availableLabel,'Available Now');assert.equal(plan.availableUnits,undefined);https(plan.sourceUrl);}}
  if(a.status==='plan-counts')assert(a.plans.every(p=>Number.isInteger(p.availableUnits)&&p.availableUnits>=0));
  if(a.status==='unconfirmed')assert(!a.units?.length&&!a.plans?.length);
  for(const t of r.tours){https(t.url);https(t.officialSourceUrl);assert(['youtube','matterport'].includes(t.provider));const embed=youtubeEmbed(t);if(t.embedStatus==='supported-public-player'){assert(embed?.startsWith('https://www.youtube-nocookie.com/embed/'));embedded++;}else{assert.equal(embed,null);links++;}}
- for(const photo of r.photos ?? []){https(photo.url);https(photo.sourceUrl);assert(photo.title&&photo.scope);assert(Number.isFinite(Date.parse(photo.observedAt)));if(photo.thumbnailUrl){https(photo.thumbnailUrl);const thumb=new URL(photo.thumbnailUrl);assert.equal(thumb.hostname,'s3.us-west-2.amazonaws.com');assert(thumb.pathname.startsWith('/onnieastvillage/general/_c600w/'));assert.equal(thumb.search,'');}}
- if(a.dataSourceUrl){https(a.dataSourceUrl);assert.equal(new URL(a.dataSourceUrl).hostname,'my.gounion.com');assert((a.units??[]).length<=3);for(const unit of a.units??[]){assert.match(unit.availableDate,/^\d{4}-\d{2}-\d{2}$/);assert(unit.availableDate>=a.observedAt.slice(0,10));assert.match(unit.availableLabel,/^Advertised /);assert(unit.rentBasis.includes('fees'));}}
+ for(const photo of r.photos ?? []){https(photo.url);https(photo.sourceUrl);assert(photo.title&&photo.scope);assert(Number.isFinite(Date.parse(photo.observedAt)));if(photo.thumbnailUrl){https(photo.thumbnailUrl);const thumb=new URL(photo.thumbnailUrl);if(thumb.hostname==='s3.us-west-2.amazonaws.com'){assert(thumb.pathname.startsWith('/onnieastvillage/general/_c600w/'));assert.equal(thumb.search,'');}else{assert.equal(thumb.hostname,'union-corporate.imgix.net');assert(thumb.pathname.startsWith('/arlo/image/'));assert.equal(thumb.searchParams.get('w'),'1200');assert.match(photo.scope,/Visually reviewed/);}}}
+ if(a.dataSourceUrl){https(a.dataSourceUrl);assert.equal(new URL(a.dataSourceUrl).hostname,'my.gounion.com');assert((a.units??[]).length<=6);for(const unit of a.units??[]){if(unit.availableLabel==='Now'){assert.equal(unit.labelMethod,'operator-client-rule');assert.match(unit.sourceAvailableDate,/^\d{4}-\d{2}-\d{2}$/);assert(unit.sourceAvailableDate<=a.observedAt.slice(0,10));assert(!unit.availableDate);}else{assert.match(unit.availableDate,/^\d{4}-\d{2}-\d{2}$/);assert(unit.availableDate>=a.observedAt.slice(0,10));assert.match(unit.availableLabel,/^Advertised /);}assert(unit.rentBasis.includes('fees'));}}
  assert(['unknown','permission-required'].includes(r.photoReuse.status));
 }
 const at='2026-11-03T12:00:00Z', ms=Date.parse(at);

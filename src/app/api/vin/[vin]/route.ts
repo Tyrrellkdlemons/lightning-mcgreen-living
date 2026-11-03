@@ -3,7 +3,9 @@ import { NhtsaVpicProvider } from '@/lib/providers/nhtsa-vpic';
 
 export const runtime = 'edge';
 
-export async function GET(_req: Request, { params }: { params: { vin: string } }) {
+export async function GET(_req: Request, { params: paramsPromise }: { params: Promise<{ vin: string }> }) {
+  const params = await paramsPromise;
+
   try {
     const result = await NhtsaVpicProvider.fetchDetails!(params.vin);
     return NextResponse.json(result);

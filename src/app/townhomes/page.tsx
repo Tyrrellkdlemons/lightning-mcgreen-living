@@ -5,7 +5,9 @@ import { GingerbreadHero } from '@/components/theme/GingerbreadHero';
 
 export const metadata: Metadata = { title: 'Townhomes' };
 
-export default function TownhomesPage({ searchParams }: { searchParams: { state?: string; city?: string } }) {
+export default async function TownhomesPage({ searchParams: searchParamsPromise }: { searchParams: Promise<{ state?: string; city?: string }> }) {
+  const searchParams = await searchParamsPromise;
+
   const state = searchParams.state === 'CA' || searchParams.state === 'AZ' ? searchParams.state : undefined;
   const city = typeof searchParams.city === 'string' ? searchParams.city.trim().slice(0, 100) : undefined;
   return (

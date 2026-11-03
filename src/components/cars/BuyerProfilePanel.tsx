@@ -1,20 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import {useStoredObject} from '@/lib/client/state';
 import type { BuyerProfile } from '@/types';
 
 const KEY = 'lmgl:buyer-profile';
 
 export function useBuyerProfile(): [BuyerProfile, (p: BuyerProfile) => void] {
-  const [p, setP] = useState<BuyerProfile>({});
-  useEffect(() => {
-    try { const raw = localStorage.getItem(KEY); if (raw) setP(JSON.parse(raw)); } catch {}
-  }, []);
-  function update(next: BuyerProfile) {
-    setP(next);
-    try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
-  }
-  return [p, update];
+  return useStoredObject<BuyerProfile>(KEY);
 }
 
 export function BuyerProfilePanel({ profile, onChange }: { profile: BuyerProfile; onChange: (p: BuyerProfile) => void }) {
