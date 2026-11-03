@@ -1,4 +1,12 @@
-/** Build one canonical allowlist without changing existing record IDs or blob keys. */
+/**
+ * Build one canonical allowlist without changing existing record IDs or blob keys.
+ * @param {{
+ * places?: Array<{id:string,name:string,state:string,slug:string}>,
+ * workbook?: Array<{id:string,property_name:string,city?:string,state?:string}>,
+ * rentals?: Array<{id:string,property_name:string,city?:string,state:string,unit_type:string,meta?:{source?:string,trust_label?:string}}>,
+ * resources?: Array<{id:string,title:string,category:string,state:string,city?:string}>
+ * }} input
+ */
 export function buildPhotoTargets({ places = [], workbook = [], rentals = [], resources = [] }) {
   const targets = [];
   const seen = new Set();
