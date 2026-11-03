@@ -15,8 +15,11 @@ export type AssistanceTopic =
   | 'legal_aid'
   | 'general_housing';
 
+export type AssistanceState = 'CA' | 'AZ';
+
 export type AssistanceJurisdiction =
   | 'California'
+  | 'Arizona'
   | 'Los Angeles County'
   | 'Orange County'
   | 'Riverside County'
@@ -35,10 +38,11 @@ export interface AssistanceResource {
   application_phone?: string;
   printable_docs?: { label: string; url: string }[];
   languages?: string[];
-  reopen_date?: string;          // e.g. LA ERRP "2026-02-09"
+  application_status?: 'closed'; // A dated provider observation, not a live feed.
+  reopen_date?: string;          // Historical program date, not an availability signal.
   expires_at?: string;           // when known
   notes?: string;
-  last_verified_at: string;      // ISO
+  last_verified_at: string;      // Recorded source-review date; not proof of current availability.
   source_url: string;            // canonical URL we link to
 }
 

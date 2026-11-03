@@ -10,6 +10,7 @@ const TONE_FOR_FRESH: Record<SourceMeta['data_freshness_status'], 'ok' | 'info' 
 
 function relative(iso: string) {
   const ms = Date.now() - new Date(iso).getTime();
+  if (!Number.isFinite(ms) || ms < -86_400_000) return 'date unknown';
   const days = Math.floor(ms / 86_400_000);
   if (days < 1) return 'today';
   if (days < 2) return 'yesterday';
@@ -20,14 +21,17 @@ function relative(iso: string) {
 }
 
 export function SourcePanel({ meta, dense = false }: { meta: SourceMeta; dense?: boolean }) {
+  const recorded = Date.parse(meta.last_verified_at);
+  const ageDays = (Date.now() - recorded) / 86_400_000;
+  const freshness: SourceMeta['data_freshness_status'] = !Number.isFinite(recorded) || ageDays < -1
+    ? 'manual-review-needed' : ageDays > 7 ? 'stale' : meta.data_freshness_status;
   return (
     <div className={dense ? 'flex flex-wrap items-center gap-2 text-xs' : 'rounded-cookie border border-gingerbread-300/50 bg-frosting-100 p-3 text-xs text-chocolate-700'}>
       <div className="flex flex-wrap items-center gap-2">
-        <Gumdrop tone={TONE_FOR_FRESH[meta.data_freshness_status]}>
-          {meta.data_freshness_status.replace('-', ' ')}
+        <Gumdrop tone={TONE_FOR_FRESH[freshness]}>
+          {freshness === 'stale' ? 'Recheck current details' : freshness.replaceAll('-', ' ')}
         </Gumdrop>
         <Gumdrop tone="mute">{meta.trust_label.replace('-', ' ')}</Gumdrop>
-        <Gumdrop tone="info">conf {meta.confidence_score}</Gumdrop>
       </div>
       {!dense && (
         <p className="mt-2">
@@ -35,7 +39,7 @@ export function SourcePanel({ meta, dense = false }: { meta: SourceMeta; dense?:
           <a href={meta.source_url} target="_blank" rel="noopener noreferrer" className="underline decoration-lightning-500 underline-offset-2 break-all">
             {meta.source}
           </a>{' '}
-          · verified {relative(meta.last_verified_at)} · seen {relative(meta.last_seen_at)}
+          · recorded {Number.isFinite(recorded) ? new Date(recorded).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }) : 'date unknown'} · seen {relative(meta.last_seen_at)}
         </p>
       )}
     </div>

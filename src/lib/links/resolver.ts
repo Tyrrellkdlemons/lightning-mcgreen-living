@@ -5,9 +5,8 @@
  *
  * Returns a `ResolvedLink` with the URL, the link type, the confidence
  * label, a human-readable reason, and a flag for whether redirect is
- * required. Never invents a URL — if nothing is publicly available the
- * resolver returns `kind: 'not-verified'` so the UI shows the "contact
- * the property" fallback.
+ * required. Generated searches are labeled as searches and are unverified.
+ * If no usable source or search is available, it returns `kind: 'not-verified'`.
  */
 
 import type {
@@ -21,14 +20,14 @@ import { pickLeasingPortal } from './leasing-portals';
 
 export interface ResolvedLink<T extends string = string> {
   url: string | null;
-  /** Fallback (e.g. city search) if the direct listing URL doesn't resolve. */
+  /** Separate source or search fallback, opened only when the user chooses it. */
   fallback_url?: string | null;
   kind: T;
   confidence: AppLinkConfidence;
   label: string;
   redirect_required: boolean;
   reason: string;
-  /** Optional — present on apartment links so the UI can show "Application goes through: <platform>". */
+  /** Optional source-record platform metadata for apartment destinations. */
   platform_name?: string;
   platform_owner?: string;
 }
@@ -69,31 +68,33 @@ export function resolveApartmentApplicationLink(
     );
   }
 
-  // Build a platform-aware link. When we have a property name, we use
-  // DuckDuckGo's `!ducky` (lucky) bang to land directly on the actual
-  // listing page on RentCafe / the operator's own portal — not a search
-  // results page. The city-search URL becomes the fallback.
+  if (L.property_application_url || L.manager_application_url) {
+    return withApartmentPlatform(
+      ok(L.property_application_url ?? L.manager_application_url!, 'property-wide-application', L.application_link_confidence ?? 'unverified', 'A property or manager application link is supplied in the source record. Confirm the property, unit and terms before applying.'),
+      rental,
+    );
+  }
+
+  // If no application link is supplied, expose an explicit search or operator
+  // website. A search is never presented as a verified application.
   const portal = pickLeasingPortal({
     manager: rental.manager,
     platform: rental.application_platform,
     city: rental.city,
+    state: rental.state,
     operatorMarketingUrl: rental.application_url ?? rental.official_property_url ?? '',
     property_name: rental.property_name,
   });
 
   if (portal.url) {
-    const kind: ApartmentLinkType =
-      portal.type === 'leasing-portal-public-search'
-        ? 'property-wide-application'
-        : portal.type === 'leasing-portal-operator-search'
-        ? 'property-wide-application'
-        : 'leasing-office-contact-only';
+    const isSearch = portal.type === 'property-search' || portal.type === 'leasing-portal-public-search' || portal.type === 'leasing-portal-operator-search';
+    const kind: ApartmentLinkType = isSearch ? 'property-search' : 'leasing-office-contact-only';
     const r: ResolvedLink<ApartmentLinkType> = {
       url: portal.url,
       fallback_url: portal.fallback_url,
       kind,
-      confidence: portal.type === 'direct-listing-redirect' ? 'inferred' : 'inferred',
-      label: kind.replace(/-/g, ' '),
+      confidence: 'unverified',
+      label: isSearch ? 'Search listing sources' : 'Open property or operator website',
       redirect_required: true,
       reason: portal.notes,
       platform_name: portal.platform_name,

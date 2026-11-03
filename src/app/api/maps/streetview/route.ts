@@ -67,7 +67,8 @@ async function hasStreetView(lat: number, lng: number, key: string): Promise<Str
   const res = await fetch(url, {
     method: 'GET',
     headers: { Accept: 'application/json' },
-    next: { revalidate: 60 * 60 * 24 },
+    cache: 'no-store',
+    signal: AbortSignal.timeout(5000),
   });
   if (!res.ok) return null;
   try {
@@ -80,8 +81,8 @@ async function hasStreetView(lat: number, lng: number, key: string): Promise<Str
 function deriveHeading(sourceLat: number, sourceLng: number, panoLat?: number, panoLng?: number): number {
   if (panoLat == null || panoLng == null) return DEFAULT_HEADING;
 
-  const dy = panoLat - sourceLat;
-  const dx = panoLng - sourceLng;
+  const dy = sourceLat - panoLat;
+  const dx = sourceLng - panoLng;
   if (dy === 0 && dx === 0) return DEFAULT_HEADING;
 
   // 0 = North, 90 = East.
@@ -112,7 +113,20 @@ export async function GET(req: NextRequest) {
     }
 
     const heading = deriveHeading(lat, lng, metadata.location?.lat, metadata.location?.lng);
-    return NextResponse.redirect(buildStreetViewImageUrl(lat, lng, googleKey, heading, fov), { status: 302 });
+    // Keep the server credential server-side. Never redirect a browser to a keyed URL.
+    const upstream = await fetch(buildStreetViewImageUrl(lat, lng, googleKey, heading, fov), {
+      cache: 'no-store', signal: AbortSignal.timeout(5000), redirect: 'error',
+    });
+    const mime = upstream.headers.get('content-type')?.split(';')[0] ?? '';
+    if (!upstream.ok || !['image/jpeg', 'image/png', 'image/webp'].includes(mime)) {
+      return NextResponse.redirect(fallback(lat, lng), { status: 302 });
+    }
+    const bytes = await upstream.arrayBuffer();
+    if (bytes.byteLength > 2 * 1024 * 1024) return NextResponse.redirect(fallback(lat, lng), { status: 302 });
+    return new NextResponse(bytes, { status: 200, headers: {
+      'Content-Type': mime, 'Cache-Control': 'private, no-store',
+      'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer',
+    } });
   } catch {
     return NextResponse.redirect(fallback(lat, lng), { status: 302 });
   }

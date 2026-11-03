@@ -14,7 +14,6 @@ import {
   WORKBOOK_CITY_OPTIONS,
   WORKBOOK_RANKED_LISTINGS,
   workbookMapUrl,
-  workbookPrimaryUrl,
   type WorkbookRankedListing,
 } from '@/lib/data/workbook-ranked-listings';
 
@@ -91,12 +90,14 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
           </p>
           <div className="mt-3 grid gap-2 md:grid-cols-[minmax(0,1fr)_220px]">
             <input
+              aria-label="Search workbook properties"
               value={workbookQuery}
               onChange={(e) => { setWorkbookQuery(e.target.value); setWorkbookLimit(10); }}
               placeholder="Search workbook listings"
               className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
             />
             <select
+              aria-label="Workbook city"
               value={workbookCity}
               onChange={(e) => { setWorkbookCity(e.target.value); setWorkbookLimit(10); }}
               className="w-full rounded-md border border-gingerbread-300 bg-white px-2 py-1.5 text-sm"
@@ -122,16 +123,12 @@ export function RentalSearch({ unitTypeLock, initialState, initialCity }: { unit
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
                   <span className="text-chocolate-700">{workbookRent(item)}</span>
                   {item.application_platform_inferred && <span className="text-chocolate-700">via {item.application_platform_inferred}</span>}
-                  {workbookPrimaryUrl(item) && (
-                    <a
-                      href={workbookPrimaryUrl(item)!}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2"
-                    >
-                      Direct listing
-                    </a>
-                  )}
+                  <Link
+                    href={`/properties/${item.id}`}
+                    className="font-semibold text-chocolate-700 underline decoration-lightning-500 underline-offset-2"
+                  >
+                    Property view &amp; source links
+                  </Link>
                   {workbookMapUrl(item) && (
                     <a
                       href={workbookMapUrl(item)!}

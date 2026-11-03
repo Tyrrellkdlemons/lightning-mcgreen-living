@@ -45,7 +45,7 @@ export function ApartmentPrepPacket({
         )}
       </div>
       <p className="mt-2 rounded-md bg-frosting-100 p-2 text-xs text-chocolate-700">
-        <strong className="text-chocolate-900">Application goes through:</strong> {link.platform_name ?? rental.manager}
+        <strong className="text-chocolate-900">Listing source:</strong> {link.platform_name ?? rental.manager}
         {link.platform_owner && link.platform_owner !== link.platform_name ? ` (${link.platform_owner})` : ''}.
         {' '}
         <span className="text-chocolate-700">{link.reason}</span>
@@ -53,15 +53,17 @@ export function ApartmentPrepPacket({
       <PacketTable rows={summary} />
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <button type="button" onClick={() => setOpen(true)} className="bolt-btn">
-          Start official application →
+          {link.label} →
         </button>
-        <span className="text-[11px] text-chocolate-600">Opens the closest verified link.</span>
+        <span className="text-[11px] text-chocolate-600">Review the destination and source details before continuing.</span>
       </div>
       <RedirectScreen
         open={open}
         onClose={() => setOpen(false)}
         href={link.url}
         fallbackHref={link.fallback_url}
+        actionLabel={link.label}
+        isSearch={link.kind === 'property-search'}
         destinationLabel={`${link.platform_name ?? rental.manager} · ${rental.property_name}`}
         packetSummary={summary}
       />
@@ -136,6 +138,7 @@ export function FinancePrepPacket({
         onClose={() => setOpen(false)}
         href={link.url}
         destinationLabel={dealer ? `${dealer.dealer_name}` : 'Dealer'}
+        actionLabel={link.label}
         packetSummary={summary}
       />
     </CandyCard>
@@ -202,6 +205,8 @@ export function WorkRentalPrepPacket({
         onClose={() => setOpen(false)}
         href={link.url}
         destinationLabel={rental.provider_name}
+        actionLabel={link.label}
+        isSearch={link.kind === 'provider-wide-search'}
         packetSummary={summary}
       />
     </CandyCard>

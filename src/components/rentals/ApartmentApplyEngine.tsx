@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { normalizePropertySource, workbookView } from '@/lib/places/property-view';
 import {
   Building2,
   ClipboardCheck,
@@ -25,7 +26,6 @@ import {
   WORKBOOK_CITY_OPTIONS,
   WORKBOOK_RANKED_LISTINGS,
   workbookMapUrl,
-  workbookPrimaryUrl,
   type WorkbookRankedListing,
 } from '@/lib/data/workbook-ranked-listings';
 import { resolveApartmentApplicationLink } from '@/lib/links/resolver';
@@ -349,10 +349,12 @@ export function ApartmentApplyEngine() {
                 setWorkbookQuery(e.target.value);
                 setWorkbookLimit(15);
               }}
+              aria-label="Search workbook properties"
               placeholder="Search property, city, county, vendor, platform"
               className="w-full rounded-md border border-gingerbread-300 bg-white px-3 py-2 text-sm"
             />
             <select
+              aria-label="Workbook city"
               value={workbookCity}
               onChange={(e) => {
                 setWorkbookCity(e.target.value);
@@ -444,9 +446,9 @@ function MiniStat({ label, value }: { label: string; value: string }) {
 }
 
 function WorkbookRow({ item }: { item: WorkbookRankedListing }) {
-  const href = workbookPrimaryUrl(item);
   const mapUrl = workbookMapUrl(item);
-  const sourceLinks = (item.source_links ?? []).filter((x) => urlLike(x.url));
+  const application = normalizePropertySource('Recorded application source', item.direct_links?.direct_platform_apply_url, 'application');
+  const sourceLinks = [...(application ? [application] : []), ...(workbookView(item).sources ?? [])].filter((source, index, all) => all.findIndex(entry => entry.url === source.url) === index);
   const strictByDifficulty = typeof item.screening_difficulty === 'number' && item.screening_difficulty >= 4;
   const precheckNote = item.screening_precheck_note ??
     (strictByDifficulty
@@ -482,30 +484,11 @@ function WorkbookRow({ item }: { item: WorkbookRankedListing }) {
           </p>
         )}
         <div className="mt-2 flex flex-wrap gap-2">
-          {href && (
-            <a href={href} target="_blank" rel="noopener noreferrer" className="bolt-btn text-xs">
-              Open direct listing
-            </a>
-          )}
-          {urlLike(item.direct_links?.direct_platform_apply_url) && (
-            <a href={item.direct_links!.direct_platform_apply_url!} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
-              Portal apply route
-            </a>
-          )}
+          <Link href={`/properties/${item.id}`} className="cinnamon-btn text-xs">Property view & next steps</Link>
           {mapUrl && (
             <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
               <MapPinned className="h-3.5 w-3.5" aria-hidden />
               Open map
-            </a>
-          )}
-          {urlLike(item.links.floor_plan_url) && (
-            <a href={item.links.floor_plan_url!} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
-              Floor plan source
-            </a>
-          )}
-          {urlLike(item.links.leasing_url) && (
-            <a href={item.links.leasing_url!} target="_blank" rel="noopener noreferrer" className="cinnamon-btn text-xs">
-              Leasing source
             </a>
           )}
         </div>
@@ -549,10 +532,6 @@ function workbookRent(item: WorkbookRankedListing) {
     return `${usd(item.rent_low)}-${usd(item.rent_high)}`;
   }
   return usd(item.rent_low ?? item.rent_high ?? undefined);
-}
-
-function urlLike(s?: string | null) {
-  return !!s && /^https?:\/\//i.test(s);
 }
 
 function formatDate(date: string) {

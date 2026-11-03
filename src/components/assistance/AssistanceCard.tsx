@@ -1,5 +1,6 @@
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
+import { assistancePhoneHref } from '@/lib/data/assistance';
 import type { AssistanceResource } from '@/types/assistance';
 
 const TOPIC_TONE: Record<AssistanceResource['topic'], 'ok' | 'info' | 'warn' | 'mute'> = {
@@ -27,8 +28,9 @@ const TOPIC_LABEL: Record<AssistanceResource['topic'], string> = {
 };
 
 export function AssistanceCard({ resource }: { resource: AssistanceResource }) {
+  const phoneHref = assistancePhoneHref(resource.application_phone);
   return (
-    <CandyCard className="h-full">
+    <CandyCard id={resource.id} className="h-full scroll-mt-28 [overflow-wrap:anywhere]">
       <div className="flex items-start justify-between gap-2">
         <div>
           <Gumdrop tone={TOPIC_TONE[resource.topic]}>{TOPIC_LABEL[resource.topic]}</Gumdrop>
@@ -37,8 +39,8 @@ export function AssistanceCard({ resource }: { resource: AssistanceResource }) {
           </h3>
           <p className="text-xs text-chocolate-700">{resource.agency}</p>
         </div>
-        {resource.reopen_date && (
-          <Gumdrop tone="ok" title="Reopen date">Opens {resource.reopen_date}</Gumdrop>
+        {resource.application_status === 'closed' && (
+          <Gumdrop tone="warn">Reported closed</Gumdrop>
         )}
       </div>
 
@@ -64,18 +66,21 @@ export function AssistanceCard({ resource }: { resource: AssistanceResource }) {
           rel="noopener noreferrer"
           className="bolt-btn text-sm"
         >
-          Open official program
+          {resource.application_status === 'closed' ? 'Check program status' : 'Open provider resource'}
         </a>
-        {resource.application_phone && (
-          <a href={`tel:${resource.application_phone.replace(/[^\d+]/g, '')}`} className="cinnamon-btn text-sm">
+        {phoneHref && (
+          <a href={phoneHref} className="cinnamon-btn text-sm">
             Call {resource.application_phone}
           </a>
         )}
       </div>
 
+      {resource.notes && <p className="mt-3 text-xs text-chocolate-700">{resource.notes}</p>}
       <p className="mt-2 text-[11px] text-chocolate-600">
-        Verified {resource.last_verified_at.slice(0, 10)} · {resource.languages?.join(', ') ?? 'en'}
+        Source date on record: {resource.last_verified_at.slice(0, 10)}
+        {resource.languages?.length ? ` · Languages listed: ${resource.languages.join(', ')}` : ''}
       </p>
+      <p className="mt-1 text-[11px] text-chocolate-600">Confirm current eligibility, availability and contact details with the provider.</p>
     </CandyCard>
   );
 }

@@ -22,7 +22,9 @@ export function Footer() {
 
           <FooterCol title="Discover">
             <FooterLink href="/places">California + Arizona guides</FooterLink>
-            <FooterLink href="/places#housing-resources">Housing + shelter support</FooterLink>
+            <FooterLink href="/help">Housing + shelter support</FooterLink>
+            <FooterLink href="/properties">Property views</FooterLink>
+            <FooterLink href="/resources">Housing & help source library</FooterLink>
             <FooterLink href="/rentals">Apartments & Townhomes</FooterLink>
             <FooterLink href="/operators">Operator index</FooterLink>
             <FooterLink href="/cars">Cars</FooterLink>

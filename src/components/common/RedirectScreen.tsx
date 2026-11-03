@@ -5,12 +5,8 @@ import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 
 /**
- * External-redirect screen — required by the L spec before sending users off
- * to any official application / finance / reservation page.
- *
- * Renders an inline modal-style card with the EXACT spec wording and a
- * clear "Open the official page" link. The user must click through; we
- * never auto-redirect.
+ * External destination preview. A source or search page is not necessarily
+ * an application. Users choose whether to open it; packets are never sent.
  */
 export function RedirectScreen({
   open,
@@ -18,6 +14,8 @@ export function RedirectScreen({
   href,
   fallbackHref,
   destinationLabel,
+  actionLabel = 'Open external page',
+  isSearch = false,
   packetSummary,
 }: {
   open: boolean;
@@ -25,6 +23,8 @@ export function RedirectScreen({
   href: string | null;
   fallbackHref?: string | null;
   destinationLabel: string;
+  actionLabel?: string;
+  isSearch?: boolean;
   packetSummary: { label: string; value: string }[];
 }) {
   if (!open) return null;
@@ -41,12 +41,10 @@ export function RedirectScreen({
           Heading to: {destinationLabel}
         </h2>
         <p className="mt-2 text-sm text-chocolate-800">
-          You are leaving Lightning McGreen Living and opening the official
-          application, finance, or reservation page. We prepared your
-          information below so you can copy, paste, and complete the
-          official process faster. Final approval, pricing, and availability
-          are controlled by the official property, dealer, lender, or rental
-          provider.
+          {isSearch ? 'This opens a search page, not a verified application. Review the results and confirm the property or provider.' : 'This opens the linked external page. Confirm the property or provider and the purpose of that page before continuing.'}
+          {' '}Your packet stays here unless you choose to copy and share it. Confirm the destination
+          before entering personal information, paying fees or uploading documents. The provider
+          controls its current prices, availability and application decisions.
         </p>
 
         {packetSummary.length > 0 && (
@@ -78,9 +76,9 @@ export function RedirectScreen({
                 rel="noopener noreferrer"
                 onClick={onClose}
                 className="bolt-btn text-sm"
-                title="DuckDuckGo !ducky redirects to the top result — the actual property listing page"
+                title={isSearch ? 'Open search results; no automatic property redirect' : 'Open the linked external page'}
               >
-                Open the actual listing page →
+                {actionLabel} →
               </a>
             ) : (
               <span className="text-xs text-peppermint-600">No verified link — call the property/dealer/provider.</span>
@@ -92,16 +90,16 @@ export function RedirectScreen({
                 rel="noopener noreferrer"
                 onClick={onClose}
                 className="cinnamon-btn text-sm"
-                title="If the direct redirect doesn't land on the property, browse the city search"
+                title="Open the separately supplied search or provider fallback"
               >
-                Browse all listings instead
+                Open fallback source
               </a>
             )}
           </div>
         </div>
 
         <p className="mt-3 text-[11px] text-chocolate-600">
-          We never auto-submit anything. You always click the official page yourself.
+          We never auto-submit your information. You choose whether to open an external page.
         </p>
       </CandyCard>
     </div>

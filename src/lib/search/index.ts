@@ -12,11 +12,12 @@
  */
 
 import { PLACES, stateSlug } from '@/lib/places';
+import { RESOURCE_SOURCES, RESOURCE_CATEGORIES } from '@/lib/resources';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
 import { REAL_VEHICLES, REAL_DEALERS } from '@/lib/data/real-vehicles';
 import { REAL_WORK_VEHICLES } from '@/lib/data/real-work-vehicles';
 import { ASSISTANCE_RESOURCES } from '@/lib/data/assistance';
-import { WORKBOOK_RANKED_LISTINGS, workbookPrimaryUrl } from '@/lib/data/workbook-ranked-listings';
+import { WORKBOOK_RANKED_LISTINGS } from '@/lib/data/workbook-ranked-listings';
 
 export type SearchKind =
   | 'rental-apartment'
@@ -26,7 +27,8 @@ export type SearchKind =
   | 'dealer'
   | 'work-vehicle'
   | 'assistance'
-  | 'place-guide';
+  | 'place-guide'
+  | 'resource-source';
 
 export interface SearchEntry {
   kind: SearchKind;
@@ -246,7 +248,7 @@ export function buildSearchIndex(): SearchEntry[] {
   }
 
   for (const w of WORKBOOK_RANKED_LISTINGS) {
-    const href = workbookPrimaryUrl(w) ? '/apartments/apply-engine' : '/apartments/apply-engine';
+    const href = `/properties/${w.id}`;
     const text = expandText(
       [
         w.property_name,
@@ -280,6 +282,10 @@ export function buildSearchIndex(): SearchEntry[] {
       subtitle: `${p.region} · ${p.state} · City guide`,
       href: `/places/${stateSlug(p.state)}/${p.slug}`, city: p.name,
       text, tokens: tokenize(text) });
+  }
+  for (const source of RESOURCE_SOURCES) {
+    const text = expandText([source.title, source.publisher, source.state, source.state === 'CA' ? 'California' : source.state === 'AZ' ? 'Arizona' : 'California Arizona', source.city ?? '', source.category, source.description].join(' '));
+    entries.push({ kind: 'resource-source', id: source.id, title: source.title, subtitle: `${source.state} · ${RESOURCE_CATEGORIES[source.category]} · Source directory`, href: `/resources/${source.id}`, city: source.city, county: source.county, text, tokens: tokenize(text) });
   }
   return entries;
 }
@@ -366,6 +372,7 @@ export const KIND_LABEL: Record<SearchKind, string> = {
   'work-vehicle': 'Work vehicle',
   assistance: 'Assistance',
   'place-guide': 'City guide',
+  'resource-source': 'Source library',
 };
 
 export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
@@ -377,4 +384,5 @@ export const KIND_TONE: Record<SearchKind, 'ok' | 'info' | 'warn' | 'mute'> = {
   'work-vehicle': 'ok',
   assistance: 'warn',
   'place-guide': 'info',
+  'resource-source': 'mute',
 };

@@ -1,22 +1,12 @@
 /**
- * Leasing-portal URL helpers — picks the closest *actual application portal*
- * URL we can verifiably build, given an operator's typical leasing platform.
- *
- * Per docs/COMPLIANCE_NOTES.md §1: we never fabricate property-specific URLs.
- * What we DO build are public SEARCH URLs on platforms that have them:
- *   - RentCafe has a real public city search at
- *     https://www.rentcafe.com/apartments-for-rent/us-california/{city}/
- *     that lists every active property in that city + a working "Apply" CTA.
- *   - Entrata / AppFolio / RealPage / Knock do NOT have a public city search;
- *     properties live on their own subdomains. For those we fall back to the
- *     operator's own search and label it clearly.
- *
- * The resolver and the prep packet then surface a label like
- *   "Application goes through: RentCafe (Yardi)"
- * so users know exactly which platform they're about to land on.
+ * Search and operator-site fallbacks when a specific application is unavailable.
+ * Search URLs do not prove a matching property, vacancy or application exists.
+ * Known property/unit application links take priority in the resolver.
  */
 
-import type { ApplicationPlatform } from '@/types';
+import type { ApplicationPlatform, RentalListing } from '@/types';
+
+type RentalState = RentalListing['state'];
 
 const SLUG_OVERRIDES: Record<string, string> = {
   // City names whose RentCafe slug differs from naive lower+hyphen
@@ -40,46 +30,31 @@ function citySlug(city: string): string {
   return SLUG_OVERRIDES[city] ?? city.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
 }
 
-/** Real public RentCafe city search. Lists every active leasable property + Apply CTA. */
-export function rentCafeCitySearchUrl(city: string): string {
-  return `https://www.rentcafe.com/apartments-for-rent/us-california/${citySlug(city)}/`;
+/** City search pattern checked against RentCafe's Phoenix and Los Angeles pages. */
+export function rentCafeCitySearchUrl(city: string, state: RentalState = 'CA'): string {
+  if (state !== 'CA' && state !== 'AZ') throw new Error('Unsupported rental state');
+  return `https://www.rentcafe.com/apartments-for-rent/${citySlug(city)}-${state.toLowerCase()}/`;
 }
 
-/**
- * Property-name-specific deep-link that LANDS ON THE ACTUAL LISTING PAGE.
- *
- * Uses DuckDuckGo's `!ducky` (lucky) bang, which redirects directly to the
- * top organic result instead of showing a search results page. So:
- *   `!ducky site:rentcafe.com "MODA at Northridge Walk" Northridge`
- * → user lands ON the property's listing page on rentcafe.com (where the
- *   floor plans, specs, and Apply CTA all live), not on a search SERP.
- *
- * Honest because:
- *   - Real public URL pattern (DDG documents `!ducky` officially).
- *   - We're not fabricating a property URL — DDG resolves it.
- *   - If the property doesn't exist on that domain the user lands on a
- *     real fallback (DDG search) which we ALSO surface as `fallback_url`.
- *   - No scraping, no protected APIs.
- *
- * Reference: https://duckduckgo.com/bangs (search "ducky")
- */
-export function propertyListingDirectUrl(args: { property: string; city: string; siteHost: string }): string {
-  const q = `!ducky site:${args.siteHost} "${args.property}" ${args.city}`;
-  return `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
+/** Legacy export name retained; the destination is an explicit search results page. */
+export function propertyListingDirectUrl(args: { property: string; city: string; siteHost: string; state?: RentalState }): string {
+  return listingSearchUrl(args.siteHost, `"${args.property}" ${args.city} ${args.state ?? 'CA'}`);
 }
 
-/**
- * Same pattern for VIN-specific dealer listings — lands on the dealer's
- * own VDP for that VIN if it's in their indexed inventory.
- */
+/** Search for a VIN on the named dealer domain; never an automatic redirect. */
 export function vehicleListingDirectUrl(args: { vin: string; siteHost: string; year?: number; make?: string; model?: string }): string {
-  const q = `!ducky site:${args.siteHost} ${args.vin}` + (args.year ? ` ${args.year}` : '') + (args.make ? ` ${args.make}` : '') + (args.model ? ` ${args.model}` : '');
-  return `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
+  return listingSearchUrl(args.siteHost, [args.vin, args.year, args.make, args.model].filter(Boolean).join(' '));
 }
 
-/** Same pattern for work-vehicle branch-specific reservations. */
+/** Search for a branch/class; search results are not reservation links. */
 export function workVehicleDirectUrl(args: { provider: string; city: string; vehicle_type: string; siteHost: string }): string {
-  const q = `!ducky site:${args.siteHost} ${args.provider} ${args.city} ${args.vehicle_type}`;
+  return listingSearchUrl(args.siteHost, `${args.provider} ${args.city} ${args.vehicle_type}`);
+}
+
+function listingSearchUrl(siteHost: string, terms: string): string {
+  if (!/^[a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,}$/i.test(siteHost)) throw new Error('Invalid search domain');
+  // Remove bang syntax from catalog text so a name cannot turn a search into a redirect.
+  const q = `site:${siteHost} ${terms.replace(/!/g, '')}`;
   return `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
 }
 
@@ -88,40 +63,37 @@ export interface LeasingPortalInfo {
   fallback_url?: string;
   platform_name: string;
   platform_owner: string;
-  type: 'leasing-portal-public-search' | 'leasing-portal-operator-search' | 'operator-marketing-site' | 'direct-listing-redirect';
+  type: 'leasing-portal-public-search' | 'leasing-portal-operator-search' | 'operator-marketing-site' | 'property-search';
   notes: string;
 }
 
 /**
- * Pick the closest actual leasing-portal URL given the operator + platform + city.
- *
- * Priority:
- *   1. RentCafe-hosted properties → real RentCafe public city search
- *   2. In-house portals (Equity / Essex / AvalonBay / Camden / Irvine Co / UDR /
- *      Prime / Decron) → operator's own city search IS the leasing portal
- *   3. Entrata / AppFolio / RealPage / Knock / On-Site / G5 → operator search
+ * Offer a state-specific search or the supplied operator URL when no exact
+ * application link is available. Provider metadata describes the source record;
+ * it does not verify where a provider currently hosts an application.
  */
 export function pickLeasingPortal(args: {
   manager: string;
   platform: ApplicationPlatform;
   city: string;
+  state?: RentalState;
   operatorMarketingUrl: string;
   property_name?: string;
 }): LeasingPortalInfo {
-  const { manager, platform, city, operatorMarketingUrl, property_name } = args;
+  const { manager, platform, city, state = 'CA', operatorMarketingUrl, property_name } = args;
   const m = manager.toLowerCase();
 
-  // RentCafe is the actual public leasing portal for these third-party-platform operators
+  // Search the platform named in the source record.
   if (platform === 'RentCafe') {
-    const fallback = rentCafeCitySearchUrl(city);
+    const fallback = rentCafeCitySearchUrl(city, state);
     if (property_name) {
       return {
-        url: propertyListingDirectUrl({ property: property_name, city, siteHost: 'rentcafe.com' }),
+        url: propertyListingDirectUrl({ property: property_name, city, state, siteHost: 'rentcafe.com' }),
         fallback_url: fallback,
         platform_name: 'RentCafe',
         platform_owner: 'Yardi Systems',
-        type: 'direct-listing-redirect',
-        notes: `Lands directly on the ${property_name} listing page on RentCafe (Yardi) where the floor plans, specs, and Apply CTA live. Falls back to the RentCafe ${city} city search if the property isn't yet indexed.`,
+        type: 'property-search',
+        notes: `Searches the web for ${property_name} in ${city}, ${state} on RentCafe. This is a search, not a verified listing or application. The separate fallback opens RentCafe's city search.`,
       };
     }
     return {
@@ -129,31 +101,31 @@ export function pickLeasingPortal(args: {
       platform_name: 'RentCafe',
       platform_owner: 'Yardi Systems',
       type: 'leasing-portal-public-search',
-      notes: `RentCafe (Yardi) — public city search showing every active ${manager} listing in ${city}.`,
+      notes: `RentCafe city search for ${city}, ${state}. Confirm the property and any application link with the provider; results do not establish availability.`,
     };
   }
 
-  // In-house portals: their main site IS the leasing portal — try direct listing first
+  // Known operator domains allow a property-name search with a separate site fallback.
   if (
     /equity\s*residential|essex|avalonbay|camden|irvine\s*company|udr|prime\s*residential|decron/i.test(m)
   ) {
     const host = inHouseHostFor(manager);
     if (property_name && host) {
       return {
-        url: propertyListingDirectUrl({ property: property_name, city, siteHost: host }),
+        url: propertyListingDirectUrl({ property: property_name, city, state, siteHost: host }),
         fallback_url: operatorMarketingUrl,
         platform_name: `${manager} (in-house portal)`,
         platform_owner: manager,
-        type: 'direct-listing-redirect',
-        notes: `Lands directly on the ${property_name} page on ${host} where the floor plans, specs, and Apply CTA live. Falls back to the operator's city search.`,
+        type: 'property-search',
+        notes: `Searches the web for ${property_name} in ${city}, ${state} on ${host}. Review the results and confirm the property before using an application link. The separate fallback opens the supplied operator website.`,
       };
     }
     return {
       url: operatorMarketingUrl,
       platform_name: `${manager} (in-house portal)`,
       platform_owner: manager,
-      type: 'leasing-portal-operator-search',
-      notes: `${manager} runs its own leasing portal. The link goes to their city / property search where the apply CTA lives.`,
+      type: 'operator-marketing-site',
+      notes: `Opens the supplied ${manager} website. Find the property and confirm its current application route with the operator.`,
     };
   }
 
@@ -164,7 +136,7 @@ export function pickLeasingPortal(args: {
       platform_name: 'Entrata',
       platform_owner: 'Entrata, Inc.',
       type: 'operator-marketing-site',
-      notes: 'Entrata does not publish a city search. Use the operator site to pick a property — clicking Apply lands on its Entrata-hosted portal.',
+      notes: 'The source record names Entrata. Open the supplied operator site and confirm the property and its current application route.',
     };
   }
   if (platform === 'AppFolio') {
@@ -173,7 +145,7 @@ export function pickLeasingPortal(args: {
       platform_name: 'AppFolio Online Portal',
       platform_owner: 'AppFolio',
       type: 'operator-marketing-site',
-      notes: 'AppFolio properties live on their own subdomains. Use the operator site to pick a property — clicking Apply lands on its AppFolio Online Portal.',
+      notes: 'The source record names AppFolio. Open the supplied operator site and confirm the property and its current application route.',
     };
   }
   if (platform === 'RealPage') {
@@ -182,7 +154,7 @@ export function pickLeasingPortal(args: {
       platform_name: 'RealPage / OneSite / Knock',
       platform_owner: 'RealPage',
       type: 'operator-marketing-site',
-      notes: 'RealPage flows live on the operator site. Pick a property and click Apply.',
+      notes: 'The source record names RealPage. Confirm the property and its current application route with the operator.',
     };
   }
   if (platform === 'Knock') {
@@ -191,7 +163,7 @@ export function pickLeasingPortal(args: {
       platform_name: 'Knock CRM',
       platform_owner: 'Knock (RealPage)',
       type: 'operator-marketing-site',
-      notes: 'Knock handles tour scheduling and chat; the application happens on the operator site after Knock hands off.',
+      notes: 'The source record names Knock. Confirm with the operator whether the linked page handles tours, contact or an application.',
     };
   }
   if (platform === 'On-Site') {
@@ -200,7 +172,7 @@ export function pickLeasingPortal(args: {
       platform_name: 'On-Site',
       platform_owner: 'On-Site.com',
       type: 'operator-marketing-site',
-      notes: 'On-Site applications are property-specific. Use the official property page or exact unit link when present.',
+      notes: 'The source record names On-Site. Confirm the property and its current application route with the operator.',
     };
   }
   if (platform === 'G5/Knock') {
@@ -209,7 +181,7 @@ export function pickLeasingPortal(args: {
       platform_name: 'G5 / Knock',
       platform_owner: 'G5 Marketing Cloud + Knock',
       type: 'operator-marketing-site',
-      notes: 'G5 provides floorplan inventory and unit apply CTAs; Knock may handle tour/chat handoff on the property site.',
+      notes: 'The source record names G5 / Knock. Confirm with the operator whether the linked page handles tours, contact or an application.',
     };
   }
 
@@ -218,11 +190,11 @@ export function pickLeasingPortal(args: {
     platform_name: 'Operator search',
     platform_owner: manager,
     type: 'operator-marketing-site',
-    notes: 'Application platform not yet identified — use the operator site to find the property and click Apply.',
+    notes: 'Application platform not identified in the source record. Open the supplied operator website and confirm the property and any application route.',
   };
 }
 
-/** Map well-known operators → their public domain. Used for direct-listing redirect. */
+/** Map well-known operators to their public domain for an explicit web search. */
 function inHouseHostFor(manager: string): string | undefined {
   const m = manager.toLowerCase();
   if (m.includes('equity')) return 'equityapartments.com';

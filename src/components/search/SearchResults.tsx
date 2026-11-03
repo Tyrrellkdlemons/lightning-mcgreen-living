@@ -7,7 +7,7 @@ import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
 import { Pagination, paginate } from '@/components/common/Pagination';
 
-const ALL_KINDS: SearchKind[] = ['rental-apartment', 'rental-townhouse', 'rental-workbook', 'vehicle', 'dealer', 'work-vehicle', 'assistance', 'place-guide'];
+const ALL_KINDS: SearchKind[] = ['rental-apartment', 'rental-townhouse', 'rental-workbook', 'vehicle', 'dealer', 'work-vehicle', 'assistance', 'place-guide', 'resource-source'];
 
 export function SearchResults({ initialQuery, initialKind }: { initialQuery: string; initialKind?: string }) {
   const [q, setQ] = useState(initialQuery);
@@ -31,7 +31,7 @@ export function SearchResults({ initialQuery, initialKind }: { initialQuery: str
           Search Lightning McGreen Living
         </h1>
         <p className="mt-1 max-w-2xl text-sm text-chocolate-700">
-          One search across city guides, rentals, cars, dealers, work vehicles, and assistance resources. Smart
+          One search across city guides, rentals, cars, dealers, work vehicles, assistance resources, and the source library. Smart
           synonyms — try &ldquo;LA&rdquo;, &ldquo;OC townhomes&rdquo;, &ldquo;cargo van burbank&rdquo;, &ldquo;greystar&rdquo;, &ldquo;la rent relief&rdquo;.
         </p>
       </header>

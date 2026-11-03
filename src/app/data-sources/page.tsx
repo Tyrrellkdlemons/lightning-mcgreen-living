@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { getProviderRegistry } from '@/lib/providers/registry';
 import { CandyCard } from '@/components/ui/CandyCard';
 import { Gumdrop } from '@/components/ui/Gumdrop';
@@ -27,13 +28,13 @@ export default function DataSourcesPage() {
       <header className="mt-6">
         <h1 className="font-display text-3xl font-extrabold text-chocolate-900">Data sources</h1>
         <p className="mt-1 max-w-3xl text-sm text-chocolate-700">
-          Every connector below is documented in <code>docs/DATA_SOURCES.md</code> and{' '}
-          <code>docs/API_CONNECTOR_STATUS.md</code>. Stubs throw a clear error
-          rather than silently scraping.
+          See which data connections are available and which need provider access.
+          A configured connection is separate from a current availability check.
         </p>
       </header>
 
-      <Section title="Live · free · no key required" items={live} />
+      <div className="mt-6 rounded-2xl border border-gingerbread-300 p-5"><h2 className="font-display text-xl font-extrabold">Looking for housing or practical help?</h2><p className="mt-2 text-sm">The source library lists individual providers and records how each was found.</p><Link href="/resources" className="mt-3 inline-block font-bold underline">Open the housing & help source library →</Link></div>
+      <Section title="Available · free · no key required" items={live} />
       <Section title="Env-key gated (works without; key adds features)" items={gated} />
       <Section title="Partner / paid stubs (require contractual access)" items={partner} />
     </>

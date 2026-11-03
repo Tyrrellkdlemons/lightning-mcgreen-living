@@ -12,6 +12,8 @@
  * what the last `npm run check:direct-listings` probe found.
  */
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import { normalizePropertySource } from '@/lib/places/property-view';
 import {
   ArrowDown,
   ArrowUp,
@@ -54,7 +56,7 @@ const COLS: { key: SortKey | 'name' | 'amenities' | 'links'; label: string; sort
   { key: 'amenities', label: 'Amenities' },
   { key: 'safety_score', label: 'Safety', sortable: true, align: 'right' },
   { key: 'screening_difficulty', label: 'Screen', sortable: true, align: 'right' },
-  { key: 'links', label: 'Apply / Map', align: 'left' },
+  { key: 'links', label: 'Source / Map', align: 'left' },
 ];
 
 function tierTone(tier?: string) {
@@ -236,7 +238,8 @@ export function WorkbookTable({ compact, onSelect, initialLimit = 25 }: Workbook
             {visible.map((x: WorkbookFullListing, idx) => {
               const override = getDirectListingOverride(x.rank);
               const useOverride = isUsableOverride(override);
-              const url = useOverride && override ? override.direct_url : pickPrimaryLink(x);
+              const destination = normalizePropertySource(useOverride ? 'Open property page' : 'Open recorded source', useOverride && override ? override.direct_url : pickPrimaryLink(x), useOverride ? 'property' : 'source');
+              const url = destination?.url;
               const tone = override ? statusTone(override.status) : null;
               const stripeBg = idx % 2 === 0 ? 'bg-white' : 'bg-frosting-50';
               return (
@@ -261,7 +264,7 @@ export function WorkbookTable({ compact, onSelect, initialLimit = 25 }: Workbook
                   </td>
                   <td className="border-b border-gingerbread-100 px-3 py-2">
                     <div className="flex flex-wrap items-center gap-1">
-                      <span className="font-semibold text-chocolate-900">{x.property_name}</span>
+                      <Link href={`/properties/${x.id}`} className="font-semibold text-chocolate-900 underline decoration-lightning-500 underline-offset-2">{x.property_name}</Link>
                       {tone && (
                         <span
                           title={override?.status_text || override?.status || ''}
@@ -316,7 +319,7 @@ export function WorkbookTable({ compact, onSelect, initialLimit = 25 }: Workbook
                           }`}
                           title={useOverride ? 'Direct property page' : 'Category / source page'}
                         >
-                          {useOverride ? 'Apply (direct)' : 'Apply'} <ExternalLink className="h-3 w-3" />
+                          {destination?.label} <ExternalLink className="h-3 w-3" />
                         </a>
                       )}
                       <a

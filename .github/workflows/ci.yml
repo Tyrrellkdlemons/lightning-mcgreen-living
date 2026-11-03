@@ -29,6 +29,11 @@ jobs:
           node scripts/test-compliance.mjs
           node scripts/test-static-scan.mjs
           node scripts/test-cms.mjs
+          node scripts/test-property-views.mjs
+          node scripts/test-assistance.mjs
+          node scripts/test-streetview.mjs
+          node scripts/test-resource-catalog.mjs
+          node scripts/test-link-routing.mjs
           node --test scripts/test-photos.mjs
 
       - name: Lint

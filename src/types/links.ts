@@ -17,6 +17,7 @@ export type ApartmentLinkType =
   | 'exact-unit-application'
   | 'exact-floorplan-application'
   | 'property-wide-application'
+  | 'property-search'
   | 'leasing-office-contact-only'
   | 'not-verified';
 
@@ -120,6 +121,7 @@ export const APARTMENT_LINK_LABEL: Record<ApartmentLinkType, string> = {
   'exact-unit-application': 'Exact unit application',
   'exact-floorplan-application': 'Exact floorplan application',
   'property-wide-application': 'Property-wide application',
+  'property-search': 'Search listings (not an application)',
   'leasing-office-contact-only': 'Leasing office contact only',
   'not-verified': 'Not verified',
 };
