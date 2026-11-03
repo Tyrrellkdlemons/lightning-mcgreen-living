@@ -79,11 +79,12 @@ export function MapPanel({
       if (!document.head.querySelector('link[data-maplibre]')) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/maplibre-gl@4.1.0/dist/maplibre-gl.css';
+        link.href = 'https://unpkg.com/maplibre-gl@6.16.0/dist/maplibre-gl.css';
         link.dataset.maplibre = '1';
         document.head.appendChild(link);
       }
 
+      maplibre.setWorkerUrl(new URL('maplibre-gl/dist/maplibre-gl-worker.mjs', import.meta.url).toString());
       const map = new maplibre.Map({
         container: ref.current,
         style: selected.style as any,

@@ -6,14 +6,18 @@ import { Gumdrop } from '@/components/ui/Gumdrop';
 import { SourcePanel } from '@/components/common/SourcePanel';
 import { DealerInventory } from '@/components/cars/DealerInventory';
 
-interface Props { params: { id: string } }
+interface Props { params: Promise<{ id: string }> }
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata({ params: paramsPromise }: Props): Promise<Metadata> {
+  const params = await paramsPromise;
+
   const d = REAL_DEALERS.find((x) => x.id === params.id);
   return { title: d?.dealer_name ?? 'Dealer' };
 }
 
-export default function DealerDetail({ params }: Props) {
+export default async function DealerDetail({ params: paramsPromise }: Props) {
+  const params = await paramsPromise;
+
   const dealer = REAL_DEALERS.find((x) => x.id === params.id);
   if (!dealer) notFound();
   const inv = REAL_VEHICLES.filter((v) => v.dealer_id === dealer.id);

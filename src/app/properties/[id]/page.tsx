@@ -11,13 +11,17 @@ import { PropertyView } from '@/components/places/PropertyView';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return WORKBOOK_RANKED_LISTINGS.map((listing) => ({ id: listing.id })); }
-export function generateMetadata({ params }: { params: { id: string } }): Metadata {
+export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const params = await paramsPromise;
+
   const listing = WORKBOOK_RANKED_LISTINGS.find((item) => item.id === params.id);
   if (!listing) return {};
   return { title: `${listing.property_name} — property research`, description: `Recorded research for ${listing.property_name} in ${listing.city}: location context, original sources and complete workbook details. Confirm current availability with the property.`, alternates: { canonical: propertyPath(listing.id) } };
 }
 
-export default function PropertyPage({ params }: { params: { id: string } }) {
+export default async function PropertyPage({ params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
+
   const listing = WORKBOOK_RANKED_LISTINGS.find((item) => item.id === params.id);
   const full = WORKBOOK_FULL_LISTINGS.find((item) => item.id === params.id);
   if (!listing || !full) notFound();

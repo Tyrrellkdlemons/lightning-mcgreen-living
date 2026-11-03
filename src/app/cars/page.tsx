@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   description: 'Find California and Arizona cars and dealers that fit your real budget — race-day theme, honest payment math.',
 };
 
-export default function CarsPage({ searchParams }: { searchParams: { state?: string; city?: string } }) {
+export default async function CarsPage({ searchParams: searchParamsPromise }: { searchParams: Promise<{ state?: string; city?: string }> }) {
+  const searchParams = await searchParamsPromise;
+
   const state = searchParams.state === 'CA' || searchParams.state === 'AZ' ? searchParams.state : undefined;
   const city = typeof searchParams.city === 'string' ? searchParams.city.trim().slice(0, 100) : undefined;
   return (

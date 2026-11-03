@@ -1,9 +1,9 @@
 export type TourEvidence = {provider: 'youtube' | 'matterport'; url: string; title: string; officialSourceUrl: string; sourcePublishedAt?: string; embedStatus: 'supported-public-player' | 'link-only'};
 export type PropertyEvidenceRecord = {
  propertyIds: string[]; name: string; state: string; address?: string; officialUrl: string; galleryUrl: string;
- availability: {dataSourceUrl?: string; responseDate?: string | null; sourceUrl: string; observedAt: string; status: 'unit-observations' | 'plan-counts' | 'unconfirmed'; summary: string; limitations: string | string[]; sampleOnly?: boolean;
- units?: {unit: string; plan: string; beds?: string | number; baths?: string | number; sqft?: string | number; availableLabel: string; availableDate?: string; rent?: string | number; rentBasis?: string}[];
- plans?: {plan: string; beds?: string | number; baths?: string | number; sqft?: string | number; availableUnits: number; startingRent?: string | number; rentBasis?: string}[]};
+ availability: {dataSourceUrl?: string; responseDate?: string | null; sourceUrl: string; observedAt: string; status: 'unit-observations' | 'plan-counts' | 'plan-observations' | 'unconfirmed'; summary: string; limitations: string | string[]; sampleOnly?: boolean;
+ units?: {unit: string; plan: string; beds?: string | number; baths?: string | number; sqft?: string | number; availableLabel: string; availableDate?: string; sourceAvailableDate?: string; labelMethod?: string; rent?: string | number; rentBasis?: string}[];
+ plans?: {plan: string; beds?: string | number; baths?: string | number; sqft?: string | number; availableUnits?: number; availableLabel?: string; sourceUrl?: string; startingRent?: string | number; rentBasis?: string}[]};
  photos?: {thumbnailUrl?: string; url: string; title: string; sourceUrl: string; observedAt: string; scope: string}[];
  tours: TourEvidence[]; photoReuse: {status: string; termsUrl?: string; note: string};
 };

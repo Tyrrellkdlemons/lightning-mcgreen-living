@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   description: 'Explore recorded rental research, compare costs and prepare questions for property providers.',
 };
 
-export default function RentalsPage({ searchParams }: { searchParams: { state?: string; city?: string } }) {
+export default async function RentalsPage({ searchParams: searchParamsPromise }: { searchParams: Promise<{ state?: string; city?: string }> }) {
+  const searchParams = await searchParamsPromise;
+
   const state = searchParams.state === 'CA' || searchParams.state === 'AZ' ? searchParams.state : undefined;
   const city = typeof searchParams.city === 'string' ? searchParams.city.trim().slice(0, 100) : undefined;
   const total = WORKBOOK_FULL_LISTINGS.length;

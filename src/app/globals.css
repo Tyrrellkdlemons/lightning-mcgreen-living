@@ -932,3 +932,9 @@ h2.section-heading { display:block; font-size:clamp(26px,3vw,34px); font-weight:
   .rental-filter-panel { animation:none!important; }
   .rental-discovery *,.app-bottom-nav * { transition:none!important; }
 }
+
+/* Housing discovery: responsive controls, readable cards, optional motion. */
+.home-control{display:block;width:100%;min-width:0;min-height:48px;margin-top:.5rem;border:1px solid #c8b9a7;border-radius:.75rem;padding:.7rem .85rem;background:#fff;color:#291c17;font-size:16px;font-weight:400}.home-control:focus-visible{outline:3px solid #567a1b;outline-offset:3px}
+.home-result,.city-choice{transition:transform 180ms ease,box-shadow 180ms ease}
+@media(hover:hover){.home-result:hover,.city-choice:hover{transform:translateY(-3px);box-shadow:0 10px 24px #291c1712}}
+@media(prefers-reduced-motion:reduce){.home-result,.city-choice{transition:none}.home-result:hover,.city-choice:hover{transform:none}}

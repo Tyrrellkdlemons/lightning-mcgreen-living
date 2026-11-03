@@ -311,39 +311,34 @@
         "note": "Name, city and street address match the existing canonical record; this evidence is community-level."
       },
       "availability": {
+        "status": "plan-observations",
         "sourceUrl": "https://www.unionsouthbay.com/floorplans",
-        "observedAt": "2026-11-03T14:41:04.080356Z",
-        "status": "plan-counts",
-        "summary": "A direct retrieval listed two S1 studios, one A1 one-bedroom and two B1A two-bedroom homes as available. The page displayed $2,295, $2,675 and $3,300 respectively.",
-        "limitations": "Selected floor-plan counts only; no unit numbers or move-in dates were confirmed. The source did not establish an all-in monthly cost for these figures. S3 appeared wait-listed in the direct response although an earlier indexed response showed availability.",
+        "observedAt": "2026-11-03T22:40:27.633083Z",
+        "summary": "The official B1A and A2SH floor-plan pages explicitly advertised Available Now. Exact unit numbers and counts were not published in the inspected cards.",
         "sampleOnly": true,
+        "limitations": [
+          "Plan advertisements do not identify an exact vacant unit. Confirm total fees, lease term and current status directly."
+        ],
         "plans": [
-          {
-            "plan": "S1",
-            "beds": 0,
-            "baths": 1,
-            "sqft": 522,
-            "availableUnits": 2,
-            "startingRent": 2295,
-            "rentBasis": "Displayed plan rent; mandatory fees not established."
-          },
-          {
-            "plan": "A1",
-            "beds": 1,
-            "baths": 1,
-            "sqft": 666,
-            "availableUnits": 1,
-            "startingRent": 2675,
-            "rentBasis": "Displayed plan rent; mandatory fees not established."
-          },
           {
             "plan": "B1A",
             "beds": 2,
             "baths": 2,
             "sqft": 1125,
-            "availableUnits": 2,
-            "startingRent": 3300,
-            "rentBasis": "Displayed plan rent; mandatory fees not established."
+            "startingRent": "$3,300",
+            "availableLabel": "Available Now",
+            "rentBasis": "Displayed monthly rent; additional taxes/fees and lease conditions may apply.",
+            "sourceUrl": "https://www.unionsouthbay.com/floorplan/B1A"
+          },
+          {
+            "plan": "A2SH",
+            "beds": 1,
+            "baths": 1,
+            "sqft": 737,
+            "startingRent": "$2,695",
+            "availableLabel": "Available Now",
+            "rentBasis": "Displayed monthly rent; additional taxes/fees and lease conditions may apply.",
+            "sourceUrl": "https://www.unionsouthbay.com/floorplan/A2SH"
           }
         ]
       },
@@ -364,7 +359,46 @@
         "status": "permission-required",
         "termsUrl": "https://www.unionsouthbay.com/terms",
         "note": "The site terms provide personal viewing rights and restrict copying and public display. No separate permission to republish photographs was obtained."
-      }
+      },
+      "availabilityHistory": [
+        {
+          "sourceUrl": "https://www.unionsouthbay.com/floorplans",
+          "observedAt": "2026-11-03T14:41:04.080356Z",
+          "status": "plan-counts",
+          "summary": "A direct retrieval listed two S1 studios, one A1 one-bedroom and two B1A two-bedroom homes as available. The page displayed $2,295, $2,675 and $3,300 respectively.",
+          "limitations": "Selected floor-plan counts only; no unit numbers or move-in dates were confirmed. The source did not establish an all-in monthly cost for these figures. S3 appeared wait-listed in the direct response although an earlier indexed response showed availability.",
+          "sampleOnly": true,
+          "plans": [
+            {
+              "plan": "S1",
+              "beds": 0,
+              "baths": 1,
+              "sqft": 522,
+              "availableUnits": 2,
+              "startingRent": 2295,
+              "rentBasis": "Displayed plan rent; mandatory fees not established."
+            },
+            {
+              "plan": "A1",
+              "beds": 1,
+              "baths": 1,
+              "sqft": 666,
+              "availableUnits": 1,
+              "startingRent": 2675,
+              "rentBasis": "Displayed plan rent; mandatory fees not established."
+            },
+            {
+              "plan": "B1A",
+              "beds": 2,
+              "baths": 2,
+              "sqft": 1125,
+              "availableUnits": 2,
+              "startingRent": 3300,
+              "rentBasis": "Displayed plan rent; mandatory fees not established."
+            }
+          ]
+        }
+      ]
     },
     {
       "propertyIds": [
@@ -732,39 +766,56 @@
       "officialUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arboretum-at-south-mountain/",
       "galleryUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arboretum-at-south-mountain/photos/",
       "availability": {
-        "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arboretum-at-south-mountain/floor-plans",
-        "observedAt": "2026-11-03T21:52:15.952725Z",
         "status": "unit-observations",
-        "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
-        "limitations": [
-          "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
-          "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
-        ],
-        "sampleOnly": true,
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arboretum-at-south-mountain/floor-plans",
         "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/2215/floor_plans/",
-        "responseDate": "Tue, 03 Nov 2026 21:52:16 GMT",
+        "observedAt": "2026-11-03T22:40:28.954503Z",
+        "responseDate": "Tue, 03 Nov 2026 22:40:29 GMT",
+        "summary": "Fresh public operator data includes 10 marketed units matching its Now display rule. The selected sample below also retains future-date advertisements.",
+        "sampleOnly": true,
+        "limitations": [
+          "Now is reproduced from the operator public JavaScript rule, not independently confirmed physical vacancy.",
+          "Original past available dates are retained; they were not replaced by today.",
+          "PMS synchronization timestamps are provider claims, not independent proof of unit readiness.",
+          "Samples are not a complete inventory list; contact leasing for terms and immediate availability.",
+          "Now is derived from the operator public display rule and active marketing flags. It is not physical readiness or vacant-possession confirmation. Original source dates may precede observation."
+        ],
         "units": [
-          {
-            "unit": "3041",
-            "plan": "B3",
-            "beds": 2.0,
-            "baths": 2.0,
-            "sqft": 1079,
-            "availableLabel": "Advertised 2026-11-03",
-            "availableDate": "2026-11-03",
-            "rent": "$1,613",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
-          },
           {
             "unit": "3072",
             "plan": "A3",
             "beds": 1.0,
             "baths": 1.0,
             "sqft": 826,
-            "availableLabel": "Advertised 2026-11-03",
-            "availableDate": "2026-11-03",
-            "rent": "$1,344",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-03",
+            "rent": "$1,344"
+          },
+          {
+            "unit": "3041",
+            "plan": "B3",
+            "beds": 2.0,
+            "baths": 2.0,
+            "sqft": 1079,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-03",
+            "rent": "$1,613"
+          },
+          {
+            "unit": "3003",
+            "plan": "A1",
+            "beds": 1.0,
+            "baths": 1.0,
+            "sqft": 656,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-08-23",
+            "rent": "$1,274"
           },
           {
             "unit": "3033",
@@ -773,9 +824,24 @@
             "baths": 2.0,
             "sqft": 962,
             "availableLabel": "Advertised 2026-11-07",
-            "availableDate": "2026-11-07",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-07",
             "rent": "$1,518",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "availableDate": "2026-11-07"
+          },
+          {
+            "unit": "3069",
+            "plan": "C1",
+            "beds": 3.0,
+            "baths": 2.0,
+            "sqft": 1135,
+            "availableLabel": "Advertised 2026-11-17",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-17",
+            "rent": "$1,880",
+            "availableDate": "2026-11-17"
           }
         ]
       },
@@ -799,7 +865,57 @@
       "photoReuse": {
         "status": "unknown",
         "note": "Original gallery references remain on the publisher’s host. Images have not been individually visually reviewed; no exact-unit condition or capture date is established."
-      }
+      },
+      "availabilityHistory": [
+        {
+          "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arboretum-at-south-mountain/floor-plans",
+          "observedAt": "2026-11-03T21:52:15.952725Z",
+          "status": "unit-observations",
+          "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
+          "limitations": [
+            "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
+            "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
+          ],
+          "sampleOnly": true,
+          "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/2215/floor_plans/",
+          "responseDate": "Tue, 03 Nov 2026 21:52:16 GMT",
+          "units": [
+            {
+              "unit": "3041",
+              "plan": "B3",
+              "beds": 2.0,
+              "baths": 2.0,
+              "sqft": 1079,
+              "availableLabel": "Advertised 2026-11-03",
+              "availableDate": "2026-11-03",
+              "rent": "$1,613",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "3072",
+              "plan": "A3",
+              "beds": 1.0,
+              "baths": 1.0,
+              "sqft": 826,
+              "availableLabel": "Advertised 2026-11-03",
+              "availableDate": "2026-11-03",
+              "rent": "$1,344",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "3033",
+              "plan": "B1",
+              "beds": 2.0,
+              "baths": 2.0,
+              "sqft": 962,
+              "availableLabel": "Advertised 2026-11-07",
+              "availableDate": "2026-11-07",
+              "rent": "$1,518",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            }
+          ]
+        }
+      ]
     },
     {
       "propertyIds": [
@@ -811,18 +927,57 @@
       "officialUrl": "https://www.mark-taylor.com/apartments/az/chandler/arista-at-ocotillo/",
       "galleryUrl": "https://www.mark-taylor.com/apartments/az/chandler/arista-at-ocotillo/photos/",
       "availability": {
-        "sourceUrl": "https://www.mark-taylor.com/apartments/az/chandler/arista-at-ocotillo/floor-plans",
-        "observedAt": "2026-11-03T21:52:16.802754Z",
         "status": "unit-observations",
-        "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
-        "limitations": [
-          "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
-          "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
-        ],
-        "sampleOnly": true,
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/chandler/arista-at-ocotillo/floor-plans",
         "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/288/floor_plans/",
-        "responseDate": "Tue, 03 Nov 2026 21:52:17 GMT",
+        "observedAt": "2026-11-03T22:40:30.311744Z",
+        "responseDate": "Tue, 03 Nov 2026 22:40:31 GMT",
+        "summary": "Fresh public operator data includes 3 marketed units matching its Now display rule. The selected sample below also retains future-date advertisements.",
+        "sampleOnly": true,
+        "limitations": [
+          "Now is reproduced from the operator public JavaScript rule, not independently confirmed physical vacancy.",
+          "Original past available dates are retained; they were not replaced by today.",
+          "PMS synchronization timestamps are provider claims, not independent proof of unit readiness.",
+          "Samples are not a complete inventory list; contact leasing for terms and immediate availability.",
+          "Now is derived from the operator public display rule and active marketing flags. It is not physical readiness or vacant-possession confirmation. Original source dates may precede observation."
+        ],
         "units": [
+          {
+            "unit": "231",
+            "plan": "A6",
+            "beds": 1.0,
+            "baths": 1.0,
+            "sqft": 778,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-09-13",
+            "rent": "$1,849"
+          },
+          {
+            "unit": "273",
+            "plan": "A6",
+            "beds": 1.0,
+            "baths": 1.0,
+            "sqft": 778,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-09-28",
+            "rent": "$1,869"
+          },
+          {
+            "unit": "425",
+            "plan": "B5",
+            "beds": 2.0,
+            "baths": 2.0,
+            "sqft": 1178,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-09-06",
+            "rent": "$2,349"
+          },
           {
             "unit": "148",
             "plan": "B5",
@@ -830,9 +985,11 @@
             "baths": 2.0,
             "sqft": 1178,
             "availableLabel": "Advertised 2026-11-08",
-            "availableDate": "2026-11-08",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-08",
             "rent": "$2,439",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "availableDate": "2026-11-08"
           },
           {
             "unit": "151",
@@ -841,20 +998,11 @@
             "baths": 1.0,
             "sqft": 538,
             "availableLabel": "Advertised 2026-12-11",
-            "availableDate": "2026-12-11",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-12-11",
             "rent": "$1,519",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
-          },
-          {
-            "unit": "237",
-            "plan": "A6",
-            "beds": 1.0,
-            "baths": 1.0,
-            "sqft": 778,
-            "availableLabel": "Advertised 2026-12-15",
-            "availableDate": "2026-12-15",
-            "rent": "$1,869",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "availableDate": "2026-12-11"
           }
         ]
       },
@@ -893,7 +1041,57 @@
       "photoReuse": {
         "status": "unknown",
         "note": "Original gallery references remain on the publisher’s host. Images have not been individually visually reviewed; no exact-unit condition or capture date is established."
-      }
+      },
+      "availabilityHistory": [
+        {
+          "sourceUrl": "https://www.mark-taylor.com/apartments/az/chandler/arista-at-ocotillo/floor-plans",
+          "observedAt": "2026-11-03T21:52:16.802754Z",
+          "status": "unit-observations",
+          "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
+          "limitations": [
+            "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
+            "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
+          ],
+          "sampleOnly": true,
+          "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/288/floor_plans/",
+          "responseDate": "Tue, 03 Nov 2026 21:52:17 GMT",
+          "units": [
+            {
+              "unit": "148",
+              "plan": "B5",
+              "beds": 2.0,
+              "baths": 2.0,
+              "sqft": 1178,
+              "availableLabel": "Advertised 2026-11-08",
+              "availableDate": "2026-11-08",
+              "rent": "$2,439",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "151",
+              "plan": "S1",
+              "beds": 0.0,
+              "baths": 1.0,
+              "sqft": 538,
+              "availableLabel": "Advertised 2026-12-11",
+              "availableDate": "2026-12-11",
+              "rent": "$1,519",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "237",
+              "plan": "A6",
+              "beds": 1.0,
+              "baths": 1.0,
+              "sqft": 778,
+              "availableLabel": "Advertised 2026-12-15",
+              "availableDate": "2026-12-15",
+              "rent": "$1,869",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            }
+          ]
+        }
+      ]
     },
     {
       "propertyIds": [
@@ -905,39 +1103,32 @@
       "officialUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/",
       "galleryUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/photos/",
       "availability": {
-        "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/floor-plans",
-        "observedAt": "2026-11-03T21:52:19.353942Z",
         "status": "unit-observations",
-        "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
-        "limitations": [
-          "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
-          "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
-        ],
-        "sampleOnly": true,
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/floor-plans",
         "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/298/floor_plans/",
-        "responseDate": "Tue, 03 Nov 2026 21:52:20 GMT",
+        "observedAt": "2026-11-03T22:40:31.079086Z",
+        "responseDate": "Tue, 03 Nov 2026 22:40:32 GMT",
+        "summary": "Fresh public operator data includes 6 marketed units matching its Now display rule. The selected sample below also retains future-date advertisements.",
+        "sampleOnly": true,
+        "limitations": [
+          "Now is reproduced from the operator public JavaScript rule, not independently confirmed physical vacancy.",
+          "Original past available dates are retained; they were not replaced by today.",
+          "PMS synchronization timestamps are provider claims, not independent proof of unit readiness.",
+          "Samples are not a complete inventory list; contact leasing for terms and immediate availability.",
+          "Now is derived from the operator public display rule and active marketing flags. It is not physical readiness or vacant-possession confirmation. Original source dates may precede observation."
+        ],
         "units": [
           {
-            "unit": "1314",
-            "plan": "B1",
-            "beds": 2.0,
-            "baths": 2.0,
-            "sqft": 1146,
-            "availableLabel": "Advertised 2026-11-03",
-            "availableDate": "2026-11-03",
-            "rent": "$2,264",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
-          },
-          {
-            "unit": "2212",
-            "plan": "A3",
+            "unit": "3304",
+            "plan": "A1",
             "beds": 1.0,
             "baths": 1.0,
-            "sqft": 871,
-            "availableLabel": "Advertised 2026-11-03",
-            "availableDate": "2026-11-03",
-            "rent": "$1,899",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "sqft": 775,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-03",
+            "rent": "$1,599"
           },
           {
             "unit": "2404",
@@ -945,10 +1136,49 @@
             "beds": 1.0,
             "baths": 1.0,
             "sqft": 776,
-            "availableLabel": "Advertised 2026-11-03",
-            "availableDate": "2026-11-03",
-            "rent": "$1,604",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-03",
+            "rent": "$1,604"
+          },
+          {
+            "unit": "4105",
+            "plan": "A2",
+            "beds": 1.0,
+            "baths": 1.0,
+            "sqft": 776,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-03",
+            "rent": "$1,699"
+          },
+          {
+            "unit": "1403",
+            "plan": "B2",
+            "beds": 2.0,
+            "baths": 2.0,
+            "sqft": 1157,
+            "availableLabel": "Advertised 2026-11-13",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-13",
+            "rent": "$2,344",
+            "availableDate": "2026-11-13"
+          },
+          {
+            "unit": "2403",
+            "plan": "B2",
+            "beds": 2.0,
+            "baths": 2.0,
+            "sqft": 1157,
+            "availableLabel": "Advertised 2026-11-19",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-19",
+            "rent": "$2,419",
+            "availableDate": "2026-11-19"
           }
         ]
       },
@@ -970,24 +1200,92 @@
       ],
       "photos": [
         {
-          "url": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721127974_Gourmet_Modern_Kitchens.jpg?auto=format",
+          "url": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721127974_Gourmet_Modern_Kitchens.jpg?auto=format&auto=format&w=1200&fit=crop",
           "title": "Gourmet, Modern Kitchens",
           "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/photos/",
-          "observedAt": "2026-11-03T21:52:17.653080Z",
-          "scope": "Publisher gallery caption; image not individually visually reviewed. It may show a model, amenities or a rendering."
+          "observedAt": "2026-11-03T23:02:16.994Z",
+          "scope": "Visually reviewed on the official ArLo gallery. Community/model reference; exact current unit, capture date and condition unconfirmed.",
+          "thumbnailUrl": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721127974_Gourmet_Modern_Kitchens.jpg?auto=format&auto=format&w=1200&fit=crop"
         },
         {
-          "url": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721128023_Luxury_Bathroom_Finishes.jpg?auto=format",
+          "url": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721128023_Luxury_Bathroom_Finishes.jpg?auto=format&auto=format&w=1200&fit=crop",
           "title": "Luxury Bathroom Finishes",
           "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/photos/",
-          "observedAt": "2026-11-03T21:52:17.653080Z",
-          "scope": "Publisher gallery caption; image not individually visually reviewed. It may show a model, amenities or a rendering."
+          "observedAt": "2026-11-03T23:02:16.994Z",
+          "scope": "Visually reviewed on the official ArLo gallery. Community/model reference; exact current unit, capture date and condition unconfirmed.",
+          "thumbnailUrl": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721128023_Luxury_Bathroom_Finishes.jpg?auto=format&auto=format&w=1200&fit=crop"
+        },
+        {
+          "url": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721127868_2-Story_Luxe_Fitness_Center_with_Yoga.jpg?auto=format&auto=format&w=1200&fit=crop",
+          "thumbnailUrl": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721127868_2-Story_Luxe_Fitness_Center_with_Yoga.jpg?auto=format&auto=format&w=1200&fit=crop",
+          "title": "Two Story Luxe Fitness Center with Yoga",
+          "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/photos/",
+          "observedAt": "2026-11-03T23:02:16.994Z",
+          "scope": "Visually reviewed on the official ArLo gallery. Community/model reference; exact current unit, capture date and condition unconfirmed."
+        },
+        {
+          "url": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721127883_Activities_Bar.jpg?auto=format&auto=format&w=1200&fit=crop",
+          "thumbnailUrl": "https://union-corporate.imgix.net/arlo/image/2024-07-16/1721127883_Activities_Bar.jpg?auto=format&auto=format&w=1200&fit=crop",
+          "title": "Activities Bar",
+          "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/photos/",
+          "observedAt": "2026-11-03T23:02:16.994Z",
+          "scope": "Visually reviewed on the official ArLo gallery. Community/model reference; exact current unit, capture date and condition unconfirmed."
         }
       ],
       "photoReuse": {
         "status": "unknown",
-        "note": "Original gallery references remain on the publisher’s host. Images have not been individually visually reviewed; no exact-unit condition or capture date is established."
-      }
+        "note": "Optional publisher-hosted previews visually reviewed November3. No copying into site storage; exact-unit condition and capture date remain unconfirmed."
+      },
+      "availabilityHistory": [
+        {
+          "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arlo/floor-plans",
+          "observedAt": "2026-11-03T21:52:19.353942Z",
+          "status": "unit-observations",
+          "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
+          "limitations": [
+            "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
+            "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
+          ],
+          "sampleOnly": true,
+          "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/298/floor_plans/",
+          "responseDate": "Tue, 03 Nov 2026 21:52:20 GMT",
+          "units": [
+            {
+              "unit": "1314",
+              "plan": "B1",
+              "beds": 2.0,
+              "baths": 2.0,
+              "sqft": 1146,
+              "availableLabel": "Advertised 2026-11-03",
+              "availableDate": "2026-11-03",
+              "rent": "$2,264",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "2212",
+              "plan": "A3",
+              "beds": 1.0,
+              "baths": 1.0,
+              "sqft": 871,
+              "availableLabel": "Advertised 2026-11-03",
+              "availableDate": "2026-11-03",
+              "rent": "$1,899",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "2404",
+              "plan": "A2",
+              "beds": 1.0,
+              "baths": 1.0,
+              "sqft": 776,
+              "availableLabel": "Advertised 2026-11-03",
+              "availableDate": "2026-11-03",
+              "rent": "$1,604",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            }
+          ]
+        }
+      ]
     },
     {
       "propertyIds": [
@@ -999,18 +1297,57 @@
       "officialUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arts-district/",
       "galleryUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arts-district/photos/",
       "availability": {
-        "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arts-district/floor-plans",
-        "observedAt": "2026-11-03T21:52:20.204181Z",
         "status": "unit-observations",
-        "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
-        "limitations": [
-          "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
-          "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
-        ],
-        "sampleOnly": true,
+        "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arts-district/floor-plans",
         "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/1390/floor_plans/",
-        "responseDate": "Tue, 03 Nov 2026 21:52:21 GMT",
+        "observedAt": "2026-11-03T22:40:31.679746Z",
+        "responseDate": "Tue, 03 Nov 2026 22:40:32 GMT",
+        "summary": "Fresh public operator data includes 8 marketed units matching its Now display rule. The selected sample below also retains future-date advertisements.",
+        "sampleOnly": true,
+        "limitations": [
+          "Now is reproduced from the operator public JavaScript rule, not independently confirmed physical vacancy.",
+          "Original past available dates are retained; they were not replaced by today.",
+          "PMS synchronization timestamps are provider claims, not independent proof of unit readiness.",
+          "Samples are not a complete inventory list; contact leasing for terms and immediate availability.",
+          "Now is derived from the operator public display rule and active marketing flags. It is not physical readiness or vacant-possession confirmation. Original source dates may precede observation."
+        ],
         "units": [
+          {
+            "unit": "3003",
+            "plan": "Warhol",
+            "beds": 0.0,
+            "baths": 1.0,
+            "sqft": 644,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-09-17",
+            "rent": "$1,350"
+          },
+          {
+            "unit": "2078",
+            "plan": "Warhol",
+            "beds": 0.0,
+            "baths": 1.0,
+            "sqft": 644,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-09-07",
+            "rent": "$1,350"
+          },
+          {
+            "unit": "2068",
+            "plan": "Matisse B",
+            "beds": 1.0,
+            "baths": 1.0,
+            "sqft": 766,
+            "availableLabel": "Now",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-09-14",
+            "rent": "$1,525"
+          },
           {
             "unit": "3033",
             "plan": "Warhol",
@@ -1018,9 +1355,11 @@
             "baths": 1.0,
             "sqft": 644,
             "availableLabel": "Advertised 2026-11-07",
-            "availableDate": "2026-11-07",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-07",
             "rent": "$1,350",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "availableDate": "2026-11-07"
           },
           {
             "unit": "1073",
@@ -1029,20 +1368,11 @@
             "baths": 1.0,
             "sqft": 766,
             "availableLabel": "Advertised 2026-11-11",
-            "availableDate": "2026-11-11",
+            "rentBasis": "Operator market_rent; all-in cost, lease term and required fees not established.",
+            "labelMethod": "operator-client-rule",
+            "sourceAvailableDate": "2026-11-11",
             "rent": "$1,540",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
-          },
-          {
-            "unit": "2057",
-            "plan": "Donatello",
-            "beds": 2.0,
-            "baths": 2.0,
-            "sqft": 1067,
-            "availableLabel": "Advertised 2026-11-11",
-            "availableDate": "2026-11-11",
-            "rent": "$1,825",
-            "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            "availableDate": "2026-11-11"
           }
         ]
       },
@@ -1066,7 +1396,57 @@
       "photoReuse": {
         "status": "unknown",
         "note": "Original gallery references remain on the publisher’s host. Images have not been individually visually reviewed; no exact-unit condition or capture date is established."
-      }
+      },
+      "availabilityHistory": [
+        {
+          "sourceUrl": "https://www.mark-taylor.com/apartments/az/phoenix/arts-district/floor-plans",
+          "observedAt": "2026-11-03T21:52:20.204181Z",
+          "status": "unit-observations",
+          "summary": "The operator advertised 3 selected units with the dated availability labels shown below. This is a sample, not the total inventory.",
+          "limitations": [
+            "These records come from the public floor-plan feed used by the operator’s leasing page. A fresh response does not guarantee every field was recently updated.",
+            "Dates are advertised move-in dates, not confirmation that a unit is vacant today. Market rent does not establish lease term, concessions, required fees or a complete quote."
+          ],
+          "sampleOnly": true,
+          "dataSourceUrl": "https://my.gounion.com/api/v1/corporate/property/1390/floor_plans/",
+          "responseDate": "Tue, 03 Nov 2026 21:52:21 GMT",
+          "units": [
+            {
+              "unit": "3033",
+              "plan": "Warhol",
+              "beds": 0.0,
+              "baths": 1.0,
+              "sqft": 644,
+              "availableLabel": "Advertised 2026-11-07",
+              "availableDate": "2026-11-07",
+              "rent": "$1,350",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "1073",
+              "plan": "Matisse B",
+              "beds": 1.0,
+              "baths": 1.0,
+              "sqft": 766,
+              "availableLabel": "Advertised 2026-11-11",
+              "availableDate": "2026-11-11",
+              "rent": "$1,540",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            },
+            {
+              "unit": "2057",
+              "plan": "Donatello",
+              "beds": 2.0,
+              "baths": 2.0,
+              "sqft": 1067,
+              "availableLabel": "Advertised 2026-11-11",
+              "availableDate": "2026-11-11",
+              "rent": "$1,825",
+              "rentBasis": "operator market rent; full fees and lease terms unconfirmed"
+            }
+          ]
+        }
+      ]
     },
     {
       "propertyIds": [

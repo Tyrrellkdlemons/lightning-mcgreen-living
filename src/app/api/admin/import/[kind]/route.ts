@@ -25,7 +25,9 @@ function ensureAuthed(req: NextRequest) {
   if (got !== expected) throw new Error('unauthorized');
 }
 
-export async function POST(req: NextRequest, { params }: { params: { kind: string } }) {
+export async function POST(req: NextRequest, { params: paramsPromise }: { params: Promise<{ kind: string }> }) {
+  const params = await paramsPromise;
+
   try {
     ensureAuthed(req);
     const fn = ROUTES[params.kind];

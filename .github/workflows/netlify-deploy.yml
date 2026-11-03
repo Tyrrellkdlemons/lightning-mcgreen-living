@@ -22,11 +22,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install
         run: npm ci --no-audit --no-fund
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=low
+
+      - name: Audit development dependencies (high and critical gate)
+        run: npm audit --audit-level=high
 
       - name: Validate static checks
         run: node ./scripts/validate.mjs
@@ -45,6 +51,8 @@ jobs:
           node --test scripts/test-photos.mjs
           node --test scripts/test-assistant.mjs
           node scripts/test-property-evidence.mjs
+          node --test scripts/test-location-registry.mjs
+          node scripts/test-city-housing.mjs
 
       - name: Lint
         run: npm run lint --if-present
@@ -68,12 +76,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
       - name: Install
         run: npm ci --no-audit --no-fund
       - name: Install Netlify CLI
-        run: npm install -g netlify-cli@latest
+        run: npm install -g netlify-cli@27.16.2
       - name: Deploy to production
         if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
         env:
@@ -94,12 +102,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
       - name: Install
         run: npm ci --no-audit --no-fund
       - name: Install Netlify CLI
-        run: npm install -g netlify-cli@latest
+        run: npm install -g netlify-cli@27.16.2
       - name: Deploy preview
         id: deploy
         if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}

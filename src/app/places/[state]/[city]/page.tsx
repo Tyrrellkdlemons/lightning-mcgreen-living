@@ -11,11 +11,15 @@ import { HousingResources } from '@/components/places/HousingResources';
 export const dynamicParams = false;
 
 export function generateStaticParams() { return PLACES.map((place) => ({ state: stateSlug(place.state), city: place.slug })); }
-export function generateMetadata({ params }: { params: { state: string; city: string } }): Metadata {
+export async function generateMetadata({ params: paramsPromise }: { params: Promise<{ state: string; city: string }> }): Promise<Metadata> {
+  const params = await paramsPromise;
+
   const place = getPlace(params.state, params.city); if (!place) return {};
   return { title: `${place.name}, ${place.state} housing & moving guide`, description: place.description, alternates: { canonical: placeUrl(place) } };
 }
-export default function CityPage({ params }: { params: { state: string; city: string } }) {
+export default async function CityPage({ params: paramsPromise }: { params: Promise<{ state: string; city: string }> }) {
+  const params = await paramsPromise;
+
   const place = getPlace(params.state, params.city); if (!place) notFound();
   const count = REAL_RENTALS.filter((listing) => listing.state === place.state && listing.city.toLowerCase() === place.name.toLowerCase()).length;
   const rentalsUrl = `/rentals?state=${place.state}&city=${encodeURIComponent(place.name)}`;

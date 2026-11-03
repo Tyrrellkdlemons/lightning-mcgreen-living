@@ -214,13 +214,13 @@ check('state selection clears stale city while preserving the budget', () => {
 const navHooks = hooks();
 let pathname = '/apartments/apply-engine';
 const nav = load('src/components/shell/BottomNav.tsx', { react: navHooks.api, 'next/navigation': { usePathname: () => pathname }, '@/lib/store/compare': stores });
-check('Apply is the only selected tab on the engine; property detail selects Rentals', () => {
+check('Apply is the only selected tab on the engine; property detail selects Homes', () => {
   let tree = navHooks.render(nav.BottomNav);
   assert.equal(all(tree, (item) => item.props.href).length, 5);
   assert.equal(node(tree, (item) => item.props['aria-current'] === 'page').props.href, '/apartments/apply-engine');
-  for (const route of ['/apartments/example', '/townhomes/example', '/properties/wb-1', '/rentals']) {
+  for (const route of ['/homes', '/homes/sale-fixture', '/apartments/example', '/townhomes/example', '/properties/wb-1', '/rentals']) {
     pathname = route; tree = navHooks.render(nav.BottomNav);
-    assert.equal(node(tree, (item) => item.props['aria-current'] === 'page').props.href, '/rentals');
+    assert.equal(node(tree, (item) => item.props['aria-current'] === 'page').props.href, '/homes');
   }
 });
 check('saved tab count is deferred until hydration and includes all saved categories', () => {

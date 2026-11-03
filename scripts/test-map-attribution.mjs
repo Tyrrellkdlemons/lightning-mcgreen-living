@@ -10,10 +10,13 @@ catch { ts = require(process.env.TYPESCRIPT_PATH || 'C:/Users/TKDL/AppData/Roami
 const jsx = (type, props) => ({ type, props: props || {} });
 const jsxRuntime = { jsx, jsxs: jsx, Fragment: 'fragment' };
 const componentPath = 'src/components/maps/MapPanel.tsx';
-const componentSource = readFileSync(new URL('../' + componentPath, import.meta.url), 'utf8');
+const componentUrl = new URL('../' + componentPath, import.meta.url);
+const componentSource = readFileSync(componentUrl, 'utf8');
 function load(path, mocks, globals = {}) {
   const source = path === componentPath ? componentSource : readFileSync(new URL('../' + path, import.meta.url), 'utf8');
-  const compiled = ts.transpileModule(source, { fileName: path, reportDiagnostics: true, compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX } });
+  // CommonJS VM fixtures need a concrete module URL; production bundlers resolve this worker asset.
+  const vmSource = source.replaceAll('import.meta.url', JSON.stringify(new URL('../' + path, import.meta.url).href));
+  const compiled = ts.transpileModule(vmSource, { fileName: path, reportDiagnostics: true, compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX } });
   assert.equal(compiled.diagnostics?.filter((item) => item.category === ts.DiagnosticCategory.Error).length, 0, path + ': valid syntax');
   const module = { exports: {} };
   vm.runInNewContext(compiled.outputText, { module, exports: module.exports, ...globals, require: (name) => {
@@ -46,7 +49,7 @@ assert.equal(ids.length, 6);
 let checks = 0;
 function check(name, fn) { fn(); checks++; console.log('PASS ' + name); }
 async function renderMap(id, hostile = false) {
-  const effects = [], maps = [], controls = [], markers = [], stored = new Map();
+  const effects = [], maps = [], controls = [], markers = [], workers = [], stored = new Map();
   const selected = registry.resolveBasemap(id);
   const badText = '<img src=x onerror="throw new Error(1)">';
   const options = hostile ? { ...selected, attribution: badText, style: { version: 8, sources: { hostile: { type: 'raster', attribution: badText, tiles: [] } }, layers: [] } } : selected;
@@ -57,7 +60,8 @@ async function renderMap(id, hostile = false) {
     useState: (initial) => { const position = cursor++; state[position] = typeof initial === 'function' ? initial() : initial; return [state[position], (next) => { state[position] = next; }]; },
   };
   const maplibre = {
-    Map: class { constructor(config) { maps.push(config); } addControl(control) { controls.push(control); } remove() { this.removed = true; } },
+    setWorkerUrl: (url) => workers.push(url),
+    Map: class { constructor(config) { assert.equal(workers.length, 1, 'Configure the ESM worker before constructing a map'); maps.push(config); } addControl(control) { controls.push(control); } remove() { this.removed = true; } },
     NavigationControl: class NavigationControl {},
     AttributionControl: class AttributionControl { constructor() { throw new Error('Raw attribution control must never be enabled'); } },
     Marker: class { constructor(config) { this.element = config.element; } setLngLat(coords) { this.coords = coords; return this; } addTo() { markers.push(this); return this; } },
@@ -68,6 +72,7 @@ async function renderMap(id, hostile = false) {
     return el;
   };
   const { MapPanel } = load(componentPath, { react, 'maplibre-gl': maplibre, '@/lib/maps/basemap': { ...registry, getDefaultBasemapId: () => id, resolveBasemap: () => options } }, {
+    URL,
     localStorage: { getItem: (key) => stored.get(key), setItem: (key, value) => stored.set(key, value) },
     document: { head: { querySelector: () => ({}), appendChild() {} }, createElement: makeElement },
   });
@@ -76,7 +81,7 @@ async function renderMap(id, hostile = false) {
   await new Promise((resolve) => setImmediate(resolve));
   assert.equal(maps.length, 1, 'The real effect constructs one map');
   for (const fn of cleanup) if (typeof fn === 'function') fn();
-  return { tree, maps, controls, markers, state };
+  return { tree, maps, controls, markers, workers, state };
 }
 const expected = {
   'carto-voyager': ['OpenStreetMap contributors', 'CARTO'],
@@ -90,6 +95,7 @@ const allowedHosts = new Set(['www.openstreetmap.org', 'carto.com', 'www.esri.co
 for (const id of ids) {
   const result = await renderMap(id);
   check(id + ': real map effect disables HTML attribution while keeping map/markers', () => {
+    assert.equal(result.workers[0], new URL('maplibre-gl/dist/maplibre-gl-worker.mjs', componentUrl).href);
     assert.equal(result.maps[0].attributionControl, false);
     assert.deepEqual(Array.from(result.maps[0].center), [-118.24, 34.05]);
     assert.equal(result.maps[0].zoom, 12);
@@ -137,6 +143,12 @@ check('provider selection and Street/Satellite/Dark controls remain wired', () =
   const satellite = nodes(hostile.tree, (item) => item.type === 'button' && item.props['aria-label'] === 'Satellite')[0];
   satellite.props.onClick();
   assert.equal(hostile.state[0], 'esri-world-imagery');
+});
+check('MapLibre ESM worker and CSS stay aligned with the installed release', () => {
+  const manifest = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+  assert.match(manifest.dependencies['maplibre-gl'], /^6\./);
+  assert.ok(componentSource.includes('https://unpkg.com/maplibre-gl@' + manifest.dependencies['maplibre-gl'] + '/dist/maplibre-gl.css'));
+  assert.match(componentSource, /new URL\('maplibre-gl\/dist\/maplibre-gl-worker\.mjs', import\.meta\.url\)/);
 });
 check('no replacement raw HTML path exists in the map component', () => {
   assert.doesNotMatch(componentSource, /dangerouslySetInnerHTML|\.innerHTML\s*=|\.setHTML\s*\(|new\s+(?:\w+\.)?AttributionControl\s*\(/);

@@ -7,7 +7,7 @@ import { CarFront, Heart, Home, PackageSearch, Truck } from 'lucide-react';
 import { useSavedStore } from '@/lib/store/compare';
 
 const ITEMS = [
-  { href: '/rentals', label: 'Rentals', icon: Home },
+  { href: '/homes', label: 'Homes', icon: Home },
   { href: '/apartments/apply-engine', label: 'Apply', icon: PackageSearch },
   { href: '/cars', label: 'Cars', icon: CarFront },
   { href: '/work-vehicles', label: 'Work', icon: Truck },
@@ -16,8 +16,8 @@ const ITEMS = [
 
 export function isBottomNavActive(pathname: string, href: string) {
   const within = (route: string) => pathname === route || pathname.startsWith(route + '/');
-  if (href === '/rentals') {
-    return !within('/apartments/apply-engine') && ['/rentals', '/apartments', '/townhomes', '/properties'].some(within);
+  if (href === '/homes' || href === '/rentals') {
+    return !within('/apartments/apply-engine') && ['/homes', '/rentals', '/apartments', '/townhomes', '/properties'].some(within);
   }
   return within(href);
 }
