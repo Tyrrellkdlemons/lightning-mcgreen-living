@@ -5,6 +5,7 @@ import {ArrowUpRight,MapPin,SlidersHorizontal,Building2,BedDouble,Bath,Clock3} f
 import {LOCATIONS,LOCATION_METADATA,getLocation,searchLocations} from '@/lib/locations';
 import {SALE_OBSERVATIONS,rentalObservations,filterHomes,cityProviderLinks,type HomeFilters} from '@/lib/homes';
 import {observationExpired} from '@/lib/property-evidence/presentation';
+import {LocationFilters} from '@/components/homes/LocationFilters';
 import {CityInput} from '@/components/homes/CityInput';
 import {HomePhoto} from '@/components/homes/HomePhoto';
 import {SaveSearch} from '@/components/homes/SaveSearch';
@@ -20,7 +21,7 @@ export default async function HomesPage({searchParams}:{searchParams:Promise<Rec
  const now=await requestTime();
  const all=[...rentalObservations(),...SALE_OBSERVATIONS];const rows=filterHomes(all,f,now);
  const pageCount=Math.max(1,Math.ceil(rows.length/12)),page=Math.min(pageCount,Math.max(1,Math.floor(Number(scalar('page'))||1))),shown=rows.slice((page-1)*12,page*12);
- const counties=[...new Map(LOCATIONS.filter(p=>!f.state||p.state===f.state).flatMap(p=>p.counties.map(c=>[c.geoid,c] as const))).values()].sort((a,b)=>a.name.localeCompare(b.name));
+ const counties=[...new Map(LOCATIONS.flatMap(p=>p.counties.map(c=>[c.geoid,c] as const))).values()].sort((a,b)=>a.name.localeCompare(b.name));
  function href(changes:Record<string,string|undefined>){const p=new URLSearchParams();for(const [k,v]of Object.entries({...f,...changes}))if(v)p.set(k,v);return `/homes?${p}`;}
  const title=selected?`${selected.name}, ${selected.state}`:f.q|| (f.state==='CA'?'California':f.state==='AZ'?'Arizona':'California + Arizona');
  return <div className="homes-page py-6 sm:py-10">
@@ -29,10 +30,9 @@ export default async function HomesPage({searchParams}:{searchParams:Promise<Rec
   </header>
   <section aria-labelledby="housing-search-title" className="relative z-20 mx-0 -mt-1 rounded-2xl border border-gingerbread-200 bg-white p-4 shadow-sm sm:mx-5 sm:-mt-5 sm:p-6">
    <div className="mb-5 flex flex-wrap items-center justify-between gap-3"><h2 id="housing-search-title" className="flex items-center gap-2 font-display text-lg font-extrabold"><SlidersHorizontal size={19} aria-hidden/>Find your fit</h2><nav aria-label="Rent or buy" className="flex gap-1 rounded-full bg-frosting-100 p-1">{(['rent','buy'] as const).map(intent=><Link key={intent} href={href({intent,page:undefined,max:undefined,type:undefined,evidence:undefined})} aria-current={f.intent===intent?'page':undefined} className={`rounded-full px-6 py-2.5 text-sm font-bold ${f.intent===intent?'bg-chocolate-900 text-white':'text-chocolate-900'}`}>{intent==='rent'?'Rent':'Buy'}</Link>)}</nav></div>
-   <form action="/homes" method="get" className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+   <form key={JSON.stringify(f)} action="/homes" method="get" className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
     <input type="hidden" name="intent" value={f.intent}/><CityInput key={`${f.city}:${f.q}:${f.state}`} initialQuery={selected?.name||f.q} initialCity={selected?.id} state={f.state}/>
-    <label className="text-sm font-bold">State<select name="state" defaultValue={f.state} className="home-control"><option value="">Both states</option><option value="CA">California</option><option value="AZ">Arizona</option></select></label>
-    <label className="text-sm font-bold">County<select name="county" defaultValue={f.county} className="home-control"><option value="">Any county</option>{counties.map(c=><option key={c.geoid} value={c.geoid}>{c.name} · {c.geoid.startsWith('06')?'CA':'AZ'}</option>)}</select></label>
+    <LocationFilters initialState={f.state} initialCounty={f.county} counties={counties}/>
     <label className="text-sm font-bold">Property type<select name="type" defaultValue={f.type} className="home-control"><option value="">All home types</option><option>Rental community</option><option>Apartment</option><option>Townhouse</option><option>Single Family</option><option>Condo</option><option>Manufactured Housing</option></select></label>
     <label className="text-sm font-bold">Bedrooms<select name="beds" defaultValue={f.beds} className="home-control"><option value="">Any bedrooms</option><option value="0">Studio or larger</option>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n}+ bedrooms</option>)}</select></label>
     <label className="text-sm font-bold">{f.intent==='buy'?'Maximum asking price':'Maximum monthly base rent'}<input name="max" type="number" inputMode="numeric" min="0" step="1" defaultValue={f.max} placeholder={f.intent==='buy'?'e.g. 500000':'e.g. 2500'} className="home-control"/></label>

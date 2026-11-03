@@ -83,9 +83,11 @@ export function PhotoManager({ targets }: { targets: PhotoTarget[] }) {
   useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
   useEffect(() => {
-    const clear = () => { selection.current++; setPreparing(false); setSecret(''); request.current?.abort(); };
+    // Invalidate the current async selection, not a captured sequence number.
+    const invalidatePreparation = () => { selection.current++; };
+    const clear = () => { invalidatePreparation(); setPreparing(false); setSecret(''); request.current?.abort(); };
     window.addEventListener('pagehide', clear);
-    return () => { selection.current++; window.removeEventListener('pagehide', clear); request.current?.abort(); };
+    return () => { invalidatePreparation(); window.removeEventListener('pagehide', clear); request.current?.abort(); };
   }, []);
 
   async function choosePhoto(file?: File) {

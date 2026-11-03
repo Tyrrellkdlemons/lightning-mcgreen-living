@@ -298,7 +298,6 @@ check('Escape never moves focus to the hidden desktop filter trigger', () => {
   node(tree, (item) => item.props.id === 'rental-filter-panel').props.onKeyDown({ key: 'Escape' });
   assert.equal(focused, false);
 });
-console.log('Mobile rental behavior checks: ' + checks + ' passed. Browser layout and assistive-technology checks are separate.');
 
 const keyedHooks = hooks();
 const keyedState = load('src/lib/client/state.ts', {react:keyedHooks.api});
@@ -308,3 +307,17 @@ check('changing filters A to B to A never revives a previous page', () => {
   assert.equal(keyed('A')[0],3); assert.equal(keyed('B')[0],1);
   assert.equal(keyed('A')[0],1);
 });
+
+const locationHooks=hooks();
+const {LocationFilters}=load('src/components/homes/LocationFilters.tsx',{react:locationHooks.api});
+const locationProps={initialState:'CA',initialCounty:'06059',counties:[{geoid:'06059',name:'Orange County'},{geoid:'04013',name:'Maricopa County'}]};
+check('state changes immediately clear county and expose matching county options',()=>{
+ let tree=locationHooks.render(LocationFilters,locationProps);
+ node(tree,x=>x.type==='select'&&x.props.name==='state').props.onChange({target:{value:'AZ'}});
+ tree=locationHooks.render(LocationFilters,locationProps);
+ const county=node(tree,x=>x.type==='select'&&x.props.name==='county');
+ assert.equal(county.props.value,'');
+ assert.equal(all(county,x=>x.type==='option'&&x.props.value==='06059').length,0);
+ assert.equal(all(county,x=>x.type==='option'&&x.props.value==='04013').length,1);
+});
+console.log('Mobile rental behavior checks: ' + checks + ' passed. Browser layout and assistive-technology checks are separate.');
