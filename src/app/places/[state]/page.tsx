@@ -5,6 +5,8 @@ import { PlaceDirectory } from '@/components/places/PlaceDirectory';
 import { HousingResources } from '@/components/places/HousingResources';
 import { STATES, stateCode } from '@/lib/places';
 
+export const dynamicParams = false;
+
 export function generateStaticParams() { return [{ state: 'california' }, { state: 'arizona' }]; }
 export function generateMetadata({ params }: { params: { state: string } }): Metadata {
   const code = stateCode(params.state); if (!code) return {};

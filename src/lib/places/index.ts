@@ -1,4 +1,5 @@
 import raw from './places.json';
+import { validatePlaces } from '../../../public/admin/content/cms';
 
 export type StateCode = 'CA' | 'AZ';
 export interface Place {
@@ -6,7 +7,7 @@ export interface Place {
   region: string; description: string; planningTips: string[];
   sourceUrl: string; sourcePublisher: string; contentKind: string;
 }
-export const PLACES = raw as Place[];
+export const PLACES = validatePlaces(raw) as Place[];
 export const STATES = {
   CA: { name: 'California', slug: 'california', description: 'From the North Coast to San Diego, find a starting point for your next move.', resourceUrl: 'https://211ca.org/find-your-local-211/', resourceName: 'Find your local California 211' },
   AZ: { name: 'Arizona', slug: 'arizona', description: 'From Northern Arizona to the southern border, explore your next place to call home.', resourceUrl: 'https://211arizona.org/help/housing-shelter/emergency-shelters/', resourceName: '211 Arizona housing and shelter help' },

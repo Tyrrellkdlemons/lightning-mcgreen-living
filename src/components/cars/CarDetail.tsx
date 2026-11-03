@@ -99,15 +99,15 @@ export function CarDetailClient({ vehicle, dealer }: { vehicle: VehicleListing &
             <p className="text-sm font-semibold text-chocolate-900">{dealer.dealer_name}</p>
             {dealer.legal_name && <p className="text-xs text-chocolate-600">Legal: {dealer.legal_name}</p>}
             <p className="text-xs text-chocolate-700">
-              {dealer.address_line} · {dealer.city}, CA {dealer.zip}
+              {dealer.address_line} · {dealer.city}, {dealer.state} {dealer.zip}
             </p>
             <p className="mt-2 text-xs">
               Phone: <a href={`tel:${dealer.phone}`} className="underline decoration-lightning-500 underline-offset-2">{dealer.phone}</a>
             </p>
             {dealer.dealer_license_number && (
-              <p className="text-xs text-chocolate-700">CA DMV license #{dealer.dealer_license_number}</p>
+              <p className="text-xs text-chocolate-700">{dealer.state} dealer license #{dealer.dealer_license_number}</p>
             )}
-            <div className="mt-2 flex flex-wrap gap-2 text-xs">
+            {dealer.state === 'CA' && <div className="mt-2 flex flex-wrap gap-2 text-xs">
               <a className="underline decoration-lightning-500 underline-offset-2"
                  target="_blank" rel="noopener noreferrer"
                  href={caDmvOlLookupUrl(dealer.dealer_license_number)}>
@@ -120,7 +120,7 @@ export function CarDetailClient({ vehicle, dealer }: { vehicle: VehicleListing &
                   Verify LLC on CA SOS ↗
                 </a>
               )}
-            </div>
+            </div>}
             {dealer.public_promos?.length ? (
               <div className="mt-3">
                 <p className="text-xs font-bold uppercase text-chocolate-700">Public promos</p>

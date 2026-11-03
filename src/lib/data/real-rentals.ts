@@ -1,6 +1,7 @@
 import type { ApplicationPlatform, RentalListing, RentalUnitType, SourceMeta } from '@/types';
 import type { ApartmentLinkSet } from '@/types/links';
 import { rentalPhotos, type PhotoSet } from './photo-sets';
+import { EDITOR_RENTALS, withEditorRecords } from './editor-content';
 
 /**
  * REAL-OPERATOR listings across LA / OC / SB / Riverside / Ventura.
@@ -448,7 +449,7 @@ const ROWS: SeedRow[] = [
   { id: 'r-western-ventura', property_name: 'Ventura Harbor-style Townhomes', unit_type: 'townhouse', address_line: 'Harbor Blvd corridor', city: 'Ventura', county: 'Ventura', zip: '93001', lat: 34.273, lng: -119.293, manager: 'Western National Property Management', application_platform: 'AppFolio', application_url: 'https://www.wnpm.com/properties', min_rent: 2680, max_rent: 3450, beds_min: 2, beds_max: 3, baths_min: 2, baths_max: 2.5, sqft_min: 1180, sqft_max: 1480, deposit: 1000, application_fee: 45, admin_fee: 200, pet_policy: 'Pet friendly', pet_fee: 450, parking_type: 'Attached garage', income_multiplier: 2.5, levels: 2, private_entrance: true, attached_garage: true, yard_or_patio: true },
 ];
 
-export const REAL_RENTALS: RentalWithPhotos[] = ROWS.map((row) => ({
+const BASE_RENTALS: RentalWithPhotos[] = ROWS.map((row) => ({
   ...row,
   external_id: row.id,
   state: 'CA' as const,
@@ -463,3 +464,10 @@ export const REAL_RENTALS: RentalWithPhotos[] = ROWS.map((row) => ({
     lng: row.lng,
   }),
 }));
+
+export const REAL_RENTALS: RentalWithPhotos[] = withEditorRecords(
+  BASE_RENTALS,
+  EDITOR_RENTALS.map((row) => ({ ...row, photos: rentalPhotos(row) })),
+  'external_id',
+  'Supplemental rentals',
+);

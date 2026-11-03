@@ -78,7 +78,7 @@ export function RentalDetailClient({ rental }: { rental: RentalListing & { photo
                 {rental.property_name}
               </h1>
               <p className="mt-1 text-sm text-chocolate-700">
-                {rental.address_line} · {rental.city}, CA {rental.zip}
+                {rental.address_line} · {rental.city}, {rental.state} {rental.zip}
               </p>
               <div className="mt-2 flex flex-wrap items-center gap-2">
                 <FitBadge fit={fit} />
@@ -337,7 +337,7 @@ function copyApplicationSheet(rental: RentalListing, profile: any) {
   const sheet = [
     `LIGHTNING MCGREEN LIVING — APPLICATION COPY SHEET`,
     `Property: ${rental.property_name}`,
-    `Address: ${rental.address_line}, ${rental.city}, CA ${rental.zip}`,
+    `Address: ${rental.address_line}, ${rental.city}, ${rental.state} ${rental.zip}`,
     `Unit: ${rental.unit_number ?? ''}`,
     `Floor plan: ${rental.floor_plan_name ?? ''}`,
     `Available date: ${rental.available_date ?? ''}`,

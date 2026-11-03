@@ -54,7 +54,7 @@ export function WorkDetailClient({ rental }: { rental: WorkVehicleRental & { pho
               <Gumdrop tone="mute">{rental.vehicle_type.replace('-', ' ')}</Gumdrop>
               <h1 className="mt-1 font-display text-3xl font-extrabold text-chocolate-900">{rental.provider_name}</h1>
               <p className="mt-1 text-sm text-chocolate-700">
-                {rental.branch_address} · {rental.city}, CA {rental.zip}
+                {rental.branch_address} · {rental.city}, {rental.state} {rental.zip}
               </p>
               <div className="mt-2"><FitBadge fit={fit} /></div>
             </div>
@@ -171,7 +171,7 @@ function copyRentalSheet(rental: WorkVehicleRental, profile: any, term: string, 
   const sheet = [
     `LIGHTNING MCGREEN LIVING — RENTAL REQUEST SHEET`,
     `Provider: ${rental.provider_name}`,
-    `Branch: ${rental.branch_address}, ${rental.city}, CA ${rental.zip}`,
+    `Branch: ${rental.branch_address}, ${rental.city}, ${rental.state} ${rental.zip}`,
     `Vehicle: ${rental.vehicle_type}`,
     ``,
     `Requested term: ${units} ${term === 'daily' ? 'days' : term === 'weekly' ? 'weeks' : 'months'}`,

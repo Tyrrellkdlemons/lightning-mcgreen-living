@@ -195,3 +195,17 @@ See `docs/COMPLIANCE_NOTES.md` for Fair Housing, FCRA, and data-sourcing rules.
 Focused checks: `node scripts/test-geography.mjs` and `node scripts/test-photos.mjs`. Run the existing typecheck/lint/build and browser checks before release. Storage tests use an isolated fixture store; they do not prove live cloud uploads.
 
 See [revamp evidence and decisions](docs/REVAMP_2026-11-03.md).
+
+
+### Edit California and Arizona content
+
+Open `/admin/content/index.html` from the admin dashboard. The supported GitHub backend
+edits the actual city registry plus supplemental rentals, dealers and vehicles. Existing
+seed listings and the 79-row workbook are preserved. Changes use an editorial workflow;
+review and merge the resulting GitHub change before publication. Ordinary Git image
+uploads are disabled: use `/admin/photos` for Blobs-backed city photography.
+
+The account owner must configure GitHub OAuth in Netlify before signing in. Follow
+[Content editor setup](docs/CONTENT_EDITOR.md) and [Photo workflow](docs/PHOTO_WORKFLOW.md).
+Do not share editor keys or OAuth secrets in source, chat or public issues. Authenticated
+CMS publication and real photo publishing require that owner setup and remain untested.

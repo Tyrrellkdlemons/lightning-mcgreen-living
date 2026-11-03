@@ -75,7 +75,7 @@ function apartmentSummary(rental: RentalListing, p: RenterProfile, link: Resolve
     { label: 'Unit', value: rental.unit_number ? `#${rental.unit_number}` : '' },
     { label: 'Floor plan', value: rental.floor_plan_name ?? '' },
     { label: 'Available date', value: rental.available_date ?? '' },
-    { label: 'City', value: `${rental.city}, CA ${rental.zip}` },
+    { label: 'City', value: `${rental.city}, ${rental.state} ${rental.zip}` },
     { label: 'Owner/operator', value: rental.owner_operator ?? '' },
     { label: 'Manager', value: rental.manager },
     { label: 'Application platform', value: link.platform_name ?? rental.application_platform },
@@ -211,7 +211,7 @@ export function WorkRentalPrepPacket({
 function workSummary(r: WorkVehicleRental, p: WorkRentalProfile, estimatedTotal?: number) {
   return [
     { label: 'Provider', value: r.provider_name },
-    { label: 'Branch', value: `${r.city}, CA ${r.zip}` },
+    { label: 'Branch', value: `${r.city}, ${r.state} ${r.zip}` },
     { label: 'Vehicle type', value: r.vehicle_type.replace('-', ' ') },
     { label: 'Daily rate', value: r.daily_rate ? `$${r.daily_rate}` : '' },
     { label: 'Job type', value: p.job_type ?? '' },

@@ -7,6 +7,8 @@ import { REAL_RENTALS } from '@/lib/data/real-rentals';
 import { PlaceGallery } from '@/components/photos/PlaceGallery';
 import { HousingResources } from '@/components/places/HousingResources';
 
+export const dynamicParams = false;
+
 export function generateStaticParams() { return PLACES.map((place) => ({ state: stateSlug(place.state), city: place.slug })); }
 export function generateMetadata({ params }: { params: { state: string; city: string } }): Metadata {
   const place = getPlace(params.state, params.city); if (!place) return {};

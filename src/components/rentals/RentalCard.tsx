@@ -57,7 +57,7 @@ export function RentalCard({
             {rental.property_name}
           </h3>
           <p className="text-xs text-chocolate-700">
-            {rental.address_line} · {rental.city}, CA {rental.zip}
+            {rental.address_line} · {rental.city}, {rental.state} {rental.zip}
           </p>
         </div>
         {isTownhome ? (

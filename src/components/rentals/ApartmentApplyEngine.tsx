@@ -100,7 +100,7 @@ export function ApartmentApplyEngine() {
       `Property: ${selected.property_name}`,
       `Unit: ${selected.unit_number ?? ''}`,
       `Floor plan: ${selected.floor_plan_name ?? ''}`,
-      `Address: ${selected.address_line}, ${selected.city}, CA ${selected.zip}`,
+      `Address: ${selected.address_line}, ${selected.city}, ${selected.state} ${selected.zip}`,
       `Available: ${selected.available_date ?? ''}`,
       `Rent: ${usd(selected.min_rent)} - ${usd(selected.max_rent)}`,
       `Owner/operator: ${selected.owner_operator ?? ''}`,
@@ -207,7 +207,7 @@ export function ApartmentApplyEngine() {
                   {selected.property_name}
                 </h1>
                 <p className="mt-1 text-sm text-chocolate-700">
-                  {selected.address_line} - {selected.city}, CA {selected.zip}
+                  {selected.address_line} - {selected.city}, {selected.state} {selected.zip}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">

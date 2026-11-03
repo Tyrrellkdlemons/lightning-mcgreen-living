@@ -47,7 +47,7 @@ function walk(dir, files = []) {
 
 const SOURCE_FILES = walk(join(REPO, 'src'))
   .concat(existsSync(join(REPO, 'public')) ? walk(join(REPO, 'public')) : [])
-  .filter((p) => /\.(tsx?|jsx?|mjs|cjs|css|html|json|svg|webmanifest|txt|md|csv|xml)$/.test(p));
+  .filter((p) => /\.(tsx?|jsx?|mjs|cjs|css|html|json|svg|webmanifest|txt|md|csv|xml|yml|yaml)$/.test(p));
 
 // Trademarked / brand-confusing strings that must NOT appear in source.
 // Allowed inside docs/ + README + this validator.

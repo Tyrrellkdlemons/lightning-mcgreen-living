@@ -1,6 +1,7 @@
 import type { Dealer, VehicleListing } from '@/types';
 import { vehiclePhotosForListing, type PhotoSet } from './photo-sets';
 import { VEHICLES_EXTRA } from './real-vehicles-extra';
+import { EDITOR_DEALERS, EDITOR_VEHICLES, withEditorRecords } from './editor-content';
 
 /**
  * REAL-DEALER demo inventory — 16 vehicles across 6 real public SoCal dealer chains:
@@ -22,7 +23,7 @@ const meta = (url: string) => ({
   trust_label: 'unverified' as const,
 });
 
-export const REAL_DEALERS: Dealer[] = [
+const BASE_DEALERS: Dealer[] = [
   { id: 'd-carmax-anaheim', external_id: 'carmax-anaheim', dealer_name: 'CarMax — Anaheim (chain reference)', legal_name: 'CarMax Auto Superstores California, LLC', address_line: '1131 N Tustin St area', city: 'Anaheim', county: 'Orange', state: 'CA', zip: '92807', lat: 33.852, lng: -117.866, phone: '(800) 519-1511', website: 'https://www.carmax.com/stores', inventory_count: 350, financing_application_url: 'https://www.carmax.com/finance-center', public_promos: [{ label: 'No-haggle pricing — see CarMax site for current incentives' }], google_rating: 4.4, google_review_count: 2100, meta: meta('https://www.carmax.com/stores') },
   { id: 'd-carmax-buena', external_id: 'carmax-buena-park', dealer_name: 'CarMax — Buena Park (chain reference)', legal_name: 'CarMax Auto Superstores California, LLC', address_line: 'Stanton Ave area', city: 'Buena Park', county: 'Orange', state: 'CA', zip: '90621', lat: 33.867, lng: -118.000, phone: '(800) 519-1511', website: 'https://www.carmax.com/stores', inventory_count: 280, financing_application_url: 'https://www.carmax.com/finance-center', public_promos: [{ label: '7-day money-back guarantee' }], google_rating: 4.3, google_review_count: 1750, meta: meta('https://www.carmax.com/stores') },
   { id: 'd-carvana-orange', external_id: 'carvana-oc', dealer_name: 'Carvana — Orange County region', legal_name: 'Carvana, LLC', address_line: 'Multiple delivery zones', city: 'Costa Mesa', county: 'Orange', state: 'CA', zip: '92626', lat: 33.694, lng: -117.890, phone: '(800) 333-4554', website: 'https://www.carvana.com/cars/', inventory_count: 1000, financing_application_url: 'https://www.carvana.com/finance', public_promos: [{ label: '7-day return policy — verify on Carvana site' }], google_rating: 4.2, google_review_count: 850, meta: meta('https://www.carvana.com/cars/') },
@@ -30,6 +31,8 @@ export const REAL_DEALERS: Dealer[] = [
   { id: 'd-driveway-la', external_id: 'driveway-la', dealer_name: 'Driveway — Los Angeles region (Lithia Motors)', legal_name: 'Lithia Motors, Inc.', address_line: 'Multiple delivery zones', city: 'Los Angeles', county: 'Los Angeles', state: 'CA', zip: '90001', lat: 33.974, lng: -118.249, phone: '(855) 982-6680', website: 'https://www.driveway.com/', inventory_count: 600, financing_application_url: 'https://www.driveway.com/financing', public_promos: [{ label: 'Buy fully online; check Driveway.com for current offers' }], google_rating: 4.0, google_review_count: 540, meta: meta('https://www.driveway.com/') },
   { id: 'd-echopark-cathedral', external_id: 'echopark-cathedral-city', dealer_name: 'EchoPark — Cathedral City area (chain reference)', legal_name: 'Sonic Automotive, Inc.', address_line: 'Cathedral City auto row', city: 'Cathedral City', county: 'Riverside', state: 'CA', zip: '92234', lat: 33.779, lng: -116.466, phone: '(844) 324-6749', website: 'https://www.echopark.com/locations', inventory_count: 350, financing_application_url: 'https://www.echopark.com/financing', public_promos: [{ label: 'Pre-owned focus; see EchoPark for current pricing' }], google_rating: 4.2, google_review_count: 720, meta: meta('https://www.echopark.com/locations') },
 ];
+
+export const REAL_DEALERS: Dealer[] = withEditorRecords(BASE_DEALERS, EDITOR_DEALERS, 'external_id', 'Supplemental dealers');
 
 interface SeedV {
   id: string;
@@ -73,7 +76,7 @@ const VEHICLES: SeedV[] = [
   { id: 'v-toyota-rav4-cmx', vin: 'JTMN1RFV1LJ567890', dealer_id: 'd-carmax-anaheim', year: 2021, make: 'Toyota', model: 'RAV4', trim: 'XLE', mileage: 31400, price: 27490, down_payment_estimate: 2800, apr_estimate: 8.49, term_months: 60, fuel_type: 'Gasoline', drive: 'AWD', transmission: 'Automatic', body_type: 'SUV', condition: 'used', fuel_economy_mpg_combined: 28, safety_rating_overall: 5, listing_url: 'https://www.carmax.com/cars/toyota/rav4' },
 ];
 
-export const REAL_VEHICLES: VehicleWithPhotos[] = [...VEHICLES, ...VEHICLES_EXTRA].map((v) => {
+const BASE_VEHICLES: VehicleWithPhotos[] = [...VEHICLES, ...VEHICLES_EXTRA].map((v) => {
   const dealer = REAL_DEALERS.find((d) => d.id === v.dealer_id);
   return {
     ...v,
@@ -82,3 +85,13 @@ export const REAL_VEHICLES: VehicleWithPhotos[] = [...VEHICLES, ...VEHICLES_EXTR
     photos: vehiclePhotosForListing(v, dealer),
   };
 });
+
+export const REAL_VEHICLES: VehicleWithPhotos[] = withEditorRecords(
+  BASE_VEHICLES,
+  EDITOR_VEHICLES.map((vehicle) => ({
+    ...vehicle,
+    photos: vehiclePhotosForListing(vehicle, REAL_DEALERS.find((dealer) => dealer.id === vehicle.dealer_id)),
+  })),
+  'vin',
+  'Supplemental vehicles',
+);

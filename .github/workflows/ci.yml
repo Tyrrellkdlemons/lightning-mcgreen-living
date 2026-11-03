@@ -28,6 +28,7 @@ jobs:
         run: |
           node scripts/test-compliance.mjs
           node scripts/test-static-scan.mjs
+          node scripts/test-cms.mjs
           node --test scripts/test-photos.mjs
 
       - name: Lint
