@@ -28,7 +28,8 @@ export function AssistanceDirectory({ resources, counties, places }: { resources
   if (filters.purpose && !purposes.includes(filters.purpose)) purposes.push(filters.purpose);
   const active = Object.entries(filters).filter(([, value]) => !!value?.trim()) as [keyof AssistanceFilters, string][];
   const update = (patch: AssistanceFilters, replace = false) => {
-    const url = assistanceDirectoryUrl({ ...filters, ...patch });
+    const current = readAssistanceFilters(new URLSearchParams(window.location.search));
+    const url = assistanceDirectoryUrl({ ...current, ...patch });
     // Next.js synchronizes native history with useSearchParams; no router/server request is needed.
     if (replace) window.history.replaceState(null, '', url); else window.history.pushState(null, '', url);
   };
