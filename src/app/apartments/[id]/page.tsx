@@ -1,3 +1,4 @@
+import { UpfrontCostHelp } from '@/components/assistance/UpfrontCostHelp';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { REAL_RENTALS } from '@/lib/data/real-rentals';
@@ -18,5 +19,5 @@ export default async function ApartmentDetail({ params: paramsPromise }: Props) 
 
   const rental = REAL_RENTALS.find((x) => x.id === params.id);
   if (!rental || rental.unit_type === 'townhouse') notFound();
-  return <RentalDetailClient rental={rental} propertyEvidence={<PropertyEvidence propertyId={rental.id} />} />;
+  return <RentalDetailClient rental={rental} propertyEvidence={<><PropertyEvidence propertyId={rental.id} /><UpfrontCostHelp state={rental.state} city={rental.city} county={rental.county} intent="rent" /></>} />;
 }

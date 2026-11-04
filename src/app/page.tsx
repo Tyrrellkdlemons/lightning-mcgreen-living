@@ -38,6 +38,8 @@ export default function HomePage() {
       )}</div>
     </section>
 
+    <section className="help-band" aria-labelledby="assistance-callout"><Wallet size={36} strokeWidth={1.5} aria-hidden /><div><p className="eyebrow">Plan your housing costs</p><h2 id="assistance-callout">Need help with a down payment or rent?</h2><p>We’ve mapped programs across California and Arizona. Compare funding status, service areas and sources, then confirm with the administrator.</p></div><Link href="/resources/assistance" className="text-link">Explore assistance<ArrowRight size={18} aria-hidden /></Link></section>
+
     <section className="planning-band" aria-labelledby="plan-title">
       <div className="planning-intro"><p className="eyebrow">A little guidance for your first visit</p><h2 id="plan-title">From looking<br />to moving forward.</h2><p>Use this site to research and prepare. Properties and service providers confirm availability, eligibility and final terms.</p><Link href="/help" className="text-link">Help me choose a next step<ArrowRight size={17} aria-hidden /></Link></div>
       <ol className="planning-steps">{steps.map(({ icon: Icon, title, text, href, label }, index) => <li key={title}><span className="step-icon"><Icon size={22} aria-hidden /></span><div><small>Step 0{index + 1}</small><h3>{title}</h3><p>{text}</p><Link href={href}>{label}<ArrowRight size={15} aria-hidden /></Link></div></li>)}</ol>

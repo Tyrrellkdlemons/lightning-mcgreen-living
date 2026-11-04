@@ -140,7 +140,7 @@ check('CMS writes real files using review drafts and no publishing control', () 
   assert.equal(config.publish_mode, 'editorial_workflow');
   for (const collection of config.collections) assert.equal(collection.publish, false);
   assert.deepEqual(config.collections.flatMap((item) => item.files.map((file) => file.file)),
-    ['src/lib/places/places.json','src/lib/data/editor-content.json']);
+    ['src/lib/places/places.json','src/lib/data/editor-content.json','src/content/assistance_resources/california.json','src/content/assistance_resources/arizona.json','src/content/assistance_resources/partners.json']);
   assert.equal(config.media_library.name, 'managed-place-photos');
 });
 const formats = new Map();

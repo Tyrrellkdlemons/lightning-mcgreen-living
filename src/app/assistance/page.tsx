@@ -36,6 +36,8 @@ export default function AssistancePage() {
         </p>
       </header>
 
+      <Link href="/resources/assistance" className="bolt-btn mt-5 inline-flex min-h-11">Search down payment, rent & move-in assistance →</Link>
+
       <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
         {SECTIONS.map((s) => (
           <a key={s.jurisdiction} href={`#${slug(s.jurisdiction)}`} className="inline-flex min-h-11 items-center rounded-full border border-gingerbread-300 bg-frosting-100 px-3 py-2 font-semibold text-chocolate-800 hover:bg-frosting-200">

@@ -44,6 +44,7 @@ jobs:
           node scripts/test-cms.mjs
           node scripts/test-property-views.mjs
           node scripts/test-assistance.mjs
+          node scripts/test-assistance-directory.mjs
           node scripts/test-streetview.mjs
           node scripts/test-resource-catalog.mjs
           node scripts/test-link-routing.mjs

@@ -762,6 +762,685 @@
           ]
         }
       ]
+    },
+    {
+      "name": "assistance_resources",
+      "label": "Assistance resources",
+      "description": "Public guidance and referral leads, with original supplied claims kept separately. Add, edit or remove resources in each file; review the editorial draft before publishing. No eligibility or funding guarantees.",
+      "format": "json",
+      "editor": {
+        "preview": false
+      },
+      "files": [
+        {
+          "name": "california",
+          "label": "California programs",
+          "file": "src/content/assistance_resources/california.json",
+          "fields": [
+            {
+              "name": "resources",
+              "label": "Resources",
+              "widget": "list",
+              "summary": "{{fields.name}} · {{fields.state}} · {{fields.verification_status}}",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "string",
+                  "pattern": [
+                    "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                    "Use a unique lowercase hyphenated ID; keep published IDs stable."
+                  ]
+                },
+                {
+                  "name": "name",
+                  "label": "Name",
+                  "widget": "string"
+                },
+                {
+                  "name": "state",
+                  "label": "State",
+                  "widget": "select",
+                  "options": [
+                    "CA",
+                    "AZ"
+                  ]
+                },
+                {
+                  "name": "scope",
+                  "label": "Scope",
+                  "widget": "select",
+                  "options": [
+                    "statewide",
+                    "county",
+                    "city",
+                    "regional",
+                    "national"
+                  ]
+                },
+                {
+                  "name": "counties",
+                  "label": "Counties",
+                  "widget": "list",
+                  "required": false,
+                  "default": []
+                },
+                {
+                  "name": "cities",
+                  "label": "Cities",
+                  "widget": "list",
+                  "required": false,
+                  "default": []
+                },
+                {
+                  "name": "category",
+                  "label": "Category",
+                  "widget": "select",
+                  "options": [
+                    "down_payment",
+                    "rental_assistance",
+                    "both"
+                  ]
+                },
+                {
+                  "name": "administrator",
+                  "label": "Administrator",
+                  "widget": "string"
+                },
+                {
+                  "name": "assistance_summary",
+                  "label": "Assistance Summary",
+                  "widget": "text"
+                },
+                {
+                  "name": "assistance_amount",
+                  "label": "Assistance Amount",
+                  "widget": "string"
+                },
+                {
+                  "name": "assistance_type",
+                  "label": "Assistance Type",
+                  "widget": "string"
+                },
+                {
+                  "name": "eligibility_notes",
+                  "label": "Eligibility Notes",
+                  "widget": "text"
+                },
+                {
+                  "name": "how_to_apply",
+                  "label": "How To Apply",
+                  "widget": "text"
+                },
+                {
+                  "name": "source_url",
+                  "label": "Source Url",
+                  "widget": "string",
+                  "pattern": [
+                    "^https://[^\\s]+$",
+                    "Use an official HTTPS source without credentials."
+                  ]
+                },
+                {
+                  "name": "last_verified",
+                  "label": "Last Verified",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true,
+                  "hint": "Actual date content was inspected. Unverified seed rows retain their supplied date and are labeled accordingly."
+                },
+                {
+                  "name": "image_key",
+                  "label": "Image Key",
+                  "widget": "string",
+                  "required": false,
+                  "hint": "Optional published Netlify Blobs key: images/place-id/photo-id. Only approved published images are served; absent or unavailable images show a neutral icon."
+                },
+                {
+                  "name": "verification_status",
+                  "label": "Verification Status",
+                  "widget": "select",
+                  "options": [
+                    "verified",
+                    "partial",
+                    "unverified",
+                    "closed"
+                  ],
+                  "default": "unverified"
+                },
+                {
+                  "name": "source_kind",
+                  "label": "Source Kind",
+                  "widget": "select",
+                  "options": [
+                    "official",
+                    "directory",
+                    "guide"
+                  ]
+                },
+                {
+                  "name": "verification_notes",
+                  "label": "Verification Notes",
+                  "widget": "text"
+                },
+                {
+                  "name": "supplied_date",
+                  "label": "Supplied Date",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true
+                },
+                {
+                  "name": "supplied_claim",
+                  "label": "Supplied Claim",
+                  "widget": "text"
+                },
+                {
+                  "name": "source_rows",
+                  "label": "Source Rows",
+                  "widget": "list"
+                },
+                {
+                  "name": "reviewed_at",
+                  "label": "Reviewed At",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true
+                },
+                {
+                  "name": "cost_purposes",
+                  "label": "Cost Purposes",
+                  "widget": "select",
+                  "multiple": true,
+                  "required": false,
+                  "options": [
+                    "purchase_down_payment",
+                    "purchase_closing_costs",
+                    "rental_deposit",
+                    "first_rent",
+                    "move_in",
+                    "back_rent",
+                    "ongoing_rent",
+                    "housing_navigation",
+                    "deposit_alternative",
+                    "paid_guarantor"
+                  ]
+                },
+                {
+                  "name": "help_kind",
+                  "label": "Help Kind",
+                  "widget": "select",
+                  "required": false,
+                  "options": [
+                    "financial_assistance",
+                    "referral",
+                    "deposit_alternative",
+                    "paid_guarantor"
+                  ]
+                },
+                {
+                  "name": "property_participation",
+                  "label": "Property Participation",
+                  "widget": "text",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "arizona",
+          "label": "Arizona programs",
+          "file": "src/content/assistance_resources/arizona.json",
+          "fields": [
+            {
+              "name": "resources",
+              "label": "Resources",
+              "widget": "list",
+              "summary": "{{fields.name}} · {{fields.state}} · {{fields.verification_status}}",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "string",
+                  "pattern": [
+                    "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                    "Use a unique lowercase hyphenated ID; keep published IDs stable."
+                  ]
+                },
+                {
+                  "name": "name",
+                  "label": "Name",
+                  "widget": "string"
+                },
+                {
+                  "name": "state",
+                  "label": "State",
+                  "widget": "select",
+                  "options": [
+                    "CA",
+                    "AZ"
+                  ]
+                },
+                {
+                  "name": "scope",
+                  "label": "Scope",
+                  "widget": "select",
+                  "options": [
+                    "statewide",
+                    "county",
+                    "city",
+                    "regional",
+                    "national"
+                  ]
+                },
+                {
+                  "name": "counties",
+                  "label": "Counties",
+                  "widget": "list",
+                  "required": false,
+                  "default": []
+                },
+                {
+                  "name": "cities",
+                  "label": "Cities",
+                  "widget": "list",
+                  "required": false,
+                  "default": []
+                },
+                {
+                  "name": "category",
+                  "label": "Category",
+                  "widget": "select",
+                  "options": [
+                    "down_payment",
+                    "rental_assistance",
+                    "both"
+                  ]
+                },
+                {
+                  "name": "administrator",
+                  "label": "Administrator",
+                  "widget": "string"
+                },
+                {
+                  "name": "assistance_summary",
+                  "label": "Assistance Summary",
+                  "widget": "text"
+                },
+                {
+                  "name": "assistance_amount",
+                  "label": "Assistance Amount",
+                  "widget": "string"
+                },
+                {
+                  "name": "assistance_type",
+                  "label": "Assistance Type",
+                  "widget": "string"
+                },
+                {
+                  "name": "eligibility_notes",
+                  "label": "Eligibility Notes",
+                  "widget": "text"
+                },
+                {
+                  "name": "how_to_apply",
+                  "label": "How To Apply",
+                  "widget": "text"
+                },
+                {
+                  "name": "source_url",
+                  "label": "Source Url",
+                  "widget": "string",
+                  "pattern": [
+                    "^https://[^\\s]+$",
+                    "Use an official HTTPS source without credentials."
+                  ]
+                },
+                {
+                  "name": "last_verified",
+                  "label": "Last Verified",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true,
+                  "hint": "Actual date content was inspected. Unverified seed rows retain their supplied date and are labeled accordingly."
+                },
+                {
+                  "name": "image_key",
+                  "label": "Image Key",
+                  "widget": "string",
+                  "required": false,
+                  "hint": "Optional published Netlify Blobs key: images/place-id/photo-id. Only approved published images are served; absent or unavailable images show a neutral icon."
+                },
+                {
+                  "name": "verification_status",
+                  "label": "Verification Status",
+                  "widget": "select",
+                  "options": [
+                    "verified",
+                    "partial",
+                    "unverified",
+                    "closed"
+                  ],
+                  "default": "unverified"
+                },
+                {
+                  "name": "source_kind",
+                  "label": "Source Kind",
+                  "widget": "select",
+                  "options": [
+                    "official",
+                    "directory",
+                    "guide"
+                  ]
+                },
+                {
+                  "name": "verification_notes",
+                  "label": "Verification Notes",
+                  "widget": "text"
+                },
+                {
+                  "name": "supplied_date",
+                  "label": "Supplied Date",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true
+                },
+                {
+                  "name": "supplied_claim",
+                  "label": "Supplied Claim",
+                  "widget": "text"
+                },
+                {
+                  "name": "source_rows",
+                  "label": "Source Rows",
+                  "widget": "list"
+                },
+                {
+                  "name": "reviewed_at",
+                  "label": "Reviewed At",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true
+                },
+                {
+                  "name": "cost_purposes",
+                  "label": "Cost Purposes",
+                  "widget": "select",
+                  "multiple": true,
+                  "required": false,
+                  "options": [
+                    "purchase_down_payment",
+                    "purchase_closing_costs",
+                    "rental_deposit",
+                    "first_rent",
+                    "move_in",
+                    "back_rent",
+                    "ongoing_rent",
+                    "housing_navigation",
+                    "deposit_alternative",
+                    "paid_guarantor"
+                  ]
+                },
+                {
+                  "name": "help_kind",
+                  "label": "Help Kind",
+                  "widget": "select",
+                  "required": false,
+                  "options": [
+                    "financial_assistance",
+                    "referral",
+                    "deposit_alternative",
+                    "paid_guarantor"
+                  ]
+                },
+                {
+                  "name": "property_participation",
+                  "label": "Property Participation",
+                  "widget": "text",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "partners",
+          "label": "Partners & upfront-cost resources",
+          "file": "src/content/assistance_resources/partners.json",
+          "fields": [
+            {
+              "name": "resources",
+              "label": "Resources",
+              "widget": "list",
+              "summary": "{{fields.name}} · {{fields.state}} · {{fields.verification_status}}",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "string",
+                  "pattern": [
+                    "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                    "Use a unique lowercase hyphenated ID; keep published IDs stable."
+                  ]
+                },
+                {
+                  "name": "name",
+                  "label": "Name",
+                  "widget": "string"
+                },
+                {
+                  "name": "state",
+                  "label": "State",
+                  "widget": "select",
+                  "options": [
+                    "CA",
+                    "AZ"
+                  ]
+                },
+                {
+                  "name": "scope",
+                  "label": "Scope",
+                  "widget": "select",
+                  "options": [
+                    "statewide",
+                    "county",
+                    "city",
+                    "regional",
+                    "national"
+                  ]
+                },
+                {
+                  "name": "counties",
+                  "label": "Counties",
+                  "widget": "list",
+                  "required": false,
+                  "default": []
+                },
+                {
+                  "name": "cities",
+                  "label": "Cities",
+                  "widget": "list",
+                  "required": false,
+                  "default": []
+                },
+                {
+                  "name": "category",
+                  "label": "Category",
+                  "widget": "select",
+                  "options": [
+                    "down_payment",
+                    "rental_assistance",
+                    "both"
+                  ]
+                },
+                {
+                  "name": "administrator",
+                  "label": "Administrator",
+                  "widget": "string"
+                },
+                {
+                  "name": "assistance_summary",
+                  "label": "Assistance Summary",
+                  "widget": "text"
+                },
+                {
+                  "name": "assistance_amount",
+                  "label": "Assistance Amount",
+                  "widget": "string"
+                },
+                {
+                  "name": "assistance_type",
+                  "label": "Assistance Type",
+                  "widget": "string"
+                },
+                {
+                  "name": "eligibility_notes",
+                  "label": "Eligibility Notes",
+                  "widget": "text"
+                },
+                {
+                  "name": "how_to_apply",
+                  "label": "How To Apply",
+                  "widget": "text"
+                },
+                {
+                  "name": "source_url",
+                  "label": "Source Url",
+                  "widget": "string",
+                  "pattern": [
+                    "^https://[^\\s]+$",
+                    "Use an official HTTPS source without credentials."
+                  ]
+                },
+                {
+                  "name": "last_verified",
+                  "label": "Last Verified",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true,
+                  "hint": "Actual date content was inspected. Unverified seed rows retain their supplied date and are labeled accordingly."
+                },
+                {
+                  "name": "image_key",
+                  "label": "Image Key",
+                  "widget": "string",
+                  "required": false,
+                  "hint": "Optional published Netlify Blobs key: images/place-id/photo-id. Only approved published images are served; absent or unavailable images show a neutral icon."
+                },
+                {
+                  "name": "verification_status",
+                  "label": "Verification Status",
+                  "widget": "select",
+                  "options": [
+                    "verified",
+                    "partial",
+                    "unverified",
+                    "closed"
+                  ],
+                  "default": "unverified"
+                },
+                {
+                  "name": "source_kind",
+                  "label": "Source Kind",
+                  "widget": "select",
+                  "options": [
+                    "official",
+                    "directory",
+                    "guide"
+                  ]
+                },
+                {
+                  "name": "verification_notes",
+                  "label": "Verification Notes",
+                  "widget": "text"
+                },
+                {
+                  "name": "supplied_date",
+                  "label": "Supplied Date",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true
+                },
+                {
+                  "name": "supplied_claim",
+                  "label": "Supplied Claim",
+                  "widget": "text"
+                },
+                {
+                  "name": "source_rows",
+                  "label": "Source Rows",
+                  "widget": "list"
+                },
+                {
+                  "name": "reviewed_at",
+                  "label": "Reviewed At",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false,
+                  "format": "YYYY-MM-DD",
+                  "picker_utc": true
+                },
+                {
+                  "name": "cost_purposes",
+                  "label": "Cost Purposes",
+                  "widget": "select",
+                  "multiple": true,
+                  "required": false,
+                  "options": [
+                    "purchase_down_payment",
+                    "purchase_closing_costs",
+                    "rental_deposit",
+                    "first_rent",
+                    "move_in",
+                    "back_rent",
+                    "ongoing_rent",
+                    "housing_navigation",
+                    "deposit_alternative",
+                    "paid_guarantor"
+                  ]
+                },
+                {
+                  "name": "help_kind",
+                  "label": "Help Kind",
+                  "widget": "select",
+                  "required": false,
+                  "options": [
+                    "financial_assistance",
+                    "referral",
+                    "deposit_alternative",
+                    "paid_guarantor"
+                  ]
+                },
+                {
+                  "name": "property_participation",
+                  "label": "Property Participation",
+                  "widget": "text",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "publish": false,
+      "delete": false
     }
   ]
 }

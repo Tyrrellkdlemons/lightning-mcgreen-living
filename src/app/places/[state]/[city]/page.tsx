@@ -1,3 +1,4 @@
+import { UpfrontCostHelp } from '@/components/assistance/UpfrontCostHelp';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -33,6 +34,7 @@ export default async function CityPage({ params: paramsPromise }: { params: Prom
     <PropertyView name={place.name} city={place.name} state={place.state} locationPrecision="area" sources={[{label: 'Housing referral source', url: place.sourceUrl, kind: 'source'}]} />
     <div className="mt-6 flex flex-wrap gap-3"><Link href={`/resources?state=${place.state}&q=${encodeURIComponent(place.name)}`} className="cinnamon-btn">Sources for {place.name}</Link><Link href={`/resources?state=${place.state}`} className="cinnamon-btn">All {STATES[place.state].name} sources</Link><Link href="/help" className="cinnamon-btn">Find my next step</Link></div>
     <PlaceGallery placeId={place.id} name={place.name} />
+    <UpfrontCostHelp state={place.state} city={place.name} county={place.county} />
     <HousingResources state={place.state} />
     <p className="mt-5 text-xs leading-relaxed text-chocolate-700">This is an editorial planning guide. Housing-referral source: <a href={place.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline">{place.sourcePublisher}</a>. Resource links were reviewed November 3, 2026; contact providers for current service details.</p>
   </>;

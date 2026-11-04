@@ -1,3 +1,4 @@
+import { UpfrontCostHelp } from '@/components/assistance/UpfrontCostHelp';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -42,6 +43,7 @@ export default async function PropertyPage({ params: paramsPromise }: { params: 
     <PropertyEvidence propertyId={listing.id} />
     <PlaceGallery placeId={listing.id} name={listing.property_name} targetKind="workbook" />
     <PropertyView {...workbookView(listing)} />
+    <UpfrontCostHelp state="CA" city={listing.city || ""} intent="rent" />
     <section className="mt-8 explore-card p-5 sm:p-6" aria-labelledby="property-next-steps">
       <p className="eyebrow">Turn a possibility into a plan</p><h2 id="property-next-steps" className="section-heading mt-2">Before you book a tour</h2>
       <ol className="mt-5 grid gap-4 text-sm leading-relaxed text-chocolate-700 md:grid-cols-3">{['Confirm the property name, address and official leasing contact using the original sources.', 'Ask for photos or a tour of the exact unit, its floor plan and the current move-in date.', 'Request written rent, required fees, deposit and screening criteria before paying an application fee.'].map((step) => <li key={step} className="flex items-start gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-lightning-700" aria-hidden />{step}</li>)}</ol>

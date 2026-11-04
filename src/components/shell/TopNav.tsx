@@ -10,6 +10,7 @@ import { SearchBox } from './SearchBox';
 const PRIMARY = [
   { href: '/homes', label: 'Find a home', sections: ['/homes', '/rentals', '/apartments', '/townhomes', '/properties', '/operators'] },
   { href: '/help', label: 'Shelter & support', sections: ['/help', '/assistance'] },
+  { href: '/resources/assistance', label: 'Assistance', sections: ['/resources/assistance'] },
   { href: '/places', label: 'Explore places', sections: ['/places'] },
   { href: '/assistant', label: 'Ask Gemini', sections: ['/assistant'] },
 ];
