@@ -1,0 +1,1292 @@
+{
+  "resources": [
+    {
+      "id": "ca-partner-dpa-01",
+      "name": "EdgeAhead homebuyer co-investment",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Sun West Mortgage and Crib Equity",
+      "assistance_summary": "A 2025 launch announcement describes a mortgage paired with shared-equity investment. This is not a grant.",
+      "assistance_amount": "Verify current product terms",
+      "assistance_type": "Co-investment / non-QM mortgage",
+      "eligibility_notes": "Buyer contribution, underwriting and future equity-sharing obligations apply.",
+      "how_to_apply": "Ask Sun West for current EdgeAhead availability and written terms.",
+      "source_url": "https://www.newswire.com/news/sun-west-and-crib-equity-launch-edgeahead-a-new-way-to-make-22524625",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "guide",
+      "verification_notes": "Sun West-issued February 2025 announcement inspected. Current offers and pricing not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "EdgeAhead: CA/AZ (also FL, GA, TX); co-investment / non-QM program to reduce down payment burden.",
+      "source_rows": [
+        "PARTNER-DPA-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-dpa-01",
+      "name": "EdgeAhead homebuyer co-investment",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Sun West Mortgage and Crib Equity",
+      "assistance_summary": "A 2025 launch announcement describes a mortgage paired with shared-equity investment. This is not a grant.",
+      "assistance_amount": "Verify current product terms",
+      "assistance_type": "Co-investment / non-QM mortgage",
+      "eligibility_notes": "Buyer contribution, underwriting and future equity-sharing obligations apply.",
+      "how_to_apply": "Ask Sun West for current EdgeAhead availability and written terms.",
+      "source_url": "https://www.newswire.com/news/sun-west-and-crib-equity-launch-edgeahead-a-new-way-to-make-22524625",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "guide",
+      "verification_notes": "Sun West-issued February 2025 announcement inspected. Current offers and pricing not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "EdgeAhead: CA/AZ (also FL, GA, TX); co-investment / non-QM program to reduce down payment burden.",
+      "source_rows": [
+        "PARTNER-DPA-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-dpa-02",
+      "name": "Greater Nevada Mortgage down-payment assistance",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Greater Nevada Mortgage",
+      "assistance_summary": "The supplied middle-income grant link now redirects to a broader page focused on Nevada. California participation needs confirmation.",
+      "assistance_amount": "Verify California availability",
+      "assistance_type": "Lender-facilitated grant lead",
+      "eligibility_notes": "Do not assume Nevada programs cover California.",
+      "how_to_apply": "Ask GNM whether a current California grant allocation is available.",
+      "source_url": "https://greaternevadamortgage.com/down-payment-assistance-programs/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Redirect inspected. The current destination does not establish a California $50,000 offer.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Middle-Income Down Payment Assistance: California (also Nevada), up to $50,000 in grants.",
+      "source_rows": [
+        "PARTNER-DPA-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-dpa-03",
+      "name": "SmartBuy down-payment assistance",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Click n’ Close",
+      "assistance_summary": "Mortgage-linked assistance with repayable and forgivable options; the selected option determines repayment.",
+      "assistance_amount": "Up to 5% of purchase price",
+      "assistance_type": "Second mortgage",
+      "eligibility_notes": "Loan, credit and property requirements apply; verify the specific option.",
+      "how_to_apply": "Call 866-544-7013 or use the lender’s SmartBuy page.",
+      "source_url": "https://www.clicknclose.com/smartbuy/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Published guidance inspected; available funding and individual approval are not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "SmartBuy DPA: Arizona licensed; up to 5% for down payment, closing costs or rate buydown.",
+      "source_rows": [
+        "PARTNER-DPA-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-dpa-04",
+      "name": "Chenoa Fund down-payment assistance",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "CBC Mortgage Agency / Chenoa Fund",
+      "assistance_summary": "Assistance is provided as a second mortgage through participating lenders.",
+      "assistance_amount": "Verify current loan amount and repayment",
+      "assistance_type": "Second mortgage",
+      "eligibility_notes": "Published program overview lists a 600 minimum FICO; lender and loan requirements still apply.",
+      "how_to_apply": "Use the official participating-lender contact form.",
+      "source_url": "https://www.chenoafund.org/homebuyer/programs/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current program overview inspected; the supplied percentage and any specific intermediary relationship require current lender confirmation.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Chenoa Fund via IjaraCDC and others: 3.5% or 5% DPA, FICO 600, no income limits.",
+      "source_rows": [
+        "PARTNER-DPA-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-dpa-04",
+      "name": "Chenoa Fund down-payment assistance",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "CBC Mortgage Agency / Chenoa Fund",
+      "assistance_summary": "Assistance is provided as a second mortgage through participating lenders.",
+      "assistance_amount": "Verify current loan amount and repayment",
+      "assistance_type": "Second mortgage",
+      "eligibility_notes": "Published program overview lists a 600 minimum FICO; lender and loan requirements still apply.",
+      "how_to_apply": "Use the official participating-lender contact form.",
+      "source_url": "https://www.chenoafund.org/homebuyer/programs/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current program overview inspected; the supplied percentage and any specific intermediary relationship require current lender confirmation.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Chenoa Fund via IjaraCDC and others: 3.5% or 5% DPA, FICO 600, no income limits.",
+      "source_rows": [
+        "PARTNER-DPA-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-dpa-05",
+      "name": "The Good Lender down-payment program lead",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "The Good Lender",
+      "assistance_summary": "Retained research lead; current California and Arizona coverage and terms have not been established.",
+      "assistance_amount": "Unconfirmed — request written terms",
+      "assistance_type": "Lender program lead",
+      "eligibility_notes": "A low cash-to-close advertisement is not a cash grant. Verify licensing and total costs.",
+      "how_to_apply": "Check the lender’s official site before sharing application information.",
+      "source_url": "https://thegoodlender.com/",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "official",
+      "verification_notes": "Official homepage timed out on inspection. Search discovery is not content verification.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "The Good Lender $3,000 Down Payment Program: CA/AZ and other states; up to 3% DPA and closing costs.",
+      "source_rows": [
+        "PARTNER-DPA-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-dpa-05",
+      "name": "The Good Lender down-payment program lead",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "The Good Lender",
+      "assistance_summary": "Retained research lead; current California and Arizona coverage and terms have not been established.",
+      "assistance_amount": "Unconfirmed — request written terms",
+      "assistance_type": "Lender program lead",
+      "eligibility_notes": "A low cash-to-close advertisement is not a cash grant. Verify licensing and total costs.",
+      "how_to_apply": "Check the lender’s official site before sharing application information.",
+      "source_url": "https://thegoodlender.com/",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "official",
+      "verification_notes": "Official homepage timed out on inspection. Search discovery is not content verification.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "The Good Lender $3,000 Down Payment Program: CA/AZ and other states; up to 3% DPA and closing costs.",
+      "source_rows": [
+        "PARTNER-DPA-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-dpa-06",
+      "name": "Bank of America Down Payment Grant",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Bank of America",
+      "assistance_summary": "A grant may cover part of a qualifying home purchase in eligible markets.",
+      "assistance_amount": "Up to 3% of price, capped at $10,000",
+      "assistance_type": "Grant",
+      "eligibility_notes": "First-time buyer, income, location and eligible mortgage restrictions apply.",
+      "how_to_apply": "Ask a participating Bank of America lending specialist about the exact property.",
+      "source_url": "https://www.bankofamerica.com/mortgage/affordable-housing-programs/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current consumer page inspected. Alameda-specific supplied lead is also retained separately; this is not a second independent grant. The separately named America’s Home Grant closing-cost credit is not this Down Payment Grant.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Bank of America Down Payment Grant: select California markets, up to $10,000.",
+      "source_rows": [
+        "PARTNER-DPA-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-dpa-07",
+      "name": "BMO Welcome Home Grants — California lead",
+      "state": "CA",
+      "scope": "regional",
+      "counties": [
+        "Los Angeles",
+        "San Francisco",
+        "Alameda",
+        "San Diego",
+        "Santa Clara",
+        "Orange",
+        "Riverside"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "BMO",
+      "assistance_summary": "A 2023 announcement described grants in selected California markets. Current funding and terms need confirmation.",
+      "assistance_amount": "Verify current grant availability",
+      "assistance_type": "Grant lead",
+      "eligibility_notes": "The announcement named Los Angeles, San Francisco, Oakland, San Diego, San Jose, Anaheim and Riverside markets.",
+      "how_to_apply": "Ask BMO for current Welcome Home eligibility and funding.",
+      "source_url": "https://newsroom.bmo.com/2023-11-29-BMO-Commits-2-Million-to-Help-Households-in-Underserved-California-Communities-Make-Progress-for-Homeownership",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Historical official announcement inspected, not a current allocation confirmation. Alameda lead is separately retained without implying stackable grants.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "BMO Welcome Home Grants: select California markets; up to $16,000 for down payment and closing costs.",
+      "source_rows": [
+        "PARTNER-DPA-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-dpa-08",
+      "name": "U.S. Bank Access Home Loan",
+      "state": "CA",
+      "scope": "regional",
+      "counties": [
+        "Fresno",
+        "Los Angeles",
+        "Alameda",
+        "Contra Costa",
+        "Riverside",
+        "San Bernardino",
+        "El Dorado",
+        "Placer",
+        "Sacramento",
+        "Yolo",
+        "San Diego"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "U.S. Bank",
+      "assistance_summary": "Mortgage-linked assistance for eligible borrowers and locations.",
+      "assistance_amount": "Up to $12,500",
+      "assistance_type": "Down-payment assistance",
+      "eligibility_notes": "Current-residence census-tract and loan requirements apply; county residence alone is insufficient.",
+      "how_to_apply": "Use U.S. Bank’s eligibility lookup and speak with its lending team.",
+      "source_url": "https://www.usbank.com/home-loans/mortgage/access-home-loan.html",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official page describes the greater of $8,000 or 3% of price, capped at $12,500. No individual eligibility determination.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "U.S. Bank Access Home Loan: Los Angeles County and other markets, up to $12,500 or 3% of purchase price.",
+      "source_rows": [
+        "PARTNER-DPA-08"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-dpa-09",
+      "name": "FHLB Dallas Homebuyer Equity Leverage Partnership (HELP)",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Federal Home Loan Bank of Dallas member institutions",
+      "assistance_summary": "The official HELP page reports $0 available as of September 15, 2026. Ask a participating member about any future reopening.",
+      "assistance_amount": "Unavailable: published allocation $0",
+      "assistance_type": "Member-sponsored grant",
+      "eligibility_notes": "A participating member, household eligibility and remaining allocation are required.",
+      "how_to_apply": "Find a participating FHLB Dallas member and ask about out-of-district HELP funds.",
+      "source_url": "https://www.fhlb.com/community-programs/homeownership-and-homebuyer-programs/homebuyer-equity-leverage-partnership",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "Official 2026 page inspected; dated available-funds balance is $0. The prior outside-district ceiling was $20,000; no later reopening confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "FHLB Dallas HELP Grants: California and Arizona via member institutions; grants for down payment and closing costs.",
+      "source_rows": [
+        "PARTNER-DPA-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-dpa-09",
+      "name": "FHLB Dallas Homebuyer Equity Leverage Partnership (HELP)",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Federal Home Loan Bank of Dallas member institutions",
+      "assistance_summary": "The official HELP page reports $0 available as of September 15, 2026. Ask a participating member about any future reopening.",
+      "assistance_amount": "Unavailable: published allocation $0",
+      "assistance_type": "Member-sponsored grant",
+      "eligibility_notes": "A participating member, household eligibility and remaining allocation are required.",
+      "how_to_apply": "Find a participating FHLB Dallas member and ask about out-of-district HELP funds.",
+      "source_url": "https://www.fhlb.com/community-programs/homeownership-and-homebuyer-programs/homebuyer-equity-leverage-partnership",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "Official 2026 page inspected; dated available-funds balance is $0. The prior outside-district ceiling was $20,000; no later reopening confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "FHLB Dallas HELP Grants: California and Arizona via member institutions; grants for down payment and closing costs.",
+      "source_rows": [
+        "PARTNER-DPA-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-rent-01",
+      "name": "Salvation Army Phoenix Family Services",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Phoenix"
+      ],
+      "category": "rental_assistance",
+      "administrator": "The Salvation Army Southwest Division",
+      "assistance_summary": "Emergency rent and utility assistance is subject to screening and resources. Deposits are excluded.",
+      "assistance_amount": "Varies with available resources",
+      "assistance_type": "Short-term rent / utility assistance",
+      "eligibility_notes": "Published criteria include recent income loss or unplanned expenses.",
+      "how_to_apply": "Call 602-267-4127 for intake requirements.",
+      "source_url": "https://www.salvationarmyusa.org/usa-western-territory/southwest/family-services-in-phoenix/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official Phoenix service page inspected; not a countywide entitlement or deposit program.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Salvation Army Metro Phoenix: Maricopa County rent and utility assistance.",
+      "source_rows": [
+        "PARTNER-RENT-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-rent-04",
+      "name": "Justa Center Path to Housing",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Justa Center; supported by Thunderbirds Charities",
+      "assistance_summary": "Housing navigation and financial support for seniors experiencing homelessness, including deposits and move-in costs.",
+      "assistance_amount": "Varies; no household award promised",
+      "assistance_type": "Case management / limited financial assistance",
+      "eligibility_notes": "Serves adults 55 and older in Maricopa County; intake and funding must be confirmed.",
+      "how_to_apply": "Visit https://www.justacenter.org/path-to-housing for the provider’s service information.",
+      "source_url": "https://thunderbirdscharities.org/thunderbirds-charities-awards-35000-to-justa-centers-path-to-housing-program-for-seniors-experiencing-homelessness/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "March 27, 2026 funder announcement inspected. Its $35,000 figure is an organizational grant, not an individual award.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Thunderbirds Charities / Justa Center: Phoenix emergency rental assistance, utility payments and deposits for seniors.",
+      "source_rows": [
+        "PARTNER-RENT-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "rental_deposit",
+        "move_in",
+        "back_rent",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-rent-05",
+      "name": "Helping Hands for Freedom Life Needs Assistance",
+      "state": "AZ",
+      "scope": "regional",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Helping Hands for Freedom",
+      "assistance_summary": "Assistance may address rent, mortgage, utilities and vehicle payments for eligible military families.",
+      "assistance_amount": "Varies",
+      "assistance_type": "Emergency financial assistance",
+      "eligibility_notes": "Published criteria include a child 18 or younger at home and service/discharge requirements.",
+      "how_to_apply": "Review the official eligibility checklist; contact 602-845-1390.",
+      "source_url": "https://www.helpinghandsforfreedom.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official family eligibility and assistance overview inspected. Local listing is not a guarantee or exclusive service boundary.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Helping Hands for Freedom: Phoenix rent/mortgage, utility and vehicle payments for veteran and Gold Star families.",
+      "source_rows": [
+        "PARTNER-RENT-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-rent-06",
+      "name": "WaFd Bank Foundation housing grants — nonprofit route",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "WaFd Bank Foundation",
+      "assistance_summary": "The foundation funds nonprofit organizations; it does not offer this as a direct renter application.",
+      "assistance_amount": "Organizational grants, not direct renter payments",
+      "assistance_type": "Nonprofit grant / referral",
+      "eligibility_notes": "Nonprofit eligibility and annual application window apply.",
+      "how_to_apply": "Individuals should use local service referrals; nonprofits can review the foundation’s grant rules.",
+      "source_url": "https://www.wafdbank.com/about-us/wafd-bank-foundation",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "Official page says the portal is closed; applications normally run January 1–October 31. This does not establish current help at a local grantee.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Washington Federal Foundation: CA/AZ micro grants for emergency housing and rental assistance via nonprofits.",
+      "source_rows": [
+        "PARTNER-RENT-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-rent-06",
+      "name": "WaFd Bank Foundation housing grants — nonprofit route",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "WaFd Bank Foundation",
+      "assistance_summary": "The foundation funds nonprofit organizations; it does not offer this as a direct renter application.",
+      "assistance_amount": "Organizational grants, not direct renter payments",
+      "assistance_type": "Nonprofit grant / referral",
+      "eligibility_notes": "Nonprofit eligibility and annual application window apply.",
+      "how_to_apply": "Individuals should use local service referrals; nonprofits can review the foundation’s grant rules.",
+      "source_url": "https://www.wafdbank.com/about-us/wafd-bank-foundation",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "Official page says the portal is closed; applications normally run January 1–October 31. This does not establish current help at a local grantee.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Washington Federal Foundation: CA/AZ micro grants for emergency housing and rental assistance via nonprofits.",
+      "source_rows": [
+        "PARTNER-RENT-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-rent-07",
+      "name": "Catholic Charities local agency finder",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Catholic Charities USA and independent local agencies",
+      "assistance_summary": "Find a local agency and ask which housing services it currently offers.",
+      "assistance_amount": "Local services vary",
+      "assistance_type": "Referral directory",
+      "eligibility_notes": "National headquarters does not provide direct client services; local eligibility differs.",
+      "how_to_apply": "Search the agency locator by city, state or ZIP.",
+      "source_url": "https://www.catholiccharitiesusa.org/about-us/find-a-local-agency/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "directory",
+      "verification_notes": "Published guidance inspected; available funding and individual approval are not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Catholic Charities dioceses: CA/AZ emergency rent, utility and deposit assistance.",
+      "source_rows": [
+        "PARTNER-RENT-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-rent-07",
+      "name": "Catholic Charities local agency finder",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Catholic Charities USA and independent local agencies",
+      "assistance_summary": "Find a local agency and ask which housing services it currently offers.",
+      "assistance_amount": "Local services vary",
+      "assistance_type": "Referral directory",
+      "eligibility_notes": "National headquarters does not provide direct client services; local eligibility differs.",
+      "how_to_apply": "Search the agency locator by city, state or ZIP.",
+      "source_url": "https://www.catholiccharitiesusa.org/about-us/find-a-local-agency/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "directory",
+      "verification_notes": "Published guidance inspected; available funding and individual approval are not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Catholic Charities dioceses: CA/AZ emergency rent, utility and deposit assistance.",
+      "source_rows": [
+        "PARTNER-RENT-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-rent-08",
+      "name": "211 California housing referrals",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "211 California",
+      "assistance_summary": "Connect with local housing, rental and utility resources. A referral does not establish available funds.",
+      "assistance_amount": "Referral service; no direct award",
+      "assistance_type": "Referral directory",
+      "eligibility_notes": "Provider eligibility, service boundaries and current funding vary.",
+      "how_to_apply": "Dial 211 or search the official directory.",
+      "source_url": "https://211ca.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "directory",
+      "verification_notes": "Published guidance inspected; available funding and individual approval are not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "2-1-1 CA/AZ statewide referral hub; 211 Arizona / 211 California comprehensive referral databases.",
+      "source_rows": [
+        "PARTNER-RENT-08",
+        "PARTNER-RENT-10"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-rent-08",
+      "name": "211 Arizona housing referrals",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "211 Arizona",
+      "assistance_summary": "Connect with local housing, rental and utility resources. A referral does not establish available funds.",
+      "assistance_amount": "Referral service; no direct award",
+      "assistance_type": "Referral directory",
+      "eligibility_notes": "Provider eligibility, service boundaries and current funding vary.",
+      "how_to_apply": "Dial 211 or search the official directory.",
+      "source_url": "https://211arizona.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "directory",
+      "verification_notes": "Published guidance inspected; available funding and individual approval are not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "2-1-1 CA/AZ statewide referral hub; 211 Arizona / 211 California comprehensive referral databases.",
+      "source_rows": [
+        "PARTNER-RENT-08",
+        "PARTNER-RENT-10"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-partner-rent-09",
+      "name": "Findhelp community assistance search",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Findhelp",
+      "assistance_summary": "Search local free or reduced-cost services using a ZIP code; confirm each provider’s intake.",
+      "assistance_amount": "Referral service; no direct award",
+      "assistance_type": "Referral directory",
+      "eligibility_notes": "Listings are leads, not funding or approval confirmations.",
+      "how_to_apply": "Search https://www.findhelp.org/ for local services.",
+      "source_url": "https://des.az.gov/resource/findhelporg",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "directory",
+      "verification_notes": "Arizona DES official referral inspected; individual directory entries were not audited.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Findhelp.org / Aunt Bertha: national searchable rental and utility assistance database including CA/AZ.",
+      "source_rows": [
+        "PARTNER-RENT-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "az-partner-rent-09",
+      "name": "Findhelp community assistance search",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Findhelp",
+      "assistance_summary": "Search local free or reduced-cost services using a ZIP code; confirm each provider’s intake.",
+      "assistance_amount": "Referral service; no direct award",
+      "assistance_type": "Referral directory",
+      "eligibility_notes": "Listings are leads, not funding or approval confirmations.",
+      "how_to_apply": "Search https://www.findhelp.org/ for local services.",
+      "source_url": "https://des.az.gov/resource/findhelporg",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "directory",
+      "verification_notes": "Arizona DES official referral inspected; individual directory entries were not audited.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Findhelp.org / Aunt Bertha: national searchable rental and utility assistance database including CA/AZ.",
+      "source_rows": [
+        "PARTNER-RENT-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-addon-01",
+      "name": "Mysti’s Adult and Family Services",
+      "state": "CA",
+      "scope": "regional",
+      "counties": [
+        "Riverside",
+        "San Bernardino"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Mysti’s Adult and Family Services",
+      "assistance_summary": "Housing resource navigation and referrals. The provider’s Riverside FAQ directs residents to its contact team.",
+      "assistance_amount": "Authorization and funding must be confirmed",
+      "assistance_type": "Housing navigation / support lead",
+      "eligibility_notes": "Medi-Cal enrollment alone does not authorize housing payments.",
+      "how_to_apply": "Call 833-312-7466 or use the official contact page; ask your health plan separately about authorized services.",
+      "source_url": "https://www.mystis.org/faqs",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Official FAQ opened in Chrome after automated timeouts. Riverside referral guidance and phone confirmed; specific deposit/rent funding, San Bernardino services and plan contracts remain unconfirmed.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Riverside/San Bernardino and other CA areas; rent, deposits, move-in, utilities and housing search; supplied phone 833-312-7466.",
+      "source_rows": [
+        "ADDON-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-addon-02",
+      "name": "Inland Housing Solutions housing navigation",
+      "state": "CA",
+      "scope": "regional",
+      "counties": [
+        "Riverside",
+        "San Bernardino"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Inland Housing Solutions",
+      "assistance_summary": "Housing search and authorized deposit or move-in coordination through managed-care referrals.",
+      "assistance_amount": "Authorized services vary",
+      "assistance_type": "Housing navigation / Community Supports",
+      "eligibility_notes": "Ask your plan whether IHS is available in your county and which services are authorized.",
+      "how_to_apply": "Request an authorized Community Supports/ECM referral from your Medi-Cal plan; IHS lists 909-796-6381.",
+      "source_url": "https://www.inlandhousingsolutions.org/seo-optimization",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Provider page confirms referral-only access. The supplied household count is not independently established and is not used in the public summary.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Riverside/San Bernardino housing navigation, move-in/deposits and IEHP; 2,749 households in 2024; 211 coordinated entry.",
+      "source_rows": [
+        "ADDON-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation",
+        "rental_deposit",
+        "move_in"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-addon-03",
+      "name": "LSSSC Riverside housing and CalAIM support",
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Riverside"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Lutheran Social Services of Southern California",
+      "assistance_summary": "Housing navigation, deposit and household-setup support, with case management and other assistance subject to approval.",
+      "assistance_amount": "Verify authorized costs before paying",
+      "assistance_type": "Housing support / case management",
+      "eligibility_notes": "Ask separately about first rent, deposits and essentials; provider descriptions do not establish authorization for an individual.",
+      "how_to_apply": "Contact 951-689-8447; 6857 Indiana Ave, Riverside, CA 92506.",
+      "source_url": "https://www.lsssc.org/riverside",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official current page inspected; corrected supplied phone/address. Its first-rent description must not be generalized to all CalAIM Housing Deposits benefits.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Riverside housing search, deposit, first month, lease/furniture and 6–12 month casework. Supplied contact 951-689-7847 / 4162 Rubidoux Ave.",
+      "source_rows": [
+        "ADDON-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation",
+        "rental_deposit",
+        "first_rent",
+        "move_in"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-addon-04",
+      "name": "Serene Health Community Supports",
+      "state": "CA",
+      "scope": "regional",
+      "counties": [
+        "Riverside",
+        "San Bernardino"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Serene Health",
+      "assistance_summary": "Provider lists housing navigation, deposits and tenancy-sustaining services through Community Supports.",
+      "assistance_amount": "Plan-authorized services vary",
+      "assistance_type": "Community Supports provider",
+      "eligibility_notes": "Specific Riverside/San Bernardino plan contracts and intake must be confirmed with member services.",
+      "how_to_apply": "Ask your health plan for an authorized referral; provider lists 844-737-3638.",
+      "source_url": "https://serenehealth.com/community-support/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Official service page inspected. The supplied list of health-plan contracts was not established.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Riverside/San Bernardino Housing Deposits, Transition Navigation and Tenancy Sustaining via IEHP/Molina/Kaiser.",
+      "source_rows": [
+        "ADDON-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation",
+        "rental_deposit"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-addon-05",
+      "name": "Impact SoCal Homeless Prevention & Rapid Rehousing",
+      "state": "CA",
+      "scope": "regional",
+      "counties": [
+        "San Bernardino"
+      ],
+      "cities": [
+        "Rancho Cucamonga",
+        "Upland",
+        "Ontario",
+        "Montclair",
+        "Chino",
+        "Chino Hills",
+        "Fontana"
+      ],
+      "category": "rental_assistance",
+      "administrator": "Impact Southern California (IMPACT SOCAL)",
+      "assistance_summary": "Limited aid may cover rent arrears, deposits, moving costs or a short partial rent subsidy.",
+      "assistance_amount": "Varies; partial rent support up to 3 months",
+      "assistance_type": "Short-term financial assistance",
+      "eligibility_notes": "West-end cities only; priority for Rancho Cucamonga and Upland. Applicants need a sustainable plan after aid.",
+      "how_to_apply": "Review the official program criteria and application. Requests are reviewed after the 20th for possible next-month aid.",
+      "source_url": "https://impactsocal.com/homeless-prevention-rapid-rehousing-program-2/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official program page inspected; corrected organization/domain. Payments go to landlords/vendors; limited funding and no approval promise.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Supplied as Impact Social, impactsocial.com; western San Bernardino including Fontana, priority Rancho Cucamonga/Upland, deposits/moving and three months partial rent.",
+      "source_rows": [
+        "ADDON-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "rental_deposit",
+        "move_in",
+        "back_rent",
+        "ongoing_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-addon-06",
+      "name": "Obligo deposit alternative",
+      "state": "CA",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Obligo",
+      "assistance_summary": "A fee-based billing authorization can replace a cash deposit at participating properties. It is not insurance or a grant.",
+      "assistance_amount": "Paid service; quote varies",
+      "assistance_type": "Paid deposit alternative",
+      "eligibility_notes": "A qualifying payment method and property participation are required. Renters remain responsible for valid charges.",
+      "how_to_apply": "Ask management whether Obligo is offered and request the complete fee and billing terms.",
+      "source_url": "https://help.myobligo.com/en/articles/4404457-how-does-obligo-s-no-deposit-service-work",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Published guidance inspected; available funding and individual approval are not confirmed.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Obligo: deposit-free billing authorization; damages billed after move-out at participating properties.",
+      "source_rows": [
+        "ADDON-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "deposit_alternative"
+      ],
+      "help_kind": "deposit_alternative",
+      "property_participation": "Property participation unconfirmed — ask management. Compare total non-refundable fees across the full lease with a refundable cash deposit."
+    },
+    {
+      "id": "az-addon-06",
+      "name": "Obligo deposit alternative",
+      "state": "AZ",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Obligo",
+      "assistance_summary": "A fee-based billing authorization can replace a cash deposit at participating properties. It is not insurance or a grant.",
+      "assistance_amount": "Paid service; quote varies",
+      "assistance_type": "Paid deposit alternative",
+      "eligibility_notes": "A qualifying payment method and property participation are required. Renters remain responsible for valid charges.",
+      "how_to_apply": "Ask management whether Obligo is offered and request the complete fee and billing terms.",
+      "source_url": "https://help.myobligo.com/en/articles/4404457-how-does-obligo-s-no-deposit-service-work",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Published guidance inspected; available funding and individual approval are not confirmed.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Obligo: deposit-free billing authorization; damages billed after move-out at participating properties.",
+      "source_rows": [
+        "ADDON-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "deposit_alternative"
+      ],
+      "help_kind": "deposit_alternative",
+      "property_participation": "Property participation unconfirmed — ask management. Compare total non-refundable fees across the full lease with a refundable cash deposit."
+    },
+    {
+      "id": "ca-addon-07",
+      "name": "Jetty Deposit — existing and transitioning policies",
+      "state": "CA",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Jetty / Greenlight Rent",
+      "assistance_summary": "Deposit bonds use non-refundable fees and protect the property; renters remain responsible for damages or unpaid rent.",
+      "assistance_amount": "Paid premium; quote varies",
+      "assistance_type": "Paid deposit bond",
+      "eligibility_notes": "The current Greenlight migration FAQ says existing Jetty policies remain; new policies may use Greenlight. Confirm with management.",
+      "how_to_apply": "Ask your leasing team which product and terms apply to this property.",
+      "source_url": "https://www.jetty.com/renters/jetty-deposit",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official Jetty product page and October 2026 Greenlight consolidation FAQ inspected. https://support.greenlightrent.com/hc/en-us/articles/53376533818388-Consolidated-Platform-FAQs",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Jetty deposit bond for a non-refundable fee; supplied claim of Rhino merger in 2025.",
+      "source_rows": [
+        "ADDON-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "deposit_alternative"
+      ],
+      "help_kind": "deposit_alternative",
+      "property_participation": "Property participation unconfirmed — ask management. Compare total non-refundable fees across the full lease with a refundable cash deposit."
+    },
+    {
+      "id": "az-addon-07",
+      "name": "Jetty Deposit — existing and transitioning policies",
+      "state": "AZ",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Jetty / Greenlight Rent",
+      "assistance_summary": "Deposit bonds use non-refundable fees and protect the property; renters remain responsible for damages or unpaid rent.",
+      "assistance_amount": "Paid premium; quote varies",
+      "assistance_type": "Paid deposit bond",
+      "eligibility_notes": "The current Greenlight migration FAQ says existing Jetty policies remain; new policies may use Greenlight. Confirm with management.",
+      "how_to_apply": "Ask your leasing team which product and terms apply to this property.",
+      "source_url": "https://www.jetty.com/renters/jetty-deposit",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official Jetty product page and October 2026 Greenlight consolidation FAQ inspected. https://support.greenlightrent.com/hc/en-us/articles/53376533818388-Consolidated-Platform-FAQs",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Jetty deposit bond for a non-refundable fee; supplied claim of Rhino merger in 2025.",
+      "source_rows": [
+        "ADDON-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "deposit_alternative"
+      ],
+      "help_kind": "deposit_alternative",
+      "property_participation": "Property participation unconfirmed — ask management. Compare total non-refundable fees across the full lease with a refundable cash deposit."
+    },
+    {
+      "id": "ca-addon-08",
+      "name": "Rhino / Greenlight Rent deposit alternative",
+      "state": "CA",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Rhino New York LLC DBA Greenlight Rent",
+      "assistance_summary": "Paid landlord-protection coverage may replace a deposit. A renter may still owe covered damage or unpaid-rent charges.",
+      "assistance_amount": "Paid premium; quote varies",
+      "assistance_type": "Paid deposit alternative",
+      "eligibility_notes": "Underwriting and exact property participation apply. Compare fees, renewals and reimbursement obligations.",
+      "how_to_apply": "Ask management for the current Greenlight policy and complete costs.",
+      "source_url": "https://www.greenlightrent.com/terms_of_service",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current legal identity confirmed in September 2026 terms; responsibility described in https://www.greenlightrent.com/blog/posts/how-to-talk-about-security-deposit-insurance . Reading terms is not enrollment or acceptance.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Rhino, now Greenlight Rent: monthly premium deposit insurance; compare lifetime fees with a refundable deposit.",
+      "source_rows": [
+        "ADDON-08"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "deposit_alternative"
+      ],
+      "help_kind": "deposit_alternative",
+      "property_participation": "Property participation unconfirmed — ask management. Compare total non-refundable fees across the full lease with a refundable cash deposit."
+    },
+    {
+      "id": "az-addon-08",
+      "name": "Rhino / Greenlight Rent deposit alternative",
+      "state": "AZ",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Rhino New York LLC DBA Greenlight Rent",
+      "assistance_summary": "Paid landlord-protection coverage may replace a deposit. A renter may still owe covered damage or unpaid-rent charges.",
+      "assistance_amount": "Paid premium; quote varies",
+      "assistance_type": "Paid deposit alternative",
+      "eligibility_notes": "Underwriting and exact property participation apply. Compare fees, renewals and reimbursement obligations.",
+      "how_to_apply": "Ask management for the current Greenlight policy and complete costs.",
+      "source_url": "https://www.greenlightrent.com/terms_of_service",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current legal identity confirmed in September 2026 terms; responsibility described in https://www.greenlightrent.com/blog/posts/how-to-talk-about-security-deposit-insurance . Reading terms is not enrollment or acceptance.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Rhino, now Greenlight Rent: monthly premium deposit insurance; compare lifetime fees with a refundable deposit.",
+      "source_rows": [
+        "ADDON-08"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "deposit_alternative"
+      ],
+      "help_kind": "deposit_alternative",
+      "property_participation": "Property participation unconfirmed — ask management. Compare total non-refundable fees across the full lease with a refundable cash deposit."
+    },
+    {
+      "id": "ca-addon-09",
+      "name": "Insurent institutional guarantor lead",
+      "state": "CA",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Insurent",
+      "assistance_summary": "Paid lease-guarantor service at participating buildings. California is listed in its markets; Arizona is not listed.",
+      "assistance_amount": "Paid fee — current quote unconfirmed",
+      "assistance_type": "Paid lease guarantor",
+      "eligibility_notes": "Confirm exact building acceptance and a personalized fee. Published averages are not a quote; lease obligations remain.",
+      "how_to_apply": "Check the provider’s building directory and request terms from management before applying.",
+      "source_url": "https://www.insurent.com/renters/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Official renter page and fee FAQ inspected in Chrome. California coverage is described; Arizona availability is not established. Fee varies by lease and applicant; no approval-speed claim is adopted.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Insurent/institutional guarantors: supplied cost 70–90% of one month rent.",
+      "source_rows": [
+        "ADDON-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "paid_guarantor"
+      ],
+      "help_kind": "paid_guarantor",
+      "property_participation": "Property participation unconfirmed — ask management."
+    },
+    {
+      "id": "az-addon-09",
+      "name": "Insurent institutional guarantor lead",
+      "state": "AZ",
+      "scope": "national",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Insurent",
+      "assistance_summary": "Paid lease-guarantor service at participating buildings. California is listed in its markets; Arizona is not listed.",
+      "assistance_amount": "Paid fee — current quote unconfirmed",
+      "assistance_type": "Paid lease guarantor",
+      "eligibility_notes": "Confirm exact building acceptance and a personalized fee. Published averages are not a quote; lease obligations remain.",
+      "how_to_apply": "Check the provider’s building directory and request terms from management before applying.",
+      "source_url": "https://www.insurent.com/renters/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Official renter page and fee FAQ inspected in Chrome. California coverage is described; Arizona availability is not established. Fee varies by lease and applicant; no approval-speed claim is adopted.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Insurent/institutional guarantors: supplied cost 70–90% of one month rent.",
+      "source_rows": [
+        "ADDON-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "paid_guarantor"
+      ],
+      "help_kind": "paid_guarantor",
+      "property_participation": "Property participation unconfirmed — ask management."
+    },
+    {
+      "id": "ca-addon-10",
+      "name": "Help Is Hope housing navigation",
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Help Is Hope",
+      "assistance_summary": "Resource navigation and coaching can help organize housing questions and referrals. It does not approve benefits or guarantee payments.",
+      "assistance_amount": "Referral support; no promised cash award",
+      "assistance_type": "Housing navigation",
+      "eligibility_notes": "Serves California adults 18 and older; plan eligibility and authorization are separate.",
+      "how_to_apply": "Use the official resource check-in to request navigation support.",
+      "source_url": "https://www.helpishope.org/post/housing-navigation-california-eligibility-referrals",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current provider article inspected. It explicitly distinguishes navigation, deposits and rent, with no guaranteed reimbursement.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "Free coaching and Medi-Cal deposit referrals; first/last rent, utilities and furniture claimed; not direct cash.",
+      "source_rows": [
+        "ADDON-10"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    },
+    {
+      "id": "ca-addon-11",
+      "name": "Lion’s Path Housing — Moreno Valley College",
+      "state": "CA",
+      "scope": "regional",
+      "counties": [
+        "Riverside"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Moreno Valley College Basic Needs",
+      "assistance_summary": "Eligible MVC students may receive housing navigation, deposit or rent support through rapid rehousing.",
+      "assistance_amount": "Up to 24 months, subject to eligibility and capacity",
+      "assistance_type": "Student rapid rehousing / transitional housing",
+      "eligibility_notes": "Current MVC enrollment, published age 18–24 criteria, housing instability and case-management participation apply.",
+      "how_to_apply": "Contact MVC Basic Needs or use the official program interest form.",
+      "source_url": "https://mvc.edu/student-support/health-wellness/basic-needs/lions-path-housing.php",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official eligibility and services inspected. College-leased transitional housing and student-located rapid rehousing are different tracks; acceptance is capacity/funding dependent.",
+      "supplied_date": "2026-11-03",
+      "supplied_claim": "MVC students: Rapid Rehousing security deposit and rental assistance for own housing, up to24months.",
+      "source_rows": [
+        "ADDON-11"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation",
+        "rental_deposit",
+        "ongoing_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "property_participation": "Property participation unconfirmed — ask the administrator and property management."
+    }
+  ]
+}

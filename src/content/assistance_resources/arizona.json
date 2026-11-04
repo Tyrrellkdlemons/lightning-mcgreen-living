@@ -1,0 +1,1346 @@
+{
+  "resources": [
+    {
+      "id": "az-home-plus",
+      "name": "Home Plus Arizona",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Arizona Industrial Development Authority / Home Plus",
+      "assistance_summary": "Participating lenders offer mortgage financing with down payment and closing-cost assistance throughout Arizona. The current program page advertises up to 4%.",
+      "assistance_amount": "Up to 4% of the mortgage loan",
+      "assistance_type": "Second mortgage; selected products may be forgivable",
+      "eligibility_notes": "Lender underwriting, current program income limits and homebuyer education apply. Forgiveness and repayment depend on the selected product.",
+      "how_to_apply": "Use the official Home Plus participating-lender directory and ask for the current product terms before reserving funds.",
+      "source_url": "https://homeplusaz.com/home-plus-dpa/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The current public page supports 4%, replacing the supplied 5%. It describes both forgivable and non-forgivable options; its five-year forgiveness description must not be read as a promise for every product. A lender must confirm funding and the loan agreement.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Home Plus — Arizona IDA; up to 5% of the loan; second mortgage forgivable after 60 months.",
+      "source_rows": [
+        "AZ-STATE-DPA-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-arizona-is-home",
+      "name": "Arizona Is Home",
+      "state": "AZ",
+      "scope": "regional",
+      "counties": [
+        "Maricopa",
+        "Pima"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Arizona Department of Housing and participating local IDAs",
+      "assistance_summary": "County-specific homebuyer assistance has different terms and funding. Maricopa’s published Home in Five Arizona Is Home lane uses a seven-year second loan; its lender notice says the seven-year option exhausted funds in June 2026.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "County-specific mortgage assistance; do not assume a grant",
+      "eligibility_notes": "Published Maricopa requirements include first-time purchase, Arizona residency and lender qualification. Pima terms and current reservations need separate confirmation.",
+      "how_to_apply": "Start with ADOH’s Arizona Is Home directory, then contact the participating IDA or lender for the county where the home is located.",
+      "source_url": "https://housing.az.gov/general-public/arizona-home-program",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The statewide ADOH page could not be directly retrieved (403). Maricopa administrator content was inspected, including its newer June 25, 2026 funding-exhaustion notice. The supplied $9,000 and universal 120% AMI/grant description were not verified as current county-wide terms. This is not evidence that every Arizona Is Home lane is closed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Arizona Is Home — Arizona Department of Housing; up to $9,000; first-time buyers at or below 120% AMI; Maricopa/Pima, not both simultaneously; grant or deferred assistance.",
+      "source_rows": [
+        "AZ-STATE-DPA-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-pathway-to-purchase",
+      "name": "Pathway to Purchase — historical program reference",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Arizona Department of Housing / participating local administrators",
+      "assistance_summary": "Historical homebuyer-assistance reference retained for lookup. Current enrollment, eligible locations and loan terms have not been confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical assistance; current structure unconfirmed",
+      "eligibility_notes": "Do not rely on the supplied amount or five-year forgiveness period for a current purchase.",
+      "how_to_apply": "Ask ADOH or the local IDA whether Pathway to Purchase has a current funded offering or whether another program applies.",
+      "source_url": "https://pimaida.org/programs-and-impact/pima-tucson-homebuyers-solution/",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "official",
+      "verification_notes": "The Pima IDA’s navigation still references Tucson Pathway to Purchase, but that link returned 404. The supplied $20,000 is historical and is not displayed as a current benefit. Absence of a working page alone does not establish permanent closure.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Pathway to Purchase — $20,000; five-year forgivable grant.",
+      "source_rows": [
+        "AZ-STATE-DPA-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-home-in-five-advantage",
+      "name": "Home in Five Advantage",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Maricopa County IDA and Phoenix IDA",
+      "assistance_summary": "Home in Five advertises assistance for down payment and closing costs through approved lenders. Its seven-year forgivable option has exhausted funding; other product types have separate terms.",
+      "assistance_amount": "Up to 6% advertised; lender must confirm the currently available product",
+      "assistance_type": "Second mortgage; repayment and forgiveness vary by option",
+      "eligibility_notes": "Maricopa County purchase and principal residence, homebuyer education and lender credit/income qualification apply.",
+      "how_to_apply": "Choose an approved lender from the official program site and ask which options can currently be reserved.",
+      "source_url": "https://homein5advantage.com/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The homebuyer page advertises up to 6%, replacing the supplied 5%. A newer lender notice says seven-year forgivable funding was fully used June 25, 2026, with no additional funds currently expected. Do not treat the marketing maximum as a funding reservation.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Maricopa County Home in Five Advantage — 5% of loan, second mortgage.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-home-in-five-platinum",
+      "name": "Home in Five Platinum — funds exhausted",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Maricopa County IDA and Phoenix IDA; eHousingPlus program administration",
+      "assistance_summary": "The administrator identifies Platinum as fully originated. The lender notice says all funds were used and the waitlist closed on June 9, 2026.",
+      "assistance_amount": "Currently unavailable for new reservations",
+      "assistance_type": "Bond-financed mortgage with down payment assistance; closed allocation",
+      "eligibility_notes": "Historical qualification rules do not indicate that a new loan can be reserved.",
+      "how_to_apply": "Check the official program notice for a future allocation or ask an approved lender about other current Home in Five products.",
+      "source_url": "https://www.ehousingplus.com/home-in-5-platinum/program-highlights/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "Closure is supported by both eHousingPlus and the program’s June 2026 lender notice. The archived table shows 4%, not the supplied 6%; no historical percentage is presented as available funding.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Home in Five Platinum — 6%; FHA/VA only; credit score 640; second mortgage.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-newtown-ida",
+      "name": "Newtown CDC Individual Development Account — historical reference",
+      "state": "AZ",
+      "scope": "regional",
+      "counties": [
+        "Maricopa",
+        "Pinal"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Newtown Community Development Corporation",
+      "assistance_summary": "The supplied Individual Development Account program is retained for lookup. Newtown’s current assistance page describes WISH savings matching, but does not establish that the older IDA offer remains available.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical savings-match assistance; current IDA terms unconfirmed",
+      "eligibility_notes": "Ask Newtown to confirm program name, service area, household limits, required savings and repayment rules.",
+      "how_to_apply": "Contact Newtown through its down-payment assistance page; ask specifically whether IDA enrollment is open or whether WISH is the applicable program.",
+      "source_url": "https://newtowncdc.org/what-we-do/down-payment-assistance-programs.html",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "official",
+      "verification_notes": "The supplied $22,000 grant and Maricopa/Pinal coverage were not verified for a current IDA program. Newtown’s separate current WISH offer is recorded under its own resource, without silently replacing IDA.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Maricopa/Pinal Newtown CDC IDA — $22,000 grant.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-pima-tucson-homebuyers-solution",
+      "name": "Pima Tucson Homebuyer’s Solution",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Pima"
+      ],
+      "cities": [
+        "Tucson"
+      ],
+      "category": "down_payment",
+      "administrator": "Pima IDA and Tucson IDA",
+      "assistance_summary": "Mortgage financing with down payment assistance is offered through participating lenders for homes in Pima County. Product options have different forgiveness periods; some VA assistance is structured as a grant.",
+      "assistance_amount": "Verify current product and assistance level",
+      "assistance_type": "Product-specific second mortgage or VA grant",
+      "eligibility_notes": "Lender qualification and homebuyer education apply. The IDA page states no first-time-buyer requirement for this program; product-specific rules still apply.",
+      "how_to_apply": "Use the Pima IDA program page to reach the current program hub and approved lenders. Request the applicable assistance percentage and repayment terms.",
+      "source_url": "https://pimaida.org/programs-and-impact/pima-tucson-homebuyers-solution/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current IDA description supports the program but not a universal 6% offer. It distinguishes three-year and thirty-year forgiveness options and a VA grant exception. Both supplied duplicate rows map to this single resource.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Pima Tucson Homebuyer’s Solution — 6% forgivable second mortgage. Duplicate Tucson Homebuyer’s Solution row — 6% forgivable assistance.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-04",
+        "AZ-LOCAL-DPA-20"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-fhr-wish",
+      "name": "Family Housing Resources WISH — confirm current funding",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Pima"
+      ],
+      "cities": [
+        "Tucson"
+      ],
+      "category": "down_payment",
+      "administrator": "Family Housing Resources",
+      "assistance_summary": "FHR currently describes down payment and closing-cost assistance for income-qualified homebuyers. The specific WISH allocation, amount and loan terms need confirmation.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Homebuyer assistance; WISH-specific structure unconfirmed",
+      "eligibility_notes": "Contact FHR for current income qualification, education requirements, savings match and funding availability.",
+      "how_to_apply": "Use FHR’s official homeownership contact route and ask whether WISH applications are being accepted.",
+      "source_url": "https://fhrtucson.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current homepage confirms homebuyer assistance, but its detailed assistance link returned 404. Older WISH PDFs do not verify today’s $22,000 claim or current funding.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Pima County Family Housing Resources WISH — $22,000 second mortgage.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-fhr-home",
+      "name": "Family Housing Resources HOME — confirm current funding",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Pima"
+      ],
+      "cities": [
+        "Tucson"
+      ],
+      "category": "down_payment",
+      "administrator": "Family Housing Resources",
+      "assistance_summary": "FHR provides homebuyer assistance and counseling. The supplied HOME product’s current allocation and percentage have not been confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Homebuyer assistance; HOME-specific loan terms unconfirmed",
+      "eligibility_notes": "FHR must confirm whether it currently administers this product and which income, education and property rules apply.",
+      "how_to_apply": "Contact FHR about current HOME availability. The Tucson/Pima HOME Consortium is also listed separately with its published partner application route.",
+      "source_url": "https://fhrtucson.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "General homeownership services were inspected. The supplied 10% benefit was not verified, and the current city consortium partner list does not establish an FHR allocation.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Pima County Family Housing Resources HOME — 10% of loan, second mortgage.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-tucson-pima-home-consortium",
+      "name": "Tucson / Pima County HOME Down Payment Assistance",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Pima"
+      ],
+      "cities": [
+        "Tucson"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Tucson / Pima County HOME Consortium and participating nonprofit partners",
+      "assistance_summary": "Assistance helps qualified buyers with down payment and closing costs for homes in Tucson and Pima County, excluding tribal lands. It is a deferred loan, not an unconditional grant.",
+      "assistance_amount": "Lesser of $50,000 or 20% of the contract price",
+      "assistance_type": "Deferred loan; principal remains repayable",
+      "eligibility_notes": "Income at or below 80% AMI, owner occupancy, approved counseling before a purchase contract and a qualifying first mortgage are required. Current price limits and buyer contribution rules apply.",
+      "how_to_apply": "Apply through one of the partner agencies linked by the city, not directly to city staff. Confirm funds before entering a contract.",
+      "source_url": "https://www.tucsonaz.gov/Departments/Housing-and-Community-Development/Housing-Assistance/Down-Payment-Assistance-Program",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The city page confirms the amount. It describes 2% interest during the affordability period, forgiveness of that interest after the period, and principal repayment when sold. Do not describe the entire balance as forgivable.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Tucson/Pima HOME Consortium — $50,000 or 20% of the purchase price; deferred loan.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-pcclt-assistance",
+      "name": "Pima County Community Land Trust — buyer assistance",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Pima"
+      ],
+      "cities": [
+        "Tucson"
+      ],
+      "category": "down_payment",
+      "administrator": "Pima County Community Land Trust",
+      "assistance_summary": "PCCLT lists WISH savings matching and HOME purchase assistance. These have separate requirements and are subject to the funds available for the household.",
+      "assistance_amount": "Published WISH match: up to $32,099; published HOME: up to 20% of purchase price",
+      "assistance_type": "Savings-match assistance and HOME loan programs",
+      "eligibility_notes": "Ask PCCLT about income qualification, required savings or contribution, education, repayment and whether a CLT home is involved.",
+      "how_to_apply": "Contact PCCLT using its official down-payment assistance page for program screening and available funds.",
+      "source_url": "https://pcclt.org/what-we-do/down-payment-assistance-ayuda-con-pago-inicial.html",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The inspected page lists a 4:1 WISH match up to $32,099 and HOME up to 20%, with a minimum HOME buyer contribution. This is a published program description, not confirmation that a reservation is available or that programs can be stacked.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Pima County Community Land Trust partners — assistance varies.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-08"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-avondale-dpa",
+      "name": "Avondale homebuyer assistance — confirm current offering",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Avondale"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Avondale / contracted housing partners",
+      "assistance_summary": "The supplied Avondale buyer-assistance offer remains a historical lead. Current consumer intake and the quoted loan terms were not confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical homebuyer assistance; current terms unconfirmed",
+      "eligibility_notes": "Confirm the active administrator, city residency or property rules, income limits and funding before relying on assistance.",
+      "how_to_apply": "Contact Avondale’s housing/community services staff through the city website to request the current homebuyer program route.",
+      "source_url": "https://www.avondaleaz.gov/",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "official",
+      "verification_notes": "City housing reports and a future-service procurement reference do not establish current applicant funding. The supplied $30,000 and 0% forgiveness are preserved as historical claims only.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Avondale — $30,000, forgivable 0% assistance.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-el-mirage-dpa",
+      "name": "El Mirage homebuyer assistance — historical reference",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "El Mirage"
+      ],
+      "category": "down_payment",
+      "administrator": "City of El Mirage / housing referral partners",
+      "assistance_summary": "The supplied El Mirage down-payment offer has not been confirmed as a current funded program. The city’s community-resources page is a starting point for updated guidance.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Unconfirmed assistance type",
+      "eligibility_notes": "Ask the city to confirm whether this named offer exists, who administers it and which eligibility rules apply.",
+      "how_to_apply": "Use the city’s community-resources contact route before assuming a benefit or paying for an application.",
+      "source_url": "https://www.elmirageaz.gov/community-resources-and-assistance",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "directory",
+      "verification_notes": "Direct page access returned 403. Discovery of the city resource page does not verify the historical $10,000 amount or current enrollment.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "El Mirage — $10,000; assistance type unknown.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-10"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-flagstaff-chap",
+      "name": "Flagstaff Community Homebuyer Assistance Program (CHAP)",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Coconino"
+      ],
+      "cities": [
+        "Flagstaff"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Flagstaff and Housing Solutions of Northern Arizona",
+      "assistance_summary": "Flagstaff’s current CHAP home-purchase option offers repayable assistance. A separate permanent-affordability pilot has different income and resale restrictions.",
+      "assistance_amount": "Home Purchase Assistance: up to $50,000",
+      "assistance_type": "Repayable purchase-assistance loan",
+      "eligibility_notes": "The published home-purchase option serves qualifying households up to 150% AMI. Education, counseling and property/program requirements apply.",
+      "how_to_apply": "Complete the pre-purchase application linked by the city through Housing Solutions of Northern Arizona, then confirm loan and resale terms.",
+      "source_url": "https://www.flagstaff.az.gov/4376/Homebuying-Assistance",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The current city page supersedes the supplied $15,000 amount and explicitly identifies the up-to-$50,000 option as repayable. The separate pilot can provide 30% with permanent-affordability restrictions; it is not the same offer.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Flagstaff CHAP — $15,000 deferred assistance.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-11"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-flagstaff-employer-assisted-housing",
+      "name": "Flagstaff Employer Assisted Housing",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Coconino"
+      ],
+      "cities": [
+        "Flagstaff"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Flagstaff",
+      "assistance_summary": "Eligible city employees can receive a two-to-one match toward a home purchase, up to $20,000. Only part of the assistance can be forgiven.",
+      "assistance_amount": "Up to $20,000; at most $10,000 eligible for prorated forgiveness",
+      "assistance_type": "Partly forgivable, partly repayable employee housing assistance",
+      "eligibility_notes": "Current published rules include qualifying city employment for at least twelve months, satisfactory standing, an eligible Flagstaff primary home and homebuyer education. Other employee/program rules apply.",
+      "how_to_apply": "Follow the city’s Employer Assisted Housing application instructions before committing to a purchase.",
+      "source_url": "https://www.flagstaff.az.gov/5059/Employer-Assisted-Housing-Program",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The city states that up to $10,000 is forgiven over ten years of employment and occupancy; remaining assistance is repayable. Sale, cash-out refinancing, employment termination or loss of owner occupancy may trigger repayment.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Flagstaff EAH — $10,000 forgivable/deferred assistance for city employees.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-12"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-mesa-nsp",
+      "name": "Mesa Neighborhood Stabilization Program (NSP) — historical reference",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Mesa"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Mesa Housing / historical program administrators",
+      "assistance_summary": "This supplied homebuyer program is retained for lookup. Mesa’s current housing page does not establish an open allocation for this named historical offer.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical homebuyer assistance; current loan terms unconfirmed",
+      "eligibility_notes": "Do not assume historical amounts, income rules or forgiveness terms still apply.",
+      "how_to_apply": "Contact Mesa Housing through the official housing page and ask for current purchase-assistance programs and participating agencies.",
+      "source_url": "https://www.mesaaz.gov/Resident-Resources/Housing",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "directory",
+      "verification_notes": "The current city page was inspected. Its rental deposit and other housing services are different programs and do not verify this historical down-payment offer. No current funding or permanent closure was established.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Mesa NSP — $40,000 down-payment assistance plus $5,000 closing costs; forgivable 0% loan.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-13"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-mesa-hoa",
+      "name": "Mesa Homeownership Assistance (HOA) — historical reference",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Mesa"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Mesa Housing / historical program administrators",
+      "assistance_summary": "This supplied homebuyer program is retained for lookup. Mesa’s current housing page does not establish an open allocation for this named historical offer.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical homebuyer assistance; current loan terms unconfirmed",
+      "eligibility_notes": "Do not assume historical amounts, income rules or forgiveness terms still apply.",
+      "how_to_apply": "Contact Mesa Housing through the official housing page and ask for current purchase-assistance programs and participating agencies.",
+      "source_url": "https://www.mesaaz.gov/Resident-Resources/Housing",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "directory",
+      "verification_notes": "The current city page was inspected. Its rental deposit and other housing services are different programs and do not verify this historical down-payment offer. No current funding or permanent closure was established.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Mesa HOA — $30,000 deferred second mortgage.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-14"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-mesa-closing-cost",
+      "name": "Mesa Down Payment / Closing Cost Assistance — historical reference",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Mesa"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Mesa Housing / historical program administrators",
+      "assistance_summary": "This supplied homebuyer program is retained for lookup. Mesa’s current housing page does not establish an open allocation for this named historical offer.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical homebuyer assistance; current loan terms unconfirmed",
+      "eligibility_notes": "Do not assume historical amounts, income rules or forgiveness terms still apply.",
+      "how_to_apply": "Contact Mesa Housing through the official housing page and ask for current purchase-assistance programs and participating agencies.",
+      "source_url": "https://www.mesaaz.gov/Resident-Resources/Housing",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "directory",
+      "verification_notes": "The current city page was inspected. Its rental deposit and other housing services are different programs and do not verify this historical down-payment offer. No current funding or permanent closure was established.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Mesa Down Payment/Closing Cost assistance — $2,500 second mortgage.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-15"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-phoenix-open-doors",
+      "name": "Phoenix Open Doors Down Payment Assistance",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Phoenix"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Phoenix Housing Department",
+      "assistance_summary": "Open Doors provides down payment and closing-cost assistance to eligible first-time buyers purchasing in Phoenix. Current assistance is based on the home price.",
+      "assistance_amount": "Up to 10% of the home purchase price",
+      "assistance_type": "0% deferred loan; forgiven after the applicable affordability period",
+      "eligibility_notes": "Household income at or below 80% AMI, an eligible Phoenix home, current purchase-price limits, eight-hour education and individual HUD-approved counseling apply.",
+      "how_to_apply": "Use the Open Doors fact sheet and current application guidance linked from the city homeownership page.",
+      "source_url": "https://www.phoenix.gov/administration/departments/housing/housing-options/homeownership-opportunities.html",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current city content replaces the supplied $15,000 with up to 10%. The affordability period can last up to fifteen years. Sale, refinancing or a residency change during that period can trigger repayment.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Phoenix Open Doors — $15,000 forgivable 0% assistance.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-16"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-phoenix-section-32",
+      "name": "Phoenix Section 32 — historical homeownership reference",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Phoenix"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Phoenix Housing Department",
+      "assistance_summary": "The supplied Section 32 homeownership entry is retained as a historical reference. Current city guidance features Section 18 home sales, which is a different program.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical purchase assistance; grant characterization unconfirmed",
+      "eligibility_notes": "Request current Section 32 eligibility and availability from the city. Section 18 sale listings do not establish Section 32 eligibility or a grant.",
+      "how_to_apply": "Contact Phoenix Housing through its current homeownership page and identify Section 32 specifically.",
+      "source_url": "https://www.phoenix.gov/administration/departments/housing/housing-options/homeownership-opportunities.html",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "official",
+      "verification_notes": "The current public page was inspected but does not substantiate the supplied Section 32 grant claim. Historical brochures are not proof of a current funded offer. This entry was not silently renamed to Section 18.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Phoenix Section 32 — assistance amount unknown; described as a grant.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-17"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-tempe-camp",
+      "name": "Tempe Community Assisted Mortgage Program (CAMP) — historical reference",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Tempe"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Tempe / homeownership partners",
+      "assistance_summary": "The supplied CAMP offer remains a historical homebuyer-assistance lead. Current public funding, loan terms and an applicant intake route have not been confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical mortgage assistance; current terms unconfirmed",
+      "eligibility_notes": "Confirm the active program, administrator, income and home-location rules directly with Tempe Housing Services.",
+      "how_to_apply": "Use Tempe’s affordable-housing programs page to ask about current purchase assistance and whether CAMP is accepting applicants.",
+      "source_url": "https://www.tempe.gov/government/community-health-and-human-services/housing-services/affordable-housing/affordable-housing-programs",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "directory",
+      "verification_notes": "Historical planning documents mention CAMP, but they do not establish an open current allocation or the supplied 0% terms. No current benefit amount is asserted.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Tempe CAMP — down payment and closing-cost assistance; 0% loan.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-18"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-tempe-newtown-wish",
+      "name": "Newtown WISH buyer assistance / Tempe CLT inquiry",
+      "state": "AZ",
+      "scope": "regional",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Tempe"
+      ],
+      "category": "down_payment",
+      "administrator": "Newtown Community Development Corporation",
+      "assistance_summary": "Newtown’s current WISH page advertises a four-to-one savings match toward a home purchase. Ask Newtown whether the assistance can be used for a particular Tempe or community-land-trust home.",
+      "assistance_amount": "Published match: up to $32,000 for $8,000 saved",
+      "assistance_type": "Matched savings; repayment and retention terms must be confirmed",
+      "eligibility_notes": "Income qualification, required savings, education, lender approval and available program funds apply. CLT eligibility and resale restrictions are separate.",
+      "how_to_apply": "Contact Newtown through its official down-payment assistance page for WISH screening and a property-specific CLT compatibility check.",
+      "source_url": "https://newtowncdc.org/what-we-do/down-payment-assistance-programs.html",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current page supports a 4:1 match up to $32,000, replacing the supplied $22,000. It does not establish that all WISH benefits are unconditional grants, restricted to Tempe, or available for every CLT home.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Tempe Newtown WISH — $22,000 grant for community land trust homes.",
+      "source_rows": [
+        "AZ-LOCAL-DPA-19"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-des-emergency-rental-assistance",
+      "name": "DES Emergency Rental Assistance / Arizona Rental Assistance — closed",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Arizona Department of Economic Security",
+      "assistance_summary": "DES ERAP ended in October 2023. Its successor Arizona Rental Assistance stopped accepting new applications after August 31, 2024. The remaining pages support historical applications.",
+      "assistance_amount": "Closed to new applications",
+      "assistance_type": "Former emergency rent-assistance programs",
+      "eligibility_notes": "Historical eligibility rules do not create a current application opportunity. Other local crisis programs have separate rules and funding.",
+      "how_to_apply": "For a previously submitted application, use the DES archival support route. For new help, use the DES Community Action Agency directory.",
+      "source_url": "https://des.az.gov/services/basic-needs/shelter-housing/arizona-rental-assistance/renters-faqs",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "A DES presentation explicitly records ERAP ending October 13, 2023. The currently accessible DES FAQ confirms the successor’s August 31, 2024 final application date. The supplied statewide open-program description is outdated.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "DES ERAP — statewide where funds are available; short-term rent and utility assistance.",
+      "source_rows": [
+        "AZ-STATE-RENT-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-adoh-rental-referrals",
+      "name": "Arizona Department of Housing — rental and eviction-prevention referrals",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Arizona Department of Housing",
+      "assistance_summary": "ADOH publishes county and agency referral information. A directory entry is not an award or proof that the named agency has funds.",
+      "assistance_amount": "No direct benefit amount verified",
+      "assistance_type": "Housing-assistance referral directory",
+      "eligibility_notes": "Each referred provider sets its service-area, household and funding rules.",
+      "how_to_apply": "Use the county directory to identify a provider, then confirm intake. DES’s current Community Action Agency directory is an additional route.",
+      "source_url": "https://housing.az.gov/general-public/rental-assistance-eviction-prevention-programs",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "directory",
+      "verification_notes": "The ADOH page was discoverable but direct retrieval returned 403; indexed text still referenced older DES emergency rent programs. The DES agency directory and closed-program FAQ were inspected, so this record is a referral route, not verification of ADOH’s old funding statements.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Arizona Department of Housing — rental-assistance and eviction-prevention referrals.",
+      "source_rows": [
+        "AZ-STATE-RENT-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-community-action-agencies",
+      "name": "Arizona regional Community Action Agencies",
+      "state": "AZ",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Arizona Department of Economic Security and local Community Action Agencies",
+      "assistance_summary": "DES lists county and city Community Action Agencies for local crisis screening and referrals. Services and available funding vary by agency.",
+      "assistance_amount": "Varies by local program and available funding",
+      "assistance_type": "Local crisis-assistance and referral network",
+      "eligibility_notes": "Residency, crisis, income and documentation rules are set by the applicable local program.",
+      "how_to_apply": "Find the agency serving your address in the official DES directory and request a current intake assessment.",
+      "source_url": "https://des.az.gov/CommunityActionAgencies",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "directory",
+      "verification_notes": "The directory was inspected for current agency routes. It does not promise every listed service, motel placement or cash benefit in every county.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Regional Community Action Agencies — rent, utilities, deposits and motel assistance.",
+      "source_rows": [
+        "AZ-STATE-RENT-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-apache-community-assistance",
+      "name": "Apache County — NACOG / Round Valley and Old Concho referrals",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Apache"
+      ],
+      "cities": [
+        "Springerville",
+        "Concho"
+      ],
+      "category": "rental_assistance",
+      "administrator": "Northern Arizona Council of Governments and local partner agencies",
+      "assistance_summary": "NACOG lists housing assistance for eligible Apache County residents and identifies Round Valley Senior Center as its Apache County office. Ask the office about the funds available for your crisis.",
+      "assistance_amount": "Varies; confirm current funding",
+      "assistance_type": "Housing assistance and local referrals",
+      "eligibility_notes": "NACOG income, residency and crisis requirements apply. The supplied Old Concho service bundle is not independently confirmed.",
+      "how_to_apply": "Use NACOG’s community-services office directory to reach Round Valley for screening. Confirm Old Concho’s current services before traveling.",
+      "source_url": "https://nacog.org/community-services-offices/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Round Valley’s current NACOG role and NACOG housing support were inspected. Specific Old Concho rent/deposit/motel benefits remain unverified; no motel placement or immediate funds are promised.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Apache County: Old Concho Community Assistance Center and Round Valley Senior Center — emergency rent, utilities, deposits and motel assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "move_in",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-cochise-seacap",
+      "name": "Cochise County — SEACAP assistance screening",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Cochise"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Southeastern Arizona Community Action Program (SEACAP)",
+      "assistance_summary": "DES identifies SEACAP as the Community Action Agency serving Cochise County. Ask the agency which housing-crisis assistance programs currently accept applications.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Community Action Agency screening and referrals",
+      "eligibility_notes": "Current service-specific eligibility and funding must be confirmed by SEACAP.",
+      "how_to_apply": "Use the SEACAP contact listed by DES and identify your county and the cost you need help paying.",
+      "source_url": "https://des.az.gov/CommunityActionAgencies",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "directory",
+      "verification_notes": "The agency assignment is verified from the official directory. SEACAP’s public site did not expose substantive program details to the retrieval tool, so the supplied deposit/first-rent package is not asserted as currently available.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Cochise County: SEACAP — security deposits, move-in and first-month rent assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-coconino-community-services",
+      "name": "Coconino County — Social Services housing help",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Coconino"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Coconino County Health and Human Services / Social Services",
+      "assistance_summary": "The official agency directory routes Coconino County residents to county Social Services for crisis-assistance screening. Current rent and shelter resources must be confirmed directly.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "County crisis-assistance screening and referrals",
+      "eligibility_notes": "County residency, financial crisis and current funding rules apply; individual eligibility has not been assessed.",
+      "how_to_apply": "Contact county Social Services through the official page or its listing in the DES agency directory.",
+      "source_url": "https://www.coconino.az.gov/149/Social-Services",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "DES and NACOG confirm the current county route. Direct access to the detailed county page returned 403; the supplied rent/utility/shelter bundle was not fully verified.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Coconino County Community Services — utilities, rent and emergency shelter.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-gila-community-action",
+      "name": "Gila County Community Action Program",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Gila"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Gila County Community Action Program",
+      "assistance_summary": "Gila County’s Community Action Program is the county’s official crisis-assistance contact. Request screening for housing and utility needs and ask which funds are currently open.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Community Action Agency screening",
+      "eligibility_notes": "The applicable funding stream determines household, crisis, residency and documentation rules.",
+      "how_to_apply": "Use the county CAP contact and application information on the official program page.",
+      "source_url": "https://www.gilacountyaz.gov/government/community/community_action_program.php",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The county program page and DES agency assignment were inspected. The retrieved county text did not substantiate a current rent award amount or universal eligibility, so the supplied service list remains subject to confirmation.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Gila County CAP — rent, utilities and eviction prevention.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-graham-greenlee-assistance",
+      "name": "Graham / Greenlee — Mt. Graham Safe House and SEACAP",
+      "state": "AZ",
+      "scope": "regional",
+      "counties": [
+        "Graham",
+        "Greenlee"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Mt. Graham Safe House; SEACAP for community-action screening",
+      "assistance_summary": "Mt. Graham Safe House provides confidential shelter and support for domestic or sexual violence survivors, including rental and relocation help. SEACAP is a separate local crisis-assistance route.",
+      "assistance_amount": "Varies by survivor needs, eligibility and available resources",
+      "assistance_type": "Survivor housing support and separate community-action referrals",
+      "eligibility_notes": "Safe House services are for survivors and their families; SEACAP has its own program requirements. No general-purpose motel voucher is verified.",
+      "how_to_apply": "Contact Mt. Graham Safe House through its official site for survivor services. For other financial crises, use the SEACAP listing in the DES directory.",
+      "source_url": "https://www.mtgrahamsh.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current Safe House page explicitly describes rental support and relocation help. It does not promise a public motel grant or immediate shelter vacancy. SEACAP’s precise current benefits remain unconfirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Graham/Greenlee: Mt. Graham Safe House and SEACAP — shelter, rent and motel assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "move_in",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-maricopa-rental-assistance",
+      "name": "Maricopa County rental assistance / closed eviction pilot",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Maricopa County Human Services; separate eviction-pilot partners",
+      "assistance_summary": "County CAP partners screen for rent and deposit help outside Phoenix, Mesa and Glendale. The separate four-ZIP eviction pilot has closed applications; its published benefit is not a countywide entitlement.",
+      "assistance_amount": "General CAP: verify current terms; separate pilot intake closed",
+      "assistance_type": "Crisis rent/deposit assistance; separate targeted eviction-prevention pilot",
+      "eligibility_notes": "General county assistance requires applicable residency, a documented crisis and program eligibility. Pilot applicants must meet its ZIP-code and additional screening criteria.",
+      "how_to_apply": "For current general assistance, use the county rental-assistance portal or local CAP. The separate pilot page currently says applications are closed; check it for any future reopening.",
+      "source_url": "https://www.maricopa.gov/5582/Rental-Assistance",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The county CAP page and pilot page were inspected. The pilot page says applications closed Friday, August 21 at 4 p.m. It confirms $3,200 for up to two months, excluding late fees, only for the pilot covering ZIP codes 85008, 85040, 85041 and 85042. This amount does not describe general county CAP. The record is partial because it combines a current screening route with a closed allocation.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Maricopa Human Services Community Resilience — one-time $3,200, up to two months of arrears, plus Eviction Prevention Pilot.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "rental_deposit",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-phoenix-crisis-assistance",
+      "name": "Phoenix Human Services crisis assistance",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Phoenix"
+      ],
+      "category": "rental_assistance",
+      "administrator": "City of Phoenix Human Services Department",
+      "assistance_summary": "Phoenix’s crisis-assistance services include financial help for rent and utilities, eviction prevention, move-in help and referrals, subject to available funding.",
+      "assistance_amount": "Varies by program and funding",
+      "assistance_type": "Crisis financial assistance and service referrals",
+      "eligibility_notes": "Phoenix residency, a qualifying crisis and required household documentation apply. Appointment and funding availability are limited.",
+      "how_to_apply": "Use the city’s crisis-assistance page for its online portal or appointment line and current intake instructions.",
+      "source_url": "https://www.phoenix.gov/administration/departments/humanservices/programs-services/crisis-assistance.html",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Current public services and intake guidance were inspected. This does not confirm an appointment, a shelter bed or an award for an individual household.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Phoenix Human Services — rent, utilities and shelter assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "move_in",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-mesacan",
+      "name": "MesaCAN — rent, mortgage and utility assistance",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Mesa"
+      ],
+      "category": "rental_assistance",
+      "administrator": "A New Leaf / Mesa Community Action Network (MesaCAN)",
+      "assistance_summary": "MesaCAN offers income-qualified Mesa residents assistance with past-due rent or mortgage and utility bills, subject to funds and appointment availability.",
+      "assistance_amount": "Varies; assistance is limited by available funds",
+      "assistance_type": "Crisis financial assistance",
+      "eligibility_notes": "Mesa residency, low income and supporting financial documents apply. The agency describes first-come service with limited appointment capacity.",
+      "how_to_apply": "Follow MesaCAN’s current rent/mortgage appointment instructions on the official service page. Utility intake has its own process.",
+      "source_url": "https://turnanewleaf.org/services/financial-empowerment/mesacan/mesacan-rent-and-utility-assistance/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current service page explicitly mentions rental or mortgage appointments and utility assistance. The supplied financial-coaching component was not separately verified in this review. Both supplied MesaCAN rows are retained here to avoid a duplicate card.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "MesaCAN — rent and utility assistance. Partner duplicate: MesaCAN, Mesa AZ — rental/mortgage assistance, utility assistance and financial coaching.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-08",
+        "PARTNER-RENT-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-glendale-community-action",
+      "name": "Glendale CAP — rent/utility intake currently closed",
+      "state": "AZ",
+      "scope": "city",
+      "counties": [
+        "Maricopa"
+      ],
+      "cities": [
+        "Glendale"
+      ],
+      "category": "rental_assistance",
+      "administrator": "City of Glendale Community Action Program",
+      "assistance_summary": "Glendale’s rent and utility application portal is closed. The page separately states that Glendale water-customer applications remain open and provides housing and shelter referral routes.",
+      "assistance_amount": "Rent/utility intake closed; other programs have separate rules",
+      "assistance_type": "Crisis-assistance program with closed rent/utility intake",
+      "eligibility_notes": "When rent intake reopens, published rules include Glendale residency, crisis, income and household criteria. Water and homelessness referrals have separate eligibility.",
+      "how_to_apply": "Check the official CAP page for reopening notices or the current water-assistance application. Use its referral instructions for other housing needs.",
+      "source_url": "https://www.glendaleaz.gov/Community/City-Services/Community-Services/Community-Action-Program-CAP",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The current official text was retrieved directly and explicitly says the rent/utility portal is closed. The closed label applies to that intake, not to every CAP service or to a permanent program shutdown.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Glendale CAP — rent, utility and shelter assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-mohave-wacog-westcare",
+      "name": "Mohave County — WACOG and WestCare Safe House routes",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Mohave"
+      ],
+      "cities": [
+        "Bullhead City"
+      ],
+      "category": "rental_assistance",
+      "administrator": "Western Arizona Council of Governments; WestCare Arizona",
+      "assistance_summary": "WACOG provides utility-assistance navigation and related crisis referrals. WestCare separately lists a domestic-violence Safe House in Bullhead City; access must be arranged with the provider.",
+      "assistance_amount": "No current general rent benefit amount verified",
+      "assistance_type": "Utility-assistance navigation and specialized shelter referrals",
+      "eligibility_notes": "WACOG and WestCare serve different needs and have separate eligibility. Safe House capacity information is not evidence of a vacant bed.",
+      "how_to_apply": "Use WACOG’s Family and Community Services page for financial-resource screening; use WestCare’s Arizona page for Safe House intake.",
+      "source_url": "https://wacog.com/family-community-services/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Official WACOG and WestCare pages were inspected. They do not establish a currently funded universal rent program or motel benefit. The Safe House address remains confidential.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Mohave County: WACOG and WestCare Safehouse — shelter, rent and utility assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-10"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-navajo-community-assistance",
+      "name": "Navajo County — current NACOG offices and historical agency references",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Navajo"
+      ],
+      "cities": [
+        "Holbrook",
+        "Show Low"
+      ],
+      "category": "rental_assistance",
+      "administrator": "Northern Arizona Council of Governments and current local partners",
+      "assistance_summary": "NACOG lists housing assistance for Navajo County and currently identifies Good Shepherd Catholic Charities in Holbrook as an office. Its Show Low listing directs residents to the main office while that office is vacant.",
+      "assistance_amount": "Varies; confirm current funding",
+      "assistance_type": "Housing assistance and updated local referral route",
+      "eligibility_notes": "NACOG determines eligibility and available housing funds. The older named agencies and motel/deposit bundle are not fully verified.",
+      "how_to_apply": "Use NACOG’s current office directory before traveling. Ask for Navajo County housing screening and the appropriate current partner.",
+      "source_url": "https://nacog.org/community-services-offices/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The supplied historical agency names are retained for search, not presented as confirmed current intake points. Current office and housing pages were inspected; no motel placement or specific deposit award is assured.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Navajo County: Holbrook Senior Center, Navajo Emergency Services and White Mountain Catholic Charities — motel, partial rent and deposits.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-11"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "move_in",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-pima-shelter-rent-resources",
+      "name": "Pima County — Primavera, Gospel Rescue Mission and Emerge",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Pima"
+      ],
+      "cities": [
+        "Tucson"
+      ],
+      "category": "rental_assistance",
+      "administrator": "Primavera Foundation; Gospel Rescue Mission; Emerge Center Against Domestic Abuse",
+      "assistance_summary": "Primavera offers rent/utility screening and shelter or rehousing services. Gospel Rescue Mission provides shelter and housing navigation. The historical Brewster Center became part of Emerge in 2008.",
+      "assistance_amount": "Varies by provider; confirm funds and intake",
+      "assistance_type": "Provider-specific rent help, shelter and housing navigation",
+      "eligibility_notes": "Primavera rent assistance depends on funding, financial hardship, income and documents. Shelter and survivor services have separate eligibility and intake.",
+      "how_to_apply": "Use Primavera’s emergency-services page for rent help and coordinated-entry guidance. Contact Gospel Rescue Mission for its shelter intake or Emerge for domestic-abuse services.",
+      "source_url": "https://primavera.org/emergency-services/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "All three current organization routes and the Brewster merger were supported by inspected official content. No common benefit amount, automatic rent grant or current shelter vacancy is established.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Pima County: Brewster Center, Gospel Rescue Mission and Primavera — shelter, transitional housing and rent assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-12"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance"
+    },
+    {
+      "id": "az-pinal-cahra",
+      "name": "Pinal County — CAHRA Community Services",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Pinal"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Community Action Human Resources Agency (CAHRA)",
+      "assistance_summary": "CAHRA is Pinal County’s designated Community Action Program. Its public page describes utility help, case management, emergency shelter and other financial assistance when funding permits.",
+      "assistance_amount": "Varies; no current rent-specific amount verified",
+      "assistance_type": "Crisis assistance, case management and housing referrals",
+      "eligibility_notes": "Limited-income households are screened for the applicable program. Rent-specific funding and eligibility require confirmation.",
+      "how_to_apply": "Request a case-management appointment or use the application linked from CAHRA’s official Community Services page.",
+      "source_url": "https://www.cahra.org/services/community-services",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current page was inspected. It supports utility help and possible other funding, but does not establish a currently open general rent allocation. Its separate Housing Programs page primarily concerns repairs and weatherization.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Pinal County Community Action Program — various rent and utility assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-13"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-yavapai-housing-resources",
+      "name": "Yavapai County — Catholic Charities and NACOG housing routes",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Yavapai"
+      ],
+      "cities": [
+        "Prescott",
+        "Prescott Valley",
+        "Cottonwood"
+      ],
+      "category": "rental_assistance",
+      "administrator": "Catholic Charities Community Services; Northern Arizona Council of Governments",
+      "assistance_summary": "Catholic Charities provides coordinated-entry housing assessment in Prescott and Cottonwood. NACOG separately offers housing-assistance screening for eligible Yavapai County residents.",
+      "assistance_amount": "Varies by program and available funding",
+      "assistance_type": "Housing assessment, assistance screening and referrals",
+      "eligibility_notes": "Coordinated entry assesses housing needs and eligibility; it is not an emergency shelter reservation. Financial-assistance rules depend on the program.",
+      "how_to_apply": "Use Catholic Charities’ current homeless-services contacts for assessment, or NACOG’s office directory for crisis financial-assistance screening.",
+      "source_url": "https://www.catholiccharitiesaz.org/homeless-services",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Current organization names and assessment routes were inspected. A general Catholic Charities rent/utility cash benefit was not confirmed; the supplied historical label is retained without promising that benefit.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Yavapai County: Catholic Social Service / Catholic Charities and Prescott programs — rent and utilities.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-14"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    },
+    {
+      "id": "az-yuma-wacog",
+      "name": "Yuma County — WACOG Family and Community Services",
+      "state": "AZ",
+      "scope": "county",
+      "counties": [
+        "Yuma"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Western Arizona Council of Governments",
+      "assistance_summary": "WACOG serves Yuma County with utility-assistance navigation, advocacy and local resource referrals. Ask its staff whether a current rent or shelter program fits your needs.",
+      "assistance_amount": "No current general rent benefit amount verified",
+      "assistance_type": "Utility-assistance navigation and crisis referrals",
+      "eligibility_notes": "Eligibility and available financial support depend on the particular program; referral coverage does not guarantee funds.",
+      "how_to_apply": "Use WACOG’s official Family and Community Services page for current assistance instructions.",
+      "source_url": "https://wacog.com/family-community-services/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current service page was inspected. It does not establish an open universal rent/mortgage or shelter cash program. Older materials describing planned assistance were not treated as current funding.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Yuma County WACOG — rent, utilities and shelter assistance.",
+      "source_rows": [
+        "AZ-LOCAL-RENT-15"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral"
+    }
+  ]
+}

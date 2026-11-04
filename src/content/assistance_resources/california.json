@@ -1,0 +1,1676 @@
+{
+  "resources": [
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "California Housing Finance Agency (CalHFA)",
+      "assistance_summary": "A deferred-payment junior loan paired with a CalHFA first mortgage can help with the down payment or closing costs.",
+      "assistance_amount": "FHA: up to 3.5%; conventional: up to 3% of the lower of purchase price or appraised value",
+      "assistance_type": "Deferred-payment second loan",
+      "eligibility_notes": "First-time buyers, owner occupancy, CalHFA income and loan limits, and required homebuyer education apply. This is repayable assistance.",
+      "how_to_apply": "Ask a CalHFA-approved loan officer to assess MyHome with the proposed first mortgage and provide the current rate and repayment terms.",
+      "source_url": "https://calhfa.ca.gov/homebuyer/programs/myhome.htm",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official program content supports the percentage limits. The supplied blanket 0% claim was not verified; interest rates and combinations require the lender's current terms.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "MyHome: up to 3.5% of purchase for FHA or 3% conventional; supplied as a 0% deferred second loan.",
+      "source_rows": [
+        "CA-STATE-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-calhfa-myhome",
+      "name": "CalHFA MyHome Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "California Housing Finance Agency (CalHFA)",
+      "assistance_summary": "ZIP is closing-cost assistance paired with a CalPLUS first mortgage. The first mortgage and assistance must be evaluated together.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Closing-cost assistance second loan",
+      "eligibility_notes": "CalHFA borrower, property, education and participating-lender requirements apply. The CalPLUS first-mortgage rate is higher than the standard CalHFA Conventional rate.",
+      "how_to_apply": "Ask a CalHFA-approved loan officer for the current ZIP amount, rate, repayment conditions and permitted program combinations.",
+      "source_url": "https://calhfa.ca.gov/homebuyer/programs/calplus-conventional-access.htm",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The current official page confirms ZIP with CalPLUS. The supplied 2%/3%, 0% and automatic MyHome stacking terms were not independently established from that page.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "ZIP: up to 2% or 3% of loan for closing costs; 0% deferred second; claimed stackable with MyHome.",
+      "source_rows": [
+        "CA-STATE-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-calhfa-zip",
+      "name": "CalHFA ZIP with CalPLUS"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "California Housing Finance Agency (CalHFA)",
+      "assistance_summary": "The 2026 registration window is closed. Selected borrowers use shared-appreciation assistance with a Dream For All Conventional first mortgage.",
+      "assistance_amount": "Advertised maximum: 20% of purchase price, capped at $150,000; applications closed",
+      "assistance_type": "Shared-appreciation second loan",
+      "eligibility_notes": "All borrowers must be first-time buyers, at least one must be a first-generation buyer and at least one a California resident. Income, education and voucher rules apply.",
+      "how_to_apply": "Existing registrants should check their voucher status and lender instructions. Monitor CalHFA's official page for any future registration round.",
+      "source_url": "https://www.calhfa.ca.gov/dream/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The official page states registration closed March 16, 2026. Repayment includes principal and a share of appreciation; the supplied fixed 20% equity formulation is not a universal repayment rule.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Dream For All: 20% of purchase, cap $150,000; supplied as 0% shared appreciation with 20% equity repayment.",
+      "source_rows": [
+        "CA-STATE-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-calhfa-dream-for-all",
+      "name": "CalHFA Dream For All Shared Appreciation Loan"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Golden State Finance Authority (GSFA)",
+      "assistance_summary": "This supplied program could not be confirmed as a current GSFA offering. GSFA's current directory lists other assistance programs.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Supplied second-loan program; current structure unconfirmed",
+      "eligibility_notes": "Do not rely on the historical amount or assume eligibility for a differently named GSFA program.",
+      "how_to_apply": "Use GSFA's current program directory and a participating lender to identify an available program and current terms.",
+      "source_url": "https://www.gsfahome.org/programs/dpa.shtml",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "directory",
+      "verification_notes": "The historical OpenDoors overview returned 404. The current GSFA directory does not list OpenDoors. No official evidence established a rename or that another program has identical terms.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "GSFA OpenDoors: up to 7% of loan as a second loan.",
+      "source_rows": [
+        "CA-STATE-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-gsfa-open-doors",
+      "name": "GSFA OpenDoors — supplied program requiring confirmation"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Golden State Finance Authority (GSFA)",
+      "assistance_summary": "Platinum provides purchase assistance through participating lenders. The Standard option uses a repayable second mortgage; specialized options have different structures.",
+      "assistance_amount": "Standard: up to 5% of the first-mortgage amount; other options vary",
+      "assistance_type": "Standard: 15-year amortizing second mortgage; selected options include a gift",
+      "eligibility_notes": "Income, credit, mortgage type and lender requirements apply. Some specialized options have occupation or county-employment requirements.",
+      "how_to_apply": "Request the current GSFA Platinum option sheet and complete payment schedule from a participating lender.",
+      "source_url": "https://www.gsfahome.org/programs/dpa/platinum.shtml",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The current Standard option is an amortizing second loan at the first mortgage's interest rate. The supplied blanket forgivable-second description is incorrect. Select and Assist-to-Own structures differ.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "GSFA Platinum: up to 5% of loan as a forgivable second loan.",
+      "source_rows": [
+        "CA-STATE-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-gsfa-platinum",
+      "name": "GSFA Platinum"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Golden State Finance Authority (GSFA)",
+      "assistance_summary": "GSFA is not accepting new MCC applications because its allocation is exhausted. An MCC is a mortgage-interest tax credit, not money for a down payment.",
+      "assistance_amount": "Historical certificate: 20% of eligible annual mortgage interest; no new allocation",
+      "assistance_type": "Federal mortgage-interest tax credit",
+      "eligibility_notes": "Existing certificate holders should follow applicable tax rules and ask about reissuance when refinancing.",
+      "how_to_apply": "Check the official status page. Existing holders can ask GSFA about certificate reissuance; no new application route is open.",
+      "source_url": "https://www.gsfahome.org/programs/mcc.shtml",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The inspected official page reports full allocation and no new applications. Tax benefits depend on the holder's circumstances.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "GSFA MCC: 20% mortgage-interest federal tax credit.",
+      "source_rows": [
+        "CA-STATE-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-gsfa-mcc",
+      "name": "GSFA Mortgage Credit Certificate — allocation exhausted"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "U.S. Department of Veterans Affairs and participating lenders",
+      "assistance_summary": "Eligible borrowers may finance a primary home without a down payment when the price does not exceed its appraised value.",
+      "assistance_amount": "Potential 0% down; closing costs and a VA funding fee may still apply",
+      "assistance_type": "VA-backed first-mortgage financing; not a cash grant",
+      "eligibility_notes": "A Certificate of Eligibility, sufficient income, lender credit approval and intended owner occupancy are required. Service and surviving-spouse eligibility rules apply.",
+      "how_to_apply": "Obtain a VA Certificate of Eligibility and apply with a lender that offers VA purchase loans.",
+      "source_url": "https://www.va.gov/housing-assistance/home-loans/loan-types/purchase-loan/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "Official purchase-loan guidance supports no-down-payment financing subject to appraisal and lender approval. This does not guarantee approval or cover every purchase expense.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "VA: 0% down first mortgage for eligible veterans and other qualifying borrowers.",
+      "source_rows": [
+        "CA-STATE-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-va-purchase-loan",
+      "name": "VA Purchase Home Loan"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "USDA Rural Development and approved lenders",
+      "assistance_summary": "USDA direct and guaranteed home-loan programs can offer no-down-payment financing for eligible rural properties and borrowers.",
+      "assistance_amount": "Potential 0% down; program and property eligibility must be checked",
+      "assistance_type": "Direct or guaranteed first-mortgage financing; not a cash grant",
+      "eligibility_notes": "Direct loans target low- and very-low-income households; guaranteed loans serve eligible moderate-income households. The exact address, household income and repayment ability matter.",
+      "how_to_apply": "Check the property's USDA eligibility and compare the direct-loan route through Rural Development with the guaranteed-loan route through an approved lender.",
+      "source_url": "https://www.rd.usda.gov/programs-services/single-family-housing-programs",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "USDA's inspected program directory supports rural no-down-payment options. The supplied claim that 97% of California land qualifies was not verified and is not used as an eligibility rule.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "USDA: 0% down in eligible areas; claimed 97% of California land qualifies.",
+      "source_rows": [
+        "CA-STATE-08"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-usda-home-loans",
+      "name": "USDA Rural Development Home Loans"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Alameda"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Alameda County Housing and Community Development; managed by Hello Housing",
+      "assistance_summary": "AC Boost uses a shared-appreciation loan to help eligible Alameda County buyers. Pre-applications for the published funding round are closed.",
+      "assistance_amount": "Up to $210,000 in the published round; new pre-applications closed",
+      "assistance_type": "Deferred shared-appreciation loan",
+      "eligibility_notes": "County eligibility, first-time buyer rules, income limits and the funding-round process apply. Repayment includes an appreciation share.",
+      "how_to_apply": "Existing applicants should follow their lottery and application instructions. Watch the official site for a future funding round.",
+      "source_url": "https://www.acboost.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The official page identifies the May 15, 2024 pre-application deadline and June 2024 lottery. No new open round was established.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Alameda AC Boost: up to $210,000 shared-appreciation assistance.",
+      "source_rows": [
+        "CA-DPA-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-alameda-acboost",
+      "name": "Alameda County AC Boost"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Alameda"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Bank of America; listed by Alameda County AC Boost",
+      "assistance_summary": "AC Boost's lender-resource directory lists Bank of America's down-payment grant as a possible lender option. It is separate from an AC Boost award.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Lender down-payment grant; current local terms require confirmation",
+      "eligibility_notes": "Property location, borrower income, mortgage and lender rules apply. A directory listing does not establish qualification or approval to combine programs.",
+      "how_to_apply": "Contact the lender through the AC Boost resource page and ask whether the property qualifies and the grant can be combined with the proposed financing.",
+      "source_url": "https://www.acboost.org/additional-dpa-resources",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "directory",
+      "verification_notes": "AC Boost lists up to $10,000 or 3% of price, whichever is less. Current bank availability was not independently established for this Alameda referral. Broader bank listings describe the same funding, not an additional grant.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Alameda lender row: Bank of America down-payment grant up to $10,000 via AC Boost lenders.",
+      "source_rows": [
+        "CA-DPA-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-alameda-bofa-down-payment-grant",
+      "name": "Bank of America Down Payment Grant — Alameda referral"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Alameda"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "BMO; listed by Alameda County AC Boost",
+      "assistance_summary": "AC Boost's lender-resource directory lists BMO Welcome Home for possible down-payment and closing-cost help.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Lender grant; current local terms require confirmation",
+      "eligibility_notes": "Lender, borrower and property conditions apply. Ask the lender to confirm combinations with AC Boost or any other assistance.",
+      "how_to_apply": "Use the AC Boost lender-resource page to request a current BMO assessment for the intended property and mortgage.",
+      "source_url": "https://www.acboost.org/additional-dpa-resources",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "directory",
+      "verification_notes": "The directory advertises up to $16,000, but current bank availability was not independently established here. Broader BMO listings refer to the same program, not independent funding.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Alameda lender row: BMO Welcome Home up to $16,000 via AC Boost lenders.",
+      "source_rows": [
+        "CA-DPA-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-alameda-bmo-welcome-home",
+      "name": "BMO Welcome Home — Alameda referral"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "El Dorado"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "El Dorado County",
+      "assistance_summary": "The county describes deferred homebuyer loans for unincorporated areas and says new program guidelines are coming soon.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Deferred second-priority homebuyer loan; new guidelines pending",
+      "eligibility_notes": "Eligible first-time buyers must purchase within unincorporated El Dorado County. Current income limits, loan cap, interest and intake rules need the new guidelines.",
+      "how_to_apply": "Use the official update signup, or contact county loans staff at 530-621-5824 for timelines and eligibility. The signup is for updates, not a funding application.",
+      "source_url": "https://www.eldoradocounty.ca.gov/Services/HomebuyerRehab-Loans-Affordable-Housing-Development/Homebuyers/First-Time-Homebuyer-Program",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Root's authorized Chrome inspection recovered the page after reader/HTTP access errors. It states new guidelines are coming soon; neither the supplied $30,000 nor 3% terms was confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "El Dorado County: $30,000 deferred second loan at 3%.",
+      "source_rows": [
+        "CA-DPA-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-el-dorado-first-time-homebuyer",
+      "name": "El Dorado County First-Time Homebuyer Program"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Fresno"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Fresno County",
+      "assistance_summary": "A historical county brochure describes homebuyer loans, but a current funded application round and current limits were not confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical deferred second-loan program",
+      "eligibility_notes": "Do not use the brochure's old income or purchase-price limits to decide current eligibility. Confirm service area and current funding with the county.",
+      "how_to_apply": "Ask Fresno County housing staff whether the Homebuyer Assistance Program has current funding and updated guidelines.",
+      "source_url": "https://www2.fresnocountyca.gov/4510/4360/forms/com_dev/Housing/HAP_ProgramOverview.pdf",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "guide",
+      "verification_notes": "The official PDF was inspected and contains 2007 income limits. Its historic 20% plus closing-cost loan terms are not represented as a current offer.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Fresno Homebuyer Assistance Program: 20% of purchase price as a second loan.",
+      "source_rows": [
+        "CA-DPA-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-fresno-homebuyer-assistance",
+      "name": "Fresno County Homebuyer Assistance — historical program lead"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Glenn"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Glenn County",
+      "assistance_summary": "A county-hosted historical brochure was discovered, but current assistance and application terms remain unconfirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Supplied second-loan program; current terms unconfirmed",
+      "eligibility_notes": "Confirm the eligible location, current income limits, interest rate, loan maximum and availability directly with the county.",
+      "how_to_apply": "Ask Glenn County housing staff for current Homeownership Assistance Program guidelines and an open application route.",
+      "source_url": "https://www.countyofglenn.net/sites/default/files/Behavioral_Health/Homeownership%20Assistance%20Prgm%207_17.pdf",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "guide",
+      "verification_notes": "The discovered county PDF is a historical 2017 brochure; full content retrieval was unavailable. The supplied $40,000 and 3% terms were not confirmed as current.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Glenn County: $40,000 second loan at 3%.",
+      "source_rows": [
+        "CA-DPA-06"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-glenn-homeownership-assistance",
+      "name": "Glenn County Homeownership Assistance — program lead"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Humboldt"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Humboldt County Planning and Building Department",
+      "assistance_summary": "The county advertises a waitlist opening October 29, 2026 for gap financing toward a first home in unincorporated Humboldt County.",
+      "assistance_amount": "Gap-based loan; no current $46,000 maximum confirmed",
+      "assistance_type": "45-year deferred loan with 3% simple interest",
+      "eligibility_notes": "Generally at or below 80% of area median income; first-time buyer and education requirements apply. County employees are excluded. The first mortgage must meet program rules.",
+      "how_to_apply": "Use the county's waitlist application and obtain staff guidance on income, property eligibility and funding before making purchase commitments.",
+      "source_url": "https://www.humboldtgov.org/3514/First-Time-Homebuyer-Down-Payment-Assist",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official page supports the waitlist date and loan structure. A waitlist entry is not a funding reservation, and the supplied $46,000 cap was not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Humboldt County: $46,000 second loan.",
+      "source_rows": [
+        "CA-DPA-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-humboldt-first-time-homebuyer",
+      "name": "Humboldt County First-Time Homebuyer Down Payment Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Imperial"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Imperial County Community and Economic Development",
+      "assistance_summary": "The county lists this first-time homebuyer program among completed housing programs. A new funded round was not confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical deferred homebuyer loan",
+      "eligibility_notes": "The historic program served eligible low-income buyers in unincorporated Imperial County. New terms would need fresh confirmation.",
+      "how_to_apply": "Contact county Community and Economic Development about currently funded homeownership programs; do not treat the completed program as accepting applications.",
+      "source_url": "https://icced.imperialcounty.org/programs-projects/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The inspected official page places First Time Homebuyers under Completed Housing Programs. Its historical $60,000 amount is retained only in the supplied claim.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Imperial County: $60,000 second loan.",
+      "source_rows": [
+        "CA-DPA-08"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-imperial-first-time-homebuyer",
+      "name": "Imperial County First-Time Homebuyer — completed program"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Lake"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Lake County",
+      "assistance_summary": "Published 2022 guidelines describe a deferred gap loan for eligible homebuyers, but current funding and an open intake were not confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Published deferred second-loan guidelines; current availability unconfirmed",
+      "eligibility_notes": "Confirm current income, property, buyer-contribution and lending requirements before relying on the older guidelines.",
+      "how_to_apply": "Ask county housing staff for current First-Time Homebuyer funding, loan limits and application instructions.",
+      "source_url": "https://www.lakecountyca.gov/DocumentCenter/View/15521/Lake-FTHB-Program-Guidelines-Approved-0622022?bidId=",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "guide",
+      "verification_notes": "The official 2022 guidelines were content-inspected. They do not establish current funding or support publishing the supplied 50%-of-price amount as a current offer.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Lake County: second loan up to 50% of purchase price.",
+      "source_rows": [
+        "CA-DPA-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-lake-first-time-homebuyer",
+      "name": "Lake County First-Time Homebuyer — guidelines lead"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Los Angeles"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Los Angeles County Development Authority (LACDA)",
+      "assistance_summary": "HOP80 offers deferred purchase assistance to qualifying low-income buyers in eligible county areas.",
+      "assistance_amount": "Up to $100,000 or 20% of purchase price, whichever is less",
+      "assistance_type": "0% deferred second loan with shared-equity repayment",
+      "eligibility_notes": "HOP80 serves households at or below 80% of area median income. First-time buyer, 1% own contribution, education, owner occupancy and eligible-area rules apply. HOP150 is a separate income option.",
+      "how_to_apply": "Apply through a participating HOP lender; the lender submits the loan package to LACDA.",
+      "source_url": "https://www.lacda.org/home-ownership/home-ownership-program",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The inspected page supports the stated maximum and shared-equity structure. Eligibility and remaining funds must be checked for the exact property and applicant.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "LACDA HOP: deferred assistance for households at or below 80% AMI; amount unspecified.",
+      "source_rows": [
+        "CA-DPA-10"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-lacda-hop80",
+      "name": "LACDA Home Ownership Program — HOP80"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Los Angeles"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Los Angeles County Development Authority (supplied administrator)",
+      "assistance_summary": "The supplied First Home Mortgage grant could not be established as a current offering. LACDA's current homeownership page describes its HOP programs.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Supplied mortgage-linked grant; current program unconfirmed",
+      "eligibility_notes": "Do not assume the supplied 4% grant is available or that it is another name for HOP.",
+      "how_to_apply": "Ask LACDA or a participating housing lender whether First Home Mortgage currently operates and request current written terms.",
+      "source_url": "https://www.lacda.org/home-ownership/home-ownership-program",
+      "last_verified": "2025-06-01",
+      "verification_status": "unverified",
+      "source_kind": "directory",
+      "verification_notes": "A historical county FHMP page was discovered but unavailable. No inspected official content established current 4% grant terms. The linked current HOP page is a contact route, not proof of FHMP availability.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "LACDA First Home Mortgage: 4% of purchase price as a grant.",
+      "source_rows": [
+        "CA-DPA-11"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-lacda-first-home-mortgage",
+      "name": "LACDA First Home Mortgage — supplied program requiring confirmation"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Los Angeles"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Neighborhood Housing Services of Los Angeles County",
+      "assistance_summary": "Greenline provides grant assistance for eligible first-time buyers toward a down payment and closing costs.",
+      "assistance_amount": "Advertised maximum: $35,000",
+      "assistance_type": "Down-payment and closing-cost grant",
+      "eligibility_notes": "Income and program-area requirements apply. The published process includes buyer contribution, HUD-certified education and a HOPE orientation.",
+      "how_to_apply": "Attend an NHS HOPE orientation and work with an NHS housing counselor; the Greenline application process requires a purchase agreement.",
+      "source_url": "https://www.nhslacounty.org/homebuyer-education/down-payment-assistance-programs/greenline-home-program-los-angeles/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official program page supports up to $35,000. This maximum is not confirmation of remaining funds or an applicant award.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "NHS Greenline Home: $35,000 grant.",
+      "source_rows": [
+        "CA-DPA-12"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-nhs-greenline",
+      "name": "NHS Los Angeles Greenline Home Program"
+    },
+    {
+      "state": "CA",
+      "scope": "city",
+      "counties": [
+        "Los Angeles"
+      ],
+      "cities": [
+        "Inglewood"
+      ],
+      "category": "down_payment",
+      "administrator": "Neighborhood Housing Services of Los Angeles County",
+      "assistance_summary": "NHS advertises down-payment grant assistance for first-time buyers who live or work in Inglewood.",
+      "assistance_amount": "Advertised maximum: $100,000",
+      "assistance_type": "Down-payment grant",
+      "eligibility_notes": "This is an Inglewood-specific initiative, not a general Los Angeles County $100,000 grant. A counselor must confirm residence/work, purchase-location, income and other current rules.",
+      "how_to_apply": "Attend NHS's HOPE Homebuyer Orientation and request a counselor's assessment for the Inglewood Homeownership Initiative.",
+      "source_url": "https://www.nhslacounty.org/homebuyer-education/down-payment-assistance-programs/?pno=2",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The official NHS assistance directory explicitly identifies Inglewood and up to $100,000. Its individual program page could not be fully retrieved, so complete eligibility and current funding remain unconfirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "NHS Los Angeles: $100,000 grant; supplied without the Inglewood-specific limitation.",
+      "source_rows": [
+        "CA-DPA-13"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-nhs-inglewood-homeownership",
+      "name": "NHS Inglewood Homeownership Initiative"
+    },
+    {
+      "state": "CA",
+      "scope": "city",
+      "counties": [
+        "Madera"
+      ],
+      "cities": [
+        "Madera"
+      ],
+      "category": "down_payment",
+      "administrator": "City of Madera",
+      "assistance_summary": "The city's first-time homebuyer program is temporarily on hold until additional funding is available.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Deferred homebuyer gap loan",
+      "eligibility_notes": "This is a City of Madera program. Historical eligibility or dollar limits do not establish terms for a future round.",
+      "how_to_apply": "Monitor the city's official page or contact housing staff for a funding update before preparing an application.",
+      "source_url": "https://www.madera.gov/living-in-madera/housing-grants-assistance-programs/first-time-homebuyers-program/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The inspected city page explicitly states the program is on hold. It describes 0% deferred gap assistance but does not confirm a current $55,000 maximum.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Madera: $55,000 second loan.",
+      "source_rows": [
+        "CA-DPA-14"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-madera-first-time-homebuyers",
+      "name": "City of Madera First-Time Homebuyers — on hold"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Monterey"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "County of Monterey Housing and Community Development",
+      "assistance_summary": "The county has temporarily suspended its down-payment assistance program while awaiting new state HCD guidelines.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Deferred second-priority homebuyer loan; program suspended",
+      "eligibility_notes": "The published program applies to eligible homes in unincorporated Monterey County. New guidelines and funding terms must be confirmed before relying on any historic limits.",
+      "how_to_apply": "Monitor the county's official affordable-housing page or contact Housing and Community Development for reopening updates.",
+      "source_url": "https://www.countyofmonterey.gov/government/departments-a-h/housing-community-development/planning-services/housing-programs/affordable-housing-programs",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "Root's authorized Chrome inspection recovered the official suspension notice. The page's historic 20% description is not an open offer; the supplied 3% rate was not confirmed as a current available term.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Monterey County: 20% of purchase price as a second loan at 3%.",
+      "source_rows": [
+        "CA-DPA-15"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-monterey-homebuyer-assistance",
+      "name": "Monterey County Down Payment Assistance — temporarily suspended"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Napa"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Napa County",
+      "assistance_summary": "The county offers shared-equity purchase assistance to qualifying households with a member working in Napa County, supporting a shorter commute.",
+      "assistance_amount": "Advertised maximum: 16.5% of purchase price",
+      "assistance_type": "Shared-equity homebuyer loan",
+      "eligibility_notes": "Employment in Napa County, household income limits up to 120% of area median income and the program's location and commute requirements apply.",
+      "how_to_apply": "Obtain lender preapproval and follow the county's application instructions through its linked Neighborly portal.",
+      "source_url": "https://www.napacounty.gov/520/Proximity-Housing-Homebuyers-Assistance-",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official page advertises 16.5%, replacing the supplied 10% figure, and states it is accepting applications. Funding and an individual award are not guaranteed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Napa Proximity Housing: 10% of purchase price as a second loan.",
+      "source_rows": [
+        "CA-DPA-16"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-napa-proximity-housing",
+      "name": "Napa County Proximity Housing Homebuyers Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Nevada"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Nevada County, California",
+      "assistance_summary": "The county describes a down-payment assistance process for qualifying moderate-income current residents, beginning with orientation and lender preapproval.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Homebuyer assistance; current loan terms require county confirmation",
+      "eligibility_notes": "Current county residence, income, lender and property requirements apply. Preapproval does not reserve county funding.",
+      "how_to_apply": "Attend the required orientation, obtain lender preapproval and ask the county about funding before entering a purchase contract.",
+      "source_url": "https://nevadacountyca.gov/547/Down-Payment-Assistance",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "Current application steps were inspected. The page warns that preapproval is not a funding guarantee. The supplied $60,000 amount was not confirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Nevada County: $60,000 second loan.",
+      "source_rows": [
+        "CA-DPA-17"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-nevada-county-down-payment",
+      "name": "Nevada County Down Payment Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Orange"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Orange County OC Housing and Community Development",
+      "assistance_summary": "MAP provides deferred purchase assistance to eligible first-time buyers in the county program's participating areas.",
+      "assistance_amount": "Up to $120,000 at or below 80% AMI; up to $80,000 at or below 120% AMI",
+      "assistance_type": "30-year deferred loan with 3% simple interest",
+      "eligibility_notes": "Eligible program area, household income, buyer contribution of at least 1%, education and counseling requirements apply. Verify the exact address.",
+      "how_to_apply": "Follow the county homeowner-program page for approved counseling and the current MAP application process.",
+      "source_url": "https://housing.oc.gov/housing-development/homeowner-programs",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official page supports the two current advertised caps, which differ from the supplied $40,000. These are maximums subject to underwriting and funding.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Orange County MAP: $40,000 second loan at 3%.",
+      "source_rows": [
+        "CA-DPA-18"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-orange-mortgage-assistance",
+      "name": "Orange County Mortgage Assistance Program"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Riverside"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Riverside County Housing and Workforce Solutions",
+      "assistance_summary": "The county reports that MCC funds are exhausted and new applications are not being accepted. An MCC is a tax benefit rather than purchase cash.",
+      "assistance_amount": "Historical certificate: 20% of eligible mortgage interest; no new applications",
+      "assistance_type": "Federal mortgage-interest tax credit",
+      "eligibility_notes": "Existing holders should confirm ongoing qualification and tax treatment. A future allocation would require a county announcement.",
+      "how_to_apply": "Check the official MCC status page; contact the county about existing certificates or future allocation updates.",
+      "source_url": "https://rivcohws.org/housing-programs/mcc-program-information",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The official page explicitly reports exhausted funds and closed new intake.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Riverside County MCC: 20% mortgage-interest tax credit.",
+      "source_rows": [
+        "CA-DPA-19"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-riverside-mcc",
+      "name": "Riverside County Mortgage Credit Certificate — funds exhausted"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Sacramento"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Sacramento Housing and Redevelopment Agency (SHRA)",
+      "assistance_summary": "SHRA states that depletion of MCC funds prevents it from assisting new applicants until further notice.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Federal mortgage-interest tax credit; not a cash grant",
+      "eligibility_notes": "Existing certificate holders should seek current guidance on their own certificate. No new benefit should be assumed while allocation is unavailable.",
+      "how_to_apply": "Use SHRA's official homebuyer-resources page for allocation updates and existing-certificate contact information.",
+      "source_url": "https://www.shra.org/homebuyer-resources/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The page was retrieved by public HTTPS and its closure statement inspected. The supplied 20% figure is preserved as history, not a new available tax-credit offer.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Sacramento MCC: 20% mortgage-interest tax credit.",
+      "source_rows": [
+        "CA-DPA-20"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-sacramento-mcc",
+      "name": "Sacramento Mortgage Credit Certificate — funds depleted"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "San Bernardino"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Housing Authority of the County of San Bernardino (HACSB)",
+      "assistance_summary": "Qualified HACSB participants may receive ongoing mortgage assistance when moving from rental assistance into homeownership.",
+      "assistance_amount": "Mortgage support varies; assistance terms may extend up to 15 years, or 30 years for qualifying disabled households",
+      "assistance_type": "Mortgage subsidy for eligible housing-authority participants; not a generic second loan",
+      "eligibility_notes": "Published requirements include at least one year as a qualifying HACSB participant, good standing, first-time buyer status, credit and savings requirements. Work rules have elderly and disability exceptions.",
+      "how_to_apply": "Ask HACSB's Homeownership Assistance team for screening and the required counseling and mortgage steps.",
+      "source_url": "https://hacsb.com/homeownership-assistance-program/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official program is mortgage assistance for existing eligible participants. It does not support the supplied generic second-loan description.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "San Bernardino Homeownership Assistance: second loan, amount unspecified.",
+      "source_rows": [
+        "CA-DPA-21"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-san-bernardino-hacsb-homeownership",
+      "name": "HACSB Homeownership Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "San Diego"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "County of San Diego; administered by San Diego Housing Commission",
+      "assistance_summary": "Eligible low-income first-time buyers in the county program area can receive deferred down-payment and closing-cost loans.",
+      "assistance_amount": "Up to 22% of purchase price for down payment, plus closing assistance up to 4% capped at $10,000",
+      "assistance_type": "Deferred low-interest second loan",
+      "eligibility_notes": "Generally at or below 80% of area median income, with first-time buyer, buyer-contribution and owner-occupancy requirements. Eligible unincorporated and participating-city areas differ from the City of San Diego program.",
+      "how_to_apply": "Work with an SDHC-approved participating lender and confirm the property's county-program eligibility before applying.",
+      "source_url": "https://www.sandiegocounty.gov/content/sdc/sdhcd/home-buyers-owners/payment-assistance.html",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official page supports the advertised percentages and closing-cost cap. Approval and available funds depend on the full loan package.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "San Diego County DCCA: 22% of purchase for down payment plus $10,000 closing costs; low-income deferred low-interest assistance.",
+      "source_rows": [
+        "CA-DPA-22"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-san-diego-county-dcca",
+      "name": "San Diego County Down Payment and Closing Cost Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "San Diego"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "County of San Diego; administered by San Diego Housing Commission",
+      "assistance_summary": "Published county guidelines offer down-payment assistance for qualifying moderate-income first-time buyers in the county program area.",
+      "assistance_amount": "Up to 17% of the lower of purchase price or appraised value",
+      "assistance_type": "Deferred homebuyer assistance loan",
+      "eligibility_notes": "Household income must be within the program's 80%–120% AMI range. First-time buyer, buyer-funds, property-location and combined-down-payment limits apply.",
+      "how_to_apply": "Ask an approved participating lender to apply the current county moderate-income guidelines to the exact property and household.",
+      "source_url": "https://sdhc.org/wp-content/uploads/2025/03/County-of-San-Diego-Moderate-Income-Program-Guidelines.pdf",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "guide",
+      "verification_notes": "The official PDF states it was updated June 6, 2026 and supports the 17% cap. Guidelines alone do not reserve funding.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "San Diego Moderate Income: 17% of purchase price assistance.",
+      "source_rows": [
+        "CA-DPA-23"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-san-diego-county-moderate-income",
+      "name": "San Diego County Moderate-Income Homebuyer Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "San Diego"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "San Diego Foundation, LISC San Diego and Urban League of San Diego County",
+      "assistance_summary": "Access Granted offers purchase grants for qualifying first-time buyers in San Diego County, with lender and housing-counseling coordination.",
+      "assistance_amount": "Advertised maximum: $70,000",
+      "assistance_type": "Down-payment assistance grant",
+      "eligibility_notes": "Applicants must be current county residents buying a primary home in the county. Income or eligible-tract rules, education, a participating lender's mortgage approval and that lender's own DPA grant approval apply.",
+      "how_to_apply": "Start with a participating lender and housing counselor. Use the official LISC application only after assembling required approvals and documents.",
+      "source_url": "https://www.sdfoundation.org/news-events/sdf-news/access-granted-program-surpasses-100-san-diego-homebuyers-amid-regions-housing-crisis/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The foundation's April 2026 report supports the $70,000 maximum. The public LISC application at https://lisc.tfaforms.net/403 was also inspected and states submission does not guarantee an award.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "San Diego Access Granted, San Diego Foundation: $70,000 grant.",
+      "source_rows": [
+        "CA-DPA-24"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-san-diego-access-granted",
+      "name": "San Diego Access Granted Homebuyer Program"
+    },
+    {
+      "state": "CA",
+      "scope": "city",
+      "counties": [
+        "San Diego"
+      ],
+      "cities": [
+        "San Diego"
+      ],
+      "category": "down_payment",
+      "administrator": "San Diego Housing Commission (SDHC)",
+      "assistance_summary": "SDHC offers different purchase-assistance combinations for eligible low-income and middle-income buyers within the City of San Diego.",
+      "assistance_amount": "Low-income: up to 19% of price plus up to $10,000 closing grant; middle-income: $40,000 loan plus $10,000 closing grant",
+      "assistance_type": "Deferred down-payment loan and closing-cost grant",
+      "eligibility_notes": "Low-income and middle-income tracks use different limits, including up to 80% AMI and 80%–150% AMI respectively. First-time buyer, lender, education and property rules apply.",
+      "how_to_apply": "Use an SDHC participating lender to determine the correct city program and apply before closing.",
+      "source_url": "https://sdhc.org/housing-opportunities/first-time-homebuyers/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official page supports these published tracks. City assistance is separate from county-area programs and cannot be assumed compatible with SDHC's Affordable For-Sale Housing program.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "SDHC First-Time Homebuyer: low-income below 80% AMI and middle-income 80%–150% AMI; deferred loans and grants.",
+      "source_rows": [
+        "CA-DPA-25"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment",
+        "purchase_closing_costs"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-sdhc-first-time-homebuyers",
+      "name": "City of San Diego First-Time Homebuyer Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Santa Clara"
+      ],
+      "cities": [],
+      "category": "down_payment",
+      "administrator": "Housing Trust Silicon Valley",
+      "assistance_summary": "HELP offers shared-appreciation purchase assistance across Santa Clara County and in Menlo Park and East Palo Alto.",
+      "assistance_amount": "Advertised maximum: 10% of purchase price",
+      "assistance_type": "Deferred shared-appreciation loan",
+      "eligibility_notes": "First-time buyers, household income up to 140% AMI, at least 3% buyer contribution, education and participating-lender rules apply. San Mateo County eligibility is limited to Menlo Park and East Palo Alto.",
+      "how_to_apply": "Review Housing Trust's HELP instructions and work with a participating lender and approved homebuyer education provider.",
+      "source_url": "https://housingtrustsv.org/programs/homebuyer-assistance/homebuyer-empowerment-loan-program/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official page supports the 10% shared-appreciation loan. This county entry covers Santa Clara; the provider also serves only Menlo Park and East Palo Alto within San Mateo County. No monthly interest payments does not mean free or forgiven assistance.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Santa Clara HELP: varying second-loan assistance.",
+      "source_rows": [
+        "CA-DPA-26"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-santa-clara-help",
+      "name": "Housing Trust Homebuyer Empowerment Loan Program (HELP)"
+    },
+    {
+      "state": "CA",
+      "scope": "city",
+      "counties": [
+        "Ventura"
+      ],
+      "cities": [
+        "Oxnard"
+      ],
+      "category": "down_payment",
+      "administrator": "My Way Home (formerly VCCDC) and City of Oxnard",
+      "assistance_summary": "Hope to Home offers down-payment assistance for qualifying low-income residents purchasing their first home in Oxnard.",
+      "assistance_amount": "Advertised maximum: $40,000",
+      "assistance_type": "10-year forgivable grant, subject to program conditions",
+      "eligibility_notes": "Applicants must live in Oxnard, buy their first home in Oxnard and meet the program's income limit of up to 80% AMI and other current terms.",
+      "how_to_apply": "Contact My Way Home's lending team through its official lending page and request Hope to Home screening.",
+      "source_url": "https://www.mywayhome.org/lending",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The current provider page names Hope to Home–Oxnard and its 10-year forgivable grant. This narrows the supplied generic Ventura second-loan description; it is not a countywide award.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Ventura VCCDC Hope to Home: varying second-loan assistance.",
+      "source_rows": [
+        "CA-DPA-27"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "purchase_down_payment"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-ventura-hope-to-home",
+      "name": "Hope to Home — Oxnard"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "California Department of Social Services and county social services agencies",
+      "assistance_summary": "CalWORKs provides cash aid and services to eligible families. The amount depends on household circumstances and county administration.",
+      "assistance_amount": "Varies by household income, size and program rules",
+      "assistance_type": "Cash assistance",
+      "eligibility_notes": "Family composition, income, assets, residency and other CalWORKs rules apply. Eligibility for separate housing programs requires its own screening.",
+      "how_to_apply": "Apply through the county social services office or the BenefitsCal route linked from the official CalWORKs page.",
+      "source_url": "https://www.cdss.ca.gov/calworks",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official overview supports statewide county-administered cash assistance. This is not a fixed rent grant or automatic housing-program award.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "CalWORKs: county social services cash assistance for rent and utilities.",
+      "source_rows": [
+        "CA-RENT-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "ongoing_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-calworks",
+      "name": "CalWORKs Cash Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Local public housing agencies, with U.S. HUD funding",
+      "assistance_summary": "Housing Choice Vouchers subsidize part of eligible households' rent in approved private-market housing.",
+      "assistance_amount": "Rental subsidy varies by household income, unit and local payment standard",
+      "assistance_type": "Ongoing rental voucher",
+      "eligibility_notes": "Income, household and other federal and local rules apply. Waitlists may be closed or lengthy; a voucher does not establish a particular unit's availability.",
+      "how_to_apply": "Use HUD's public housing agency directory to contact the agency serving the location and check its current waitlist instructions.",
+      "source_url": "https://www.hud.gov/helping-americans/housing-choice-vouchers-tenants",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "HUD's tenant guide was content-inspected. Local application openings and payment amounts were not verified statewide.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Section 8: local PHA rental vouchers; waitlists vary.",
+      "source_rows": [
+        "CA-RENT-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "ongoing_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-housing-choice-vouchers",
+      "name": "Housing Choice Vouchers / Section 8"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Local agencies and 211; federal USA.gov referral guidance",
+      "assistance_summary": "Use local referrals to find any emergency rent programs serving the household's location. Older pandemic-era ERAP programs may have ended.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Referral to local rent assistance; no direct statewide grant",
+      "eligibility_notes": "Each referred program controls its service area, income rules, covered expenses and current funding.",
+      "how_to_apply": "Use the official USA.gov emergency-rent guidance and contact 211 or the local county/city for currently operating programs.",
+      "source_url": "https://www.usa.gov/emergency-pay-rent",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "guide",
+      "verification_notes": "The inspected guide recommends finding state or local assistance and contacting 211. It does not establish an open ERAP fund in every California city or county.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Local ERAP: county/city programs often cover back rent and utilities; verify through 211.",
+      "source_rows": [
+        "CA-RENT-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-local-emergency-rent-navigation",
+      "name": "Local Emergency Rent Assistance — referral search"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "HUD-funded local HOPWA grantees and nonprofit providers",
+      "assistance_summary": "HOPWA supports housing assistance and related services for eligible low-income people living with HIV/AIDS and their families.",
+      "assistance_amount": "Varies by local provider and assistance type",
+      "assistance_type": "Locally administered HIV housing assistance and services",
+      "eligibility_notes": "HIV/AIDS status, income and local program criteria apply. Services, covered costs, funding and intake differ by locality.",
+      "how_to_apply": "Ask the local HIV services program, health department or HOPWA grantee for the appropriate housing-assistance provider and current intake process.",
+      "source_url": "https://www.hud.gov/hud-partners/community-hopwa",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "HUD's official HOPWA overview was inspected. California's program-specific page could not be retrieved; local funds and waitlists were not confirmed statewide.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "HOPWA: county HIV housing assistance for low-income households.",
+      "source_rows": [
+        "CA-RENT-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-hopwa",
+      "name": "Housing Opportunities for Persons With AIDS (HOPWA)"
+    },
+    {
+      "state": "CA",
+      "scope": "statewide",
+      "counties": [],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "U.S. Department of Veterans Affairs and local public housing agencies",
+      "assistance_summary": "HUD-VASH combines rental vouchers with VA case management and supportive services for eligible Veterans experiencing homelessness.",
+      "assistance_amount": "Voucher subsidy varies with household and local housing costs",
+      "assistance_type": "Rental voucher with VA supportive services",
+      "eligibility_notes": "VA referral and program screening are required. A local general Section 8 waitlist does not by itself determine HUD-VASH referral eligibility.",
+      "how_to_apply": "Contact the local VA medical center's homeless-Veteran services team for assessment and a HUD-VASH referral route.",
+      "source_url": "https://www.hud.gov/helping-americans/housing-choice-vouchers-homeless-veterans",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official HUD overview supports the VA/PHA referral model. Availability for a specific Veteran or locality was not established.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "VASH: VA and PHA rental assistance for homeless Veterans; referral through VA.",
+      "source_rows": [
+        "CA-RENT-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "ongoing_rent",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-hud-vash",
+      "name": "HUD-VASH Veteran Supportive Housing"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Los Angeles"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Los Angeles County Department of Consumer and Business Affairs (DCBA)",
+      "assistance_summary": "The county's published Emergency Rent Relief application window is closed. The program addresses qualifying rental debt and emergency hardship.",
+      "assistance_amount": "Latest published round: up to $15,000 per unit, with limited exceptions; applications closed",
+      "assistance_type": "Emergency back-rent relief",
+      "eligibility_notes": "Round-specific hardship, rental-debt, property and applicant rules apply. The supplied $10,000 household figure is not the currently published cap.",
+      "how_to_apply": "Existing applicants should use the program's status instructions. Watch the official page for future announcements; there is no open application window shown.",
+      "source_url": "https://www.lacountyrentrelief.com/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The inspected page explicitly states the application window is closed and identifies DCBA, rather than the supplied LACDA attribution.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Los Angeles Rent Relief: claimed $10,000 per household for back rent, attributed to LACDA.",
+      "source_rows": [
+        "CA-LOCAL-RENT-01"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-los-angeles-emergency-rent-relief",
+      "name": "Los Angeles County Emergency Rent Relief — applications closed"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Los Angeles"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Door of Hope",
+      "assistance_summary": "The provider's prevention program offers emergency rent help and case management to families facing eviction or homelessness.",
+      "assistance_amount": "Varies; provider screening and available funds determine assistance",
+      "assistance_type": "Emergency rent assistance and case management",
+      "eligibility_notes": "Family, service-area and screening requirements apply. The supplied 50% AMI threshold was not independently confirmed.",
+      "how_to_apply": "Use the prevention page's screening and resource instructions to request an eligibility assessment.",
+      "source_url": "https://doorofhope.us/prevention/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The official page supports emergency rental assistance, financial counseling and landlord remediation. Current funding and the supplied income threshold remain unconfirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Door of Hope Los Angeles: emergency rent, case management and mediation for households at or below 50% AMI.",
+      "source_rows": [
+        "CA-LOCAL-RENT-02"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-door-of-hope-prevention",
+      "name": "Door of Hope Homelessness Prevention"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Orange"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Orange County",
+      "assistance_summary": "The county's historical emergency rental assistance round closed in 2021. No current reopening of that round was confirmed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Historical emergency rental and utility assistance",
+      "eligibility_notes": "Do not treat an old ERAP listing as an open OCHA application. Other county housing programs have separate eligibility and waitlists.",
+      "how_to_apply": "Use current county housing resources or 211 to look for an active program; the linked county report documents the historical closure.",
+      "source_url": "https://ceo.ocgov.com/sites/ceo/files/2022-08/HOC%20Ppt.%2012-3-21%20v3.pdf",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The county report states its ERA round closed April 30, 2021. This verifies the historical round's status, not that all Orange County rental assistance is closed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Orange County ERAP: rental and utility assistance; apply through OCHA.",
+      "source_rows": [
+        "CA-LOCAL-RENT-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-orange-county-erap-historical",
+      "name": "Orange County Emergency Rental Assistance — historical closed round"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Riverside"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Riverside County Department of Public Social Services",
+      "assistance_summary": "Eligible CalWORKs recipients may receive housing assistance to help avoid eviction and maintain housing.",
+      "assistance_amount": "Varies by eligible household and available program support",
+      "assistance_type": "CalWORKs-linked rental assistance",
+      "eligibility_notes": "CalWORKs participation and the county's housing-support screening rules apply. Other old emergency-rent announcements are not proof of current funding.",
+      "how_to_apply": "Contact Riverside DPSS or the household's CalWORKs caseworker using the county's rental-assistance page.",
+      "source_url": "https://rivcodpss.org/rental-assistance",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The current official page supports the CalWORKs referral route. Historical United Lift funding announcements on that page are not used as evidence of open funding.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Riverside Housing Support and CalWORKs: rental assistance.",
+      "source_rows": [
+        "CA-LOCAL-RENT-04"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-riverside-calworks-housing-support",
+      "name": "Riverside County CalWORKs Housing Support"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "San Diego"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Housing Authority of the County of San Diego (HACSD)",
+      "assistance_summary": "HACSD lists its general rental-assistance waitlists as closed to new applicants. Existing applicants should maintain their records; Veteran referral programs have separate routes.",
+      "assistance_amount": "Program-based rental subsidy; listed general waitlists closed",
+      "assistance_type": "Housing vouchers, public housing and specialized rental programs",
+      "eligibility_notes": "Income and eligibility differ by program. A single below-50%-AMI rule does not cover every option. HUD-VASH referrals must be checked separately through VA.",
+      "how_to_apply": "Existing applicants should use HACSD's RentCafe instructions. New applicants should check the official page for future openings or appropriate specialized referrals.",
+      "source_url": "https://www.sandiegocounty.gov/content/sdc/sdhcd/rental-assistance/application-directions.html/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The inspected page closes the listed HCV, project-based, public-housing, moderate-rehabilitation and HOPWA TBRA waitlists. This does not establish that HUD-VASH referrals are closed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "HACSD: multiple rental-assistance income tracks including HOPWA and VASH, supplied as below 50% AMI.",
+      "source_rows": [
+        "CA-LOCAL-RENT-05"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "ongoing_rent",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-hacsd-rental-assistance",
+      "name": "Housing Authority of San Diego County Rental Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "San Francisco"
+      ],
+      "cities": [
+        "San Francisco"
+      ],
+      "category": "rental_assistance",
+      "administrator": "Eviction Defense Collaborative (EDC)",
+      "assistance_summary": "EDC offers eviction-prevention rental assistance, longer-term subsidies for eligible households and referrals for San Francisco rent and move-in support.",
+      "assistance_amount": "Varies by program, circumstances and available funds",
+      "assistance_type": "Rental assistance, subsidies and eviction-prevention services",
+      "eligibility_notes": "San Francisco residence and each program's income, hardship and documentation requirements apply. Legal representation and financial assistance have separate intake paths.",
+      "how_to_apply": "Follow EDC's rental-assistance page for RADCo contact and SFERAP instructions. Use the legal-help route on that page if eviction papers have been served.",
+      "source_url": "https://evictiondefense.org/rental-assistance-services/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The inspected EDC page supports back-rent help and longer-term subsidies, and links SFERAP for future rent, deposits and first-month move-in support. An intake request does not guarantee payment.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "San Francisco EDC: legal and rental assistance. Also supplied again in the third-party/intermediary rent table; both rows map to this one program entry.",
+      "source_rows": [
+        "CA-LOCAL-RENT-06",
+        "PARTNER-RENT-03"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "ongoing_rent",
+        "rental_deposit",
+        "first_rent",
+        "move_in",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-san-francisco-eviction-defense-rent",
+      "name": "San Francisco Eviction Defense Collaborative Rental Assistance"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Sonoma"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "211 Sonoma County and listed local providers",
+      "assistance_summary": "The local 211 directory helps residents locate rental-deposit and related housing-assistance providers serving particular parts of Sonoma County.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Referral directory; 211 does not itself award the listed funds",
+      "eligibility_notes": "Each listed provider has its own geography, eligibility, expenses and funding. A directory entry does not establish that an agency is accepting requests today.",
+      "how_to_apply": "Search the directory or contact 211, then confirm eligibility and availability with the referred provider.",
+      "source_url": "https://211sonoma.org/results/rental-deposit-assistance/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "directory",
+      "verification_notes": "The local directory content was inspected. Individual provider intake, budgets and awards were not independently verified.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Sonoma County 211: rent and deposit assistance referrals.",
+      "source_rows": [
+        "CA-LOCAL-RENT-07"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "rental_deposit",
+        "housing_navigation"
+      ],
+      "help_kind": "referral",
+      "id": "ca-sonoma-211-rental-deposit",
+      "name": "211 Sonoma County Rent and Deposit Referrals"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Yolo"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Short Term Emergency Aid Committee (STEAC)",
+      "assistance_summary": "STEAC offers qualifying Yolo County residents help with eviction prevention, initial rent or deposits, and utility bills.",
+      "assistance_amount": "Published limits: up to $1,500 for eligible rent/deposit help; up to $500 for utilities",
+      "assistance_type": "Emergency financial assistance",
+      "eligibility_notes": "Low-income county residents must meet program screening and documentation rules. Rent prevention is generally limited to once per year; initial-rent/deposit help to once every two years. Other limits apply.",
+      "how_to_apply": "Use STEAC's homelessness-prevention page and service-contact instructions to request screening and confirm funds for the specific bill.",
+      "source_url": "https://steac.org/homelessness-prevention-program/",
+      "last_verified": "2026-11-03",
+      "verification_status": "verified",
+      "source_kind": "official",
+      "verification_notes": "The official program page supports these limits. Assistance may require proof of funds to cover any remaining balance; a published maximum is not a commitment.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Yolo County: low-income rental and utility assistance.",
+      "source_rows": [
+        "CA-LOCAL-RENT-08"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "rental_deposit",
+        "first_rent",
+        "move_in"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-yolo-steac-homelessness-prevention",
+      "name": "Yolo County STEAC Homelessness Prevention"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Solano"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Bay Area Community Services (BACS) and local program partners",
+      "assistance_summary": "Keep People Housed lists a Solano route for housing stabilization, including possible one-time past-due rent or move-in assistance.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Housing stabilization and possible one-time financial assistance",
+      "eligibility_notes": "Local eligibility, funding and documentation must be confirmed. Move-in assistance described by the provider requires an identified unit and lease.",
+      "how_to_apply": "Use Keep People Housed's official Solano link and ask the program to confirm current intake before gathering or submitting personal documents.",
+      "source_url": "https://keeppeoplehoused.org/",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The main provider page describes rent/move-in help and links its Solano portal. The portal was reachable but its eligibility content did not render in the text reader, so current Solano intake and awards remain unconfirmed.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Solano County: rental and move-in assistance.",
+      "source_rows": [
+        "CA-LOCAL-RENT-09"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent",
+        "move_in",
+        "housing_navigation"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-solano-keep-people-housed",
+      "name": "Solano County Keep People Housed"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Sacramento"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Sacramento Housing and Redevelopment Agency (SHRA)",
+      "assistance_summary": "SERA closed on December 11, 2024 after all funds were disbursed.",
+      "assistance_amount": "Verify current terms",
+      "assistance_type": "Closed emergency rental assistance program",
+      "eligibility_notes": "Historical FAQs do not establish an open program. Other rental-assistance programs and voucher waitlists have separate rules.",
+      "how_to_apply": "Check SHRA's current housing resources or local 211 for other options. SERA itself is not accepting new applications.",
+      "source_url": "https://www.shra.org/sera/",
+      "last_verified": "2026-11-03",
+      "verification_status": "closed",
+      "source_kind": "official",
+      "verification_notes": "The official page was retrieved by public HTTPS and its closure statement inspected. Old funding and FAQ text elsewhere on the page is treated as historical.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "Sacramento: rental assistance.",
+      "source_rows": [
+        "CA-LOCAL-RENT-10"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "back_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-sacramento-sera",
+      "name": "Sacramento Emergency Rental Assistance (SERA) — closed"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "El Dorado"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "El Dorado County Public Housing Authority",
+      "assistance_summary": "The county public housing authority administers rental subsidies for qualifying households.",
+      "assistance_amount": "Voucher subsidy varies by household, unit and program rules",
+      "assistance_type": "Housing Choice Voucher rental subsidy",
+      "eligibility_notes": "Income, program service area and other PHA rules apply. The current application opening and an individual voucher award were not established by the overview.",
+      "how_to_apply": "Use the county PHA page to reach current Housing Choice Voucher information and confirm whether its waitlist is accepting applications.",
+      "source_url": "https://www.eldoradocounty.ca.gov/Services/Assistance-Programs/Housing-Energy-Assistance/Housing-and-Homelessness/Public-Housing-Authority",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The official program overview was content-inspected. Current waitlist intake was not independently confirmed; the combined supplied row is also mapped to the separate Placer entry.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "El Dorado / Placer: Housing Choice Vouchers.",
+      "source_rows": [
+        "CA-LOCAL-RENT-11"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "ongoing_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-el-dorado-housing-vouchers",
+      "name": "El Dorado County Housing Choice Vouchers"
+    },
+    {
+      "state": "CA",
+      "scope": "county",
+      "counties": [
+        "Placer"
+      ],
+      "cities": [],
+      "category": "rental_assistance",
+      "administrator": "Placer County Housing Authority",
+      "assistance_summary": "The county offers housing vouchers in its service area, which excludes Roseville because that city has a separate housing authority.",
+      "assistance_amount": "Voucher subsidy varies by household, unit and program rules",
+      "assistance_type": "Housing Choice Voucher rental subsidy",
+      "eligibility_notes": "Income and program rules apply. Check Roseville's own housing authority for properties in that city. Temporary Emergency Housing Vouchers are a separate program.",
+      "how_to_apply": "Use Placer County's housing-voucher page and its application instructions to check the current waitlist status.",
+      "source_url": "https://www.placer.ca.gov/2134/Housing-Vouchers",
+      "last_verified": "2026-11-03",
+      "verification_status": "partial",
+      "source_kind": "official",
+      "verification_notes": "The official overview and Roseville exclusion were inspected. No current HCV waitlist opening was established; the combined supplied row is also mapped to the separate El Dorado entry.",
+      "supplied_date": "2025-06-01",
+      "supplied_claim": "El Dorado / Placer: Housing Choice Vouchers.",
+      "source_rows": [
+        "CA-LOCAL-RENT-11"
+      ],
+      "reviewed_at": "2026-11-03",
+      "cost_purposes": [
+        "ongoing_rent"
+      ],
+      "help_kind": "financial_assistance",
+      "id": "ca-placer-housing-vouchers",
+      "name": "Placer County Housing Choice Vouchers"
+    }
+  ]
+}
