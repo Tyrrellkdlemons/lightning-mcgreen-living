@@ -72,7 +72,7 @@ assert.equal(catalog.summary.auditAttempted,203);
 assert.equal(catalog.summary.auditContentInspected,currentCounts['content-inspected']);
 assert.equal(catalog.summary.auditNeedsAttention,203-currentCounts['content-inspected']);
 assert.equal(currentCounts['content-inspected'],200);
-assert.equal(catalog.summary.contentInspected,229);assert.equal(catalog.summary.metadataOnly,3);
+assert.equal(catalog.summary.contentInspected,239);assert.equal(catalog.summary.metadataOnly,3);
 assert.equal(recovery.summary.providerContentRecovered,9);assert.equal(recovery.summary.originalProviderStillUnresolved,3);
 assert.equal(catalog.summary.recoveryContentInspected,recovery.records.filter(r=>r.outcome==='content-inspected').length);
 assert.equal(recovery.records.filter(r=>r.method==='web-open-cached-fallback').length,5);

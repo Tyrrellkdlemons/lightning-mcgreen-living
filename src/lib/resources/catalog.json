@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-03T21:59:37.402054Z",
+  "generatedAt": "2026-11-03T23:51:07.386050+00:00",
   "baselineRevision": "5eb2e395e316a9ca69f92bf06e7fdea219615039",
   "summary": {
-    "discovered": 255,
-    "deduplicated": 232,
-    "screened": 232,
-    "included": 232,
-    "additionalUnique": 232,
+    "discovered": 265,
+    "deduplicated": 242,
+    "screened": 242,
+    "included": 242,
+    "additionalUnique": 242,
     "baselineUniqueUrls": 267,
     "existingExcluded": 0,
     "directoryRecords": 249,
     "rejectedDirectoryRecords": 15,
-    "contentInspected": 229,
+    "contentInspected": 239,
     "metadataOnly": 3,
-    "linkChecked": 211,
-    "linkSuccessful": 197,
-    "publisherCount": 80,
+    "linkChecked": 221,
+    "linkSuccessful": 207,
+    "publisherCount": 82,
     "countsMeaning": "Distinct source URLs, not independent publications or available homes. Directory metadata retrieval is not a destination-page visit.",
     "discoveryStageNote": "Discovery-stage counts retain the original three-directory collection; final included and inspection counts include the separately recorded correction audit.",
     "auditAttempted": 203,
@@ -222,7 +222,7 @@
       "city": "Somerton",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency.",
+      "description": "The agency website remains under construction. Its agency-specific eHome America page lists a Yuma County homebuyer course with a $100 non-refundable fee and phone 928-627-8559. This is a course referral; counseling intake is unconfirmed.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=AZ",
       "retrievedAt": "2026-11-03T12:59:07.908109Z",
       "inspection": "metadata-reviewed",
@@ -235,15 +235,15 @@
       ],
       "id": "resource-d7c61f35aefeac8e",
       "review": {
-        "checkedAt": "2026-11-03T22:33:20.066369Z",
+        "checkedAt": "2026-11-03T23:46:57.293366+00:00",
         "outcome": "unavailable",
-        "summary": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency. The original service website has not been recovered. The course page is a related agency-specific program page, not a replacement for all agency services. Displayed course price was $100; no registration or payment was performed. A site under construction is not proof that the organization has closed. The opened HUD print directory is dated12/14/2022 and is used only for historical identity matching, not current HUD approval.",
+        "summary": "The agency website remains under construction. Its agency-specific eHome America page lists a Yuma County homebuyer course with a $100 non-refundable fee and phone 928-627-8559. This is a course referral; counseling intake is unconfirmed.",
         "finalUrl": "https://comiteaz.org/",
         "httpStatus": 200,
         "inspectedSections": [
-          "Original under-construction page",
-          "Agency information",
-          "Course description and displayed fee"
+          "Original destination availability",
+          "Named related course or directory record",
+          "Public referral contact and scope"
         ],
         "retrievalMethod": "direct-http + web-open",
         "reason": "Recovery review; original URL and prior result retained in source history."
@@ -263,16 +263,30 @@
           ],
           "summary": "The destination returned an under-construction page without readable service information.",
           "retrievalMethod": "direct-http"
+        },
+        {
+          "checkedAt": "2026-11-03T22:33:20.066369Z",
+          "outcome": "unavailable",
+          "summary": "The agency website is under construction. Its named eHome America page describes a homebuyer education course for Yuma County; check the course fee and confirm counseling availability with the agency. The original service website has not been recovered. The course page is a related agency-specific program page, not a replacement for all agency services. Displayed course price was $100; no registration or payment was performed. A site under construction is not proof that the organization has closed. The opened HUD print directory is dated12/14/2022 and is used only for historical identity matching, not current HUD approval.",
+          "finalUrl": "https://comiteaz.org/",
+          "httpStatus": 200,
+          "inspectedSections": [
+            "Original under-construction page",
+            "Agency information",
+            "Course description and displayed fee"
+          ],
+          "retrievalMethod": "direct-http + web-open",
+          "reason": "Recovery review; original URL and prior result retained in source history."
         }
       ],
       "recoveryResolution": "official-course-alternative-original-site-unavailable",
       "relatedOfficialResources": [
         {
           "url": "https://app.ehomeamerica.org/comiteaz",
-          "label": "Agency homebuyer course (fee applies)",
+          "label": "Agency homebuyer course — $100 non-refundable; 928-627-8559",
           "kind": "agency-course-page",
           "contentInspected": true,
-          "checkedAt": "2026-11-03T22:35:12.473098Z",
+          "checkedAt": "2026-11-03T23:46:57.293366+00:00",
           "identityEvidence": "Agency name, 963 E B Street San Luis address and928-627-8559 public office phone match the HUD historical print directory dated12/14/2022; the course page links comiteaz.com, which redirects to original .org."
         }
       ]
@@ -1026,7 +1040,7 @@
       "city": "Simi Valley",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly.",
+      "description": "The original agency domain is unavailable. Esperanza lists the Simi Valley affiliate; CalHFA lists its local contact as 805-813-8751. Use the labeled directories for referral and confirm services with the agency. No replacement local website was authenticated.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
       "inspection": "metadata-reviewed",
@@ -1039,16 +1053,17 @@
       ],
       "id": "resource-e1a0800b9938bce2",
       "review": {
-        "checkedAt": "2026-11-03T22:33:20.472288Z",
+        "checkedAt": "2026-11-03T23:46:57.294005+00:00",
         "outcome": "unavailable",
-        "summary": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly. The affiliated directory still links the unavailable original domain. No new agency-owned domain was authenticated. Do not imply the Philadelphia intermediary is the local Simi Valley agency or that the local agency is closed.",
+        "summary": "The original agency domain is unavailable. Esperanza lists the Simi Valley affiliate; CalHFA lists its local contact as 805-813-8751. Use the labeled directories for referral and confirm services with the agency. No replacement local website was authenticated.",
         "finalUrl": "https://centrofamiliarnuevaesperanza.org/",
         "httpStatus": null,
         "inspectedSections": [
-          "Original DNS failure",
-          "California locations in national affiliate directory"
+          "Original destination availability",
+          "Named related course or directory record",
+          "Public referral contact and scope"
         ],
-        "retrievalMethod": "direct-http + affiliated-primary-directory",
+        "retrievalMethod": "direct-http + web-open",
         "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:45:26.915889Z",
@@ -1065,6 +1080,19 @@
           ],
           "summary": "The recorded destination could not be reached; its service information remains unverified.",
           "retrievalMethod": "direct-http"
+        },
+        {
+          "checkedAt": "2026-11-03T22:33:20.472288Z",
+          "outcome": "unavailable",
+          "summary": "The original agency domain could not be reached. Esperanza's national housing-counseling directory identifies Centro Familiar Nueva Esperanza and its Simi Valley office; use that affiliated directory for a referral and confirm current service access directly. The affiliated directory still links the unavailable original domain. No new agency-owned domain was authenticated. Do not imply the Philadelphia intermediary is the local Simi Valley agency or that the local agency is closed.",
+          "finalUrl": "https://centrofamiliarnuevaesperanza.org/",
+          "httpStatus": null,
+          "inspectedSections": [
+            "Original DNS failure",
+            "California locations in national affiliate directory"
+          ],
+          "retrievalMethod": "direct-http + affiliated-primary-directory",
+          "reason": "Recovery review; original URL and prior result retained in source history."
         }
       ],
       "recoveryResolution": "affiliated-directory-alternative-original-domain-unavailable",
@@ -1074,8 +1102,16 @@
           "label": "Esperanza affiliate directory — California section",
           "kind": "affiliated-directory",
           "contentInspected": true,
-          "checkedAt": "2026-11-03T22:35:12.611970Z",
+          "checkedAt": "2026-11-03T23:46:57.294005+00:00",
           "identityEvidence": "California section lists Centro Familiar Nueva Esperanza, Simi Valley Office, 1720 E. Los Angeles Ave. #216 and original centrofamiliarnuevaesperanza.org domain."
+        },
+        {
+          "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
+          "label": "CalHFA directory — local contact 805-813-8751",
+          "kind": "state-directory",
+          "contentInspected": true,
+          "identityEvidence": "Esperanza lists the named California affiliate at 1720 E. Los Angeles Ave. #216, Simi Valley, with the original dead domain. CalHFA names Centro Familia Esperanza in Simi Valley, gives 805-813-8751, and links esperanza.us.",
+          "checkedAt": "2026-11-03T23:46:57.294005+00:00"
         }
       ]
     },
@@ -2531,7 +2567,7 @@
       "city": "San Francisco",
       "category": "housing",
       "kind": "housing-counseling-organization",
-      "description": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed.",
+      "description": "The original provider website and housing-services page remain behind a security check. CalHFA lists the San Francisco center at 415-865-5555. The state directory is a referral route; current service intake is unconfirmed.",
       "discoveredFrom": "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State=CA",
       "retrievedAt": "2026-11-03T12:59:07.298055Z",
       "inspection": "metadata-reviewed",
@@ -2544,16 +2580,17 @@
       ],
       "id": "resource-5e632165bd461ec6",
       "review": {
-        "checkedAt": "2026-11-03T22:33:50.965681Z",
+        "checkedAt": "2026-11-03T23:46:57.410365+00:00",
         "outcome": "blocked",
-        "summary": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed. Automated requests received403; no challenge was bypassed. Search returned cached provider service text, but a successful full-page open was not obtained and it is not counted as provider content-inspection. Root Chrome operator independently observed Cloudflare Performing security verification and stopped; no challenge was bypassed.",
+        "summary": "The original provider website and housing-services page remain behind a security check. CalHFA lists the San Francisco center at 415-865-5555. The state directory is a referral route; current service intake is unconfirmed.",
         "finalUrl": "https://sfcenter.org/",
         "httpStatus": 403,
         "inspectedSections": [
-          "HTTP403 response",
-          "CalHFA counselor directory row"
+          "Original destination availability",
+          "Named related course or directory record",
+          "Public referral contact and scope"
         ],
-        "retrievalMethod": "direct-http + primary-directory",
+        "retrievalMethod": "direct-http + web-open + Chrome security-screen observation",
         "reason": "Recovery review; original URL and prior result retained in source history."
       },
       "linkCheckedAt": "2026-11-03T21:46:31.767736Z",
@@ -2571,16 +2608,30 @@
           ],
           "summary": "The destination blocked automated access; service content remains unverified.",
           "retrievalMethod": "direct-http"
+        },
+        {
+          "checkedAt": "2026-11-03T22:33:50.965681Z",
+          "outcome": "blocked",
+          "summary": "The provider website blocked automated access. CalHFA's counseling directory still lists the San Francisco LGBT Community Center; its primary referral entry can be used while service-page access remains unconfirmed. Automated requests received403; no challenge was bypassed. Search returned cached provider service text, but a successful full-page open was not obtained and it is not counted as provider content-inspection. Root Chrome operator independently observed Cloudflare Performing security verification and stopped; no challenge was bypassed.",
+          "finalUrl": "https://sfcenter.org/",
+          "httpStatus": 403,
+          "inspectedSections": [
+            "HTTP403 response",
+            "CalHFA counselor directory row"
+          ],
+          "retrievalMethod": "direct-http + primary-directory",
+          "reason": "Recovery review; original URL and prior result retained in source history."
         }
       ],
       "recoveryResolution": "blocked-provider-primary-directory-alternative",
       "relatedOfficialResources": [
         {
           "url": "https://www.calhfa.ca.gov/community/nms/resources.htm",
-          "label": "CalHFA counseling directory — SF LGBT Community Center",
+          "label": "CalHFA referral directory — 415-865-5555",
           "kind": "state-directory",
           "contentInspected": true,
-          "identityEvidence": "Directory names San Francisco LGBT Community Center in San Francisco and links sfcenter.org."
+          "identityEvidence": "Directory names San Francisco LGBT Community Center in San Francisco and links sfcenter.org.",
+          "checkedAt": "2026-11-03T23:46:57.410365+00:00"
         }
       ]
     },
@@ -8832,6 +8883,386 @@
       "kind": "official-resource",
       "city": "Inglewood",
       "id": "resource-f00fb20adf510ecc"
+    },
+    {
+      "id": "resource-886ab5a0575048f0",
+      "title": "Arezzo Apartment Homes",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "Escondido",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Arezzo Apartment Homes in Escondido: one sampled 2-bedroom, 2-bathroom unit advertised at $2,595/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:06.432292+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:06.432292+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/c0926b66-2fe1-4470-844a-dc51c176f4e9",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:06.432292+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:06.432292+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:06.432292+00:00"
+    },
+    {
+      "id": "resource-53e604d159cd1fd3",
+      "title": "Greenfield Village Townhomes",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "El Cajon",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Greenfield Village Townhomes in El Cajon: one sampled 3-bedroom, 2.5-bathroom unit advertised at $2,995/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:06.656456+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:06.656456+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/c73add07-9ff9-4f50-83f1-c3f16fcbb97b",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:06.656456+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:06.656456+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:06.656456+00:00"
+    },
+    {
+      "id": "resource-a33fbdea2771a9ba",
+      "title": "Emerald Vista Apartments",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "Vista",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Emerald Vista Apartments in Vista: one sampled 3-bedroom, 2-bathroom unit advertised at $2,649/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:06.841265+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:06.841265+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/59d82e1d-cf64-4ccf-8bde-47492cd37690",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:06.841265+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:06.841265+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:06.841265+00:00"
+    },
+    {
+      "id": "resource-ebacfd892ac34b7c",
+      "title": "Ni-Si Apartments",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "San Diego",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Ni-Si Apartments in San Diego: one sampled 0-bedroom, 1-bathroom unit advertised at $1,750/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:06.997056+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:06.997056+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/db6d2e2a-7681-4dbe-b6dd-88b642ad6851",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:06.997056+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:06.997056+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:06.997056+00:00"
+    },
+    {
+      "id": "resource-cc45460bce9cb90a",
+      "title": "5th Avenue Apartment Homes",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "Chula Vista",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "5th Avenue Apartment Homes in Chula Vista: one sampled 2-bedroom, 1-bathroom unit advertised at $2,275/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:07.239885+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:07.239885+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/a2f46080-0a37-4055-9f20-e7810207a7d9",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:07.239885+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:07.239885+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:07.239885+00:00"
+    },
+    {
+      "id": "resource-049ba8de01cc519d",
+      "title": "Valley View Apartment Homes",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "Oceanside",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Valley View Apartment Homes in Oceanside: one sampled 2-bedroom, 1-bathroom unit advertised at $2,300/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:07.258123+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:07.258123+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/79b2b791-a9c7-4ed2-b238-68bad1811dba",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:07.258123+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:07.258123+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:07.258123+00:00"
+    },
+    {
+      "id": "resource-9f6d8fb2ef2b6c2f",
+      "title": "La Mesa-Spring Gardens",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "La Mesa",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "La Mesa-Spring Gardens in La Mesa: one sampled 1-bedroom, 1-bathroom unit advertised at $1,895/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:07.537117+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:07.537117+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/663ecd52-3c0d-42e1-83ba-a7c43a143c77",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:07.537117+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:07.537117+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:07.537117+00:00"
+    },
+    {
+      "id": "resource-e52e1d8215ad420c",
+      "title": "Lakeshore Terrace",
+      "url": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+      "publisher": "Hoban Management",
+      "state": "CA",
+      "city": "Lakeside",
+      "county": "San Diego",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Lakeshore Terrace in Lakeside: one sampled 2-bedroom, 2-bathroom unit advertised at $2,045/month. Dated advertisement, not guaranteed vacancy.",
+      "discoveredFrom": "https://hobanmanagement.appfolio.com/listings",
+      "retrievedAt": "2026-11-03T23:47:07.567337+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:07.567337+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://hobanmanagement.appfolio.com/listings/detail/27b02905-c028-4e6f-a049-4ebf4a4a92b6",
+        "httpStatus": 200,
+        "summary": "Inspected unit address, rent, beds/baths, availability label, property identity and gallery markup.",
+        "inspectedSections": [
+          "Unit summary",
+          "Rental Terms",
+          "Description and photo limitation",
+          "Publisher gallery markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 1,
+        "observedAt": "2026-11-03T23:47:07.567337+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:07.567337+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible HTML text and original img src inspected.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:07.567337+00:00"
+    },
+    {
+      "id": "resource-f80fb84eaab527bc",
+      "title": "Avalon Brea Place",
+      "url": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+      "publisher": "Avalon Communities",
+      "state": "CA",
+      "city": "Brea",
+      "county": "Orange",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Avalon Brea Place in Brea: sampled publisher unit advertisements include dated availability, base rent, lease terms and public tours. Confirm current unit terms directly.",
+      "discoveredFrom": "https://www.avaloncommunities.com/california/brea-apartments/",
+      "retrievedAt": "2026-11-03T23:47:36.542537+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:36.542537+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://www.avaloncommunities.com/california/brea-apartments/avalon-brea-place/",
+        "httpStatus": 200,
+        "summary": "Read community identity, unit cards, public server-rendered unit data, prices, lease terms, dated availability and assigned community banner.",
+        "inspectedSections": [
+          "Community address",
+          "Unit results",
+          "Public Fusion.globalContent unit data",
+          "Community banner markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 3,
+        "observedAt": "2026-11-03T23:47:36.542537+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:36.542537+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible server-rendered HTML cards plus public page JSON.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:36.542537+00:00"
+    },
+    {
+      "id": "resource-554c7ce4dc87d49d",
+      "title": "Avalon Calabasas",
+      "url": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+      "publisher": "Avalon Communities",
+      "state": "CA",
+      "city": "Calabasas",
+      "county": "Los Angeles",
+      "category": "property",
+      "kind": "apartment-community",
+      "description": "Avalon Calabasas in Calabasas: sampled publisher unit advertisements include dated availability, base rent, lease terms and public tours. Confirm current unit terms directly.",
+      "discoveredFrom": "https://www.avaloncommunities.com/california/calabasas-apartments/",
+      "retrievedAt": "2026-11-03T23:47:36.543034+00:00",
+      "inspection": "content-inspected",
+      "retrievalScope": "page-content",
+      "review": {
+        "checkedAt": "2026-11-03T23:47:36.543034+00:00",
+        "outcome": "content-inspected",
+        "finalUrl": "https://www.avaloncommunities.com/california/calabasas-apartments/avalon-calabasas/",
+        "httpStatus": 200,
+        "summary": "Read community identity, unit cards, public server-rendered unit data, prices, lease terms, dated availability and assigned community banner.",
+        "inspectedSections": [
+          "Community address",
+          "Unit results",
+          "Public Fusion.globalContent unit data",
+          "Community banner markup"
+        ],
+        "retrievalMethod": "direct-http"
+      },
+      "propertyObservation": {
+        "unitSamples": 2,
+        "observedAt": "2026-11-03T23:47:36.543034+00:00"
+      },
+      "pageRetrievedAt": "2026-11-03T23:47:36.543034+00:00",
+      "contentInspectionMethod": "Direct public HTTP GET; visible server-rendered HTML cards plus public page JSON.",
+      "linkStatus": 200,
+      "linkCheckedAt": "2026-11-03T23:47:36.543034+00:00"
     }
   ],
   "audits": [
@@ -8872,6 +9303,17 @@
       "providerRecovered": 9,
       "originalDestinationsUnresolved": 3,
       "officialAlternatives": 3
+    }
+  ],
+  "corrections": [
+    {
+      "id": "ten-ca-communities-2026-11-03",
+      "added": 10,
+      "unitSamples": 13,
+      "advertisedNowSamples": 8,
+      "futureDateSamples": 5,
+      "source": "Direct publisher pages; followup property evidence",
+      "checkedAt": "2026-11-03T23:51:07.386050+00:00"
     }
   ]
 }
